@@ -81,6 +81,7 @@ abstract class AbstractBase implements MetadataVocabularyInterface
             'startpage' => $driver->tryMethod('getContainerStartPage'),
             'title' => $driver->tryMethod('getTitle'),
             'volume' => $driver->tryMethod('getContainerVolume'),
+            'description' => $driver->tryMethod('getSummary'),
         ];
     }
 

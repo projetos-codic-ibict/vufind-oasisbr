@@ -57,5 +57,6 @@ class DublinCore extends AbstractBase
         'DC.publisher' => 'publisher',
         'DC.relation.ispartof' => 'container_title',
         'DC.title' => 'title',
+        'DC.description' => 'description',
     ];
 }

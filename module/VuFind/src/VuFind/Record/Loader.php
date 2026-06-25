@@ -39,6 +39,8 @@ use VuFindSearch\Command\RetrieveBatchCommand;
 use VuFindSearch\Command\RetrieveCommand;
 use VuFindSearch\ParamBag;
 use VuFindSearch\Service as SearchService;
+use Laminas\Config\Config as Config;
+use Oasisbr\RecordDriver\SolrDefault;
 
 use function count;
 use function is_object;
@@ -117,49 +119,32 @@ class Loader implements \Psr\Log\LoggerAwareInterface
      * @throws \Exception
      * @return \VuFind\RecordDriver\AbstractBase
      */
-    public function load(
-        $id,
-        $source = DEFAULT_SEARCH_BACKEND,
-        $tolerateMissing = false,
-        ?ParamBag $params = null
-    ) {
+    public function load($id, $source = DEFAULT_SEARCH_BACKEND, $tolerateMissing = false, ParamBag $params = null)
+    {
         if (null !== $id && '' !== $id) {
             $results = [];
-            if (
-                null !== $this->recordCache
-                && $this->recordCache->isPrimary($source)
-            ) {
+            if (null !== $this->recordCache && $this->recordCache->isPrimary($source)) {
                 $results = $this->recordCache->lookup($id, $source);
             }
             if (empty($results)) {
                 try {
-                    $command = new RetrieveCommand($source, $id, $params);
-                    $results = $this->searchService->invoke($command)
-                        ->getResult()->getRecords();
+                    $results = $this->searchService->retrieve($source, $id, $params)
+                        ->getRecords();
                 } catch (BackendException $e) {
                     if (!$tolerateMissing) {
                         throw $e;
                     }
                 }
             }
-            if (
-                empty($results) && null !== $this->recordCache
-                && $this->recordCache->isFallback($source)
-            ) {
+            if (empty($results) && null !== $this->recordCache && $this->recordCache->isFallback($source)) {
                 $results = $this->recordCache->lookup($id, $source);
-                if (!empty($results)) {
-                    $results[0]->setExtraDetail('cached_record', true);
-                }
             }
 
             if (!empty($results)) {
                 return $results[0];
             }
 
-            if (
-                $this->fallbackLoader
-                && $this->fallbackLoader->has($source)
-            ) {
+            if ($this->fallbackLoader && $this->fallbackLoader->has($source)) {
                 try {
                     $fallbackRecords = $this->fallbackLoader->get($source)
                         ->load([$id]);
@@ -178,12 +163,78 @@ class Loader implements \Psr\Log\LoggerAwareInterface
         if ($tolerateMissing) {
             $record = $this->recordFactory->get('Missing');
             $record->setRawData(['id' => $id]);
-            $record->setSourceIdentifiers($source);
+            $record->setSourceIdentifier($source);
             return $record;
+        }
+        $newId = $this->loadNewIdFromAPI($id);
+        if ($newId) {
+            return $this->load($newId);
+        } else {
+            $record = $this->loadMissedFromAPI($id);
+            if ($record) {
+                $fields = json_decode(json_encode($record), true);
+                $solrDefault = new SolrDefault();
+                $solrDefault->setRawData($fields);
+                return $solrDefault;
+            }
         }
         throw new RecordMissingException(
             'Record ' . $source . ':' . $id . ' does not exist.'
         );
+    }
+
+    public function loadNewIdFromAPI($id)
+    {
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $this->config->Oasisbr->oasisbr_api . "ids/" . $id,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "cache-control: no-cache"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        $response = json_decode($response, true); //because of true, it's in an array
+        if ($response) {
+            return $response["target"];
+        }
+        return null;
+    }
+
+    public function loadMissedFromAPI($id)
+    {
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $this->config->Oasisbr->oasisbr_api . "records/" . $id,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "cache-control: no-cache"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        $response = json_decode($response); //because of true, it's in an array
+
+        if ($response) {
+            $record = $response->record;
+            return $record;
+        }
+        return null;
     }
 
     /**
@@ -234,7 +285,7 @@ class Loader implements \Psr\Log\LoggerAwareInterface
                 }
                 $this->logWarning(
                     "Exception when trying to retrieve records from $source: "
-                    . $e->getMessage()
+                        . $e->getMessage()
                 );
             }
 
@@ -258,7 +309,7 @@ class Loader implements \Psr\Log\LoggerAwareInterface
                 $fallbackRecords = [];
                 $this->logWarning(
                     'Exception when trying to retrieve fallback records from '
-                    . $source . ': ' . $e->getMessage()
+                        . $source . ': ' . $e->getMessage()
                 );
             }
             foreach ($fallbackRecords as $record) {

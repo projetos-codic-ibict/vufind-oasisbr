@@ -14,7 +14,7 @@ accessRestrictions:
 authors:
   vufind.method: getDeduplicatedAuthors
   vufind.default: true
-  $ref: '#/components/schemas/Authors'
+  $ref: "#/components/schemas/Authors"
 awards:
   vufind.method: getAwards
   description: Award notes
@@ -289,7 +289,7 @@ recordLinks:
   description: Links to other related records
   type: array
   items:
-    $ref: '#/components/schemas/RecordLink'
+    $ref: "#/components/schemas/RecordLink"
 recordPage:
   vufind.method: "Formatter::getRecordPage"
   description: Link to the record page in the UI
@@ -332,7 +332,7 @@ subjectsExtended:
   description: Subject headings with type and source information
   type: array
   items:
-    $ref: '#/components/schemas/Subject'
+    $ref: "#/components/schemas/Subject"
 subTitle:
   vufind.method: getSubTitle
   description: Subtitle
@@ -380,4 +380,113 @@ urls:
   description: URLs contained in the record
   type: array
   items:
-    $ref: '#/components/schemas/Url'
+    $ref: "#/definitions/Url"
+oai_identifier_st:
+  vufind.method: getIdentifierOAI
+  vufind.default: true
+  description: OAI-PMH identifier
+  type: string
+network_acronym_str:
+  vufind.method: getNetworkAcronym
+  description: Source acronym
+  type: string
+network_name_str:
+  vufind.method: getNetworkName
+  description: Source name
+  type: string
+description:
+  vufind.method: getDescription
+  description: Summary/Description
+  type: string
+publishDate:
+  vufind.method: getPublishDate
+  description: Publication year
+  type: integer
+topic:
+  vufind.method: getTopic
+  description: Keywords
+  type: array
+  items:
+    type: string
+institution:
+  vufind.method: getInstitution
+  description: Institution acronym
+  type: string
+instname_str:
+  vufind.method: getInstName
+  description: Institution name
+  type: string
+dc.publisher.program:
+  vufind.method: getPublisherProgram
+  description: Publisher program
+  type: string
+dc.contributor.advisor1:
+  vufind.method: getAdvisor
+  description: Advisor
+  type: string
+dc.subject.cnpq:
+  vufind.method: getCNPQSubjects
+  description: CNPQ subject
+  type: array
+  items:
+    type: string
+eu_rights_str_mv:
+  vufind.method: getRights
+  description: Access type
+  type: string
+dc.contributor.authorLattes:
+  vufind.method: getAuthorLattes
+  description: Author Lattes
+  type: string
+dc.contributor.advisorLattes:
+  vufind.method: getAdvisorLattes
+  description: Advisor Lattes
+  type: string
+dc.contributor.referees1:
+  vufind.method: getReferees1
+  description: Referees 1
+  type: string
+dc.contributor.referees1Lattes:
+  vufind.method: getReferees1Lattes
+  description: Referees 1 Lattes
+  type: string
+dc.contributor.referees2:
+  vufind.method: getReferees2
+  description: Referees 2
+  type: string
+dc.contributor.referees2Lattes:
+  vufind.method: getReferees2Lattes
+  description: Referees 2 Lattes
+  type: string
+dc.contributor.referees3:
+  vufind.method: getReferees3
+  description: Referees 3
+  type: string
+dc.contributor.referees3Lattes:
+  vufind.method: getReferees3Lattes
+  description: Referees 3 Lattes
+  type: string
+dc.contributor.referees4:
+  vufind.method: getReferees4
+  description: Referees 4
+  type: string
+dc.contributor.referees4Lattes:
+  vufind.method: getReferees4Lattes
+  description: Referees 4 Lattes
+  type: string
+dc.contributor.referees5:
+  vufind.method: getReferees5
+  description: Referees 5
+  type: string
+dc.contributor.referees5Lattes:
+  vufind.method: getReferees5Lattes
+  description: Referees 5 Lattes
+  type: string
+dc.identifier.issn:
+  vufind.method: getISSN
+  description: ISSN
+  type: string
+dc.identifier.doi:
+  vufind.method: getDOI
+  description: DOI
+  type: string
