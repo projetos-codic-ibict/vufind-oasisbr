@@ -29,8 +29,10 @@ function showMessageError(element) {
 }
 
 if (window.location.hostname === 'oasisbr.ibict.br' || window.location.hostname === 'oasisbrhm.ibict.br') {
-  API_BASE_URL = `https://${window.location.host}/vufind/api/v1`;
-  REMOTE_API_URL = `https://api-${window.location.host}/api/v1`;
+  // API_BASE_URL = `https://${window.location.host}/vufind/api/v1`;
+  // REMOTE_API_URL = `https://api-${window.location.host}/api/v1`;
+  API_BASE_URL = `https://oasisbr.ibict.br/vufind/api/v1`;
+  REMOTE_API_URL = `https://api-oasisbr.ibict.br/`;
 } else {
   API_BASE_URL = `http://${window.location.host}/vufind/api/v1`;
   REMOTE_API_URL = `http://${window.location.host}:3000/api/v1`;
