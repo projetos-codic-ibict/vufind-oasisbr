@@ -135,6 +135,17 @@ return array(
       ),
     ),
   ),
+  'service_manager' =>
+  array(
+    'factories' =>
+    array(
+      'VuFind\\Record\\Loader' => 'Oasisbr\\Record\\LoaderFactory',
+    ),
+    'aliases' =>
+    array(
+      'VuFind\\RecordLoader' => 'VuFind\\Record\\Loader',
+    ),
+  ),
   'vufind' =>
   array(
     'plugin_managers' =>

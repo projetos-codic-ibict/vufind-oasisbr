@@ -27,7 +27,7 @@
  * @link     https://vufind.org/wiki/development Wiki
  */
 
-namespace VuFind\Record;
+namespace Oasisbr\Record;
 
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\Exception\ServiceNotFoundException;
@@ -67,8 +67,8 @@ class LoaderFactory implements FactoryInterface
     ) {
         if (!empty($options)) {
             throw new \Exception('Unexpected options passed to factory.');
-        }
-        return new $requestedName(
+        } //$requestedName
+        return new \Oasisbr\Record\Loader(
             $container->get(\VuFindSearch\Service::class),
             $container->get(\VuFind\RecordDriver\PluginManager::class),
             $container->get(\VuFind\Record\Cache::class),

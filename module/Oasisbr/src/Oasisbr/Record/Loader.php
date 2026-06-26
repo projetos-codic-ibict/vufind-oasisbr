@@ -98,7 +98,8 @@ class Loader extends \VuFind\Record\Loader
     public function __construct(
         SearchService $searchService,
         RecordFactory $recordFactory,
-        ?Cache $recordCache = null,
+        ?\VuFind\Record\Cache $recordCache = null,
+        // ?Cache $recordCache = null,
         ?FallbackLoader $fallbackLoader = null
     ) {
         $this->searchService = $searchService;
@@ -128,7 +129,12 @@ class Loader extends \VuFind\Record\Loader
             }
             if (empty($results)) {
                 try {
-                    $results = $this->searchService->retrieve($source, $id, $params)
+                    // $results = $this->searchService->retrieve($source, $id, $params)
+                    //     ->getRecords();
+                    $command = new RetrieveCommand($source, $id, $params);
+
+                    $results = $this->searchService->invoke($command)
+                        ->getResult()
                         ->getRecords();
                 } catch (BackendException $e) {
                     if (!$tolerateMissing) {
