@@ -8,107 +8,104 @@
   </ul>
 </div>
 <div class="banner navbar navbar-expand-md">
+  <div class="container-fluid ">
     <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#header-collapse">
-      <span class="sr-only">Toggle navigation</span>
+      <span class="visually-hidden">Toggle navigation</span>
       <i class="fa fa-bars" aria-hidden="true"></i>
     </button>
-  <?php if (!isset($this->layout()->renderingError)) : ?>
-    <div class="collapse navbar-collapse justify-content-center" id="header-collapse">
-      <nav class="nav-main">
-        <!-- <a class="navbar-brand lang-<?= $this->layout()->userLang ?>" href="https://www.gov.br/ibict">
-          <img class="logo-img" src="<?= $this->imageLink('ibict.png'); ?>" alt="Logo do Ibict" />
-          <span class="ibict-name">Instituto Brasileiro de Informação em Ciência e Tecnologia</span>
-        </a> -->
-         <a class="navbar-brand lang-<?= $this->layout()->userLang ?>" href="https://www.gov.br/ibict">
-          <img class="logo-img" src="<?= $this->imageLink('logoibictversao1.png'); ?>" alt="Logo do Ibict" />
-          <!-- <span class="ibict-name">Instituto Brasileiro de Informação em Ciência e Tecnologia</span> -->
-        </a>
-        <ul role="navigation" class="nav navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="<?= $this->url('home') ?>"><?= $this->transEsc("Home") ?></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?= $this->url('about-home') ?>"><?= $this->transEsc("About") ?></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?= $this->url('datasources-home') ?>"><?= $this->transEsc("Data Sources") ?></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?= $this->url('indicators-home') ?>"><?= $this->transEsc("Indicators") ?></a>
-          </li>
-          <?php if ($this->feedback()->tabEnabled()) : ?>
+    <?php if (!isset($this->layout()->renderingError)) : ?>
+      <div class="collapse navbar-collapse justify-content-center" id="header-collapse">
+        <nav class="nav-main">
+          <a class="navbar-brand lang-<?= $this->layout()->userLang ?>" href="https://www.gov.br/ibict">
+            <img class="logo-img img-fluid" src="<?= $this->imageLink('logoibictversao1.png'); ?>" alt="Logo do Ibict" />
+          </a>
+          <ul role="navigation" class="nav navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" id="feedbackLink" data-lightbox href="<?= $this->url('feedback-home') ?>"><?= $this->transEsc("Contact") ?></a>
+              <a class="nav-link" href="<?= $this->url('home') ?>"><?= $this->transEsc("Home") ?></a>
             </li>
-          <?php endif; ?>
-          <li class="nav-item">
-            <a class="nav-link" href="<?= $this->url('faq-home') ?>"><?= $this->transEsc("Faq") ?></a>
-          </li>
-          <?php $cart = $this->cart();
-          if ($cart->isActive()) : ?>
-            <li id="cartSummary" class="nav-item">
-              <a class="nav-link" id="cartItems" data-lightbox title="<?= $this->transEsc('View Book Bag') ?>" href="<?= $this->url('cart-home') ?>">
-                <i class="fa fa-suitcase" aria-hidden="true"></i> <strong><?= count($cart->getItems()) ?></strong> <?= $this->transEsc('items') ?>
-                <span class="full<?= !$cart->isFull() ? ' hidden' : '' ?>">(<?= $this->transEsc('bookbag_full') ?>)</span>
-              </a>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $this->url('about-home') ?>"><?= $this->transEsc("About") ?></a>
             </li>
-          <?php endif; ?>
-          <?php if (is_object($account) && $account->loginEnabled()) : // hide login/logout if unavailable 
-          ?>
-            <li class="logoutOptions<?php if ($account->dropdownEnabled()) : ?> with-dropdown<?php endif ?><?php if (!$account->getUserObject()) : ?> hidden<?php endif ?>">
-              <a class="nav-link" href="<?= $this->url('myresearch-home', [], ['query' => ['redirect' => 0]]) ?>"><i id="account-icon" class="fa fa-user-circle" aria-hidden="true"></i> <?= $this->transEsc("Your Account") ?></a>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $this->url('datasources-home') ?>"><?= $this->transEsc("Data Sources") ?></a>
             </li>
-            <?php if ($account->dropdownEnabled()) : ?>
-              <li id="login-dropdown" class="dropdown<?php if (!$account->getUserObject()) : ?> hidden<?php endif ?>">
-                <a class="nav-link" href="#" data-bs-toggle="dropdown"><i class="fa fa-caret-down"></i></a>
-                <div class="dropdown-menu">
-                  <?= $this->render('myresearch/menu'); ?>
-                </div>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $this->url('indicators-home') ?>"><?= $this->transEsc("Indicators") ?></a>
+            </li>
+            <?php if ($this->feedback()->tabEnabled()) : ?>
+              <li class="nav-item">
+                <a class="nav-link" id="feedbackLink" data-lightbox href="<?= $this->url('feedback-home') ?>"><?= $this->transEsc("Contact") ?></a>
               </li>
             <?php endif; ?>
-            <li class="logoutOptions<?php if (!$account->getUserObject()) : ?> hidden<?php endif ?>">
-              <a class="nav-link" href="<?= $this->url('myresearch-logout') ?>" class="logout"><i class="fa fa-sign-out" aria-hidden="true"></i> <?= $this->transEsc("Log Out") ?></a>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $this->url('faq-home') ?>"><?= $this->transEsc("Faq") ?></a>
             </li>
-            <li id="loginOptions" class="hidden" <?php if ($account->getUserObject()) : ?> class="hidden" <?php endif ?>>
-              <?php if ($account->getSessionInitiator($this->serverUrl($this->url('myresearch-home')))) : ?>
-                <a class="nav-link" href="<?= $this->url('myresearch-userlogin') ?>"><i class="fa fa-sign-in" aria-hidden="true"></i> <?= $this->transEsc("Institutional Login") ?></a>
-              <?php else : ?>
-                <a class="nav-link" href="<?= $this->url('myresearch-userlogin') ?>" data-lightbox><i class="fa fa-sign-in" aria-hidden="true"></i> <?= $this->transEsc("Login") ?></a>
+            <?php $cart = $this->cart();
+            if ($cart->isActive()) : ?>
+              <li id="cartSummary" class="nav-item">
+                <a class="nav-link" id="cartItems" data-lightbox title="<?= $this->transEsc('View Book Bag') ?>" href="<?= $this->url('cart-home') ?>">
+                  <i class="fa fa-suitcase" aria-hidden="true"></i> <strong><?= count($cart->getItems()) ?></strong> <?= $this->transEsc('items') ?>
+                  <span class="full<?= !$cart->isFull() ? ' hidden' : '' ?>">(<?= $this->transEsc('bookbag_full') ?>)</span>
+                </a>
+              </li>
+            <?php endif; ?>
+            <?php if (is_object($account) && $account->loginEnabled()) : // hide login/logout if unavailable 
+            ?>
+              <li class="logoutOptions<?php if ($account->dropdownEnabled()) : ?> with-dropdown<?php endif ?><?php if (!$account->getUserObject()) : ?> hidden<?php endif ?>">
+                <a class="nav-link" href="<?= $this->url('myresearch-home', [], ['query' => ['redirect' => 0]]) ?>"><i id="account-icon" class="fa fa-user-circle" aria-hidden="true"></i> <?= $this->transEsc("Your Account") ?></a>
+              </li>
+              <?php if ($account->dropdownEnabled()) : ?>
+                <li id="login-dropdown" class="dropdown<?php if (!$account->getUserObject()) : ?> hidden<?php endif ?>">
+                  <a class="nav-link" href="#" data-bs-toggle="dropdown"><i class="fa fa-caret-down"></i></a>
+                  <div class="dropdown-menu">
+                    <?= $this->render('myresearch/menu'); ?>
+                  </div>
+                </li>
               <?php endif; ?>
-            </li>
-          <?php endif; ?>
+              <li class="logoutOptions<?php if (!$account->getUserObject()) : ?> hidden<?php endif ?>">
+                <a class="nav-link" href="<?= $this->url('myresearch-logout') ?>" class="logout"><i class="fa fa-sign-out" aria-hidden="true"></i> <?= $this->transEsc("Log Out") ?></a>
+              </li>
+              <li id="loginOptions" class="hidden" <?php if ($account->getUserObject()) : ?> <?php endif ?>>
+                <?php if ($account->getSessionInitiator($this->serverUrl($this->url('myresearch-home')))) : ?>
+                  <a class="nav-link" href="<?= $this->url('myresearch-userlogin') ?>"><i class="fa fa-sign-in" aria-hidden="true"></i> <?= $this->transEsc("Institutional Login") ?></a>
+                <?php else : ?>
+                  <a class="nav-link" href="<?= $this->url('myresearch-userlogin') ?>" data-lightbox><i class="fa fa-sign-in" aria-hidden="true"></i> <?= $this->transEsc("Login") ?></a>
+                <?php endif; ?>
+              </li>
+            <?php endif; ?>
 
-          <?php if (isset($this->layout()->themeOptions) && count($this->layout()->themeOptions) > 1) : ?>
-            <li class="theme dropdown">
-              <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><?= $this->transEsc("Theme") ?> <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <?php foreach ($this->layout()->themeOptions as $current) : ?>
-                  <li<?= $current['selected'] ? ' class="active"' : '' ?>>
-                    <a href="<?= $this->escapeHtmlAttr($this->url()->addQueryParameters(['ui' => $current['name']])) ?>" rel="nofollow">
-                      <?= $this->transEsc($current['desc']) ?>
-                    </a>
-            </li>
-          <?php endforeach; ?>
+            <?php if (isset($this->layout()->themeOptions) && count($this->layout()->themeOptions) > 1) : ?>
+              <li class="theme dropdown">
+                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><?= $this->transEsc("Theme") ?> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <?php foreach ($this->layout()->themeOptions as $current) : ?>
+                    <li<?= $current['selected'] ? ' class="active"' : '' ?>>
+                      <a href="<?= $this->escapeHtmlAttr($this->url()->addQueryParameters(['ui' => $current['name']])) ?>" rel="nofollow">
+                        <?= $this->transEsc($current['desc']) ?>
+                      </a>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+          </li>
+        <?php endif; ?>
+
+        <?php if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1) : ?>
+          <li class="language dropdown">
+            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><?= $this->transEsc("Language") ?> <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <?php foreach ($this->layout()->allLangs as $langCode => $langName) : ?>
+                <li<?= $this->layout()->userLang == $langCode ? ' class="active"' : '' ?>>
+                  <a href="<?= $this->escapeHtmlAttr($this->url()->addQueryParameters(['lng' => $langCode])) ?>" rel="nofollow">
+                    <?= $this->displayLanguageOption($langName) ?>
+                  </a>
+          </li>
+        <?php endforeach; ?>
         </ul>
         </li>
       <?php endif; ?>
-
-      <?php if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1) : ?>
-        <li class="language dropdown">
-          <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><?= $this->transEsc("Language") ?> <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <?php foreach ($this->layout()->allLangs as $langCode => $langName) : ?>
-              <li<?= $this->layout()->userLang == $langCode ? ' class="active"' : '' ?>>
-                <a href="<?= $this->escapeHtmlAttr($this->url()->addQueryParameters(['lng' => $langCode])) ?>" rel="nofollow">
-                  <?= $this->displayLanguageOption($langName) ?>
-                </a>
-        </li>
-      <?php endforeach; ?>
       </ul>
-      </li>
+        </nav>
+      </div>
     <?php endif; ?>
-    </ul>
-      </nav>
-    </div>
-  <?php endif; ?>
+  </div>
 </div>
