@@ -55,12 +55,12 @@ a.btn {
 }
 
 .facet-group [data-toggle="collapse"]::after {
-  font-family: FontAwesome;
+  font-family: "Font Awesome 6 Free";
   content: "\f106";
 }
 
 .facet-group .collapsed::after {
-  font-family: FontAwesome;
+  font-family: "Font Awesome 6 Free";
   content: "\f107";
 }
 
@@ -80,12 +80,12 @@ a.btn {
 }
 
 .export button::after {
-  font-family: FontAwesome;
+  font-family: "Font Awesome 6 Free";
   content: "\f107";
 }
 
 .export.open button::after {
-  font-family: FontAwesome;
+  font-family: "Font Awesome 6 Free";
   content: "\f106";
 }
 
@@ -485,7 +485,7 @@ li.language a {
   bottom: 8px;
   right: 8px;
   display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
+  font: normal normal normal 14px/1 "Font Awesome 6 Free";
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -727,7 +727,8 @@ li.language a {
 }
 
 .btn-collapse::before {
-  font-family: FontAwesome;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   font-size: 1.5rem;
   content: '\f078';
   color: #67b471;

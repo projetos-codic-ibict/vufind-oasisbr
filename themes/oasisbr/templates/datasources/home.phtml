@@ -12,16 +12,16 @@
 <div class="page-title-bar">
   <div class="container">
     <h1><?= $this->transEsc("Data Sources") ?></h1>
-    <h4><?= $this->transEsc("Data Sources Subtitle") ?><h4>
+    <h4><?= $this->transEsc("Data Sources Subtitle") ?></h4>
   </div>
 </div>
 
-<div class="container" id="networks-page" class="networks-page">
-  <div class="sidebar left hidden-print" id="search-sidebar">
+<div class="container networks-page" id="networks-page">
+  <div class="sidebar left d-print-none" id="search-sidebar">
     <div class="facet-group" id="side-panel-format">
-      <button class="title" aria-expanded="true" data-toggle="collapse">
+      <button class="title" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#side-collapse-format" aria-controls="side-collapse-format">
         <?= $this->transEsc("Source type") ?> </button>
-      <div id="side-collapse-format" class="collapse in" aria-expanded="true">
+      <div id="side-collapse-format" class="collapse show" aria-expanded="true">
         <a id="list-all" class="facet js-facet-item facetAND">
           <span class="text">
             <span class="facet-value"><?= $this->transEsc("All sources") ?></span>
@@ -31,10 +31,10 @@
       </div>
     </div>
     <div class="facet-group" id="side-panel-institution">
-      <button class="title" aria-expanded="true" data-toggle="collapse">
+      <button class="title" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#side-collapse-institution" aria-controls="side-collapse-institution">
         <?= $this->transEsc("Institution") ?>
       </button>
-      <div id="side-collapse-institution" class="collapse in" aria-expanded="true">
+      <div id="side-collapse-institution" class="collapse show" aria-expanded="true">
         <a id="list-all" class="facet js-facet-item facetAND">
           <span class="text">
 
@@ -46,9 +46,9 @@
     </div>
 
     <div class="facet-group" id="side-panel-region">
-      <button class="title" aria-expanded="true" data-toggle="collapse">
+      <button class="title" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#side-collapse-region" aria-controls="side-collapse-region">
         <?= $this->transEsc("Region") ?> </button>
-      <div id="side-collapse-region" class="collapse in" aria-expanded="true">
+      <div id="side-collapse-region" class="collapse show" aria-expanded="true">
         <a id="list-all" class="facet js-facet-item facetAND">
           <span class="text">
 
@@ -60,9 +60,9 @@
     </div>
 
     <div class="facet-group" id="side-panel-uf">
-      <button class="title" aria-expanded="true" data-toggle="collapse">
+      <button class="title" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#side-collapse-uf" aria-controls="side-collapse-uf">
         <?= $this->transEsc("State") ?> </button>
-      <div id="side-collapse-uf" class="collapse in" aria-expanded="true">
+      <div id="side-collapse-uf" class="collapse show" aria-expanded="true">
         <a id="list-all" class="facet js-facet-item facetAND">
           <span class="text">
 
@@ -78,12 +78,12 @@
   <div class="mainbody right">
     <div class="top-facets">
       <!--Toggle for mobile collapse -->
-      <a class="top-title js-toggle visible-xs" data-toggle="collapse" data-target="#top_topic_facet"><i class="fa fa-caret-right"></i> Sugestões de Tópicos dentro de sua ...</a>
+      <a class="top-title js-toggle d-block d-sm-none" data-bs-toggle="collapse" data-bs-target="#top_topic_facet"><i class="fa-solid fa-caret-right"></i> Sugestões de Tópicos dentro de sua ...</a>
       <!--Regular title for non-mobile -->
       <div class="collapse" id="top_topic_facet">
       </div>
     </div>
-    <div id="result" class="search-header hidden-print">
+    <div id="result" class="search-header d-print-none">
       <div class="search-stats networks-total-label">
         <span class="networks-label">
 
@@ -96,7 +96,7 @@
 
     <div id="networks">
       <div class="flex flex-space-between">
-        <input class="search form-control" placeholder=<?= $this->transEsc("Search") ?>>
+        <input class="search form-control" placeholder="<?= $this->transEsc("Search") ?>">
         <div class="networks-sort flex">
           <label for="sort-select"><?= $this->transEsc("Sort") ?></label>
           <select id="sort-select" class="form-control">
