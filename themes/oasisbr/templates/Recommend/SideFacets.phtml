@@ -1,5 +1,5 @@
 <?php
-$this->headScript()->appendFile('facets.js');
+$this->assetManager()->appendScriptLink('facets.js');
 
 // Save results/options to $this so they are available to sub-templates:
 $this->results = $results = $this->recommend->getResults();
@@ -23,10 +23,10 @@ $hierarchicalFacets = $this->recommend->getHierarchicalFacets();
 if ($hierarchicalFacets) {
   // jstree.min.js used to be injected by hierarchical-facet.js, but with deferred
   // processing it's called too late to append anything to the headers.
-  $this->headScript()->appendFile('vendor/jsTree/jstree.min.js');
+  $this->assetManager()->appendScriptLink('vendor/jsTree/jstree.min.js');
 }
 ?>
-<button class="close-offcanvas btn btn-link" data-toggle="offcanvas"><?= $this->transEsc('navigate_back') ?></button>
+<button class="close-offcanvas btn btn-link" data-bs-toggle="offcanvas"><?= $this->transEsc('navigate_back') ?></button>
 <?php if ($results->getResultTotal() > 0) : ?>
   <h2><?= $this->transEsc($this->slot('side-facet-caption')->get('Narrow Search')) ?></h2>
 <?php endif; ?>
@@ -56,7 +56,7 @@ if ($hierarchicalFacets) {
     <!-- substitui os pontos por traço, com os pontos da erro no controle do javascript  -->
     <?php $title = str_replace(".", "--", $title); ?>
     <div class="facet-group" id="side-panel-<?= $this->escapeHtmlAttr($title) ?>">
-      <a class="title<?php if (in_array($title, $collapsedFacets)) : ?> collapsed<?php endif ?>" data-toggle="collapse" href="#side-collapse-<?= $this->escapeHtmlAttr($title) ?>">
+      <a class="title<?php if (in_array($title, $collapsedFacets)) : ?> collapsed<?php endif ?>" data-bs-toggle="collapse" href="#side-collapse-<?= $this->escapeHtmlAttr($title) ?>">
         <?= $this->transEsc($cluster['label']) ?>
       </a>
       <div id="side-collapse-<?= $this->escapeHtmlAttr($title) ?>" class="collapse<?php if (!in_array($title, $collapsedFacets)) : ?> in<?php endif ?>" <?php if (in_array($title, $forceUncollapsedFacets)) : ?> data-force-in="1" <?php endif ?>>
@@ -72,4 +72,3 @@ if ($hierarchicalFacets) {
     </div>
   <?php endforeach; ?>
 <?php endif; ?>
-<?= $this->inlineScript(\Laminas\View\Helper\HeadScript::SCRIPT, "registerMoreLessFacetsEventHandlers();", 'SET'); ?>

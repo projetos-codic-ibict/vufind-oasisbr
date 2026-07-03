@@ -23,8 +23,7 @@
   <?php if ($this->layout()->rtl) {
     $this->assetManager()->appendStyleLink('vendor/bootstrap-rtl.min.css');
   } ?>
-  <?=$this->assetManager()->outputHeaderAssets()?>
-  
+
   <?php
   // Collect small scripts together and append as one block:
   $appendScripts = [];
@@ -53,7 +52,9 @@
         'loading' => 'Loading',
         'more' => 'more',
         'number_thousands_separator' => [
-          'number_thousands_separator', null, ','
+          'number_thousands_separator',
+          null,
+          ','
         ],
         'sms_success' => 'sms_success'
       ]
@@ -103,7 +104,7 @@
       );
     }
     $this->assetManager()->prependScriptString(
-     'var userIsLoggedIn = ' . ($this->auth()->getUserObject() ? 'true' : 'false') . ';'
+      'var userIsLoggedIn = ' . ($this->auth()->getUserObject() ? 'true' : 'false') . ';'
     );
   }
 
@@ -143,10 +144,11 @@ JS;
     $this->assetManager()->appendScriptLink('covers.js');
   }
   ?>
-  <?=$this->assetManager()->outputFooterAssets()?>
+  <?= $this->assetManager()->outputHeaderAssets() ?>
+  <?= $this->assetManager()->outputFooterAssets() ?>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8YFC4NWSB"></script>
-  
+
   <script>
     window.dataLayer = window.dataLayer || [];
 

@@ -38,7 +38,7 @@ function obterRegiaoPorUF(uf) {
 
 async function getAllNetworks() {
   try {
-    const response = await axios.get(`${REMOTE_API_URL}/networks`);
+    const response = await axios.get(`${REMOTE_API_URL}networks`);
     const networks = response.data;
     return networks;
   } catch (errors) {
