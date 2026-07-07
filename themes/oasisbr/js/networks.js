@@ -38,7 +38,8 @@ function obterRegiaoPorUF(uf) {
 
 async function getAllNetworks() {
   try {
-    const response = await axios.get(`${REMOTE_API_URL}networks`);
+    
+    const response = await axios.get(`${REMOTE_API_URL}/api/v1/networks`);
     const networks = response.data;
     return networks;
   } catch (errors) {
@@ -48,6 +49,8 @@ async function getAllNetworks() {
 }
 
 function fillDatanetworks(networks) {
+  console.log('[fillDatanetworks] recebido:', networks);
+  console.log('[fillDatanetworks] é array?', Array.isArray(networks), '| quantidade:', networks ? networks.length : 'N/A');
   // remover referência para o array original, tem alterações aqui que só faz
   // sentido para este item
   networks = JSON.parse(JSON.stringify(networks));
@@ -67,11 +70,11 @@ function fillDatanetworks(networks) {
     item: `<li class="network-item">
       <h3><a href="" class="link name"></a></h3>
       <p><b>${getTranslatedText(
-        'Instituição responsável'
-      )}</b>: <span class="institution"></span></p>
+      'Instituição responsável'
+    )}</b>: <span class="institution"></span></p>
       <p><b>${getTranslatedText(
-        'Número de documentos coletados'
-      )}</b>: <span class="validSize"></span></p>
+      'Número de documentos coletados'
+    )}</b>: <span class="validSize"></span></p>
       </li>`,
     page: 10,
     pagination: [
@@ -207,15 +210,15 @@ function getIndicators(networks) {
 
 function fillIndicators(indicators, querySelector, indicatorType) {
   const sidebarElement = document.querySelector(querySelector);
-  sidebarElement.innerHTML = sidebarElement.firstElementChild;
+  let html = sidebarElement.firstElementChild.outerHTML;
+  // sidebarElement.innerHTML = sidebarElement.firstElementChild;
 
   indicators.sort((a, b) => b.value - a.value);
   indicators.forEach((indicator) => {
-    const item = `<a onclick="filterNetworks('${
-      indicator.name
-    }', '${indicatorType}')" title="${getTranslatedText(
-      'Select filter'
-    )}"  class="facet js-facet-item facetAND">
+    const item = `<a onclick="filterNetworks('${indicator.name
+      }', '${indicatorType}')" title="${getTranslatedText(
+        'Select filter'
+      )}"  class="facet js-facet-item facetAND">
     <span class="text">
       <span class="facet-value">${getTranslatedText(indicator.name)}</span>
     </span>
