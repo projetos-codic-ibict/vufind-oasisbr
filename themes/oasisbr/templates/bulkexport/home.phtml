@@ -43,7 +43,7 @@ echo $this->form()->openTag($form);
 		?></div>
 <?php endif; ?>
 
-<div class="checkbox-inline">
+<div class="form-check form-check-inline">
 	<?php
 	$primaryAbstract = $form->get('primaryAbstract');
 	echo $this->formCheckbox($primaryAbstract);
@@ -54,7 +54,7 @@ echo $this->form()->openTag($form);
 <br>
 
 <?php if ($this->foreignAbstract) : ?>
-	<div style="margin-bottom:20px" class="checkbox-inline">
+	<div style="margin-bottom:20px" class="form-check form-check-inline">
 		<?php
 		$foreignAbstract = $form->get('foreignAbstract');
 		echo $this->formCheckbox($foreignAbstract);

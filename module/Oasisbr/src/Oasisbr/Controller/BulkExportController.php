@@ -369,7 +369,7 @@ class BulkExportController extends \VuFind\Controller\AbstractBase
 		$timeout = $exportConfig->Service->timeout;
 
 		$client = new HttpClient();
-		$client->setAdapter('Zend\Http\Client\Adapter\Socket');
+		$client->setAdapter('Laminas\Http\Client\Adapter\Socket');
 		$client->setOptions(['timeout' => $timeout]);
 		$client->setUri($url);
 		$client->setMethod($method);

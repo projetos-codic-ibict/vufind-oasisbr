@@ -83,11 +83,13 @@ a.btn {
 
 .export button::after {
   font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   content: "\f107";
 }
 
 .export.open button::after {
   font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   content: "\f106";
 }
 
@@ -508,7 +510,7 @@ li.language a {
   }
 }
 
-#networks th.sorting::after {
+#networks th.sorting::after  {
   position: absolute;
   bottom: 8px;
   right: 8px;

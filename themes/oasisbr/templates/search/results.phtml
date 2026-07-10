@@ -47,14 +47,14 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
   <?php if (($recordTotal = $this->results->getResultTotal()) > 0) : // only display these at very top if we have results 
   ?>
     <div class="dropdown export">
-      <button class="dropdown-toggle" type="button" data-toggle="dropdown">
+      <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
         <?= $this->transEsc('Export') ?>
       </button>
       <ul class="dropdown-menu">
-        <li> <a style="text-decoration: none;" href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=ris' ?>" data-lightbox>
+        <li> <a class="dropdown-item" href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=ris' ?>" data-lightbox>
             <i class="fa fa-file-text-o" aria-hidden="true"></i> <?= $this->transEsc('Export RIS') ?>
           </a></li>
-        <li><a style="text-decoration: none;" href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=csv' ?>" data-lightbox>
+        <li><a class="dropdown-item" href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=csv' ?>" data-lightbox>
             <i class="fa fa-file-excel-o" aria-hidden="true"></i> <?= $this->transEsc('Export CSV') ?>
           </a></li>
       </ul>
@@ -68,7 +68,7 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
     <div class="search-stats">
       <?php if ($recordTotal > 0) : ?>
         <?= $this->context()->renderInContext('search/controls/showing.phtml', ['lookfor' => $lookfor, 'recordTotal' => $recordTotal]) ?>
-        <a class="search-filter-toggle visible-xs" href="#search-sidebar" data-toggle="offcanvas" title="<?= $this->transEscAttr('sidebar_expand') ?>">
+        <a class="search-filter-toggle visible-xs" href="#search-sidebar" data-bs-toggle="offcanvas" title="<?= $this->transEscAttr('sidebar_expand') ?>">
           <?= $this->transEsc('Refine Results') ?>
         </a>
       <?php else : ?>
