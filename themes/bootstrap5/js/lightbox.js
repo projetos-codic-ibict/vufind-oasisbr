@@ -34,8 +34,9 @@ VuFind.register('lightbox', function Lightbox() {
       $h2.text(_lightboxTitle);
     }
     if ($h2.length > 0) {
-      $h2.attr('id', 'lightbox-title');
-      _modal.setAttribute('aria-labelledby', 'lightbox-title');
+      var titleId = 'lightbox-title';
+      $h2.attr('id', titleId);
+      _modal.setAttribute('aria-labelledby', titleId);
     } else {
       _modal.removeAttribute('aria-labelledby');
     }
@@ -69,7 +70,7 @@ VuFind.register('lightbox', function Lightbox() {
   function showAlert(message, _type) {
     var type = _type || 'info';
     _html('<div class="flash-message alert alert-' + type + '">' + message + '</div>'
-        + '<button class="btn btn-default" data-bs-dismiss="modal">' + VuFind.translate('close') + '</button>');
+        + '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">' + VuFind.translate('close') + '</button>');
     _bsModal.show();
   }
 
