@@ -247,7 +247,7 @@ section {
 
 .indicators-data h2,
 .indicators-data h3 {
-  color: #808080;
+  color: #2E7D32 !important;
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
@@ -357,6 +357,10 @@ footer p {
   align-items: center;
 }
 
+.text-center{
+  color:#333333;
+}
+
 .row-gap-1 {
   row-gap: 1rem;
 }
@@ -453,7 +457,7 @@ figure:hover img.image-hover {
 
 .section-title {
   padding-bottom: 15px;
-  color: #999999;
+  color: #2E7D32;
 }
 
 .section-partners {
