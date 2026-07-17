@@ -68,7 +68,7 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
     <div class="search-stats">
       <?php if ($recordTotal > 0) : ?>
         <?= $this->context()->renderInContext('search/controls/showing.phtml', ['lookfor' => $lookfor, 'recordTotal' => $recordTotal]) ?>
-        <a class="search-filter-toggle visible-xs" href="#search-sidebar" data-bs-toggle="offcanvas" title="<?= $this->transEscAttr('sidebar_expand') ?>">
+        <a class="search-filter-toggle visible-xs" href="#search-sidebar" data-bs-toggle="offcanvas" ">
           <?= $this->transEsc('Refine Results') ?>
         </a>
       <?php else : ?>
