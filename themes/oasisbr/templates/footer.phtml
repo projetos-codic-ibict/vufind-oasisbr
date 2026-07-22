@@ -18,10 +18,10 @@
   <div class="container-fluid footer">
     <div class="row flex-row-center">
       <div class="col-md-7 col-12">
-        <nav class="nav-footer">
+        <nav class="nav-footer" aria-label="<?= $this->transEsc('Footer navigation') ?>" >
           <ul>
             <li>
-              <a href="#"><?= $this->transEsc("Home") ?></a>
+              <a href="<?= $this->url('home') ?>"><?= $this->transEsc("Home") ?></a>
             </li>
             <li>
               <a href="<?= $this->url('about-home') ?>"><?= $this->transEsc("About") ?></a>
@@ -34,7 +34,7 @@
             </li>
             <?php if ($this->feedback()->tabEnabled()) : ?>
               <li>
-                <a id="feedbackLink" data-lightbox href="<?= $this->url('feedback-home') ?>"><?= $this->transEsc("Contact") ?></a>
+                <a id="footerFeedbackLink" data-lightbox href="<?= $this->url('feedback-home') ?>"><?= $this->transEsc("Contact") ?></a>
               </li>
             <?php endif; ?>
           </ul>
