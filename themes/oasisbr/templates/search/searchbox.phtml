@@ -99,7 +99,7 @@ $showFilters = $filterDetails && (isset($results) || $options->getRetainFilterSe
       <?php endif; ?>
     </div>
     <div class="larger search-btn">
-      <button type="submit" class="btn btn-search-primary"><i class="fa fa-search" aria-hidden="true"></i> <?= $this->transEsc("Find") ?></button>
+      <button type="submit" class="btn btn-search-primary"><i class="fa-solid fa-search" aria-hidden="true"></i> <?= $this->transEsc("Find") ?></button>
       <?php if ($advSearch) : ?>
         <a href="<?= $this->url($advSearch) . (($this->searchId ?? false) ? '?edit=' . $this->escapeHtmlAttr($this->searchId) : $hiddenFilterParams) ?>" class="btn btn-secondary" rel="nofollow"><?= $this->transEsc("Advanced Search") ?></a>
       <?php endif; ?>

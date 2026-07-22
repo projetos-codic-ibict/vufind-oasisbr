@@ -179,6 +179,7 @@ JS;
       <span class="sr-only" role="heading" aria-level="1"><?= $this->layout()->srmessage ?></span>
     <?php endif; ?>
     <a class="sr-only" href="#content"><?= $this->transEsc('Skip to content') ?></a>
+    <a class="sr-only sr-only-focusable skip-link" href="#header-collapse"><?= $this->transEsc('Skip to navigation menu') ?></a>
     <?= $this->render('header.phtml') ?>
   </header>
   <?php if ($this->layout()->searchbox !== false) : ?>
@@ -227,7 +228,7 @@ JS;
   <div id="modal" class="modal fade hidden-print" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="<?= $this->transEscAttr('Close') ?>"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?= $this->transEscAttr('Close') ?>"></button>
         <div class="modal-body"><?= $this->transEsc('Loading') ?>...</div>
       </div>
     </div>
