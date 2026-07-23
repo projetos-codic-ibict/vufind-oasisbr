@@ -1,19 +1,19 @@
 <?php $account = $this->auth()->getManager(); ?>
-<div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
+<!-- <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
   <ul id="menu-barra-temp" style="list-style:none;">
     <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
-      <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do
+      <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;"> Portal do
         Governo Brasileiro</a>
     </li>
   </ul>
-</div>
+</div> -->
 <div class="banner navbar navbar-expand-md">
   <div class="container-fluid ">
-    <div class="flex-nowrap d-flex align-items-center">
+    <div class="header-logos">
       <a class="navbar-brand lang-<?= $this->layout()->userLang ?>" href="https://www.gov.br/ibict">
-        <img class="img-fluid" src="<?= $this->imageLink('logoibictversao1.png'); ?>" alt="Logo do Ibict" />
+        <img class="img-fluid" src="<?= $this->imageLink('logoibictversao1.png'); ?>" alt="Ibict" />
       </a>
-      <a class="navbar-brand" href="<?= $this->url('home') ?>"> <img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="Logo do OasisBR" /></a>
+      <a class="navbar-brand" href="<?= $this->url('home') ?>"> <img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="Oasisbr — página inicial" /></a>
     </div>
     <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#header-collapse">
       <span class="visually-hidden">Toggle navigation</span>

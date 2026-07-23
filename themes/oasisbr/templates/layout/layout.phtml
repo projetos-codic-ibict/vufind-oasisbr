@@ -1,5 +1,15 @@
+<?php
+$userLang = str_replace('_', '-', $this->layout()->userLang);
+
+$htmlLang = match (strtolower($userLang)) {
+    'pt-br', 'pt' => 'pt-BR',
+    'en', 'en-us' => 'en-US',
+    default => $userLang,
+};
+?>
+
 <?= $this->doctype('HTML5') ?>
-<html lang="<?= $this->layout()->userLang ?>" <?php if ($this->layout()->rtl) : ?> dir="rtl" <?php endif; ?>>
+<html lang="<?= $this->escapeHtmlAttr($htmlLang) ?>"<?= $this->layout()->rtl ? ' dir="rtl"' : '' ?>>
 
 <head>
   <?php $this->setupThemeResources(); ?>

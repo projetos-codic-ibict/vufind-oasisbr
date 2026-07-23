@@ -9,7 +9,8 @@
         <img class="image-main" alt="" src="<?= $this->imageLink('ARTIGOS.png'); ?>" srcset="<?= $this->imageLink('ARTIGOS.png'); ?>">
         <img class="image-hover" alt="" src="<?= $this->imageLink('ARTIGOS_HOVER.png'); ?>" srcset="<?= $this->imageLink('ARTIGOS_HOVER.png'); ?>">
       </figure>
-      <p class="indicator-title"><?= $this->transEsc("Articles") ?> <span id="articles" class="indicator-count"></span></p>
+      <p id="articles"></p>
+      <p><?= $this->transEsc("Articles") ?></p>
     </a>
   </div>
 
@@ -19,7 +20,8 @@
         <img class="image-main" alt="" src="<?= $this->imageLink('TESES_E_DISSERTACOES.png'); ?>" srcset="<?= $this->imageLink('TESES_E_DISSERTACOES.png'); ?>">
         <img class="image-hover" alt="" src="<?= $this->imageLink('TESES_E_DISSERTACOES_HOVER.png'); ?>" srcset="<?= $this->imageLink('TESES_E_DISSERTACOES_HOVER.png'); ?>">
       </figure>
-      <p class="indicator-title"><?= $this->transEsc("Theses") ?> <span id="teses" class="indicator-count"></span></p>
+       <p id="teses"></p>
+      <p><?= $this->transEsc("Theses") ?></p>
     </a>
   </div>
 
@@ -29,18 +31,20 @@
         <img class="image-main" alt="" src="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA.png'); ?>" srcset="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA.png'); ?>">
         <img class="image-hover" alt="" src="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA_HOVER.png'); ?>" srcset="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA_HOVER.png'); ?>">
       </figure>
-      <p class="indicator-title"><?= $this->transEsc("Datasets") ?> <span id="datasets" class="indicator-count"></span></p>
+      <p id="datasets"></p>
+      <p><?= $this->transEsc("Datasets") ?></p>
     </a>
   </div>
 
   <div class="col-md-3 col-sm-6 col-12 flex-col-center">
     <a href="Search/Results?join=AND&filter%5B%5D=%7Eformat%3A%22book%22&filter%5B%5D=%7Eformat%3A%22bookPart">
       <figure>
-        <img class="image-main" alt="" src="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS.png'); ?>" srcset="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS.png'); ?>">
+        <img class="image-main" alt="Livros e capítulos de livros" src="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS.png'); ?>" srcset="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS.png'); ?>">
         <img class="image-hover" alt="" src="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS_HOVER.png'); ?>" srcset="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS_HOVER.png'); ?>">
       </figure>
-      <p class="indicator-title"><?= $this->transEsc("Books and Book Chapters") ?> <span id="books" class="indicator-count"></span></p>
     </a>
+    <p id="books"></p>
+    <p><?= $this->transEsc("Books and Book Chapters") ?></p>
   </div>
 </section>
 

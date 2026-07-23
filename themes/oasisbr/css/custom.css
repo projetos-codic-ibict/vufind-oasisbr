@@ -125,6 +125,14 @@ header.hidden-print {
 .banner.navbar>.container-fluid {
   justify-content: flex-start;
   gap: 2rem;
+  padding-left: 5rem;
+}
+
+.header-logos{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding-left: 5rem;
 }
 
 .navbar-brand {
@@ -197,6 +205,7 @@ header.hidden-print {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
+  padding-right: 5rem;
 }
 
 .skip-link:focus {
