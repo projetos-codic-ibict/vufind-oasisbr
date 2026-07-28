@@ -6,8 +6,8 @@
   <div class="col-md-3 col-sm-6 col-12 flex-col-center">
     <a href="Search/Results?type=AllFields&filter%5B%5D=format%3A%22article%22">
       <figure>
-        <img class="image-main" alt="" src="<?= $this->imageLink('ARTIGOS.png'); ?>" srcset="<?= $this->imageLink('ARTIGOS.png'); ?>">
-        <img class="image-hover" alt="" src="<?= $this->imageLink('ARTIGOS_HOVER.png'); ?>" srcset="<?= $this->imageLink('ARTIGOS_HOVER.png'); ?>">
+        <img class="image-main" alt="" src="<?= $this->imageLink('ARTIGOS.png'); ?>">
+        <img class="image-hover" alt="" src="<?= $this->imageLink('ARTIGOS_HOVER.png'); ?>" >
       </figure>
       <p id="articles"></p>
       <p><?= $this->transEsc("Articles") ?></p>
@@ -17,10 +17,10 @@
   <div class="col-md-3 col-sm-6 col-12 flex-col-center">
     <a href="Search/Results?join=AND&filter%5B%5D=%7Eformat%3A%22masterThesis%22&filter%5B%5D=%7Eformat%3A%22doctoralThesis">
       <figure>
-        <img class="image-main" alt="" src="<?= $this->imageLink('TESES_E_DISSERTACOES.png'); ?>" srcset="<?= $this->imageLink('TESES_E_DISSERTACOES.png'); ?>">
-        <img class="image-hover" alt="" src="<?= $this->imageLink('TESES_E_DISSERTACOES_HOVER.png'); ?>" srcset="<?= $this->imageLink('TESES_E_DISSERTACOES_HOVER.png'); ?>">
+        <img class="image-main" alt="" src="<?= $this->imageLink('TESES_E_DISSERTACOES.png'); ?>">
+        <img class="image-hover" alt="" src="<?= $this->imageLink('TESES_E_DISSERTACOES_HOVER.png'); ?>">
       </figure>
-       <p id="teses"></p>
+      <p id="teses"></p>
       <p><?= $this->transEsc("Theses") ?></p>
     </a>
   </div>
@@ -28,8 +28,8 @@
   <div class="col-md-3 col-sm-6 col-12 flex-col-center">
     <a href="Search/Results?type=AllFields&filter%5B%5D=format%3A%22dataset%22">
       <figure>
-        <img class="image-main" alt="" src="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA.png'); ?>" srcset="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA.png'); ?>">
-        <img class="image-hover" alt="" src="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA_HOVER.png'); ?>" srcset="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA_HOVER.png'); ?>">
+        <img class="image-main" alt="" src="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA.png'); ?>">
+        <img class="image-hover" alt="" src="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA_HOVER.png'); ?>">
       </figure>
       <p id="datasets"></p>
       <p><?= $this->transEsc("Datasets") ?></p>
@@ -39,26 +39,26 @@
   <div class="col-md-3 col-sm-6 col-12 flex-col-center">
     <a href="Search/Results?join=AND&filter%5B%5D=%7Eformat%3A%22book%22&filter%5B%5D=%7Eformat%3A%22bookPart">
       <figure>
-        <img class="image-main" alt="Livros e capítulos de livros" src="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS.png'); ?>" srcset="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS.png'); ?>">
-        <img class="image-hover" alt="" src="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS_HOVER.png'); ?>" srcset="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS_HOVER.png'); ?>">
+        <img class="image-main" alt="" src="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS.png'); ?>">
+        <img class="image-hover" alt="" src="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS_HOVER.png'); ?>">
       </figure>
+      <p id="books"></p>
+      <p><?= $this->transEsc("Books and Book Chapters") ?></p>
     </a>
-    <p id="books"></p>
-    <p><?= $this->transEsc("Books and Book Chapters") ?></p>
   </div>
 </section>
 
 <section class="row">
   <div class="col-md-6 col-sm-6 col-12 flex-col-center">
-    <a href="about/home#network-flow">
-      <img class="img-responsive" src="<?= $this->imageLink('CONEXOES-OASISBR.jpg'); ?>" alt="imagens no formato de uma rede com as logos das conexões do Oasisbr " />
+    <a href="about/home#network-flow" target="_blank" rel="noopener noreferrer">
+      <img class="img-fluid" src="<?= $this->imageLink('CONEXOES-OASISBR.jpg'); ?>" alt="imagens no formato de uma rede com as logos das conexões do Oasisbr " />
     </a>
   </div>
   <div class="col-md-6 col-sm-6 col-12 flex-col-center">
     <div class="section-connections">
       <p><?= $this->transEsc("Oasisbr textp1") ?></p>
       <p><?= $this->transEsc("Oasisbr textp2") ?></p>
-      <p> <?= $this->transEsc("Oasisbr textp3") ?> <a href="faq">FAQ</a><?= $this->transEsc("Oasisbr textp4") ?>
+      <p> <?= $this->transEsc("Oasisbr textp3") ?> <a href="faq" target="_blank" rel="noopener noreferrer">FAQ</a><?= $this->transEsc("Oasisbr textp4") ?>
         <a id="feedbackLink" data-lightbox href="<?= $this->url('feedback-home') ?>"> <?= $this->transEsc("form") ?>
         </a>
         .
@@ -72,7 +72,7 @@
   <div class="col-md-5 col-sm-5 col-12">
     <h2 class="text-center section-title"><?= $this->transEsc("Support") ?></h2>
     <div class="section-partners">
-      <a href="http://www.finep.gov.br" target="_blank"> <img class="img-responsive finep" src="<?= $this->imageLink('partners/FINEP.png'); ?>" alt="Logo do FINEP" /></a>
+      <a href="http://www.finep.gov.br" target="_blank" rel="noopener noreferrer"> <img class="img-fluid finep" src="<?= $this->imageLink('partners/FINEP.png'); ?>" alt="Logo do FINEP" /></a>
     </div>
   </div>
   <div class="col-md-7 col-sm-7 col-12">
@@ -80,23 +80,23 @@
     <div class="section-partners">
       <div class="section-partners-icons">
         <div class="partner-icon">
-          <a href="https://www.rcaap.pt/" target="_blank">
-            <img class="img-responsive" src="<?= $this->imageLink('partners/RCAAP.jpg'); ?>" alt="Logo do RCAAP" /></a>
+          <a href="https://www.rcaap.pt/" target="_blank" rel="noopener noreferrer">
+            <img class="img-fluid" src="<?= $this->imageLink('partners/RCAAP.jpg'); ?>" alt="Logo do RCAAP" /></a>
         </div>
         <div class="partner-icon">
-          <a href="https://www.lareferencia.info/pt/ " target="_blank"> <img class="img-responsive" src="<?= $this->imageLink('partners/LA_REFERENCIA.jpg'); ?>" alt="Logo do LA REFERENCIA" /></a>
+          <a href="https://www.lareferencia.info/pt/" target="_blank" rel="noopener noreferrer"> <img class="img-fluid" src="<?= $this->imageLink('partners/LA_REFERENCIA.jpg'); ?>" alt="Logo do LA REFERENCIA" /></a>
         </div>
         <div class="partner-icon">
-          <a href="https://www.coar-repositories.org/" target="_blank"> <img class="img-responsive img-responsive-width" src="<?= $this->imageLink('partners/COAR.png'); ?>" alt="Logo do COAR" /></a>
+          <a href="https://www.coar-repositories.org/" target="_blank" rel="noopener noreferrer"> <img class="img-fluid img-responsive-width" src="<?= $this->imageLink('partners/COAR.png'); ?>" alt="Logo do COAR" /></a>
         </div>
         <div class="partner-icon">
-          <a href="http://www.ndltd.org/ " target="_blank"> <img class="img-responsive img-responsive-width" src="<?= $this->imageLink('partners/NDLTD.jpg'); ?>" alt="Logo do NDLTD" /></a>
+          <a href="http://www.ndltd.org/ " target="_blank" rel="noopener noreferrer"> <img class="img-fluid img-responsive-width" src="<?= $this->imageLink('partners/NDLTD.jpg'); ?>" alt="Logo do NDLTD" /></a>
         </div>
         <div class="partner-icon">
-          <a href="https://www.cplp.org/" target="_blank"> <img class="img-responsive img-responsive-width" src="<?= $this->imageLink('partners/CPLP.png'); ?>" alt="Logo do CPLP" /></a>
+          <a href="https://www.cplp.org/" target="_blank" rel="noopener noreferrer"> <img class="img-fluid img-responsive-width" src="<?= $this->imageLink('partners/CPLP.png'); ?>" alt="Logo do CPLP" /></a>
         </div>
         <div class="partner-icon">
-          <a href="https://www.scielo.org" target="_blank"> <img class="img-responsive" src="<?= $this->imageLink('partners/SCIELO.png'); ?>" alt="Logo do SCIELO" /></a>
+          <a href="https://www.scielo.org" target="_blank" rel="noopener noreferrer"> <img class="img-fluid" src="<?= $this->imageLink('partners/SCIELO.png'); ?>" alt="Logo do SCIELO" /></a>
         </div>
       </div>
     </div>

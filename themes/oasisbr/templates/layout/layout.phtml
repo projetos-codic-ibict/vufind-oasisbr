@@ -2,19 +2,18 @@
 $userLang = str_replace('_', '-', $this->layout()->userLang);
 
 $htmlLang = match (strtolower($userLang)) {
-    'pt-br', 'pt' => 'pt-BR',
-    'en', 'en-us' => 'en-US',
-    default => $userLang,
+  'pt-br', 'pt' => 'pt-BR',
+  'en', 'en-us' => 'en-US',
+  default => $userLang,
 };
 ?>
 
 <?= $this->doctype('HTML5') ?>
-<html lang="<?= $this->escapeHtmlAttr($htmlLang) ?>"<?= $this->layout()->rtl ? ' dir="rtl"' : '' ?>>
+<html lang="<?= $this->escapeHtmlAttr($htmlLang) ?>" <?= $this->layout()->rtl ? ' dir="rtl"' : '' ?>>
 
 <head>
   <?php $this->setupThemeResources(); ?>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <?= $this->headMeta() ?>
   <?= $this->headTitle() ?>
@@ -183,19 +182,19 @@ JS;
     $this->layout()->searchbox = $this->render('search/searchbox.phtml');
   }
   ?>
-  <header class="hidden-print">
+  <header class="d-print-none">
     <?php if (isset($this->layout()->srmessage)) : // message for benefit of screen-reader users 
     ?>
-      <span class="sr-only" role="heading" aria-level="1"><?= $this->layout()->srmessage ?></span>
+      <span class="visually-hidden" role="heading" aria-level="1"><?= $this->layout()->srmessage ?></span>
     <?php endif; ?>
-    <a class="sr-only" href="#content"><?= $this->transEsc('Skip to content') ?></a>
-    <a class="sr-only sr-only-focusable skip-link" href="#header-collapse"><?= $this->transEsc('Skip to navigation menu') ?></a>
+    <a class="visually-hidden" href="#content"><?= $this->transEsc('Skip to content') ?></a>
+    <a class="visually-hidden visually-hidden-focusable skip-link" href="#header-collapse"><?= $this->transEsc('Skip to navigation menu') ?></a>
     <?= $this->render('header.phtml') ?>
   </header>
   <?php if ($this->layout()->searchbox !== false) : ?>
     <div class="searchHomeContent">
       <div class="search container navbar">
-        <nav class="nav searchbox hidden-print">
+        <nav class="nav searchbox d-print-none">
           <?= $this->layout()->searchbox ?>
         </nav>
       </div>
@@ -207,7 +206,7 @@ JS;
         && !empty($this->layout()->breadcrumbs)
         && $this->layout()->breadcrumbs !== false
       ) : ?>
-        <ul class="breadcrumb hidden-print">
+        <ul class="breadcrumb d-print-none">
           <?php if (is_array($this->layout()->breadcrumbs)) : ?>
             <?php if (count($this->layout()->breadcrumbs) > 1) : ?>
               <?= $this->render('breadcrumbs/multi.phtml', [
@@ -228,29 +227,29 @@ JS;
       <?php endif; ?>
     </div>
   </nav>
-  <div role="main" class="main">
+  <main class="main">
     <div id="content" class="<?php if (!$this->layout()->nocontainerclass) : ?>container<?php endif; ?>">
       <?= $this->layout()->content ?>
     </div>
-  </div>
+  </main>
   <?= $this->render('footer.phtml') ?>
   <!-- MODAL IN CASE WE NEED ONE -->
-  <div id="modal" class="modal fade hidden-print" tabindex="-1" role="dialog" aria-hidden="true">
+  <div id="modal" class="modal fade d-print-none" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?= $this->transEscAttr('Close') ?>"></button>
-        <div class="modal-body"><?= $this->transEsc('Loading') ?>...</div>
+        <div class="modal-body" aria-live="polite" ><?= $this->transEsc('Loading') ?>...</div>
       </div>
     </div>
   </div>
-  <div class="offcanvas-overlay" data-toggle="offcanvas"></div>
+  <div class="offcanvas-overlay" data-bs-toggle="offcanvas" role="button"tabindex="0 ></div>
   <?= $this->googleanalytics() ?>
   <?= $this->piwik() ?>
   <?php foreach ($this->captcha()->js() as $jsInclude) : ?>
     <?= $this->inlineScript(\Laminas\View\Helper\HeadScript::FILE, $jsInclude, 'SET') ?>
   <?php endforeach; ?>
-</body>
 
-<script async src="https://cdn.userway.org/widget.js" data-account="gxYK4Xrqhn"></script>
+  <script async src="https://cdn.userway.org/widget.js" data-account="gxYK4Xrqhn"></script>
+</body>
 
 </html>
