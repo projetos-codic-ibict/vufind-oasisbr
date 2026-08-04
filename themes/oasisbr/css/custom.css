@@ -917,6 +917,11 @@ li.language a {
   margin-bottom: 10px;
 }
 
+.about button{
+  background-color: transparent;
+  border: none;
+}
+
 .result {
   border: 1px solid #ccc;
   margin-bottom: 1rem;
