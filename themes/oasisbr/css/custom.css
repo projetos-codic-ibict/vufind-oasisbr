@@ -215,15 +215,26 @@ button.dropdown-toggle {
   padding-right: 5rem;
 }
 
-.skip-link:focus {
+.skip-link:focus,
+.skip-link:focus-visible {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 2000;
-  background: #223360;
-  color: #33426a;
+  background-color: #223360;
+  color: #ffffff;
   padding: 0.75rem 1.25rem;
   text-decoration: none;
+  border: 2px solid #ffffff;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  clip: auto;
+  clip-path: none;
+  width: auto;
+  height: auto;
+  overflow: visible;
 }
 
 .searchHomeContent {

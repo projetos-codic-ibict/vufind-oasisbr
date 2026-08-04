@@ -4,12 +4,12 @@
 <!-- <div class="logo-img-center">
   <a href="<?= $this->url('home') ?>"><img class="img-responsive" src="<?= $this->imageLink('oasisbr.png'); ?>" alt="" /></a>
 </div> -->
-<div class="about">
+<main class="about">
 
-  <div class="row">
+  <section class="row" aria-labelledby="sobre-heading">
     <div class="col-md-12">
       <div class="card">
-        <h1> <?= $this->transEsc('about title'); ?> </h1>
+        <h1 class="h2" id="sobre-heading">Sobre</h1>
         <p>
           <?= $this->transEsc('about p1'); ?>
         </p>
@@ -24,12 +24,12 @@
         </p>
       </div>
     </div>
-  </div>
+</section>
 
-  <div class="row objectives">
+  <section class="row objectives" aria-labelledby="objetivos-heading">
     <div class="col-md-12">
       <div class="card">
-        <h2>
+        <h2 id="objetivos-heading">
           <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#objetivos" aria-expanded="false" aria-controls="objetivos">
             <?= $this->transEsc('Goals'); ?>
           </button>
@@ -59,12 +59,12 @@
         </div>
       </div>
     </div>
-  </div>
+</section>
 
-  <div class="row">
+  <section class="row" aria-labelledby="fluxo-heading">
     <div class="col-md-12 network-flow" id="network-flow">
       <div class="card">
-        <h2>
+        <h2 id="fluxo-heading">
           <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#fluxo" aria-expanded="false" aria-controls="fluxo">
             <?= $this->transEsc('Oasisbr information flow'); ?>
           </button>
@@ -73,9 +73,7 @@
           <p> <?= $this->transEsc('flow p1'); ?></p>
           <p>
             <?= $this->transEsc('flow p2'); ?>
-            <!-- <a target="_blank" href="https://www.rcaap.pt" rel="noopener noreferrer" aria-label="<?= $this->transEsc('flow link rcaap aria label'); ?>">
-              <?= $this->transEsc('about link rcaap'); ?>
-            </a> -->
+            <?= $this->transEsc('about link rcaap'); ?>,
             <?= $this->transEsc('flow p3'); ?>
             <a target="_blank" href="https://www.lareferencia.info/pt"> <?= $this->transEsc('La Referencia'); ?></a>
             <?= $this->transEsc('flow p4'); ?>
@@ -86,19 +84,19 @@
         </div>
       </div>
     </div>
-  </div>
+</section>
 
-  <div class="row ">
+  <section class="row" aria-labelledby="collecting-heading">
     <div class="col-md-12">
       <div class="card">
 
-        <h2>
+        <h2 id="collecting-heading">
           <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#collecting" aria-expanded="false" aria-controls="collecting">
             <?= $this->transEsc('Criteria for collecting information sources'); ?>
           </button>
         </h2>
 
-        <div class="collapse" id="collecting">
+        <div class="collapse" id="collecting" role="group" aria-label="<?= $this->transEsc('Criteria for collecting information sources'); ?>">
           <h3>
             <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#monographs" aria-expanded="false" aria-controls="monographs">
               <?= $this->transEsc('Digital libraries of monographs'); ?>
@@ -532,7 +530,7 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p4'); ?>
-                <a href="https://dublincore.org" target="_blank" rel="noopener noreferrer">
+                <a href="https://dublincore.org" target="_blank" rel="noopener noreferrer" aria-label="Consultar metadados no catálogo Dublin Core" >
                   Dublin Core
                 </a>
                 <?= $this->transEsc('dlm p5'); ?>
@@ -570,10 +568,10 @@
               </li>
               <li>
                 <?= $this->transEsc('sj p3'); ?>
-                <a href="https://www.latindex.org/latindex/inicio" target="_blank" rel="noopener noreferrer">Latindex (Catalog 2.0)</a>,
-                <a href="https://www.scielo.br/" target="_blank" rel="noopener noreferrer">SciELO Brazil</a>,
-                <a href="https://www.redalyc.org/" target="_blank" rel="noopener noreferrer">Redalyc</a>,
-                <a href="https://doaj.org/" target="_blank" rel="noopener noreferrer">DOAJ</a>.
+                <a href="https://www.latindex.org/latindex/inicio" target="_blank" rel="noopener noreferrer" aria-label="Consultar periódico no catálogo Latindex 2.0" >Latindex (Catalog 2.0)</a>,
+                <a href="https://www.scielo.br/" target="_blank" rel="noopener noreferrer" aria-label="Consultar periódico no catálogo SciELO Brazil" >SciELO Brazil</a>,
+                <a href="https://www.redalyc.org/" target="_blank" rel="noopener noreferrer" aria-label="Consultar periódico no catálogo Redalyc" >Redalyc</a>,
+                <a href="https://doaj.org/" target="_blank" rel="noopener noreferrer" aria-label="Consultar periódico no catálogo DOAJ" >DOAJ</a>.
               </li>
             </ul>
           </div>
@@ -639,23 +637,23 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="row ">
+  <section class="row" aria-labelledby="dark-heading">
     <div class="col-md-12">
       <div class="card">
-        <h2>
+        <h2 id="dark-heading">
           <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#dark" aria-expanded="false" aria-controls="dark">
             <?= $this->transEsc('dARK — Decentralized Archival Resource Key'); ?>
           </button>
         </h2>
         <div class="collapse" id="dark">
-          <p>O dARK é uma iniciativa aberta e gratuita, coordenada pelo Ibict e LA Referencia em colaboração com parceiros regionais, que estende o identificador ARK (Archival Resource Key) para um modelo descentralizado de atribuição e resolução de PIDs, baseado em rede blockchain permissionada. Integrado ao ecossistema do Oasisbr, o dARK busca ampliar a cobertura de identificadores persistentes no Brasil e no Sul Global, reduzir custos operacionais, reforçar a governança compartilhada e assegurar persistência, proveniência e interoperabilidade dos registros ao longo do tempo.
-            <br> Saiba mais em:<a href="https://www.dark-pid.net/pt/home" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-              https://www.dark-pid.net/pt/home.
+          <p>O dARK é uma iniciativa aberta e gratuita, coordenada pelo Ibict e LA Referencia em colaboração com parceiros regionais, que estende o identificador ARK (Archival Resource Key) para um modelo descentralizado de atribuição e resolução de PIDs, baseado em rede blockchain permissionada. Integrado ao ecossistema do Oasisbr, o dARK busca ampliar a cobertura de identificadores persistentes no Brasil e no Sul Global, reduzir custos operacionais, reforçar a governança compartilhada e assegurar persistência, proveniência e interoperabilidade dos registros ao longo do tempo. 
+            <a href="https://www.dark-pid.net/pt/home" target="_blank" rel="noopener noreferrer">
+              Saiba mais sobre o dARK no site oficial
             </a>
           </p>
-          <p>Principais características</p>
+          <h3>Principais características</h3>
           <ul>
             <li>
               Baixo custo e escalabilidade para atribuição de ARKs em larga escala, com ênfase em instituições de países do Sul Global.
@@ -670,21 +668,21 @@
               Transparência e proveniência dos metadados, favorecendo auditoria, reprodutibilidade e preservação de longo prazo.
             </li>
           </ul>
-          <p>Finalidade no Oasisbr</p>
+          <h3>Finalidade no Oasisbr</h3>
           <ul>
             <li> Ao integrar-se ao Oasisbr, o dARK potencializa a visibilidade, a confiabilidade e a longevidade dos objetos digitais agregados, alinhando-se às práticas de Ciência Aberta e fortalecendo a infraestrutura nacional de comunicação científica.
             </li>
             <li>
               Se sua fonte já faz parte do Oasisbr, baixe o <a href="https://docs.google.com/document/d/1ktJ5g3ZUboYdTFC9uZYeIyc-STtTKtoNrKq_-Porc9s/edit?usp=sharing" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                ofício </a> de adesão do dARK e encaminhe para o e-mail <a href="mailto:oasisbr@ibict.br" target="_blank">oasisbr@ibict.br</a>
+                ofício de adesão do dARK </a> e encaminhe para o e-mail <a href="mailto:oasisbr@ibict.br" target="_blank">oasisbr@ibict.br</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
-  </div>
+</section>
 
-  <div class="row ">
+  <section class="row" aria-labelledby="certificacao-lattes-oasisbr">
     <div class="col-md-12">
       <div class="card">
         <h2 id="certificacao-lattes-oasisbr">
@@ -718,11 +716,11 @@
             <a href="<?= $this->basePath('/passo-a-passo-para-certificacao-lattes-oasisbr.pdf') ?>"
               target="_blank"
               rel="noopener noreferrer">
-              Veja o passo a passo para certificação (PDF)
+              Veja o passo a passo para certificação (pdf)
             </a>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
+</main>

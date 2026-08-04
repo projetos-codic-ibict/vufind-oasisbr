@@ -187,8 +187,8 @@ JS;
     ?>
       <span class="visually-hidden" role="heading" aria-level="1"><?= $this->layout()->srmessage ?></span>
     <?php endif; ?>
-    <a class="visually-hidden" href="#content"><?= $this->transEsc('Skip to content') ?></a>
-    <a class="visually-hidden visually-hidden-focusable skip-link" href="#header-collapse"><?= $this->transEsc('Skip to navigation menu') ?></a>
+    <a class="visually-hidden-focusable skip-link" href="#content"><?= $this->transEsc('Skip to content') ?></a>
+    <a class="visually-hidden-focusable skip-link" href="#header-collapse"><?= $this->transEsc('Skip to navigation menu') ?></a>
     <?= $this->render('header.phtml') ?>
   </header>
   <?php if ($this->layout()->searchbox !== false) : ?>
@@ -242,7 +242,7 @@ JS;
       </div>
     </div>
   </div>
-  <div class="offcanvas-overlay" data-bs-toggle="offcanvas" role="button"tabindex="0" aria-label="Fechar menu"></div>
+  <div class="offcanvas-overlay" data-bs-toggle="offcanvas" role="button" tabindex="0" aria-label="Fechar menu"></div>
   <?= $this->googleanalytics() ?>
   <?= $this->piwik() ?>
   <?php foreach ($this->captcha()->js() as $jsInclude) : ?>
