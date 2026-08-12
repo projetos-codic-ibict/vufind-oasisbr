@@ -60,11 +60,13 @@ a.btn {
 
 .facet-group [data-bs-toggle="collapse"]::after {
   font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   content: "\f106";
 }
 
 .facet-group .collapsed::after {
   font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   content: "\f107";
 }
 
@@ -118,6 +120,8 @@ a.btn {
 .facet-group .title {
   background-color: #76B865;
   color: #fff;
+  display:flex;
+  justify-content: space-between;
 }
 
 header.d-print-none {
@@ -994,12 +998,49 @@ td span.format {
   padding: 0 0 0 10px;
 }
 
-.pagination {
+/* .pagination {
   width: 100%;
   justify-content: center;
   align-items: center;
   display: flex;
   flex-wrap: wrap;
+} */
+
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+}
+
+.pagination li {
+  margin: 0 2px;
+}
+
+.pagination li a {
+  position: relative;
+  display: block;
+  padding: 0.375rem 0.75rem;
+  color: var(--bs-link-color, #0d6efd);
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.pagination li a:hover {
+  z-index: 2;
+  color: var(--bs-link-hover-color, #0a58ca);
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.pagination li.active a,
+.pagination li.active a:hover,
+.pagination li.active a:focus {
+  color: #fff;
+  background-color: #76B865;
+  border-color: #76B865;
 }
 
 a.link-simple {
@@ -1107,7 +1148,7 @@ a.link-simple {
   font-weight: 400;
 }
 
-.pagination>.active>a,
+/* .pagination>.active>a,
 .pagination>.active>span,
 .pagination>.active>a:hover,
 .pagination>.active>span:hover,
@@ -1115,7 +1156,7 @@ a.link-simple {
 .pagination>.active>span:focus {
   background-color: #76B865;
   border-color: #76B865;
-}
+} */
 
 .slider-container .slider-handle {
   background: #76B865 !important;

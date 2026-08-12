@@ -38,8 +38,9 @@ function obterRegiaoPorUF(uf) {
 
 async function getAllNetworks() {
   try {
-    
+
     const response = await axios.get(`${REMOTE_API_URL}/api/v1/networks`);
+    // const response = await axios.get(`/api-proxy/networks`);
     const networks = response.data;
     return networks;
   } catch (errors) {
@@ -329,16 +330,41 @@ function ConvertToCSV(objArray) {
 }
 
 function listenerListAllNetworks() {
-  const listAll = document.querySelector('#list-all');
-  listAll.addEventListener('click', () => {
-    showLoader();
-    filterNetworks();
+  const listAllElements = document.querySelectorAll('.js-list-all');
+  listAllElements.forEach((listAll) => {
+    listAll.addEventListener('click', () => {
+      const filterType = listAll.dataset.filterType;
+      filterNetworks(filters.get(filterType), filterType);
+    });
+  });
+}
+
+function clearAllFilters() {
+  showLoader();
+  filters.clear();
+  const foud = networksList.size();
+  networksList.filter();
+  // mesmo setTimeout usado em filterNetworks, pelo mesmo motivo (fillIndicatorsSidebar travando o loader)
+  setTimeout(() => {
+    fillIndicatorsSidebar(allNetworks);
+    activeSelectedItem();
+    showTotalFind(foud);
+    hideLoader();
+  }, 1);
+}
+
+function listenerClearFilters() {
+  const clearBtn = document.querySelector('.js-clear-filters');
+  clearBtn.addEventListener('click', () => {
+    clearAllFilters();
   });
 }
 
 function activeSelectedItem() {
   const itens = document.querySelectorAll('.js-facet-item');
   itens.forEach((item) => {
+    item.classList.remove('active');
+    item.removeAttribute('title');  
     if (
       Array.from(filters.values()).includes(
         item.firstElementChild.firstElementChild.textContent
@@ -391,6 +417,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       watchingUpdateOnList();
       exportsCSV(allNetworks);
       collapseFilter();
+      listenerClearFilters();
       hideLoader();
     }, 1);
   } catch (error) {
