@@ -47,7 +47,7 @@ a.btn {
 }
 
 /* Ajustes em Título */
-.page-title-bar h4 {
+.page-title-bar h2 {
   font-size: 1.7em;
   font-weight: 300;
 }
@@ -118,7 +118,7 @@ a.btn {
 }
 
 .facet-group .title {
-  background-color: #76B865;
+  background-color: #2E7D32;
   color: #fff;
   display:flex;
   justify-content: space-between;
@@ -309,14 +309,14 @@ button.dropdown-toggle {
 }
 
 .btn-primary {
-  background-color: #76B865 !important;
+  background-color: #2E7D32 !important;
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
   color: #fff;
-  background-color: #76B865;
-  border-color: #eee;
+  background-color: #2E7D32;
+  border-color: #2E7D32;
 }
 
 section {
@@ -1039,8 +1039,8 @@ td span.format {
 .pagination li.active a:hover,
 .pagination li.active a:focus {
   color: #fff;
-  background-color: #76B865;
-  border-color: #76B865;
+  background-color: #2E7D32;
+  border-color: #2E7D32;
 }
 
 a.link-simple {
@@ -1148,19 +1148,10 @@ a.link-simple {
   font-weight: 400;
 }
 
-/* .pagination>.active>a,
-.pagination>.active>span,
-.pagination>.active>a:hover,
-.pagination>.active>span:hover,
-.pagination>.active>a:focus,
-.pagination>.active>span:focus {
-  background-color: #76B865;
-  border-color: #76B865;
-} */
 
 .slider-container .slider-handle {
-  background: #76B865 !important;
-  border: 1px solid #76B865 !important;
+  background: #2E7D32 !important;
+  border: 1px solid #2E7D32 !important;
 }
 
 .filters-title {

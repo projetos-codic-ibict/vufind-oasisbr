@@ -1,12 +1,18 @@
 <?php $account = $this->auth()->getManager(); ?>
-<!-- <div id="barra-brasil"></div> -->
+<!-- <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
+  <ul id="menu-barra-temp" style="list-style:none;">
+    <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
+        <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a>
+    </li>
+  </ul>
+</div> -->
 <div class="banner navbar navbar-expand-md">
   <div class="container-fluid">
     <div class="header-logos">
       <a class="navbar-brand lang-<?= $this->layout()->userLang ?>" href="https://www.gov.br/ibict">
         <img class="img-fluid" src="<?= $this->imageLink('logoibictversao1.png'); ?>" alt="Ibict" />
       </a>
-      <a class="navbar-brand" href="<?= $this->url('home') ?>"> <img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="Oasisbr — página inicial" /></a>
+      <a class="navbar-brand" href="<?= $this->url('home') ?>" aria-hidden="true" tabindex="-1"> <img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="" /></a>
     </div>
     <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#header-collapse" aria-controls="header-collapse" aria-expanded="false" aria-label="<?= $this->transEscAttr('Toggle navigation') ?>">
       <i class="fa-solid fa-bars" aria-hidden="true"></i>
@@ -49,14 +55,15 @@
               <li class="logoutOptions<?php if ($account->dropdownEnabled()) : ?> with-dropdown<?php endif ?><?php if (!$account->getUserObject()) : ?> hidden<?php endif ?>">
                 <a class="nav-link" href="<?= $this->url('myresearch-home', [], ['query' => ['redirect' => 0]]) ?>"><i id="account-icon" class="fa-solid fa-user-circle" aria-hidden="true"></i> <?= $this->transEsc("Your Account") ?></a>
               </li>
-              <?php if ($account->dropdownEnabled()) : ?>
+              <!-- OasisBR não possui sistema de autenticação/login de usuário. não representa risco por estar sempre oculto (display: none) não é alcançável por leitores de tela nem navegação por teclado. -->
+              <!-- <?php if ($account->dropdownEnabled()) : ?>
                 <li id="login-dropdown" class="dropdown<?php if (!$account->getUserObject()) : ?> hidden<?php endif ?>">
                   <a class="nav-link" href="#" data-bs-toggle="dropdown"><i class="fa-solid fa-caret-down"></i></a>
                   <div class="dropdown-menu">
                     <?= $this->render('myresearch/menu'); ?>
                   </div>
                 </li>
-              <?php endif; ?>
+              <?php endif; ?> -->
               <li class="logoutOptions<?php if (!$account->getUserObject()) : ?> hidden<?php endif ?>">
                 <a class="nav-link" href="<?= $this->url('myresearch-logout') ?>"><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> <?= $this->transEsc("Log Out") ?></a>
               </li>
@@ -69,7 +76,7 @@
               </li>
             <?php endif; ?>
 
-            <?php if (isset($this->layout()->themeOptions) && count($this->layout()->themeOptions) > 1) : ?>
+            <!-- <?php if (isset($this->layout()->themeOptions) && count($this->layout()->themeOptions) > 1) : ?>
               <li class="theme dropdown">
                 <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= $this->transEsc("Theme") ?></a>
                 <ul class="dropdown-menu">
@@ -82,7 +89,7 @@
             <?php endforeach; ?>
           </ul>
           </li>
-        <?php endif; ?>
+        <?php endif; ?> -->
 
         <?php if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1) : ?>
           <li class="language dropdown">

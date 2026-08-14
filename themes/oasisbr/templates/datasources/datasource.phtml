@@ -8,10 +8,6 @@ $titleName = $source;
 <?php $this->assetManager()->appendStyleLink('loader.css'); ?>
 <?php $this->headScript()->appendFile("load-network.js"); ?>
 
-<div class="logo-img-center">
-  <a href="<?= $this->url('home') ?>"><img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="Logo do OasisBR" /></a>
-</div>
-
 <div class="page-title-bar">
   <div class="container">
     <h1><?= $this->transEsc("Data Sources") ?></h1>

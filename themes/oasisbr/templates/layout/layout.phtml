@@ -200,12 +200,12 @@ JS;
       </div>
     </div>
   <?php endif; ?>
-  <nav class="breadcrumbs" aria-label="<?= $this->transEscAttr('Breadcrumbs') ?>">
-    <div class="container">
-      <?php if ((!isset($this->layout()->showBreadcrumbs) || $this->layout()->showBreadcrumbs == true)
-        && !empty($this->layout()->breadcrumbs)
-        && $this->layout()->breadcrumbs !== false
-      ) : ?>
+  <?php if ((!isset($this->layout()->showBreadcrumbs) || $this->layout()->showBreadcrumbs == true)
+    && !empty($this->layout()->breadcrumbs)
+    && $this->layout()->breadcrumbs !== false
+  ) : ?>
+    <nav class="breadcrumbs" aria-label="<?= $this->transEscAttr('Breadcrumbs') ?>">
+      <div class="container">
         <ul class="breadcrumb d-print-none">
           <?php if (is_array($this->layout()->breadcrumbs)) : ?>
             <?php if (count($this->layout()->breadcrumbs) > 1) : ?>
@@ -224,8 +224,10 @@ JS;
             <?= $this->layout()->breadcrumbs ?>
           <?php endif; ?>
         </ul>
-      <?php endif; ?>
-    </div>
+      </div>
+    </nav>
+  <?php endif; ?>
+  </div>
   </nav>
   <main class="main">
     <div id="content" class="<?php if (!$this->layout()->nocontainerclass) : ?>container<?php endif; ?>">
@@ -238,7 +240,7 @@ JS;
     <div class="modal-dialog">
       <div class="modal-content">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?= $this->transEscAttr('Close') ?>"></button>
-        <div class="modal-body" aria-live="polite" ><?= $this->transEsc('Loading') ?>...</div>
+        <div class="modal-body" aria-live="polite"><?= $this->transEsc('Loading') ?>...</div>
       </div>
     </div>
   </div>
@@ -249,7 +251,7 @@ JS;
     <?= $this->inlineScript(\Laminas\View\Helper\HeadScript::FILE, $jsInclude, 'SET') ?>
   <?php endforeach; ?>
 
-  <script async src="https://cdn.userway.org/widget.js" data-account="gxYK4Xrqhn"></script>
+  <!-- <script async src="https://cdn.userway.org/widget.js" data-account="gxYK4Xrqhn"></script> -->
 </body>
 
 </html>

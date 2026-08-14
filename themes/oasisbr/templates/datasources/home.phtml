@@ -7,13 +7,13 @@
 
 
 <!-- <div class="logo-img-center">
-  <a href="<?= $this->url('home') ?>"><img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="Logo do OasisBR" /></a>
+  <a href="<?= $this->url('home') ?>"><img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="" /></a>
 </div> -->
 
 <div class="page-title-bar">
   <div class="container">
     <h1><?= $this->transEsc("Data Sources") ?></h1>
-    <h4><?= $this->transEsc("Data Sources Subtitle") ?></h4>
+    <h2><?= $this->transEsc("Data Sources Subtitle") ?></h2>
   </div>
 </div>
 
@@ -95,7 +95,7 @@
 
     <div id="networks">
       <div class="flex flex-space-between">
-        <input id="network-search" class="search form-control" type="search" placeholder="<?= $this->transEsc("Search") ?>">
+        <input id="network-search" class="search form-control" type="search" placeholder="<?= $this->transEsc("Search") ?>" aria-label="<?= $this->transEsc("Search") ?>">
         <div class="networks-sort flex">
           <label for="sort-select"><?= $this->transEsc("Sort") ?></label>
           <select id="sort-select" class="form-select">
