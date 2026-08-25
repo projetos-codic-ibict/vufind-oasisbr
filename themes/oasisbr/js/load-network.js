@@ -2,48 +2,53 @@ async function getANetworkByName(networkId) {
   try {
     showLoader();
     const response = await axios.get(`${REMOTE_API_URL}/networks/${networkId}`);
+    // const response = await axios.get(`/api-proxy/networks/${encodeURIComponent(networkId)}`);
     hideLoader();
     const network = response.data;
     return network;
   } catch (errors) {
     hideLoader();
     console.error(errors);
+    return null;
+
   }
 }
 
 function fillDatasource(network) {
   const table = document.querySelector('#dataSource');
-  table.innerHTML = `<tr>
-      <td>${getTranslatedText('Tipo de fonte')}:</td >
-        <td>${network.sourceType}</td>
-    </tr >
+  table.innerHTML = `
+    <caption class="visually-hidden">${getTranslatedText('Detalhes da fonte de dados')}</caption>
+    <tbody>
     <tr>
-      <td>${getTranslatedText('Fonte')}:</td>
+      <th scope="row">${getTranslatedText('Tipo de fonte')}:</th>
+      <td>${network.sourceType}</td>
+    </tr>
+    <tr>
+      <th scope="row">${getTranslatedText('Fonte')}:</th>
       <td>${network.name}</td>
     </tr>
     <tr>
-      <td>${getTranslatedText('Instituição responsável')}:</td>
+      <th scope="row">${getTranslatedText('Instituição responsável')}:</th>
       <td>${network.institution}</td>
     </tr>
     <tr>
-      <td>URL: </td>
+      <th scope="row">URL:</th>
       <td>${
         network.sourceUrl != null
           ? '<a href="' +
             network.sourceUrl +
             '" target="_blank" rel="noopener noreferrer">' +
             network.sourceUrl +
-            '</a >'
+            '</a>'
           : '-'
-      }
-      </td>
+      }</td>
     </tr>
     <tr>
-      <td>${getTranslatedText('Source email')}: </td>
-      <td>${network.email != null ? network.email : '-'}</td >
+      <th scope="row">${getTranslatedText('Source email')}:</th>
+      <td>${network.email != null ? network.email : '-'}</td>
     </tr>
     <tr>
-      <td>${getTranslatedText('Documents collected')}:</td>
+      <th scope="row">${getTranslatedText('Documents collected')}:</th>
       <td>
         <a href="../Search/Results?type=AllFields&filter%5B%5D=network_name_str%3A%22+${
           network.name
@@ -53,7 +58,7 @@ function fillDatasource(network) {
       </td>
     </tr>
     <tr>
-      <td>
+      <th scope="row">
         ${
           network.sourceType === 'Revista Científica'
             ? 'ISSN:'
@@ -61,13 +66,15 @@ function fillDatasource(network) {
             ? 'ID re3data:'
             : 'ID OpenDOAR:'
         }
-      </td >
+      </th>
       <td>${
         network.issn != 'null'
           ? network.issn
           : getTranslatedText('Not registered')
-      } 
-    </tr >`;
+      }</td>
+    </tr>
+    </tbody>
+  `;
 }
 
 function setCustomColor(sourceType) {
@@ -120,6 +127,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(queryString);
   const networkName = decodeURIComponent(urlParams.get('name'));
   const network = await getANetworkByName(networkName);
+
+  if (!network) {
+    console.error('Fonte não encontrada ou erro na requisição:', networkName);
+    return;
+  }
   setCustomColor(network.sourceType);
   fillDatasource(network);
 });

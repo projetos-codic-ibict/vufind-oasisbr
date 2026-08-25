@@ -1,20 +1,20 @@
 <?php
 // Set up standard record scripts:
-$this->headScript()->appendFile("record.js");
-$this->headScript()->appendFile("check_save_statuses.js");
-$this->headScript()->appendFile("open-close-tab.js");
+$this->assetManager()->appendScriptLink("record.js");
+$this->assetManager()->appendScriptLink("check_save_statuses.js");
+$this->assetManager()->appendScriptLink("open-close-tab.js");
 // Activate Syndetics Plus if necessary:
 // if ($this->syndeticsPlus()->isActive()) {
 //   $this->headScript()->appendFile($this->syndeticsPlus()->getScript());
 // }
 // Add any extra scripts the tabs require:
 foreach ($this->tabsExtraScripts as $script) {
-  $this->headScript()->appendFile($script);
+  $this->assetManager()->appendScriptLink($script);
 }
 
 // Add RDF header link if applicable:
 if ($this->export()->recordSupportsFormat($this->driver, 'RDF')) {
-  $this->headLink()->appendAlternate($this->recordLinker()->getActionUrl($this->driver, 'RDF'), 'application/rdf+xml', 'RDF Representation');
+  $this->assetManager()->appendLinkTag('alternate', $this->recordLinker()->getActionUrl($this->driver, 'RDF'), 'application/rdf+xml', 'RDF Representation');
 }
 
 // Set up breadcrumbs:

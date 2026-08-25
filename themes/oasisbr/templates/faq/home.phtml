@@ -2,25 +2,27 @@
 <?php $this->layout()->searchbox = false; ?>
 
 <div class="logo-img-center">
-  <a href="<?= $this->url('home') ?>"><img class="img-responsive" src="<?= $this->imageLink('oasisbr.png'); ?>" alt="Logo do OasisBR" /></a>
+  <a href="<?= $this->url('home') ?>"><img class="img-responsive" src="<?= $this->imageLink('oasisbr.png'); ?>" alt="Página Inicial OasisBR" /></a>
 </div>
-<div class="faq">
+<section class="faq" aria-labelledby="faq-heading">
   <div class="row ">
     <div class="col-md-12">
-      <div class="card">
-        <h2> <?= $this->transEsc('Perguntas Frequentes'); ?></h2>
-        <h3> <a data-bs-toggle="collapse" class="btn-collapse collapsed" href="#1" aria-expanded="false" aria-controls="footwear">
-            <?= $this->transEsc('O que é o Portal Oasisbr?'); ?></a>
-        </h3>
+      <div class="card card-faq">
+        <div class="faq-toolbar">
+          <h1  id="faq-heading"> <?= $this->transEsc('Perguntas Frequentes'); ?></h1>
+        </div>
+        <h2> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#1" aria-expanded="false" aria-controls="1">
+            O que é o Portal Oasisbr?</button>
+        </h2>
         <div class="collapse" id="1">
           <p>O Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto (Oasisbr) é uma iniciativa do Instituto Brasileiro de Informação em Ciência e Tecnologia (Ibict) que reúne a produção científica e os dados de pesquisa em acesso aberto de diversas universidades e instituições de pesquisa brasileiras e portuguesas. Saiba mais a respeito do Oasisbr na página <a href="../about">Sobre</a>.
           </p>
 
         </div>
 
-        <h3> <a data-bs-toggle="collapse" class="btn-collapse collapsed" href="#2" aria-expanded="false" aria-controls="footwear">
-            <?= $this->transEsc('Como faço para ter o meu documento coletado pelo Oasisbr?'); ?></a>
-        </h3>
+        <h2> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#2" aria-expanded="false" aria-controls="2">
+            <?= $this->transEsc('Como faço para ter o meu documento coletado pelo Oasisbr?'); ?></button>
+        </h2>
         <div class="collapse" id="2">
           <p>Para que seu documento possa ser coletado pelo Oasisbr é essencial que ele esteja disponível em umas das fontes de informação científica coletadas pelo Portal. Consulte a página <a href="../datasources/">Fontes coletadas</a> para verificar se a fonte de informação em que seu documento foi publicado já faz parte do Oasisbr.
           </p>
@@ -28,35 +30,35 @@
           </p>
         </div>
 
-        <h3> <a data-bs-toggle="collapse" class="btn-collapse collapsed" href="#3" aria-expanded="false" aria-controls="footwear">
-            <?= $this->transEsc('Como a fonte de informação científica da minha instituição pode ser coletada pelo Oasisbr?'); ?></a>
-        </h3>
+        <h2> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#3" aria-expanded="false" aria-controls="3">
+            <?= $this->transEsc('Como a fonte de informação científica da minha instituição pode ser coletada pelo Oasisbr?'); ?></button>
+        </h2>
         <div class="collapse" id="3">
-          <p>Cada tipo de fonte de informação científica possui um conjunto distinto de critérios para coleta, que podem ser consultadas na página <a href="../about">Sobre</a> em “Critérios para coleta de fontes de informação". Após o gestor da fonte verificar os critérios de coleta ele deverá entrar em contato com a equipe do Portal Oasisbr por meio do formulário de <a id="feedbackLink" data-lightbox href="<?= $this->url('feedback-home') ?>">Contato</a> e solicitar sua adesão ao Portal.
+          <p>Cada tipo de fonte de informação científica possui um conjunto distinto de critérios para coleta, que podem ser consultadas na página <a href="../about">Sobre do Oasisbr</a> em “Critérios para coleta de fontes de informação". Após o gestor da fonte verificar os critérios de coleta ele deverá entrar em contato com a equipe do Portal Oasisbr por meio do formulário de <a id="feedbackLink" data-lightbox href="<?= $this->url('feedback-home') ?>">Contato</a> e solicitar sua adesão ao Portal.
           </p>
         </div>
 
 
-        <h3> <a data-bs-toggle="collapse" class="btn-collapse collapsed" href="#4" aria-expanded="false" aria-controls="footwear">
-            <?= $this->transEsc('Quais são as vantagens do meu trabalho estar no Oasisbr?'); ?></a>
-        </h3>
+        <h2> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#4" aria-expanded="false" aria-controls="4">
+            <?= $this->transEsc('Quais são as vantagens do meu trabalho estar no Oasisbr?'); ?></button>
+        </h2>
         <div class="collapse" id="4">
-          <p>Sendo coletada pelo Oasisbr, a fonte de informação e todos os conteúdos por ela disponibilizados passam a ter visibilidade nacional, uma vez que o Oasisbr agrega em um único portal grande parte da a produção científica brasileira, e internacional, pois o Oasisbr é coletado por grandes bases internacionais e disseminado a nível mundial. Saiba mais a respeito do “Fluxo informacional do Oasisbr” na aba <a href="../about">Sobre</a>.
+          <p>Sendo coletada pelo Oasisbr, a fonte de informação e todos os conteúdos por ela disponibilizados passam a ter visibilidade nacional, uma vez que o Oasisbr agrega em um único portal grande parte da a produção científica brasileira, e internacional, pois o Oasisbr é coletado por grandes bases internacionais e disseminado a nível mundial. Saiba mais a respeito do “Fluxo informacional do Oasisbr” na aba <a href="../about">Sobre do Oasisbr</a>.
           </p>
         </div>
 
 
-        <h3> <a data-bs-toggle="collapse" class="btn-collapse collapsed" href="#5" aria-expanded="false" aria-controls="footwear">
-            <?= $this->transEsc('Quais são os parceiros vinculados ao Oasisbr?'); ?></a>
-        </h3>
+        <h2> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#5" aria-expanded="false" aria-controls="5">
+            <?= $this->transEsc('Quais são os parceiros vinculados ao Oasisbr?'); ?></button>
+        </h2>
         <div class="collapse" id="5">
-          <p>O Oasisbr coleta, dissemina e dá acesso a todo conteúdo disponibilizado na <a href="https://bdtd.ibict.br" target="_blank" rel="noopener noreferrer">Biblioteca Digital Brasileira de Teses e Dissertações (BDTD)</a>. Ademais, o Oasisbr dá acesso ao conteúdo científico presente no <a href="https://www.rcaap.pt/" target="_blank" rel="noopener noreferrer">Repositório Científico de Acesso Aberto de Portugal (RCAAP)</a>, e os conteúdos disponibilizados pelo RCAAP são coletados pelo Oasisbr e apresentado para a comunidade científica brasileira. Os conteúdos agregados pelo Oasisbr são coletados, também, pela <a href="https://www.lareferencia.info/pt" target="_blank" rel="noopener noreferrer">Rede de Repositorios de Acceso Abierto a la Ciencia (LA Referencia)</a>, que por sua vez é coletada pelo agregador europeu <a href="https://www.openaire.eu" target="_blank" rel="noopener noreferrer">OpenAIRE</a>. Essa rede de informação possibilita que o Oasisbr cumpra sua missão primordial, de aumentar o impacto da Ciência brasileira mundo afora.
+          <p>O Oasisbr coleta, dissemina e dá acesso a todo conteúdo disponibilizado na <a href="https://bdtd.ibict.br" target="_blank" rel="noopener noreferrer">Biblioteca Digital Brasileira de Teses e Dissertações (BDTD)<span class="visually-hidden"> (abre em nova aba)</span></a>. Ademais, o Oasisbr dá acesso ao conteúdo científico presente no <a href="https://www.rcaap.pt/" target="_blank" rel="noopener noreferrer">Repositório Científico de Acesso Aberto de Portugal (RCAAP)<span class="visually-hidden"> (abre em nova aba)</span></a>, e os conteúdos disponibilizados pelo RCAAP são coletados pelo Oasisbr e apresentado para a comunidade científica brasileira. Os conteúdos agregados pelo Oasisbr são coletados, também, pela <a href="https://www.lareferencia.info/pt" target="_blank" rel="noopener noreferrer">Rede de Repositorios de Acceso Abierto a la Ciencia (LA Referencia)<span class="visually-hidden"> (abre em nova aba)</span></a>, que por sua vez é coletada pelo agregador europeu <a href="https://www.openaire.eu" target="_blank" rel="noopener noreferrer">OpenAIRE<span class="visually-hidden"> (abre em nova aba)</span></a>. Essa rede de informação possibilita que o Oasisbr cumpra sua missão primordial, de aumentar o impacto da Ciência brasileira mundo afora.
           </p>
         </div>
 
-        <h3> <a data-bs-toggle="collapse" class="btn-collapse collapsed" href="#6" aria-expanded="false" aria-controls="footwear">
-            <?= $this->transEsc('Como faço para retirar meu trabalho do Oasisbr?'); ?></a>
-        </h3>
+        <h2> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#6" aria-expanded="false" aria-controls="6">
+            <?= $this->transEsc('Como faço para retirar meu trabalho do Oasisbr?'); ?></button>
+        </h2>
         <div class="collapse" id="6">
           <p>O Oasisbr não se responsabiliza pela gestão dos documentos publicados e/ou depositados nas fontes de informação que coleta. Portanto, se você encontrou um documento de sua autoria e acredita que ele não deva estar no Oasisbr, entre em contato diretamente com a fonte em que ele foi publicado. Somente após a atualização do registro do documento diretamente na fonte é que ele deixará de aparecer no Oasisbr.
           </p>
@@ -64,18 +66,18 @@
         </div>
 
 
-        <h3> <a data-bs-toggle="collapse" class="btn-collapse collapsed" href="#7" aria-expanded="false" aria-controls="footwear">
-            <?= $this->transEsc('Como faço para exportar dados dos registros diretamente do Oasisbr?'); ?></a>
-        </h3>
+        <h2> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#7" aria-expanded="false" aria-controls="7">
+            <?= $this->transEsc('Como faço para exportar dados dos registros diretamente do Oasisbr?'); ?></button>
+        </h2>
         <div class="collapse" id="7">
           <p>Para exportar dados dos registros do Oasisbr é preciso, inicialmente, realizar uma busca para filtrar os registros desejados. Diante do resultado da busca basta clicar no botão “Exportar” que se encontra no início e ao final da página de busca e indicar o email para o envio do arquivo, os registros serão então enviados para o email indicado no formato CSV.
           </p>
-          <p>Para o gerenciamento de referências indica-se a utilização do software livre Zotero. O Zotero é compatível com o Oasisbr e permite a exportação de documentos e suas referências diretamente do portal. Um manual simplificado de utilização do Zotero pode ser acessado através do link.</p>
+          <p>Para o gerenciamento de referências indica-se a utilização do software livre Zotero. O Zotero é compatível com o Oasisbr e permite a exportação de documentos e suas referências diretamente do portal. Confira o <a href="https://zenodo.org/records/6376312" target="_blank" rel="noopener noreferrer">manual simplificado de utilização do Zotero<span class="visually-hidden"> (abre em nova aba)</span></a>.</p>
         </div>
 
-        <h3> <a data-bs-toggle="collapse" class="btn-collapse collapsed" href="#8" aria-expanded="false" aria-controls="footwear">
-            <?= $this->transEsc('Onde encontro o registro de uma fonte de informação científica coletada pelo Oasisbr?'); ?></a>
-        </h3>
+        <h2> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#8" aria-expanded="false" aria-controls="8">
+            <?= $this->transEsc('Onde encontro o registro de uma fonte de informação científica coletada pelo Oasisbr?'); ?></button>
+        </h2>
         <div class="collapse" id="8">
           <p>Há duas maneiras de recuperar o registro de uma fonte de informação cientìfica no Oasisbr.São elas:
           </p>
@@ -89,20 +91,20 @@
           </ul>
         </div>
 
-        <h3> <a data-bs-toggle="collapse" class="btn-collapse collapsed" href="#9" aria-expanded="false" aria-controls="footwear">
-            <?= $this->transEsc('O que é uma URL OAI-PMH?'); ?></a>
-        </h3>
+        <h2> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#9" aria-expanded="false" aria-controls="9">
+            <?= $this->transEsc('O que é uma URL OAI-PMH?'); ?></button>
+        </h2>
         <div class="collapse" id="9">
-          <p>O Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH) é um protocolo desenvolvido pela <a href="https://www.openarchives.org/pmh/" target="_blank" rel="noopener noreferrer">Open Archives Initiative</a> que define um mecanismo para coleta de registros de metadados de eprints, bibliotecas digitais ou qualquer servidor na rede que queira compartilhar ou tornar visíveis metadados de documentos nele armazenados para programas externos coletá-los. Este protocolo foi escolhido pelo Oasisbr por ser uma opção simples e eficiente para que as fontes de informação façam validação e coleta dos metadados dos arquivos inseridos em sua plataforma.
+          <p>O Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH) é um protocolo desenvolvido pela <a href="https://www.openarchives.org/pmh/" target="_blank" rel="noopener noreferrer">Open Archives Initiative<span class="visually-hidden"> (abre em nova aba)</span></a> que define um mecanismo para coleta de registros de metadados de eprints, bibliotecas digitais ou qualquer servidor na rede que queira compartilhar ou tornar visíveis metadados de documentos nele armazenados para programas externos coletá-los. Este protocolo foi escolhido pelo Oasisbr por ser uma opção simples e eficiente para que as fontes de informação façam validação e coleta dos metadados dos arquivos inseridos em sua plataforma.
           </p>
         </div>
 
-        <h3> <a data-bs-toggle="collapse" class="btn-collapse collapsed" href="#10" aria-expanded="false" aria-controls="footwear">
-            <?= $this->transEsc('O que é o Vocabulário Driver?'); ?></a>
-        </h3>
+        <h2> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#10" aria-expanded="false" aria-controls="10">
+            <?= $this->transEsc('O que é o Vocabulário Driver?'); ?></button>
+        </h2>
         <div class="collapse" id="10">
           <p>As Diretrizes da Digital Repository Infrastructure Vision for European Research (DRIVE) orientam a definição de metadados e o preenchimento destes visando uma maior interoperabilidade e qualidade das informações intercambiadas. No caso do Oasisbr, utilizamos o <a href="https://guidelines.openaire.eu/en/latest/literature/field_publicationtype.html" target="_blank" rel="noopener noreferrer">
-              vocabulário controlado DRIVE </a> para o campo dc.type, ou seja, para que os itens disponíveis no repositório de publicações científicas sejam validados e espelhados no Portal é necessário que o campo dc.type seja preenchido de acordo com o vocabulário controlado abaixo:<br>
+              vocabulário controlado DRIVE<span class="visually-hidden"> (abre em nova aba)</span> </a> para o campo dc.type, ou seja, para que os itens disponíveis no repositório de publicações científicas sejam validados e espelhados no Portal é necessário que o campo dc.type seja preenchido de acordo com o vocabulário controlado abaixo:<br>
             info:eu-repo/semantics/article<br>
             info:eu-repo/semantics/bachelorThesis<br>
             info:eu-repo/semantics/masterThesis<br>
@@ -122,17 +124,17 @@
         </div>
 
 
-        <h3> <a data-bs-toggle="collapse" class="btn-collapse collapsed" href="#11" aria-expanded="false" aria-controls="footwear">
-            <?= $this->transEsc('Por que minha plataforma está apresentando problemas de coleta pelo Oasisbr?'); ?></a>
-        </h3>
+        <h2> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#11" aria-expanded="false" aria-controls="11">
+            <?= $this->transEsc('Por que minha plataforma está apresentando problemas de coleta pelo Oasisbr?'); ?></button>
+        </h2>
         <div class="collapse" id="11">
           <p>Alguns dos problemas mais comuns identificados coleta de fontes de informação são: </p>
           <ul>
             <li>Alteração de endereço eletrônico (link) da página da fonte;</li>
             <li>Desatualização da URL OAI-PMH da fonte;</li>
             <li>Atualização de informações (inclusão ou exclusão de arquivos) da fonte sem informar à equipe do Oasisbr;</li>
-            <li>Erros de indexação de documentos diretamente da fonte, tais como: erro de operação de coleta com o metadado; metadado fora do padrão exigido; não utilizar o <a href="https://guidelines.openaire.eu/en/latest/literature/field_publicationtype.html" target="_blank" rel="noopener noreferrer">
-                vocabulário controlado DRIVE </a>; entre outros.</li>
+            <li>Erros de indexação de documentos diretamente da fonte, tais como: erro de operação de coleta com o metadado; metadado fora do padrão exigido; não utilizar a <a href="https://guidelines.openaire.eu/en/latest/literature/field_publicationtype.html" target="_blank" rel="noopener noreferrer">
+              lista de tipos válidos do vocabulário controlado DRIVE<span class="visually-hidden"> (abre em nova aba)</span></a>; entre outros.</li>
             <li>Exigir login e senha para acesso de arquivos na plataforma;</li>
             <li>Erro ou queda de conexão do servidor da plataforma;</li>
             <li>Bloqueio via proxy da instituição, impedindo que o Oasisbr faça a coleta.</li>
@@ -140,9 +142,9 @@
           </ul>
         </div>
 
-        <h3> <a data-bs-toggle="collapse" class="btn-collapse collapsed" href="#12" aria-expanded="false" aria-controls="footwear">
-            <?= $this->transEsc('Como entrar em contato com a equipe de atendimento do Portal Oasisbr?'); ?></a>
-        </h3>
+        <h2> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#12" aria-expanded="false" aria-controls="12">
+            <?= $this->transEsc('Como entrar em contato com a equipe de atendimento do Portal Oasisbr?'); ?></button>
+        </h2>
         <div class="collapse" id="12">
           <p>Para entrar em contato com um de nossos colaboradores, envie um email para o endereço oasisbr@ibict.br ou entre em contato através do telefone (61) 3217-6449
             <!-- ou <a class="link-simple" href="https://api.whatsapp.com/send?phone=556132176449" target="_blank">
@@ -156,4 +158,4 @@
     </div>
   </div>
 
-</div>
+</section>

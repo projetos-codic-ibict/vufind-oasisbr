@@ -244,7 +244,8 @@ JS;
       </div>
     </div>
   </div>
-  <div class="offcanvas-overlay" data-bs-toggle="offcanvas" role="button" tabindex="0" aria-label="Fechar menu"></div>
+  <!-- <div class="offcanvas-overlay" data-bs-toggle="offcanvas" role="button" tabindex="0" aria-label="Fechar menu"></div> -->
+  <button type="button" class="offcanvas-overlay" data-bs-toggle="offcanvas" aria-label="<?= $this->transEscAttr('Fechar menu') ?>"></button>
   <?= $this->googleanalytics() ?>
   <?= $this->piwik() ?>
   <?php foreach ($this->captcha()->js() as $jsInclude) : ?>

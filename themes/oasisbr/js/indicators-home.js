@@ -1,12 +1,15 @@
-async function getIndicatorsByType () {
+async function getIndicatorsByType() {
   const indicators = await getIndicatorsBy(
     'search?type=AllFields&facet[]=format&sort=relevance&page=1&limit=0'
   )
+  // console.log('indicators recebido:', indicators)
+
   const data = indicators.facets.format
+  // console.log('data (facets.format):', data)
   return data
 }
 
-function fillArticles (indicators) {
+function fillArticles(indicators) {
   const articlesElement = document.querySelector('#articles')
   const articlesIndicador = indicators.filter(
     (indicator) => indicator.value == 'article'
@@ -16,7 +19,7 @@ function fillArticles (indicators) {
   articlesElement.textContent = formatNumber(value)
 }
 
-function fillTeses (indicators) {
+function fillTeses(indicators) {
   const tesesElement = document.querySelector('#teses')
   const tesesIndicador = indicators.filter(
     (indicator) =>
@@ -27,7 +30,7 @@ function fillTeses (indicators) {
   tesesElement.textContent = formatNumber(value)
 }
 
-function fillDatasets (indicators) {
+function fillDatasets(indicators) {
   const datasetsElement = document.querySelector('#datasets')
   const datasetsIndicador = indicators.filter(
     (indicator) => indicator.value == 'dataset'
@@ -37,7 +40,7 @@ function fillDatasets (indicators) {
   datasetsElement.textContent = formatNumber(value)
 }
 
-function fillBooks (indicators) {
+function fillBooks(indicators) {
   const booksElement = document.querySelector('#books')
   const booksIndicador = indicators.filter(
     (indicator) => indicator.value == 'book' || indicator.value == 'bookPart'

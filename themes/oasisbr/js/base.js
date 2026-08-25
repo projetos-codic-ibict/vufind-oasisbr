@@ -42,9 +42,10 @@ function showMessageError(element) {
 async function getIndicatorsBy(filter) {
   try {
     const response = await axios.get(`${API_BASE_URL}/${filter}`);
+    // console.log('getIndicatorsBy OK:', filter, response.data);
     return response.data;
   } catch (errors) {
-    console.error(errors);
+    console.error('getIndicatorsBy FALHOU:', filter, errors);
   }
 }
 

@@ -1,4 +1,4 @@
-<?php $this->headScript()->appendFile("indicators-home.js"); ?>
+<?php $this->assetManager()->appendScriptLink('indicators-home.js'); ?>
 
 <section class="row indicators-data">
   <h1><?= $this->transEsc("Documents Collected") ?></h1>
@@ -9,8 +9,8 @@
         <img class="image-main" alt="" src="<?= $this->imageLink('ARTIGOS.png'); ?>">
         <img class="image-hover" alt="" src="<?= $this->imageLink('ARTIGOS_HOVER.png'); ?>" >
       </figure>
-      <p id="articles"></p>
-      <p><?= $this->transEsc("Articles") ?></p>
+      <h2 id="articles"></h2>
+      <h3><?= $this->transEsc("Articles") ?></h3>
     </a>
   </div>
 
@@ -20,8 +20,8 @@
         <img class="image-main" alt="" src="<?= $this->imageLink('TESES_E_DISSERTACOES.png'); ?>">
         <img class="image-hover" alt="" src="<?= $this->imageLink('TESES_E_DISSERTACOES_HOVER.png'); ?>">
       </figure>
-      <p id="teses"></p>
-      <p><?= $this->transEsc("Theses") ?></p>
+      <h2 id="teses"></h2>
+      <h3><?= $this->transEsc("Theses") ?></h3>
     </a>
   </div>
 
@@ -31,8 +31,8 @@
         <img class="image-main" alt="" src="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA.png'); ?>">
         <img class="image-hover" alt="" src="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA_HOVER.png'); ?>">
       </figure>
-      <p id="datasets"></p>
-      <p><?= $this->transEsc("Datasets") ?></p>
+      <h2 id="datasets"></h2>
+      <h3><?= $this->transEsc("Datasets") ?></h3>
     </a>
   </div>
 
@@ -42,8 +42,8 @@
         <img class="image-main" alt="" src="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS.png'); ?>">
         <img class="image-hover" alt="" src="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS_HOVER.png'); ?>">
       </figure>
-      <p id="books"></p>
-      <p><?= $this->transEsc("Books and Book Chapters") ?></p>
+      <h2 id="books"></h2>
+      <h3><?= $this->transEsc("Books and Book Chapters") ?></h3>
     </a>
   </div>
 </section>

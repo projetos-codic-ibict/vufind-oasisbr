@@ -1,4 +1,5 @@
-<?php $this->headScript()->appendFile("load-network.js"); ?>
+<?php $this->assetManager()->appendScriptLink("load-network.js"); ?>
 <a data-network-name="<?= $this->driver->getSource() ?>" href="<?= $this->url('datasources-datasource') ?>?name=<?= $this->driver->getSource() ?>">
   <?= $this->driver->getSource() ?>
 </a>
+

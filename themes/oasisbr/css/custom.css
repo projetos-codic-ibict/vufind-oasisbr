@@ -120,7 +120,7 @@ a.btn {
 .facet-group .title {
   background-color: #2E7D32;
   color: #fff;
-  display:flex;
+  display: flex;
   justify-content: space-between;
 }
 
@@ -338,16 +338,22 @@ section {
   font-weight: 500;
 }
 
+.indicators-data h1 {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
+
 .indicators-data h2,
-.indicators-data p {
+.indicators-data h3 {
   color: #2E7D32 !important;
-  font-weight: bold;
   text-transform: uppercase;
   text-align: center;
 }
 
 .indicators-data h2 {
-  font-size: 32px;
+  font-weight: bold;
 }
 
 .indicators-data a {
@@ -358,17 +364,6 @@ section {
   align-items: center;
 }
 
-.indicators-data h1 {
-  text-align: center;
-  font-weight: 500;
-  margin-bottom: 3rem;
-  font-size: 2rem;
-}
-
-.indicators-data h3 {
-  margin-top: 0;
-  font-weight: 500;
-}
 
 .big-image {
   display: flex;
@@ -568,6 +563,17 @@ li.language a {
 .nav .open>a:hover,
 .nav .open>a:focus {
   background-color: transparent;
+}
+
+
+.offcanvas-overlay {
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 /* media queries para tablet e celular */
@@ -860,6 +866,7 @@ li.language a {
 .btn:active {
   outline: none;
 }
+
 .btn:focus-visible {
   outline: 3px solid #223360;
   outline-offset: 2px;
@@ -886,7 +893,7 @@ li.language a {
 
 .about,
 .faq {
-  color: #808080;
+  color: #333333;
   font-size: 1.3rem;
   font-family: 'Lato', Helvetica, Arial, sans-serif;
   font-weight: 300;
@@ -911,7 +918,7 @@ li.language a {
   color: #333333;
 }
 
-.btn-collapse:hover{
+.btn-collapse:hover {
   text-decoration: none;
 }
 
@@ -930,7 +937,7 @@ li.language a {
   font-weight: 900;
   font-size: 1.5rem;
   content: '\f078';
-  color:  #2E7D32;
+  color: #2E7D32;
   margin-right: 1rem;
 }
 
@@ -947,7 +954,7 @@ li.language a {
   margin-bottom: 10px;
 }
 
-.about button{
+.about button {
   background-color: transparent;
   border: none;
 }
@@ -1176,8 +1183,34 @@ a.link-simple {
   cursor: pointer;
 }
 
-.faq .card div {
-  padding-left: 3rem;
+
+.card-faq {
+  border: none;
+}
+
+/* .card-faq h1{
+  font-size: 23px;
+  font-weight: normal;
+} */
+
+
+.faq .btn-collapse {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-size: 23px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  color: inherit;
+}
+
+.faq .btn-collapse:focus-visible,
+.faq-toolbar #toggleAllFaq:focus-visible {
+  outline: 2px solid #1a5fb4;
+  outline-offset: 2px;
 }
 
 .record-tabs .details a {
