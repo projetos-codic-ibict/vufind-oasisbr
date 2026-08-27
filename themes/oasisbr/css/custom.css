@@ -760,7 +760,7 @@ li.language a {
 }
 
 /* Home redesign based on the Oasisbr interface prototype. */
-.template-dir-search.template-name-home {
+.oasis-site {
   --oasis-home-background: #ffffff;
   --oasis-home-foreground: #31413d;
   --oasis-home-muted: #717d78;
@@ -785,10 +785,6 @@ li.language a {
 .template-dir-search.template-name-home select,
 .template-dir-search.template-name-home button {
   max-width: 100%;
-}
-
-.template-dir-search.template-name-home a {
-  color: inherit;
 }
 
 .template-dir-search.template-name-home a:focus-visible,
@@ -844,7 +840,7 @@ li.language a {
   background: var(--oasis-home-highlight);
 }
 
-.template-dir-search.template-name-home header.d-print-none {
+.oasis-site header.d-print-none {
   position: sticky;
   top: 0;
   z-index: 1050;
@@ -853,13 +849,13 @@ li.language a {
   backdrop-filter: blur(12px);
 }
 
-.template-dir-search.template-name-home .banner.oasis-home-header {
+.oasis-site .banner.oasis-home-header {
   min-height: 64px;
   padding: 0;
   background: transparent;
 }
 
-.template-dir-search.template-name-home .banner.oasis-home-header>.container-fluid {
+.oasis-site .banner.oasis-home-header > .container-fluid {
   width: calc(100% - 2rem);
   max-width: 1140px;
   min-height: 64px;
@@ -870,32 +866,32 @@ li.language a {
   justify-content: space-between;
 }
 
-.template-dir-search.template-name-home .header-logos {
+.oasis-site .header-logos {
   padding-left: 0;
 }
 
-.template-dir-search.template-name-home .navbar-brand {
+.oasis-site .navbar-brand {
   height: 64px;
   max-width: 190px;
   padding: 0;
 }
 
-.template-dir-search.template-name-home .navbar-brand img {
-  max-height: 32px;
+.oasis-site .navbar-brand img {
+  max-height: 48px;
 }
 
-.template-dir-search.template-name-home .nav-main {
+.oasis-site .nav-main {
   height: 64px;
   justify-content: flex-end;
 }
 
-.template-dir-search.template-name-home .nav-main .navbar-nav {
+.oasis-site .nav-main .navbar-nav {
   align-items: center;
   gap: 1.35rem;
 }
 
-.template-dir-search.template-name-home .nav-main a,
-.template-dir-search.template-name-home .nav-main button.dropdown-toggle {
+.oasis-site .nav-main a,
+.oasis-site .nav-main button.dropdown-toggle {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -908,38 +904,38 @@ li.language a {
   transition: color 0.16s ease, background-color 0.16s ease, border-color 0.16s ease;
 }
 
-.template-dir-search.template-name-home .nav-main a:hover,
-.template-dir-search.template-name-home .nav-main a:focus,
-.template-dir-search.template-name-home .nav-main button.dropdown-toggle:hover,
-.template-dir-search.template-name-home .nav-main button.dropdown-toggle:focus {
+.oasis-site .nav-main a:hover,
+.oasis-site .nav-main a:focus,
+.oasis-site .nav-main button.dropdown-toggle:hover,
+.oasis-site .nav-main button.dropdown-toggle:focus {
   border: 0;
   color: var(--oasis-home-primary);
   background: transparent;
 }
 
-.template-dir-search.template-name-home .language button.dropdown-toggle {
+.oasis-site .language button.dropdown-toggle {
   min-height: 38px;
   padding: 0.5rem 0.65rem;
   border-radius: 6px;
 }
 
-.template-dir-search.template-name-home .language button.dropdown-toggle:hover,
-.template-dir-search.template-name-home .language button.dropdown-toggle:focus {
+.oasis-site .language button.dropdown-toggle:hover,
+.oasis-site .language button.dropdown-toggle:focus {
   background: var(--oasis-home-muted-bg);
 }
 
-.template-dir-search.template-name-home .dropdown-menu {
+.oasis-site .dropdown-menu {
   border-color: var(--oasis-home-border);
   border-radius: 8px;
   box-shadow: var(--oasis-home-shadow);
 }
 
-.template-dir-search.template-name-home .dropdown-menu a {
+.oasis-site .dropdown-menu a {
   display: block;
   padding: 0.45rem 0.9rem;
 }
 
-.template-dir-search.template-name-home .navbar-toggler {
+.oasis-site .navbar-toggler {
   border: 0;
   color: var(--oasis-home-muted);
 }

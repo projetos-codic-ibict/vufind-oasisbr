@@ -10,21 +10,14 @@ $currentLangLabel = match ($currentLang) {
 };
 ?>
 
-<?php if ($isHome): ?>
-  <div class="oasis-home-topbar">
-    <p>Serviço do Instituto Brasileiro de Informação em Ciência e Tecnologia - IBICT</p>
-  </div>
-  <div class="oasis-home-highlight" aria-hidden="true"></div>
-<?php endif; ?>
+<div class="oasis-home-topbar">
+  <p>Serviço do Instituto Brasileiro de Informação em Ciência e Tecnologia - IBICT</p>
+</div>
+<div class="oasis-home-highlight" aria-hidden="true"></div>
 
-<div class="banner navbar navbar-expand-md<?= $isHome ? ' oasis-home-header' : '' ?>">
+<div class="banner navbar navbar-expand-md oasis-home-header">
   <div class="container-fluid">
     <div class="header-logos">
-      <?php if (!$isHome): ?>
-        <a class="navbar-brand lang-<?= $this->escapeHtmlAttr($this->layout()->userLang) ?>" href="https://www.gov.br/ibict">
-          <img class="img-fluid" src="<?= $this->imageLink('logoibictversao1.png'); ?>" alt="Ibict" />
-        </a>
-      <?php endif; ?>
       <a class="navbar-brand" href="<?= $this->url('home') ?>" aria-label="<?= $this->transEscAttr('Oasisbr') ?>">
         <img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="<?= $this->transEscAttr('Oasisbr') ?>" />
       </a>
@@ -36,44 +29,21 @@ $currentLangLabel = match ($currentLang) {
       <div class="collapse navbar-collapse" id="header-collapse">
         <nav class="nav-main" aria-label="<?= $this->transEscAttr('Main navigation') ?>">
           <ul class="nav navbar-nav">
-            <?php if ($isHome): ?>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= $this->url('search-results') ?>">Resultados da busca</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= $this->url('search-results') ?>?type=AllFields">Coleções</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#sobre">Sobre o Oasisbr</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#participar">Como participar</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#ajuda">Ajuda</a>
-              </li>
-            <?php else: ?>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= $this->url('home') ?>"><?= $this->transEsc("Home") ?></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= $this->url('about-home') ?>"><?= $this->transEsc("About") ?></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= $this->url('datasources-home') ?>"><?= $this->transEsc("Data Sources") ?></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= $this->url('indicators-home') ?>"><?= $this->transEsc("Indicators") ?></a>
-              </li>
-              <?php if ($this->feedback()->tabEnabled()) : ?>
-                <li class="nav-item">
-                  <a class="nav-link" id="feedbackLink" data-lightbox href="<?= $this->url('feedback-home') ?>"><?= $this->transEsc("Contact") ?></a>
-                </li>
-              <?php endif; ?>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= $this->url('faq-home') ?>"><?= $this->transEsc("Faq") ?></a>
-              </li>
-            <?php endif; ?>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $this->url('search-results') ?>">Resultados da busca</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $this->url('search-results') ?>?type=AllFields">Coleções</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $this->url('home') ?>#sobre">Sobre o Oasisbr</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $this->url('home') ?>#participar">Como participar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= $this->url('home') ?>#ajuda">Ajuda</a>
+            </li>
 
             <?php $cart = $this->cart();
             if ($cart->isActive()) : ?>
