@@ -1,105 +1,210 @@
 <?php $this->assetManager()->appendScriptLink('indicators-home.js'); ?>
 
-<section class="row indicators-data">
-  <h1><?= $this->transEsc("Documents Collected") ?></h1>
-
-  <div class="col-md-3 col-sm-6 col-12 flex-col-center">
-    <a href="Search/Results?type=AllFields&filter%5B%5D=format%3A%22article%22">
-      <figure>
-        <img class="image-main" alt="" src="<?= $this->imageLink('ARTIGOS.png'); ?>">
-        <img class="image-hover" alt="" src="<?= $this->imageLink('ARTIGOS_HOVER.png'); ?>" >
-      </figure>
-      <h2 id="articles"></h2>
-      <h3><?= $this->transEsc("Articles") ?></h3>
-    </a>
-  </div>
-
-  <div class="col-md-3 col-sm-6 col-12 flex-col-center">
-    <a href="Search/Results?join=AND&filter%5B%5D=%7Eformat%3A%22masterThesis%22&filter%5B%5D=%7Eformat%3A%22doctoralThesis">
-      <figure>
-        <img class="image-main" alt="" src="<?= $this->imageLink('TESES_E_DISSERTACOES.png'); ?>">
-        <img class="image-hover" alt="" src="<?= $this->imageLink('TESES_E_DISSERTACOES_HOVER.png'); ?>">
-      </figure>
-      <h2 id="teses"></h2>
-      <h3><?= $this->transEsc("Theses") ?></h3>
-    </a>
-  </div>
-
-  <div class="col-md-3 col-sm-6 col-12 flex-col-center">
-    <a href="Search/Results?type=AllFields&filter%5B%5D=format%3A%22dataset%22">
-      <figure>
-        <img class="image-main" alt="" src="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA.png'); ?>">
-        <img class="image-hover" alt="" src="<?= $this->imageLink('CONJUNTO_DE_DADOS_DE_PESQUISA_HOVER.png'); ?>">
-      </figure>
-      <h2 id="datasets"></h2>
-      <h3><?= $this->transEsc("Datasets") ?></h3>
-    </a>
-  </div>
-
-  <div class="col-md-3 col-sm-6 col-12 flex-col-center">
-    <a href="Search/Results?join=AND&filter%5B%5D=%7Eformat%3A%22book%22&filter%5B%5D=%7Eformat%3A%22bookPart">
-      <figure>
-        <img class="image-main" alt="" src="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS.png'); ?>">
-        <img class="image-hover" alt="" src="<?= $this->imageLink('LIVROS_E_CAPITULOS_DE_LIVROS_HOVER.png'); ?>">
-      </figure>
-      <h2 id="books"></h2>
-      <h3><?= $this->transEsc("Books and Book Chapters") ?></h3>
-    </a>
+<section class="oasis-home-stats" aria-labelledby="numeros">
+  <div class="oasis-home-container">
+    <h2 id="numeros" class="visually-hidden">O Oasisbr em números</h2>
+    <dl class="oasis-home-stats-grid">
+      <div class="oasis-home-stat">
+        <dt>Registros coletados</dt>
+        <dd id="total-docs-home" aria-live="polite">...</dd>
+        <p>de fontes brasileiras e da RCAAP</p>
+      </div>
+      <div class="oasis-home-stat">
+        <dt>Fontes de informação</dt>
+        <dd id="sources-home" aria-live="polite">...</dd>
+        <p>repositórios, revistas e portais</p>
+      </div>
+      <div class="oasis-home-stat">
+        <dt>Instituições</dt>
+        <dd id="institutions-home" aria-live="polite">...</dd>
+        <p>universidades, institutos e agências</p>
+      </div>
+      <div class="oasis-home-stat">
+        <dt>Acesso aberto</dt>
+        <dd>100%</dd>
+        <p>texto completo sem barreiras</p>
+      </div>
+    </dl>
   </div>
 </section>
 
-<section class="row">
-  <div class="col-md-6 col-sm-6 col-12 flex-col-center">
-    <a href="about/home#network-flow" target="_blank" rel="noopener noreferrer">
-      <img class="img-fluid" src="<?= $this->imageLink('CONEXOES-OASISBR.jpg'); ?>" alt="imagens no formato de uma rede com as logos das conexões do Oasisbr " />
-    </a>
-  </div>
-  <div class="col-md-6 col-sm-6 col-12 flex-col-center">
-    <div class="section-connections">
-      <p><?= $this->transEsc("Oasisbr textp1") ?></p>
-      <p><?= $this->transEsc("Oasisbr textp2") ?></p>
-      <p> <?= $this->transEsc("Oasisbr textp3") ?> <a href="faq" target="_blank" rel="noopener noreferrer">FAQ</a><?= $this->transEsc("Oasisbr textp4") ?>
-        <a id="feedbackLink" data-lightbox href="<?= $this->url('feedback-home') ?>"> <?= $this->transEsc("form") ?>
+<section class="oasis-home-collections" aria-labelledby="colecoes">
+  <div class="oasis-home-container">
+    <div class="oasis-home-section-head">
+      <div>
+        <h2 id="colecoes">Explore por tipo de documento</h2>
+        <p>Todo o conteúdo é coletado automaticamente via protocolo OAI-PMH e conduz ao texto completo no repositório de origem.</p>
+      </div>
+      <a class="oasis-home-text-link" href="<?= $this->url('search-results') ?>">
+        Ver todas as coleções
+        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <ul class="oasis-home-collection-grid">
+      <li>
+        <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?type=AllFields&amp;filter%5B%5D=format%3A%22article%22">
+          <span class="oasis-home-card-icon"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></span>
+          <span class="oasis-home-card-title">Artigos de periódicos</span>
+          <span class="oasis-home-card-count"><span id="articles" aria-live="polite"></span> registros</span>
+          <span class="oasis-home-card-text">Artigos revisados por pares publicados em revistas brasileiras de acesso aberto.</span>
         </a>
-        .
-      </p>
-
-    </div>
+      </li>
+      <li>
+        <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?join=AND&amp;filter%5B%5D=%7Eformat%3A%22masterThesis%22&amp;filter%5B%5D=%7Eformat%3A%22doctoralThesis%22">
+          <span class="oasis-home-card-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+          <span class="oasis-home-card-title">Teses e dissertações</span>
+          <span class="oasis-home-card-count"><span id="teses" aria-live="polite"></span> registros</span>
+          <span class="oasis-home-card-text">Produção da pós-graduação nacional integrada à BDTD e aos repositórios institucionais.</span>
+        </a>
+      </li>
+      <li>
+        <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?type=AllFields&amp;filter%5B%5D=format%3A%22dataset%22">
+          <span class="oasis-home-card-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></span>
+          <span class="oasis-home-card-title">Conjuntos de dados</span>
+          <span class="oasis-home-card-count"><span id="datasets" aria-live="polite"></span> registros</span>
+          <span class="oasis-home-card-text">Dados de pesquisa depositados em repositórios de dados abertos e citáveis.</span>
+        </a>
+      </li>
+      <li>
+        <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?join=AND&amp;filter%5B%5D=%7Eformat%3A%22book%22&amp;filter%5B%5D=%7Eformat%3A%22bookPart%22">
+          <span class="oasis-home-card-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+          <span class="oasis-home-card-title">Livros e capítulos</span>
+          <span class="oasis-home-card-count"><span id="books" aria-live="polite"></span> registros</span>
+          <span class="oasis-home-card-text">Obras completas e capítulos publicados por editoras universitárias.</span>
+        </a>
+      </li>
+      <li>
+        <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?type=AllFields&amp;filter%5B%5D=format%3A%22conferenceObject%22">
+          <span class="oasis-home-card-icon"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i></span>
+          <span class="oasis-home-card-title">Trabalhos de eventos</span>
+          <span class="oasis-home-card-count"><span id="events" aria-live="polite"></span> registros</span>
+          <span class="oasis-home-card-text">Comunicações, resumos e anais de congressos científicos brasileiros.</span>
+        </a>
+      </li>
+      <li>
+        <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?type=AllFields&amp;filter%5B%5D=format%3A%22report%22">
+          <span class="oasis-home-card-icon"><i class="fa-regular fa-newspaper" aria-hidden="true"></i></span>
+          <span class="oasis-home-card-title">Relatórios técnicos</span>
+          <span class="oasis-home-card-count"><span id="reports" aria-live="polite"></span> registros</span>
+          <span class="oasis-home-card-text">Documentos técnicos, normas e produção institucional de agências públicas.</span>
+        </a>
+      </li>
+    </ul>
   </div>
 </section>
 
-<section class="row partners">
-  <div class="col-md-5 col-sm-5 col-12">
-    <h2 class="text-center section-title"><?= $this->transEsc("Support") ?></h2>
-    <div class="section-partners">
-      <a href="http://www.finep.gov.br" target="_blank" rel="noopener noreferrer"> <img class="img-fluid finep" src="<?= $this->imageLink('partners/FINEP.png'); ?>" alt="Logo do FINEP" /></a>
+<section id="sobre" class="oasis-home-about" aria-labelledby="sobre-titulo">
+  <div class="oasis-home-container oasis-home-about-grid">
+    <div class="oasis-home-about-copy">
+      <span class="oasis-home-kicker">Sobre o portal</span>
+      <h2 id="sobre-titulo">Um agregador nacional mantido pelo IBICT desde 2010</h2>
+      <p>O Oasisbr é um mecanismo de busca multidisciplinar que oferece acesso livre à produção científica de autores vinculados a universidades e institutos de pesquisa brasileiros. O portal também permite consultar, de forma integrada, a produção científica portuguesa disponível no RCAAP.</p>
+      <p>Os metadados são coletados automaticamente dos provedores de dados aderentes, normalizados e disponibilizados de forma aberta, garantindo que cada registro remeta ao texto completo no repositório de origem.</p>
+      <ul class="oasis-home-benefits">
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Visibilidade nacional e internacional para a produção da sua instituição</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Colheita automática de metadados via OAI-PMH, sem duplicar esforços</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Indicadores de produção científica por instituição, área e ano</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Interoperabilidade com a BDTD, a RCAAP e agregadores internacionais</li>
+      </ul>
     </div>
+
+    <aside class="oasis-home-services" aria-labelledby="servicos-integrados">
+      <h3 id="servicos-integrados">Serviços integrados</h3>
+      <dl>
+        <div>
+          <dt>BDTD</dt>
+          <dd>Biblioteca Digital Brasileira de Teses e Dissertações</dd>
+        </div>
+        <div>
+          <dt>RCAAP</dt>
+          <dd>Repositório Científico de Acesso Aberto de Portugal</dd>
+        </div>
+        <div>
+          <dt>DiadorimSHERPA</dt>
+          <dd>Políticas editoriais de revistas científicas brasileiras</dd>
+        </div>
+        <div>
+          <dt>LA Referencia</dt>
+          <dd>Rede latino-americana de repositórios de acesso aberto</dd>
+        </div>
+      </dl>
+      <a class="oasis-home-outline-button" href="#ajuda">Conhecer a documentação</a>
+    </aside>
   </div>
-  <div class="col-md-7 col-sm-7 col-12">
-    <h2 class="text-center section-title"><?= $this->transEsc("Our Partners") ?></h2>
-    <div class="section-partners">
-      <div class="section-partners-icons">
-        <div class="partner-icon">
-          <a href="https://www.rcaap.pt/" target="_blank" rel="noopener noreferrer">
-            <img class="img-fluid" src="<?= $this->imageLink('partners/RCAAP.jpg'); ?>" alt="Logo do RCAAP" /></a>
-        </div>
-        <div class="partner-icon">
-          <a href="https://www.lareferencia.info/pt/" target="_blank" rel="noopener noreferrer"> <img class="img-fluid" src="<?= $this->imageLink('partners/LA_REFERENCIA.jpg'); ?>" alt="Logo do LA REFERENCIA" /></a>
-        </div>
-        <div class="partner-icon">
-          <a href="https://www.coar-repositories.org/" target="_blank" rel="noopener noreferrer"> <img class="img-fluid img-responsive-width" src="<?= $this->imageLink('partners/COAR.png'); ?>" alt="Logo do COAR" /></a>
-        </div>
-        <div class="partner-icon">
-          <a href="http://www.ndltd.org/ " target="_blank" rel="noopener noreferrer"> <img class="img-fluid img-responsive-width" src="<?= $this->imageLink('partners/NDLTD.jpg'); ?>" alt="Logo do NDLTD" /></a>
-        </div>
-        <div class="partner-icon">
-          <a href="https://www.cplp.org/" target="_blank" rel="noopener noreferrer"> <img class="img-fluid img-responsive-width" src="<?= $this->imageLink('partners/CPLP.png'); ?>" alt="Logo do CPLP" /></a>
-        </div>
-        <div class="partner-icon">
-          <a href="https://www.scielo.org" target="_blank" rel="noopener noreferrer"> <img class="img-fluid" src="<?= $this->imageLink('partners/SCIELO.png'); ?>" alt="Logo do SCIELO" /></a>
-        </div>
+</section>
+
+<section id="participar" class="oasis-home-participate" aria-labelledby="participar-titulo">
+  <div class="oasis-home-container">
+    <div class="oasis-home-section-head">
+      <div>
+        <span class="oasis-home-kicker">Como participar</span>
+        <h2 id="participar-titulo">Inclua a sua instituição no Oasisbr</h2>
       </div>
     </div>
+    <ol class="oasis-home-steps">
+      <li>
+        <span>1</span>
+        <h3>Publique seu repositório</h3>
+        <p>Mantenha um repositório ou portal de revistas com interface OAI-PMH ativa e metadados padronizados em Dublin Core.</p>
+      </li>
+      <li>
+        <span>2</span>
+        <h3>Solicite a adesão</h3>
+        <p>Envie o formulário de indicação com a URL do provedor de dados e os contatos técnicos da instituição.</p>
+      </li>
+      <li>
+        <span>3</span>
+        <h3>Validação e coleta</h3>
+        <p>A equipe do IBICT valida a conformidade dos metadados e inclui a fonte no ciclo regular de colheita.</p>
+      </li>
+    </ol>
+    <?php if ($this->feedback()->tabEnabled()) : ?>
+      <a class="oasis-home-primary-button" data-lightbox href="<?= $this->url('feedback-home') ?>">Solicitar adesão</a>
+    <?php endif; ?>
   </div>
+</section>
 
+<section id="ajuda" class="oasis-home-help" aria-labelledby="ajuda-titulo">
+  <div class="oasis-home-container oasis-home-help-grid">
+    <div>
+      <h2 id="ajuda-titulo">Dúvidas frequentes</h2>
+      <p>Não encontrou o que precisava? A equipe do Oasisbr responde a dúvidas técnicas sobre colheita de metadados, adesão de fontes e uso do portal.</p>
+      <div class="oasis-home-contact-list">
+        <a href="mailto:oasisbr@ibict.br">
+          <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+          <span>
+            <strong>oasisbr@ibict.br</strong>
+            <small>Suporte técnico e adesões</small>
+          </span>
+        </a>
+        <a href="<?= $this->url('faq-home') ?>">
+          <i class="fa-regular fa-circle-question" aria-hidden="true"></i>
+          <span>
+            <strong>Manual do usuário</strong>
+            <small>Guias de busca e exportação</small>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <dl class="oasis-home-faq-list">
+      <div>
+        <dt>O Oasisbr armazena os textos completos?</dt>
+        <dd>Não. O portal coleta e indexa apenas os metadados. O acesso ao texto completo é feito diretamente no repositório ou na revista de origem, pelo link presente em cada registro.</dd>
+      </div>
+      <div>
+        <dt>Com que frequência os registros são atualizados?</dt>
+        <dd>A colheita dos provedores de dados ocorre em ciclos regulares. Novos documentos depositados costumam aparecer no portal em até 30 dias.</dd>
+      </div>
+      <div>
+        <dt>Como corrigir um metadado incorreto?</dt>
+        <dd>A correção deve ser feita no repositório de origem. Após a atualização, o registro é sincronizado na coleta seguinte.</dd>
+      </div>
+      <div>
+        <dt>É possível reutilizar os dados do portal?</dt>
+        <dd>Sim. Os metadados estão disponíveis para colheita via OAI-PMH e podem ser reutilizados em serviços de terceiros, respeitando a atribuição da fonte.</dd>
+      </div>
+    </dl>
+  </div>
 </section>

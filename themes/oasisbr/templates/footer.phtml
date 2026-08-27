@@ -1,3 +1,67 @@
+<?php $isHome = ($this->templateDir ?? '') === 'search' && ($this->templateName ?? '') === 'home'; ?>
+<?php if ($isHome): ?>
+<footer class="oasis-home-footer d-print-none">
+  <div class="oasis-home-footer-partners">
+    <div class="oasis-home-container">
+      <p>Apoio e parcerias</p>
+      <ul>
+        <li>IBICT</li>
+        <li>MCTI</li>
+        <li>RCAAP</li>
+        <li>FCT Portugal</li>
+        <li>LA Referencia</li>
+        <li>OpenAIRE</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="oasis-home-footer-main">
+    <div class="oasis-home-container">
+      <div class="oasis-home-footer-brand">
+        <img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="<?= $this->transEscAttr('Oasisbr') ?>" />
+        <p>Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto, mantido pelo Instituto Brasileiro de Informação em Ciência e Tecnologia.</p>
+      </div>
+
+      <nav aria-label="Portal">
+        <h2>Portal</h2>
+        <ul>
+          <li><a href="<?= $this->url('search-advanced') ?>">Busca avançada</a></li>
+          <li><a href="<?= $this->url('search-results') ?>">Coleções</a></li>
+          <li><a href="<?= $this->url('datasources-home') ?>">Fontes de informação</a></li>
+          <li><a href="<?= $this->url('indicators-home') ?>">Indicadores</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Institucional">
+        <h2>Institucional</h2>
+        <ul>
+          <li><a href="#sobre">Sobre o Oasisbr</a></li>
+          <li><a href="<?= $this->url('faq-home') ?>">Política de privacidade</a></li>
+          <li><a href="<?= $this->url('faq-home') ?>">Termos de uso</a></li>
+          <li><a href="<?= $this->url('faq-home') ?>">Acessibilidade</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Serviços IBICT">
+        <h2>Serviços IBICT</h2>
+        <ul>
+          <li><a href="https://bdtd.ibict.br/" target="_blank" rel="noopener noreferrer">BDTD</a></li>
+          <li><a href="https://diadorim.ibict.br/" target="_blank" rel="noopener noreferrer">Diadorim</a></li>
+          <li><a href="https://revistas.ibict.br/" target="_blank" rel="noopener noreferrer">Portal de Periódicos</a></li>
+          <li><a href="https://cariniana.ibict.br/" target="_blank" rel="noopener noreferrer">Rede Cariniana</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="oasis-home-footer-bottom">
+    <div class="oasis-home-container">
+      <p>IBICT - Setor de Autarquias Sul, Quadra 5, Lote 6, Bloco H, Brasília/DF</p>
+      <p>Desenvolvido com VuFind - conteúdo em acesso aberto</p>
+    </div>
+  </div>
+</footer>
+<?php else: ?>
 <footer class="d-print-none">
   <div class="container-fluid social-media">
     <div class="flex-row-center gap-2">
@@ -57,3 +121,4 @@
   </div>
   <!-- <script async src="https://barra.brasil.gov.br/barra_2.0.js"></script> -->
 </footer>
+<?php endif; ?>
