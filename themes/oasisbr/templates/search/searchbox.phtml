@@ -39,7 +39,7 @@ if (!isset($this->filterList) || !isset($this->checkboxFilters)) {
 $filterDetails = $this->searchbox()->getFilterDetails($filterList, $checkboxFilters);
 $showFilters = $filterDetails && (isset($results) || $options->getRetainFilterSetting());
 $tabConfig = $this->searchTabs()->getTabConfig($this->searchClassId, $this->lookfor, $this->searchIndex, $this->searchType, $hiddenFilters);
-$isHome = ($this->isHome ?? false) || (($this->templateDir ?? '') === 'search' && ($this->templateName ?? '') === 'home');
+$isHome = ($this->isHome ?? false) || ($this->useHomeSearchLayout ?? false) || (($this->templateDir ?? '') === 'search' && ($this->templateName ?? '') === 'home');
 $placeholder = $this->searchbox()->getPlaceholderText($tabConfig['selected']['id'] ?? null);
 $lookforValue = $this->escapeHtmlAttr($this->lookfor);
 ?>
@@ -68,7 +68,7 @@ $lookforValue = $this->escapeHtmlAttr($this->lookfor);
     <?php if (!empty($tabs)) : ?>
     </div><?php endif; ?>
   </div>
-<?php elseif ($isHome) : ?>
+<?php elseif ($isHome || (($this->templateDir ?? '') === 'search' && ($this->templateName ?? '') === 'results')) : ?>
   <form id="searchForm" class="searchForm oasis-home-search-form" method="get" action="<?= $this->url($basicSearch) ?>" name="searchForm" autocomplete="off" role="search">
     <?= $this->context($this)->renderInContext('search/searchTabs', ['searchTabs' => $tabConfig['tabs']]); ?>
     <div class="oasis-home-search-shell">
@@ -175,9 +175,9 @@ $lookforValue = $this->escapeHtmlAttr($this->lookfor);
     ); ?>
   </form>
 <?php else : ?>
-  <form id="searchForm" class="searchForm navbar-form navbar-left flip" method="get" action="<?= $this->url($basicSearch) ?>" name="searchForm" autocomplete="off">
+  <form id="searchForm" class="searchForm navbar-form navbar-left flip oasis-results-search-form" method="get" action="<?= $this->url($basicSearch) ?>" name="searchForm" autocomplete="off">
     <?= $this->context($this)->renderInContext('search/searchTabs', ['searchTabs' => $tabConfig['tabs']]); ?>
-    <div class="larger">
+    <div class="larger oasis-results-search-shell">
       <input data-search id="searchForm_lookfor" class="searchForm_lookfor form-control search-query<?php if ($this->searchbox()->autocompleteEnabled($this->searchClassId)) : ?> autocomplete searcher:<?= $this->escapeHtmlAttr($this->searchClassId) ?><?= $this->searchbox()->autocompleteAutoSubmit($this->searchClassId) ? ' ac-auto-submit' : '' ?><?php endif ?>" type="text" name="lookfor" value="<?= $lookforValue ?>" <?php if ($placeholder) : ?> placeholder="<?= $this->transEscAttr($placeholder) ?>" <?php else: ?> placeholder="<?= $this->transEscAttr("Search") ?>" <?php endif ?> aria-label="<?= $this->transEscAttr("search_terms") ?>" />
       <?php if ($handlerCount > 1) : ?>
         <select id="searchForm_type" class="searchForm_type form-select" name="type" data-native-menu="false" aria-label="<?= $this->transEscAttr("Search type") ?>">
@@ -207,10 +207,10 @@ $lookforValue = $this->escapeHtmlAttr($this->lookfor);
         <input type="hidden" name="type" value="<?= $this->escapeHtmlAttr($handlers[0]['value']) ?>" />
       <?php endif; ?>
     </div>
-    <div class="larger search-btn">
-      <button type="submit" class="btn btn-search-primary"><i class="fa-solid fa-search" aria-hidden="true"></i> <?= $this->transEsc("Find") ?></button>
+    <div class="larger search-btn oasis-results-search-actions">
+      <button type="submit" class="btn btn-search-primary oasis-results-search-submit"><i class="fa-solid fa-search" aria-hidden="true"></i> <?= $this->transEsc("Find") ?></button>
       <?php if ($advSearch) : ?>
-        <a href="<?= $this->url($advSearch) . (($this->searchId ?? false) ? '?edit=' . $this->escapeHtmlAttr($this->searchId) : $hiddenFilterParams) ?>" class="btn btn-secondary" rel="nofollow"><?= $this->transEsc("Advanced Search") ?></a>
+        <a href="<?= $this->url($advSearch) . (($this->searchId ?? false) ? '?edit=' . $this->escapeHtmlAttr($this->searchId) : $hiddenFilterParams) ?>" class="btn btn-secondary oasis-results-advanced-link" rel="nofollow"><?= $this->transEsc("Advanced Search") ?></a>
       <?php endif; ?>
       <?php if ($geoUrl = $this->geocoords()->getSearchUrl($options)) : ?>
         <a href="<?= $geoUrl ?>" class="btn btn-link"><?= $this->transEsc('Geographic Search') ?></a>

@@ -1,0 +1,10 @@
+<?php
+$start = $this->localizedNumber($this->results->getStartRecord());
+$end = $this->localizedNumber($this->results->getEndRecord());
+$total = $this->localizedNumber($recordTotal);
+$queryTime = $this->results->getQuerySpeed();
+$lookfor = $this->escapeHtml($lookfor ?? '');
+?>
+<span class="js-search-stats" data-key="showing_results_of_for_html">
+  Mostrando <strong><?= $start ?> - <?= $end ?></strong> resultados de <strong><?= $total ?></strong> para a busca '<strong><?= $lookfor ?></strong>'<?php if ($queryTime !== null) : ?>, tempo de busca: <?= $this->localizedNumber($queryTime, 2) ?>s<?php endif; ?>
+</span>

@@ -1,0 +1,8 @@
+<?php
+$start = $this->localizedNumber($this->results->getStartRecord());
+$end = $this->localizedNumber($this->results->getEndRecord());
+$total = $this->localizedNumber($recordTotal);
+$queryTime = $this->results->getQuerySpeed();
+$lookfor = $this->escapeHtml($lookfor ?? '');
+?>
+<h1 class="oasis-results-total"><?= $total ?> resultados</h1>

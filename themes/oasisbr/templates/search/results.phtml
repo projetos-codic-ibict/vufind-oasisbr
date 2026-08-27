@@ -20,6 +20,7 @@ $this->layout()->searchbox = $this->context($this)->renderInContext(
     'selectedShards' => $this->params->getSelectedShards(),
     'ignoreHiddenFiltersInRequest' => $this->ignoreHiddenFiltersInRequest ?? false,
     'ignoreHiddenFilterMemory' => $this->ignoreHiddenFilterMemory ?? false,
+    'useHomeSearchLayout' => true,
   ]
 );
 
@@ -43,90 +44,105 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
 }
 ?>
 
-<div class="<?= $this->layoutClass('mainbody') ?>">
-  <?php if (($recordTotal = $this->results->getResultTotal()) > 0) : // only display these at very top if we have results 
-  ?>
-    <div class="dropdown export">
-      <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
-        <?= $this->transEsc('Export') ?>
-      </button>
-      <ul class="dropdown-menu">
-        <li> <a class="dropdown-item" href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=ris' ?>" data-lightbox>
-            <i class="fa fa-file-text-o" aria-hidden="true"></i> <?= $this->transEsc('Export RIS') ?>
-          </a></li>
-        <li><a class="dropdown-item" href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=csv' ?>" data-lightbox>
-            <i class="fa fa-file-excel-o" aria-hidden="true"></i> <?= $this->transEsc('Export CSV') ?>
-          </a></li>
-      </ul>
-    </div>
-    <?php foreach ($this->results->getRecommendations('top') as $index => $current) : ?>
+<div class="<?= $this->layoutClass('mainbody') ?> oasis-results-mainbody">
+  <?php if (($recordTotal = $this->results->getResultTotal()) > 0):  // only display these at very top if we have results 
+      ?>
+    <?php foreach ($this->results->getRecommendations('top') as $index => $current): ?>
       <?= $this->recommend($current, 'top', $index) ?>
     <?php endforeach; ?>
   <?php endif; ?>
   <?= $this->flashmessages() ?>
-  <div class="search-header hidden-print">
+  <div class="search-header hidden-print oasis-results-header">
+    <div class="d-flex align-items-center justify-content-between">
     <div class="search-stats">
-      <?php if ($recordTotal > 0) : ?>
-        <?= $this->context()->renderInContext('search/controls/showing.phtml', ['lookfor' => $lookfor, 'recordTotal' => $recordTotal]) ?>
+      <?php if ($recordTotal > 0): ?>
+        <?= $this->context()->renderInContext('search/controls/result.phtml', ['lookfor' => $lookfor, 'recordTotal' => $recordTotal]) ?>
         <a class="search-filter-toggle visible-xs" href="#search-sidebar" data-bs-toggle="offcanvas" ">
-          <?= $this->transEsc('Refine Results') ?>
-        </a>
-      <?php else : ?>
-        <h2><?= $this->transEsc('nohit_heading') ?></h2>
+            <?= $this->transEsc('Refine Results') ?>
+          </a>
+      <?php else: ?>
+          <h2><?= $this->transEsc('nohit_heading') ?></h2>
       <?php endif; ?>
     </div>
 
-    <?php if ($recordTotal > 0) : ?>
-      <div class="search-controls">
-        <?= $this->render('search/controls/limit.phtml') ?>
-        <?= $this->render('search/controls/sort.phtml') ?>
-        <?= $this->render('search/controls/view.phtml') ?>
+    <?php if ($recordTotal > 0): ?>
+        <div class=" search-controls">
+          <!-- <?= $this->render('search/controls/limit.phtml') ?> -->
+          <?= $this->render('search/controls/sort.phtml') ?>
+          <!-- <?= $this->render('search/controls/view.phtml') ?> -->
+          <div class="dropdown export">
+            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              <?= $this->transEsc('Export') ?>
+              <i class="fa fa-file-export"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li> <a class="dropdown-item"
+                  href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=ris' ?>" data-lightbox>
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i> <?= $this->transEsc('Export RIS') ?>
+                </a></li>
+              <li><a class="dropdown-item"
+                  href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=csv' ?>" data-lightbox>
+                  <i class="fa fa-file-excel-o" aria-hidden="true"></i> <?= $this->transEsc('Export CSV') ?>
+                </a></li>
+            </ul>
+          </div>
+      </div>
       </div>
     <?php endif; ?>
+    <?php if ($recordTotal > 0): ?>
+      <?= $this->context()->renderInContext('search/controls/showing.phtml', ['lookfor' => $lookfor, 'recordTotal' => $recordTotal]) ?>
+      <a class="search-filter-toggle visible-xs" href="#search-sidebar" data-bs-toggle="offcanvas" ">
+            <?= $this->transEsc('Refine Results') ?>
+          </a>
+      <?php else: ?>
+          <h2><?= $this->transEsc('nohit_heading') ?></h2>
+      <?php endif; ?>
   </div>
   <?php /* End Listing Options */ ?>
+  
 
-  <?php if ($recordTotal < 1) : ?>
-    <p>
-      <?php
-      $emptyMessage = $this->slot('empty-message')->get(
-        $this->translate('nohit_lookfor_html', ['%%lookfor%%' => $this->escapeHtml($lookfor)])
-      );
-      $this->layout()->srmessage = $emptyMessage;
-      echo $emptyMessage;
-      ?>
-    </p>
-    <?php if (isset($this->parseError)) : ?>
-      <p class="alert alert-danger"><?= $this->transEsc('nohit_parse_error') ?></p>
-    <?php endif; ?>
-    <?php foreach (($top = $this->results->getRecommendations('top')) as $index => $current) : ?>
-      <?= $this->recommend($current, 'top', $index) ?>
-    <?php endforeach; ?>
-    <?php foreach ($this->results->getRecommendations('noresults') as $index => $current) : ?>
-      <?php if (!in_array($current, $top)) : ?>
-        <?= $this->recommend($current, 'noresults', $index) ?>
-      <?php endif; ?>
-    <?php endforeach; ?>
-  <?php else : ?>
-    <form id="search-cart-form" method="post" name="bulkActionForm" action="<?= $this->url('cart-searchresultsbulk') ?>" data-lightbox data-lightbox-onsubmit="bulkFormHandler">
-      <?= $this->context($this)->renderInContext('search/bulk-action-buttons.phtml', ['idPrefix' => '']) ?>
-    </form>
-    <?= $this->render('search/list-' . $this->params->getView() . '.phtml') ?>
-    <?= $this->context($this)->renderInContext('search/bulk-action-buttons.phtml', ['idPrefix' => 'bottom_', 'formAttr' => 'search-cart-form']) ?>
-    <?= $this->paginationControl($this->results->getPaginator(), 'Sliding', 'Helpers/pagination.phtml', ['results' => $this->results, 'options' => $this->paginationOptions ?? []]) ?>
-    <!-- <?= $this->context($this)->renderInContext('search/controls/results-tools.phtml', ['results' => $this->results]) ?> -->
-    <?php /* New link for CSV export */ ?>
-    <!-- <a href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=csv' ?>" data-lightbox><i class="fa fa-external-link" aria-hidden="true"></i> <?= $this->transEsc('Export CSV') ?></a>
+  <?php if ($recordTotal < 1): ?>
+      <p>
+        <?php
+        $emptyMessage = $this->slot('empty-message')->get(
+          $this->translate('nohit_lookfor_html', ['%%lookfor%%' => $this->escapeHtml($lookfor)])
+        );
+        $this->layout()->srmessage = $emptyMessage;
+        echo $emptyMessage;
+        ?>
+      </p>
+      <?php if (isset($this->parseError)): ?>
+          <p class=" alert alert-danger"><?= $this->transEsc('nohit_parse_error') ?></p>
+        <?php endif; ?>
+        <?php foreach (($top = $this->results->getRecommendations('top')) as $index => $current): ?>
+          <?= $this->recommend($current, 'top', $index) ?>
+        <?php endforeach; ?>
+        <?php foreach ($this->results->getRecommendations('noresults') as $index => $current): ?>
+          <?php if (!in_array($current, $top)): ?>
+            <?= $this->recommend($current, 'noresults', $index) ?>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <form id="search-cart-form" method="post" name="bulkActionForm"
+          action="<?= $this->url('cart-searchresultsbulk') ?>" data-lightbox data-lightbox-onsubmit="bulkFormHandler">
+          <?= $this->context($this)->renderInContext('search/bulk-action-buttons.phtml', ['idPrefix' => '']) ?>
+        </form>
+        <?= $this->render('search/list-' . $this->params->getView() . '.phtml') ?>
+        <?= $this->context($this)->renderInContext('search/bulk-action-buttons.phtml', ['idPrefix' => 'bottom_', 'formAttr' => 'search-cart-form']) ?>
+        <?= $this->paginationControl($this->results->getPaginator(), 'Sliding', 'Helpers/pagination.phtml', ['results' => $this->results, 'options' => $this->paginationOptions ?? []]) ?>
+        <!-- <?= $this->context($this)->renderInContext('search/controls/results-tools.phtml', ['results' => $this->results]) ?> -->
+        <?php /* New link for CSV export */ ?>
+        <!-- <a href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=csv' ?>" data-lightbox><i class="fa fa-external-link" aria-hidden="true"></i> <?= $this->transEsc('Export CSV') ?></a>
     <a href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=ris' ?>" data-lightbox><i class="fa fa-external-link" aria-hidden="true"></i> <?= $this->transEsc('Export RIS') ?></a> -->
-    <?php /* End new link */ ?>
-  <?php endif; ?>
-</div>
-<?php /* End Main Listing */ ?>
+        <?php /* End new link */ ?>
+      <?php endif; ?>
+  </div>
+  <?php /* End Main Listing */ ?>
 
-<?php /* Narrow Search Options */ ?>
-<div class="<?= $this->layoutClass('sidebar') ?>" id="search-sidebar">
-  <?php foreach ($this->results->getRecommendations('side') as $index => $current) : ?>
-    <?= $this->recommend($current, 'side', $index) ?>
-  <?php endforeach; ?>
-</div>
-<?php /* End Narrow Search Options */ ?>
+  <?php /* Narrow Search Options */ ?>
+  <div class="<?= $this->layoutClass('sidebar') ?> oasis-results-sidebar" id="search-sidebar">
+    <?php foreach ($this->results->getRecommendations('side') as $index => $current): ?>
+      <?= $this->recommend($current, 'side', $index) ?>
+    <?php endforeach; ?>
+  </div>
+  <?php /* End Narrow Search Options */ ?>
