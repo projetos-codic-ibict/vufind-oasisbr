@@ -2338,9 +2338,6 @@ li.language a {
   border-bottom: 2px solid #265680;
 }
 
-.nav-tabs {
-  margin-bottom: 1rem;
-}
 
 .about,
 .faq {
@@ -2764,7 +2761,7 @@ a.link-simple {
 }
 
 .oasis-record-details {
-  padding: 1.25rem;
+  padding: 1rem;
   border: 1px solid var(--oasis-home-border);
   border-radius: 6px;
   background: var(--oasis-home-muted-bg);
@@ -2819,7 +2816,7 @@ a.link-simple {
   margin-top: 1.5rem;
   border: 1px solid var(--oasis-home-border);
   border-radius: 6px;
-  padding: 8px;
+  padding: 1rem;
 }
 
 .record-tabs {
@@ -2894,12 +2891,23 @@ a.link-simple {
 
   .nav-tabs {
     border-bottom: none;
+    padding: 0.5rem 0;
+  }
+
+  .tab-content{
+    padding: 0;
   }
 }
 
 .list-group-item {
   border: none;
   border-bottom: 1px dashed var(--oasis-home-border);
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
 }
 
 .btn-default,
