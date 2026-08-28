@@ -804,6 +804,46 @@ li.language a {
   overflow-x: hidden;
 }
 
+.oasis-site .table {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--oasis-home-foreground);
+  --bs-table-striped-bg: var(--oasis-home-muted-bg);
+  --bs-table-striped-color: var(--oasis-home-foreground);
+  --bs-table-border-color: var(--oasis-home-border);
+  margin-bottom: 1.5rem;
+  border-color: var(--oasis-home-border);
+}
+
+.oasis-site .table > :not(caption) > * > * {
+  padding: 0.8rem 1rem;
+  vertical-align: top;
+}
+
+.oasis-site .table > thead {
+  background: var(--oasis-home-primary);
+  color: var(--oasis-home-primary-foreground);
+}
+
+.oasis-site .table > thead > tr > th {
+  border-bottom: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.oasis-site .table > tbody > tr:hover > * {
+  --bs-table-accent-bg: var(--oasis-home-muted-bg);
+  color: var(--oasis-home-foreground);
+}
+
+.oasis-site .table-responsive {
+  border: 1px solid var(--oasis-home-border);
+  border-radius: 6px;
+}
+
+.oasis-site .table-responsive .table {
+  margin-bottom: 0;
+}
+
 .template-dir-search.template-name-home img,
 .template-dir-search.template-name-home input,
 .template-dir-search.template-name-home select,
@@ -1481,7 +1521,7 @@ li.language a {
 
 .oasis-home-primary-button {
   margin-top: 2rem;
-  border: 1px solid var(--oasis-home-primary-foreground);
+  border: 1px solid var(--oasis-home-primary);
   background: var(--oasis-home-primary-foreground);
   color: var(--oasis-home-primary);
 }

@@ -29,10 +29,10 @@ $currentLangLabel = match ($currentLang) {
         <nav class="nav-main" aria-label="<?= $this->transEscAttr('Main navigation') ?>">
           <ul class="nav navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="<?= $this->url('search-results') ?>">Resultados da busca</a>
+              <a class="nav-link" href="<?= $this->url('datasources-home') ?>"><?= $this->transEsc("Data Sources") ?></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= $this->url('search-results') ?>?type=AllFields">Coleções</a>
+              <a class="nav-link" href="<?= $this->url('indicators-home') ?>?type=AllFields"><?= $this->transEsc("Indicators") ?></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?= $this->url('home') ?>#sobre">Sobre o Oasisbr</a>
@@ -43,6 +43,14 @@ $currentLangLabel = match ($currentLang) {
             <li class="nav-item">
               <a class="nav-link" href="<?= $this->url('home') ?>#ajuda">Ajuda</a>
             </li>
+
+            <?php if ($this->feedback()->tabEnabled()): ?>
+              <li class="nav-item">
+                <a class="nav-link icon-link" id="feedbackLink" data-lightbox href="<?=$this->url('feedback-home') ?>">
+                  <span class="icon-link__label"><?=$this->transEsc('Contact')?></span>
+                </a>
+              </li>
+            <?php endif; ?>
 
             <?php $cart = $this->cart();
             if ($cart->isActive()) : ?>
