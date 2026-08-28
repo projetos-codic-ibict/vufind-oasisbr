@@ -5,22 +5,28 @@ $titleName = $source;
 <?php $this->headTitle($titleName); ?>
 <?php $this->layout()->searchbox = false; ?>
 <?php $this->layout()->nocontainerclass = true; ?>
+<?php $this->breadcrumbs()->set($this->translate('Data Sources'), $this->url('datasources-home')); ?>
+<?php $this->breadcrumbs()->add($this->translate('Source'), null, true); ?>
 <?php $this->assetManager()->appendStyleLink('loader.css'); ?>
 <?php $this->assetManager()->appendScriptLink("load-network.js"); ?>
 
-<div class="logo-img-center">
-  <a class="img-fluid" href="<?= $this->url('home') ?>"><img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="OasisBR - Página inicial" /></a>
-</div>
-
-<div class="page-title-bar">
+<div class="page-title-bar oasis-page-title-bar oasis-source-title-bar">
   <div class="container">
-    <h1><?= $this->transEsc("Data Sources") ?></h1>
-    <h2><?= $this->transEsc("Data Sources Subtitle") ?> </h2>
+    <span class="oasis-page-kicker">Oasisbr</span>
+    <h1><?= $this->transEsc("Source") ?></h1>
+    <p><?= $this->transEsc("Data Sources Subtitle") ?></p>
   </div>
 </div>
 
-<div class="container">
-  <table class="table table-striped" id="dataSource">
+<main class="container oasis-inner-page-content oasis-source-detail">
+  <a class="oasis-source-back-link" href="<?= $this->url('datasources-home') ?>">
+    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+    <?= $this->transEsc("Data Sources") ?>
+  </a>
+  <section class="oasis-source-detail-card" aria-labelledby="source-details-heading">
+    <h2 id="source-details-heading"><?= $this->transEsc("Source") ?></h2>
+    <table class="table table-striped" id="dataSource">
 
-  </table>
-</div>
+    </table>
+  </section>
+</main>

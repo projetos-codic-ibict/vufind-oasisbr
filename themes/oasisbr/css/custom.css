@@ -741,9 +741,6 @@ li.language a {
   padding: 0 0 0 0;
 }
 
-#networks ol li::marker {
-  content: counter(item) ".";
-}
 
 #networks h3 {
   background-color: #f0f0f0;
@@ -1001,6 +998,87 @@ li.language a {
   display: block;
 }
 
+.oasis-site .oasis-source-title-bar {
+  border-top: 4px solid var(--oasis-home-primary);
+}
+
+.oasis-site .oasis-source-detail {
+  max-width: 900px;
+}
+
+.oasis-site .oasis-source-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  color: var(--oasis-home-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.oasis-site .oasis-source-back-link:hover,
+.oasis-site .oasis-source-back-link:focus {
+  color: var(--oasis-home-primary-strong);
+  text-decoration: underline;
+}
+
+.oasis-site .oasis-source-detail-card {
+  border: 1px solid var(--oasis-home-border);
+  border-radius: 6px;
+  background: var(--oasis-home-background);
+  overflow: hidden;
+}
+
+.oasis-site .oasis-source-detail-card h2 {
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--oasis-home-border);
+  color: var(--oasis-home-foreground);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.oasis-site #dataSource {
+  margin: 0;
+}
+
+.oasis-site #dataSource > tbody > tr > th,
+.oasis-site #dataSource > tbody > tr > td {
+  padding: 1rem 1.5rem;
+  border-color: var(--oasis-home-border);
+}
+
+.oasis-site #dataSource > tbody > tr > th {
+  width: 34%;
+  color: var(--oasis-home-foreground);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.oasis-site #dataSource > tbody > tr > td {
+  color: var(--oasis-home-muted);
+  overflow-wrap: anywhere;
+}
+
+.oasis-site #dataSource a {
+  color: var(--oasis-home-primary);
+  font-weight: 700;
+}
+
+@media (max-width: 767.98px) {
+  .oasis-site #dataSource > tbody > tr > th,
+  .oasis-site #dataSource > tbody > tr > td {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
+
+  .oasis-site #dataSource > tbody > tr > th {
+    padding-bottom: 0;
+  }
+}
+
 /* Data sources use the same filter and list treatment as search results. */
 .oasis-site #networks-page .oasis-results-sidebar {
   padding: 0;
@@ -1068,6 +1146,7 @@ li.language a {
 .oasis-site #networks-page #network-search {
   max-width: none;
   border-radius: 999px;
+  border: 1px solid var(--oasis-home-border);
 }
 
 .oasis-site #networks-page .networks-sort {

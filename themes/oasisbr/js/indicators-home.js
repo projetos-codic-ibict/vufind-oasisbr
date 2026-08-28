@@ -64,7 +64,7 @@ function fillReports(indicators) {
 
 async function fillHomeNetworkStats() {
   try {
-    const response = await axios.get(`${REMOTE_API_URL}/api/v1/networks`)
+    const response = await axios.get(`${REMOTE_API_URL}/networks`)
     const networks = Array.isArray(response.data) ? response.data : []
     const institutions = new Set(
       networks

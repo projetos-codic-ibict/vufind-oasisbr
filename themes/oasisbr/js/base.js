@@ -5,7 +5,7 @@ const INDICATORS_FACETS =
 // let REMOTE_API_URL;
 
 const API_BASE_URL = `https://oasisbr.ibict.br/vufind/api/v1`;
-const REMOTE_API_URL = `https://api-oasisbr.ibict.br`;
+const REMOTE_API_URL = `https://api-oasisbr.ibict.br/api/v1`;
 
 let loader = '';
 
