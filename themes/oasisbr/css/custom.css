@@ -2,7 +2,8 @@
 
 html,
 body {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  background-color: #fafafa;
+  font-family: Rawline, Raleway, sans-serif;
   font-size: 16px !important;
   margin: 0;
   padding: 0;
@@ -781,22 +782,22 @@ li.language a {
 
 /* Home redesign based on the Oasisbr interface prototype. */
 .oasis-site {
-  --oasis-home-background: #ffffff;
-  --oasis-home-foreground: #31413d;
-  --oasis-home-muted: #717d78;
-  --oasis-home-muted-bg: #f4f7f5;
-  --oasis-home-primary: #2f6f62;
-  --oasis-home-primary-strong: #285e54;
+  --oasis-home-background: #fafafa;
+  --oasis-home-foreground: #333333;
+  --oasis-home-muted: #5c5c5c;
+  --oasis-home-muted-bg: #f0f0f0;
+  --oasis-home-primary: #2e7d32;
+  --oasis-home-primary-strong: #1b5e20;
   --oasis-home-primary-foreground: #ffffff;
-  --oasis-home-accent: #2d6fb7;
+  --oasis-home-accent: #12538b;
   --oasis-home-blue: #071d41;
-  --oasis-home-border: #dfe7e3;
+  --oasis-home-border: #8a8a8a;
   --oasis-home-highlight: #f8c300;
-  --oasis-home-ring: rgba(47, 111, 98, 0.28);
+  --oasis-home-ring: #2e7d32;
   --oasis-home-shadow: 0 8px 24px rgba(7, 29, 65, 0.08);
   background: var(--oasis-home-background);
   color: var(--oasis-home-foreground);
-  font-family: Rawline, Raleway, Lato, Helvetica, Arial, sans-serif;
+  font-family: Rawline, Raleway, sans-serif;
   overflow-x: hidden;
 }
 
@@ -1889,7 +1890,7 @@ li.language a {
 
 .oasis-home-services dd {
   margin: 0.25rem 0 0;
-  color: var(--oasis-home-muted);
+  color: var(--oasis-home-foreground);
   font-size: 0.875rem;
   line-height: 1.55;
 }
