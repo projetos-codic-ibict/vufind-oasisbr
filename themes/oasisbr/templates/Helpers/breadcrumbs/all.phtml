@@ -1,0 +1,15 @@
+<?php if ($active): ?>
+  <nav class="breadcrumbs" aria-label="<?= $this->transEscAttr('Breadcrumbs') ?>">
+    <div class="container">
+      <ul class="breadcrumb d-print-none">
+        <li class="breadcrumb-item oasis-breadcrumb-home">
+          <a href="<?= $this->url('home') ?>" aria-label="<?= $this->transEscAttr('Home') ?>">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            <span class="visually-hidden"><?= $this->transEsc('Home') ?></span>
+          </a>
+        </li>
+        <?= $breadcrumbs ?>
+      </ul>
+    </div>
+  </nav>
+<?php endif; ?>

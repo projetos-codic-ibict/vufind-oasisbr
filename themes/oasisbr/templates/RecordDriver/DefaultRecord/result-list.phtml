@@ -1,5 +1,6 @@
 <?php
-$coverDetails = $this->record($this->driver)->getCoverDetails('result-list', 'medium', $this->recordLinker()->getUrl($this->driver));
+$recordLinker = $this->recordLinker($this->results);
+$coverDetails = $this->record($this->driver)->getCoverDetails('result-list', 'medium', $recordLinker->getUrl($this->driver));
 $cover = $coverDetails['html'];
 $thumbnail = false;
 $thumbnailAlignment = $this->record($this->driver)->getThumbnailAlignment('result');
@@ -30,7 +31,7 @@ if ($cover) :
           </div>
           <span class="oasis-result-access"><i class="fa-solid fa-circle" aria-hidden="true"></i> Acesso aberto</span>
         </div>
-        <a href="<?= $this->recordLinker()->getUrl($this->driver) ?>" class="title getFull" data-view="<?= isset($this->params) ? $this->params->getOptions()->getListViewOption() : 'list' ?>">
+        <a href="<?= $this->escapeHtmlAttr($recordLinker->getUrl($this->driver)) ?>" class="title getFull" data-view="<?= isset($this->params) ? $this->params->getOptions()->getListViewOption() : 'list' ?>">
           <?= $this->record($this->driver)->getTitleHtml() ?>
         </a>
       </div>

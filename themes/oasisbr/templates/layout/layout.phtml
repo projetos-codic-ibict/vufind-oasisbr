@@ -32,10 +32,18 @@ $htmlLang = match (strtolower($userLang)) {
   <?php if ($this->layout()->rtl) {
     $this->assetManager()->appendStyleLink('vendor/bootstrap-rtl.min.css');
   } ?>
+  <?php
+  // Render icons early; VuFind's JS configuration needs them before initialization.
+  $icons = !isset($this->renderingError) ? $this->render('js-icons.phtml') : '{}';
+  ?>
 
   <?php
   // Collect small scripts together and append as one block:
   $appendScripts = [];
+  $themeConfig = $this->themeConfig();
+  if (!empty($themeConfig['stickyElements'])) {
+    $this->assetManager()->appendScriptLink('sticky_elements.js');
+  }
 
   if (!isset($this->renderingError)) {
     // Add translation strings
@@ -85,18 +93,6 @@ $htmlLang = match (strtolower($userLang)) {
     if ($cart->isActive()) {
       $this->assetManager()->appendScriptLink('vendor/js.cookie.js');
       $this->assetManager()->appendScriptLink('cart.js');
-      $domain = $cart->getCookieDomain();
-      if (!empty($domain)) {
-        $appendScripts[] = 'VuFind.cart.setDomain("' . $domain . '");';
-      }
-      $cookiePath = $cart->getCookiePath();
-      if (!empty($cookiePath)) {
-        $appendScripts[] = 'VuFind.cart.setCookiePath("' . $cookiePath . '");';
-      }
-      $cookieSameSite = $cart->getCookieSameSite();
-      if (null !== $cookieSameSite) {
-        $appendScripts[] = 'VuFind.cart.setCookieSameSite("' . $cookieSameSite . '");';
-      }
       $this->jsTranslations()->addStrings(
         [
           'addBookBag' => 'Add to Book Bag',
@@ -140,13 +136,31 @@ $htmlLang = match (strtolower($userLang)) {
   }
 
   $root = rtrim($this->url('home'), '/');
-  $translations = $this->jsTranslations()->getJSON();
+  $jsConfig = !isset($this->renderingError) ? $this->render('js-configs.phtml') : '{}';
+  $translations = !isset($this->renderingError) ? $this->render('js-translations.phtml') : '{}';
   $dsb = DEFAULT_SEARCH_BACKEND;
+  $cspNonce = $this->csp()->getNonce();
+  $searchId = json_encode($this->layout()->searchId);
+  $theme = json_encode($themeConfig['themeName']);
   $appendScripts[] = <<<JS
 VuFind.path = '{$root}';
 VuFind.defaultSearchBackend = '{$dsb}';
+VuFind.config.add({$jsConfig});
 VuFind.addTranslations({$translations});
+VuFind.addIcons({$icons});
+VuFind.setCspNonce('{$cspNonce}');
+VuFind.setCurrentSearchId($searchId);
+VuFind.setTheme($theme);
 JS;
+  if ($domain = $this->cookieManager()->getDomain()) {
+    $appendScripts[] = 'VuFind.cookie.setDomain(' . json_encode($domain) . ');';
+  }
+  if ($cookiePath = $this->cookieManager()->getPath()) {
+    $appendScripts[] = 'VuFind.cookie.setCookiePath(' . json_encode($cookiePath) . ');';
+  }
+  if ($cookieSameSite = $this->cookieManager()->getSameSite()) {
+    $appendScripts[] = 'VuFind.cookie.setCookieSameSite(' . json_encode($cookieSameSite) . ');';
+  }
   $this->assetManager()->appendScriptString(implode("\n", $appendScripts));
 
   if ($this->config()->ajaxCoversEnabled()) {
@@ -154,7 +168,6 @@ JS;
   }
   ?>
   <?= $this->assetManager()->outputHeaderAssets() ?>
-  <?= $this->assetManager()->outputFooterAssets() ?>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8YFC4NWSB"></script>
 
@@ -200,39 +213,7 @@ JS;
       </div>
     </div>
   <?php endif; ?>
-  <?php if ((!isset($this->layout()->showBreadcrumbs) || $this->layout()->showBreadcrumbs == true)
-    && !empty($this->layout()->breadcrumbs)
-    && $this->layout()->breadcrumbs !== false
-  ) : ?>
-    <nav class="breadcrumbs" aria-label="<?= $this->transEscAttr('Breadcrumbs') ?>">
-      <div class="container">
-        <ul class="breadcrumb d-print-none">
-          <li class="breadcrumb-item oasis-breadcrumb-home">
-            <a href="<?= $this->url('home') ?>" aria-label="<?= $this->transEscAttr('Home') ?>">
-              <i class="fa-solid fa-house" aria-hidden="true"></i>
-              <span class="visually-hidden"><?= $this->transEsc('Home') ?></span>
-            </a>
-          </li>
-          <?php if (is_array($this->layout()->breadcrumbs)) : ?>
-            <?php if (count($this->layout()->breadcrumbs) > 1) : ?>
-              <?= $this->render('breadcrumbs/multi.phtml', [
-                'parents' => $this->layout()->breadcrumbs,
-                'title' => $this->layout()->title,
-                'from' => $this->layout()->from
-              ]) ?>
-            <?php else : ?>
-              <?= $this->render('breadcrumbs/default.phtml', [
-                'parents' => $this->layout()->breadcrumbs,
-                'title' => $this->layout()->title
-              ]) ?>
-            <?php endif; ?>
-          <?php else : ?>
-            <?= $this->layout()->breadcrumbs ?>
-          <?php endif; ?>
-        </ul>
-      </div>
-    </nav>
-  <?php endif; ?>
+  <?= $this->breadcrumbs()->render() ?>
   </div>
   </nav>
   <main class="main">
@@ -245,7 +226,10 @@ JS;
   <div id="modal" class="modal fade d-print-none" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?= $this->transEscAttr('Close') ?>"></button>
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?= $this->transEscAttr('Close') ?>"></button>
+        </div>
         <div class="modal-body" aria-live="polite"><?= $this->transEsc('Loading') ?>...</div>
       </div>
     </div>
@@ -259,6 +243,7 @@ JS;
   <?php endforeach; ?>
 
   <!-- <script async src="https://cdn.userway.org/widget.js" data-account="gxYK4Xrqhn"></script> -->
+  <?= $this->assetManager()->outputFooterAssets() ?>
 </body>
 
 </html>

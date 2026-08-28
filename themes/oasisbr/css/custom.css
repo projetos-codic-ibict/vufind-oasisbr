@@ -2531,18 +2531,21 @@ a.link-simple {
   }
 }
 
+.record table {
+  width: 100%;
+  table-layout: fixed;
+}
+
 .record table th {
   width: 25%;
-  overflow: hidden;
-  display: inline-block;
-  /* white-space: nowrap; */
+  vertical-align: top;
+  overflow-wrap: anywhere;
 }
 
 .record table td {
   width: 75%;
-  overflow: hidden;
-  display: inline-block;
-  /* white-space: nowrap; */
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 @media screen and (max-width: 768px) {
@@ -2669,4 +2672,8 @@ a.link-simple {
 
 .search-controls form:not(:last-child){
   margin-bottom: 0;
+}
+
+.table.staff-view th{
+  word-wrap: break-word;
 }

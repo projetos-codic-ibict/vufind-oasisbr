@@ -1,4 +1,7 @@
 <?php
+// Disable top search box on record/item pages.
+$this->layout()->searchbox = false;
+
 // Set up standard record scripts:
 $this->assetManager()->appendScriptLink("record.js");
 $this->assetManager()->appendScriptLink("check_save_statuses.js");
@@ -18,8 +21,22 @@ if ($this->export()->recordSupportsFormat($this->driver, 'RDF')) {
 }
 
 // Set up breadcrumbs:
-$this->layout()->breadcrumbs = $this->searchMemory()->getLastSearchLink($this->transEsc('Search'), '<li>', '</li> ') .
-  '<li class="active" aria-current="page">' . $this->escapeHtml($this->driver->getBreadcrumb()) . '</li> ';
+$activeTabDescription = null;
+foreach ($this->tabs as $tab => $obj) {
+  if (0 === strcasecmp($this->activeTab, $tab)) {
+    $activeTabDescription = $obj->getDescription();
+    break;
+  }
+}
+$activeBreadcrumb = 0 === strcasecmp($this->activeTab, 'Details')
+  ? 'Metadados do item'
+  : $this->translate($activeTabDescription ?? 'Metadados do item');
+$this->breadcrumbs()->reset();
+if ($url = $this->searchMemory()->getLastSearchUrl()) {
+  $this->breadcrumbs()->add($this->translate('Search'), $url);
+}
+$this->breadcrumbs()->add(...$this->recordLinker()->getBreadcrumbParams($this->driver))
+  ->add($activeBreadcrumb, active: true);
 $this->layout()->title = $this->driver->getShortTitle();
 ?>
 
@@ -51,7 +68,6 @@ $this->layout()->title = $this->driver->getShortTitle();
                 // $tabClasses[] = 'active';
               }
               // $tabClasses[] = 'initiallyActive';
-              $this->layout()->breadcrumbs .= '<li class="">' . $this->transEsc($desc) . '</li>';
               $activeTabObj = $obj;
             }
             if (!$obj->isVisible()) {

@@ -59,7 +59,7 @@ if ($hierarchicalFacets) {
       <a class="title<?php if (in_array($title, $collapsedFacets)) : ?> collapsed<?php endif ?>" data-bs-toggle="collapse" href="#side-collapse-<?= $this->escapeHtmlAttr($title) ?>">
         <?= $this->transEsc($cluster['label']) ?>
       </a>
-      <div id="side-collapse-<?= $this->escapeHtmlAttr($title) ?>" class="collapse<?php if (!in_array($title, $collapsedFacets)) : ?> in<?php endif ?>" <?php if (in_array($title, $forceUncollapsedFacets)) : ?> data-force-in="1" <?php endif ?>>
+      <div id="side-collapse-<?= $this->escapeHtmlAttr($title) ?>" class="collapse<?php if (!in_array($title, $collapsedFacets)) : ?> show<?php endif ?>" <?php if (in_array($title, $forceUncollapsedFacets)) : ?> data-force-uncollapsed="1" <?php endif ?>>
         <?= $this->context($this)->renderInContext(
           'Recommend/SideFacets/facet.phtml',
           [
@@ -72,3 +72,4 @@ if ($hierarchicalFacets) {
     </div>
   <?php endforeach; ?>
 <?php endif; ?>
+<?= $this->assetManager()->outputInlineScriptString('registerSideFacetTruncation();'); ?>

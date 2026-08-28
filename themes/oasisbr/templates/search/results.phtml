@@ -5,6 +5,9 @@ $headTitle = $this->slot('head-title')
   ->get($this->translate('Search Results') . (empty($lookfor) ? '' : " - {$lookfor}"));
 $this->headTitle($headTitle);
 
+// Preserve this search in VuFind's client-side navigation state.
+$this->layout()->searchId = $this->results->getSearchId();
+
 // Set up search box:
 $this->layout()->searchbox = $this->context($this)->renderInContext(
   'search/searchbox.phtml',
