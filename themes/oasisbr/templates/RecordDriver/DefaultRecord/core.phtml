@@ -1,92 +1,84 @@
-<?php $this->metadata()->generateMetatags($this->driver); ?>
-<div class="media" vocab="http://schema.org/" resource="#record" typeof="<?= $this->driver->getSchemaOrgFormats() ?> Product">
-  <?php
-  $QRCode = $this->record($this->driver)->getQRCode("core");
-  $coverDetails = $this->record($this->driver)->getCoverDetails('core', 'medium', $this->record($this->driver)->getThumbnail('large'));
-  $cover = $coverDetails['html'];
-  $preview = ($this->previewOverride ?? false)
-    ? $this->previewOverride : $this->record($this->driver)->getPreviews();
-  ?>
-  <?php if ($QRCode || $cover || $preview) : ?>
-    <div class="media-left <?= $this->escapeHtmlAttr($coverDetails['size']) ?> img-col">
-      <?php /* Display thumbnail if appropriate: */ ?>
-      <?php if ($cover) : ?>
-        <?= $cover ?>
-      <?php endif; ?>
-
-      <?php /* Display qrcode if appropriate: */ ?>
-      <?php if ($QRCode) : ?>
-        <span class="hidden-xs">
-          <br /><img alt="<?= $this->transEscAttr('QR Code') ?>" class="qrcode" src="<?= $this->escapeHtmlAttr($QRCode); ?>" />
-        </span>
-      <?php endif; ?>
-
-      <?php // if you have a preview tab but want to move or remove the preview link
-      // from this area of the record view, this can be split into
-      // getPreviewData() (should stay here) and
-      // getPreviewLink() (can go in your desired tab) 
-      ?>
-      <?php if ($preview) : ?>
-        <div class="record-previews">
-          <?= $preview ?>
-        </div>
-      <?php endif; ?>
-    </div>
-  <?php endif; ?>
-  <div class="media-body">
-    <!-- Os itens excluidos do solr são consultados em uma API externa e nela não tem o campo shortTitle  -->
-    <h1 property="name"><?= $this->escapeHtml(($this->driver->getShortTitle() != null ? $this->driver->getShortTitle() : $this->driver->getTitle()) . ' ' . $this->driver->getSubtitle() . ' ' . $this->driver->getTitleSection()) ?></h1>
-
-    <?php if (!empty($this->extraControls)) : ?>
-      <?= $this->extraControls['actionControls'] ?? '' ?>
-      <?= $this->extraControls['availabilityInfo'] ?? '' ?>
-    <?php endif; ?>
-
-    <?php if ($this->searchOptions($this->driver->getSourceIdentifier())->getVersionsAction()) : ?>
-      <?= $this->record($this->driver)->renderTemplate('versions-link.phtml') ?>
-    <?php endif; ?>
-
-    <!-- ocultar resumo abaixo do titulo
-     <?php $summary = $this->driver->getSummary();
-      $summary = isset($summary[0]) ? $this->escapeHtml($summary[0]) : false; ?>
-    <?php if ($summary) : ?>
-      <p><?= $this->truncate($summary, 300) ?></p>
-
-    <?php if (strlen($summary) > 300) : ?>
-      <p><a href='<?= $this->recordLinker()->getTabUrl($this->driver, 'Description') ?>#tabnav'><?= $this->transEsc('Full description') ?></a></p>
-    <?php endif; ?>
-  <?php endif; ?> -->
-
-    <?php if ($this->userlist()->getMode() !== 'disabled') : ?>
-      <?php /* Display the lists that this record is saved to */ ?>
-      <div class="savedLists">
-        <strong><?= $this->transEsc("Saved in") ?>:</strong>
+<?php
+$this->metadata()->generateMetatags($this->driver);
+$formatter = $this->recordDataFormatter();
+$coreFields = $formatter->getData($this->driver, $formatter->getDefaults('core'));
+$authors = null;
+$details = [];
+foreach ($coreFields as $field) {
+  if ($field['label'] === 'Authors') {
+    $authors = $field['value'];
+  } elseif (!in_array($field['label'], [
+    'Publication Date',
+    'Format',
+    'Language',
+    'Portuguese Subjects',
+    'English Subjects',
+    'Spanish Subjects',
+    'Cnpq Subject',
+  ])) {
+    $details[] = $field;
+  }
+}
+$summary = $this->driver->getSummary()[0] ?? null;
+$subjects = $this->driver->getAllSubjectHeadings();
+$relatedRecords = $this->layout()->oasisRelatedRecords ?? [];
+$title = ($this->driver->getShortTitle() ?: $this->driver->getTitle()) . ' ' . $this->driver->getSubtitle() . ' ' . $this->driver->getTitleSection();
+?>
+<article class="oasis-record" vocab="http://schema.org/" resource="#record" typeof="<?= $this->driver->getSchemaOrgFormats() ?> Product">
+  <div class="oasis-record-content">
+    <header class="oasis-record-header">
+      <div class="oasis-record-meta">
+        <?php $formats = $this->driver->getFormats(); ?>
+        <?php if (!empty($formats)) : ?><span class="badge-highlight"><?= $this->escapeHtml($formats[0]) ?></span><?php endif; ?>
+        <?php $dates = $this->driver->getPublicationDates(); ?>
+        <?php if (!empty($dates)) : ?><span><?= $this->escapeHtml($dates[0]) ?></span><?php endif; ?>
+        <?php $languages = $this->driver->getLanguages(); ?>
+        <?php if (!empty($languages)) : ?><span><?= $this->escapeHtml($languages[0]) ?></span><?php endif; ?>
       </div>
+      <h1 property="name"><?= $this->escapeHtml($title) ?></h1>
+      <?php if ($authors) : ?><div class="oasis-record-authors"><?= $authors ?></div><?php endif; ?>
+    </header>
+
+    <?php if ($summary) : ?>
+      <section class="oasis-record-section" aria-labelledby="record-summary">
+        <h2 id="record-summary"><?= $this->transEsc('Summary') ?></h2>
+        <p><?= $this->escapeHtml($summary) ?></p>
+      </section>
     <?php endif; ?>
 
-    <?php /* Display Main Details */ ?>
-    <?php
-    $formatter = $this->recordDataFormatter();
-    // $coreFields = $formatter->getData($driver, $formatter->getDefaults('core'));
-     $coreFields = $formatter->getData($this->driver, $formatter->getDefaults('core'));
-    ?>
-    <?php if (!empty($coreFields)) : ?>
-      <table class="table table-striped">
-        <caption class="sr-only"><?= $this->transEsc('Bibliographic Details') ?></caption>
-        <?php foreach ($coreFields as $current) : ?>
-          <tr>
-            <th><?= $this->transEsc($current['label']) ?>:</th>
-            <td><?= $current['value'] ?></td>
-          </tr>
-        <?php endforeach; ?>
-        <?php $summary = $this->driver->getSummary();
-        $summary = isset($summary[0]) ? $this->escapeHtml($summary[0]) : false; ?>
-        <?php if ($summary) : ?>
-          <th><?= $this->transEsc("Summary") ?>:</th>
-          <td><?= $summary ?></td>
-        <?php endif; ?>
-      </table>
+    <?php if (!empty($subjects)) : ?>
+      <section class="oasis-record-section" aria-labelledby="record-subjects">
+        <h2 id="record-subjects"><?= $this->transEsc('Subjects') ?></h2>
+        <div class="oasis-record-subjects">
+          <?php foreach ($subjects as $subject) : ?>
+            <?php $label = implode(' -- ', $subject); ?>
+            <a href="<?= $this->record($this->driver)->getLink('subject', $label) ?>" rel="nofollow"><?= $this->escapeHtml($label) ?></a>
+          <?php endforeach; ?>
+        </div>
+      </section>
     <?php endif; ?>
-    <?php /* End Main Details */ ?>
+
+    <?= $this->layout()->oasisRecordTabs ?? '' ?>
   </div>
-</div>
+
+  <aside class="oasis-record-aside">
+    <h2 id="record-details"><?= $this->transEsc('Source data') ?></h2>
+    <section class="oasis-record-details" aria-labelledby="record-details">
+      <dl>
+        <?php foreach ($details as $field) : ?>
+          <div>
+            <dt><?= $field['label'] === 'Download full' ? '' : $this->transEsc($field['label']) ?></dt>
+            <dd><?= $field['value'] ?></dd>
+          </div>
+        <?php endforeach; ?>
+      </dl>
+    </section>
+    <?php if (!empty($relatedRecords)) : ?>
+      <section class="oasis-record-related" aria-label="<?= $this->transEscAttr('Similar Items') ?>">
+        <?php foreach ($relatedRecords as $current) : ?>
+          <?= $this->related()->render($current) ?>
+        <?php endforeach; ?>
+      </section>
+    <?php endif; ?>
+  </aside>
+</article>

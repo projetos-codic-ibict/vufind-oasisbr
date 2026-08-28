@@ -138,6 +138,8 @@ class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataForm
             'data-publicationDetails.phtml'
         );
 
+        $spec->setLine('Institution', 'getInstitution');
+
         $spec->setTemplateLine(
             'Source',
             'getSource',

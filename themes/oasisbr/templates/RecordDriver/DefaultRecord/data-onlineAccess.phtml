@@ -1,0 +1,15 @@
+<?php
+$openUrl = $this->openUrl($this->driver, 'record');
+$openUrlActive = $openUrl->isActive();
+$urls = $this->record($this->driver)->getLinkDetails($openUrlActive);
+?>
+<?php foreach ($urls as $index => $current) : ?>
+  <a target="_blank" class="<?= $index === 0 ? 'oasis-record-fulltext-link' : 'oasis-record-additional-link' ?>" href="<?= $this->escapeHtmlAttr($this->proxyUrl($current['url'])) ?>">
+    <?= $this->escapeHtml($index === 0 ? $this->translate('Get full text') : $current['desc']) ?>
+    <?php if ($index === 0) : ?><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><?php endif; ?>
+  </a><?= $index === 0 ? '' : '<br>' ?>
+<?php endforeach; ?>
+<?php if ($openUrlActive) : ?>
+  <?= $openUrl->renderTemplate() ?><br>
+<?php endif; ?>
+<?= $this->identifierLinker($this->driver, 'record') ?>

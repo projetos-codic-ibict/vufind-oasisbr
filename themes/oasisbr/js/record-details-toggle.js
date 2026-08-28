@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+const initializeRecordDetailsToggle = () => {
   const toggle = document.querySelector('.oasis-record-details-toggle');
   const tab = document.querySelector('.record-tabs [data-tab="details"]');
   const panel = document.querySelector('#record-tab-panel-details');
@@ -29,4 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
     event.stopImmediatePropagation();
     setExpanded(!panel.classList.contains('active'));
   }, true);
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeRecordDetailsToggle);
+} else {
+  initializeRecordDetailsToggle();
+}

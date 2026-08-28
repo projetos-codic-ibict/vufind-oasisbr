@@ -2640,6 +2640,167 @@ a.link-simple {
   font-size: 0.9rem;
 }
 
+.oasis-record-details-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.oasis-record-details-icon {
+  transition: transform 0.2s ease;
+}
+
+.oasis-record-details-toggle[aria-expanded="true"] .oasis-record-details-icon {
+  transform: rotate(180deg);
+}
+
+.oasis-record-mainbody {
+  width: 100%;
+}
+
+.oasis-record {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+  gap: 2.5rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.oasis-record-header {
+  margin-bottom: 2.5rem;
+}
+
+.oasis-record-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  color: var(--oasis-home-muted);
+  align-items: center;
+}
+
+.oasis-record-meta span + span::before {
+  content: "|";
+  margin-right: 0.5rem;
+}
+
+.oasis-record h1 {
+  margin: 0.75rem 0;
+  color: var(--oasis-home-foreground);
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+.oasis-record-authors {
+  color: var(--oasis-home-muted);
+}
+
+.oasis-record-section + .oasis-record-section {
+  margin-top: 2.5rem;
+}
+
+.oasis-record-aside h2{
+  color: #808080;
+}
+
+.oasis-record-section h2{
+  margin: 0 0 1rem;
+  color: var(--oasis-home-foreground);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.oasis-record-section p {
+  margin: 0;
+  color: var(--oasis-home-foreground);
+  line-height: 1.7;
+}
+
+.oasis-record-subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.oasis-record-subjects a {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--oasis-home-border);
+  border-radius: 4px;
+  color: var(--oasis-home-primary);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.oasis-record-details {
+  padding: 1.25rem;
+  border: 1px solid var(--oasis-home-border);
+  border-radius: 6px;
+  background: var(--oasis-home-muted-bg);
+  margin-top:0;
+}
+
+.oasis-record-details dl,
+.oasis-record-details dd {
+  margin: 0;
+}
+
+.oasis-record-details dl > div + div {
+  margin-top: 1rem;
+}
+
+.oasis-record-details dt {
+  color: var(--oasis-home-muted);
+  font-weight: 700;
+}
+
+.oasis-record-details dd {
+  margin-top: 0.25rem;
+  overflow-wrap: anywhere;
+}
+
+.oasis-record-fulltext-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding: 0.9rem 1rem;
+  background: var(--oasis-home-primary);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+
+.oasis-record-fulltext-link:focus {
+  background: var(--oasis-home-accent);
+  color: #fff;
+}
+
+.oasis-record-additional-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+.oasis-record-related {
+  margin-top: 1.5rem;
+}
+
+.record-tabs {
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .oasis-record {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .oasis-record h1 {
+    font-size: 1.625rem;
+  }
+}
+
 .card h3 .btn-collapse::before {
   font-size: 1rem;
 }
@@ -2676,4 +2837,26 @@ a.link-simple {
 
 .table.staff-view th{
   word-wrap: break-word;
+}
+
+.badge-highlight {
+  background-color: var(--oasis-home-highlight);
+  color: var(--oasis-home-blue);
+  font-weight: 600;
+  padding: 4px 8px;
+}
+
+.oasis-record-section{
+  margin-top: 1.5rem;
+  padding-top:1.5rem;
+  border-top: 1px solid var(--oasis-home-border);
+}
+
+.record-tabs{
+  border: 1px solid var(--oasis-home-border);
+  border-radius: 6px;
+
+  .nav-tabs{
+    border-bottom: none;
+  }
 }
