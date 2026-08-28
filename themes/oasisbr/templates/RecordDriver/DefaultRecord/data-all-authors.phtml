@@ -1,0 +1,17 @@
+<?php
+$authors = [];
+foreach (['primary', 'corporate', 'secondary'] as $type) {
+  foreach ($data[$type] ?? [] as $author => $dataFields) {
+    if (!isset($authors[$author])) {
+      $authors[$author] = $dataFields;
+    }
+  }
+}
+?>
+<?php foreach ($authors as $author => $dataFields) : ?>
+  <span class="author-data" property="author">
+    <a href="<?= $this->record($this->driver)->getLink('author', $author) ?>">
+      <?= $this->escapeHtml(rtrim($author, ',')) ?>
+    </a>
+  </span><?= $author !== array_key_last($authors) ? '; ' : '' ?>
+<?php endforeach; ?>

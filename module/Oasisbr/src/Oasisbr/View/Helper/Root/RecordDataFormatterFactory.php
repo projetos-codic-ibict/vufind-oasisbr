@@ -12,22 +12,17 @@ class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataForm
         $spec = new SpecBuilder();
 
         $spec->setTemplateLine(
-            'Main Authors',
+            'Authors',
             'getDeduplicatedAuthors',
-            'data-authors.phtml',
+            'data-all-authors.phtml',
             [
                 'useCache' => true,
-                'labelFunction' => function ($data) {
-                    return count($data['primary']) > 1
-                        ? 'Main Authors' : 'Main Author';
-                },
                 'context' => [
-                    'type' => 'primary',
-                    'schemaLabel' => 'author',
                     'requiredDataFields' => [
-                        ['name' => 'profile', 'prefix' => '']
-                    ]
-                ]
+                        ['name' => 'profile', 'prefix' => ''],
+                        ['name' => 'role', 'prefix' => 'CreatorRoles::'],
+                    ],
+                ],
             ]
         );
 
@@ -69,40 +64,6 @@ class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataForm
 
 
 
-        $spec->setTemplateLine(
-            'Corporate Authors',
-            'getDeduplicatedAuthors',
-            'data-authors.phtml',
-            [
-                'useCache' => true,
-                'labelFunction' => function ($data) {
-                    return count($data['corporate']) > 1
-                        ? 'Corporate Authors' : 'Corporate Author';
-                },
-                'context' => [
-                    'type' => 'corporate',
-                    'schemaLabel' => 'creator',
-                    'requiredDataFields' => [
-                        ['name' => 'role', 'prefix' => 'CreatorRoles::']
-                    ]
-                ]
-            ]
-        );
-        $spec->setTemplateLine(
-            'Other Authors',
-            'getDeduplicatedAuthors',
-            'data-authors.phtml',
-            [
-                'useCache' => true,
-                'context' => [
-                    'type' => 'secondary',
-                    'schemaLabel' => 'contributor',
-                    'requiredDataFields' => [
-                        ['name' => 'role', 'prefix' => 'CreatorRoles::']
-                    ]
-                ],
-            ]
-        );
 
         $spec->setTemplateLine(
             'Advisors',
