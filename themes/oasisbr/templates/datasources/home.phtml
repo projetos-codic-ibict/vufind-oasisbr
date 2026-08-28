@@ -74,19 +74,18 @@
   </div>
 
   <div class="mainbody right oasis-results-mainbody">
-    <div class="top-facets">
-      <!--Toggle for mobile collapse -->
-      <!-- <a class="top-title js-toggle d-block d-sm-none" data-bs-toggle="collapse" data-bs-target="#top_topic_facet"><i class="fa-solid fa-caret-right"></i> Sugestões de Tópicos dentro de sua ...</a> -->
-      <!--Regular title for non-mobile -->
-      <div class="collapse" id="top_topic_facet">
-      </div>
-    </div>
     <div id="result" class="search-header d-print-none oasis-results-header">
       <div class="d-flex align-items-center justify-content-between gap-3 flex-wrap">
         <div class="search-stats">
           <h2 class="oasis-results-total networks-label"></h2>
         </div>
         <div class="search-controls">
+          <div class="networks-sort">
+            <select id="sort-select" class="form-select">
+              <option value="asc"><?= $this->transEsc("Ascending") ?></option>
+              <option value="desc"><?= $this->transEsc("Descending") ?></option>
+            </select>
+          </div>
           <button class="btn btn-primary btn-export-csv">
             <?= $this->transEsc("Export to") ?> CSV
           </button>
@@ -96,13 +95,6 @@
       <div id="networks" class="oasis-source-results">
         <div class="search-controls oasis-source-search-controls">
         <input id="network-search" class="search form-control" type="search" placeholder="<?= $this->transEsc("Search") ?>" aria-label="<?= $this->transEsc("Search") ?>">
-        <div class="networks-sort">
-          <label for="sort-select"><?= $this->transEsc("Sort") ?></label>
-          <select id="sort-select" class="form-select">
-            <option value="asc"><?= $this->transEsc("Ascending") ?></option>
-            <option value="desc"><?= $this->transEsc("Descending") ?></option>
-          </select>
-        </div>
       </div>
       <div class="loader"></div>
 

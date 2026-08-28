@@ -345,9 +345,8 @@ button.dropdown-toggle {
 
 .btn-primary:hover,
 .btn-primary:focus {
-  color: #fff;
-  background-color: #2e7d32;
-  border-color: #2e7d32;
+    background: var(--oasis-home-primary-strong);
+    color: var(--oasis-home-primary-foreground);
 }
 
 section {
@@ -1068,6 +1067,7 @@ li.language a {
 
 .oasis-site #networks-page #network-search {
   max-width: none;
+  border-radius: 999px;
 }
 
 .oasis-site #networks-page .networks-sort {
@@ -1149,7 +1149,7 @@ li.language a {
 
 @media (max-width: 991.98px) {
   .oasis-site #networks-page {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
   .oasis-site #networks-page .oasis-results-sidebar,
