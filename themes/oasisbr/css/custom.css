@@ -157,7 +157,7 @@ a.btn {
 }
 
 .facet-group .title {
-  background-color: #2e7d32;
+  background-color: var(--oasis-home-primary);
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -376,7 +376,7 @@ section {
 
 .indicators-data h2,
 .indicators-data h3 {
-  color: #2e7d32 !important;
+  color: var(--oasis-home-primary);
   text-transform: uppercase;
   text-align: center;
 }
@@ -2750,7 +2750,7 @@ li.language a {
   font-weight: 900;
   font-size: 1.5rem;
   content: "\f078";
-  color: #2e7d32;
+  color: var(--oasis-home-primary);
   margin-right: 1rem;
 }
 
@@ -2858,8 +2858,8 @@ td span.format {
 .pagination li.active a:hover,
 .pagination li.active a:focus {
   color: #fff;
-  background-color: #2e7d32;
-  border-color: #2e7d32;
+  background-color: var(--oasis-home-primary);
+  border-color: var(--oasis-home-primary);
 }
 
 a.link-simple {
@@ -2973,8 +2973,8 @@ a.link-simple {
 }
 
 .slider-container .slider-handle {
-  background: #2e7d32 !important;
-  border: 1px solid #2e7d32 !important;
+  background: var(--oasis-home-primary);
+  border: 1px solid var(--oasis-home-primary);
 }
 
 .filters-title {
