@@ -352,7 +352,7 @@ button.dropdown-toggle {
 
 section {
   margin-top: 100px;
-  color: #808080;
+  color: #525252;
 }
 
 .row .about {
@@ -1858,7 +1858,7 @@ li.language a {
   padding: 2rem;
   border: 1px solid var(--oasis-home-border);
   border-radius: 8px;
-  background: var(--oasis-home-muted-bg);
+  /* background: var(--oasis-home-muted-bg); */
 }
 
 .oasis-home-services h3 {
@@ -2084,7 +2084,6 @@ li.language a {
   padding: 0.65rem 1rem;
   border: 1px solid var(--oasis-home-border);
   border-radius: 6px;
-  background: var(--oasis-home-muted-bg);
   color: var(--oasis-home-primary);
   font-size: 0.875rem;
   font-weight: 800;
