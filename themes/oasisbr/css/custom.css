@@ -1266,7 +1266,7 @@ li.language a {
 .oasis-home-help h2 {
   margin: 0;
   color: var(--oasis-home-foreground);
-  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 800;
   line-height: 1.12;
 }
@@ -1334,7 +1334,7 @@ li.language a {
 
 .oasis-home-card-title {
   color: var(--oasis-home-foreground);
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 800;
   line-height: 1.35;
 }
@@ -1342,13 +1342,12 @@ li.language a {
 .oasis-home-card-count {
   min-height: 1.25rem;
   color: var(--oasis-home-accent);
-  font-size: 0.875rem;
   font-weight: 800;
 }
 
 .oasis-home-card-text {
   color: var(--oasis-home-muted);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   line-height: 1.6;
 }
 
