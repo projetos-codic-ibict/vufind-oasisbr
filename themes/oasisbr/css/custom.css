@@ -340,7 +340,7 @@ button.dropdown-toggle {
 }
 
 .btn-primary {
-  background-color: #2e7d32 !important;
+  background-color: var(--oasis-home-primary);
 }
 
 .btn-primary:hover,
@@ -957,9 +957,7 @@ li.language a {
 }
 
 .oasis-site #networks-page {
-  display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  align-items: start;
+  display: flex;
   gap: 2rem;
 }
 
