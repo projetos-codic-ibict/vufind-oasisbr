@@ -1,19 +1,21 @@
 <?php $this->headTitle($this->translate('Data Sources')); ?>
 <?php $this->layout()->searchbox = false; ?>
 <?php $this->layout()->nocontainerclass = true; ?>
+<?php $this->breadcrumbs()->set($this->translate('Data Sources'), null, true); ?>
 <?php $this->assetManager()->appendStyleLink('loader.css'); ?>
 <?php $this->assetManager()->appendScriptLink('lib/list.min.js'); ?>
 <?php $this->assetManager()->appendScriptLink('networks.js'); ?>
 
 
-<div class="page-title-bar">
+<div class="page-title-bar oasis-page-title-bar">
   <div class="container">
+    <span class="oasis-page-kicker">Oasisbr</span>
     <h1><?= $this->transEsc("Data Sources") ?></h1>
-    <h2><?= $this->transEsc("Data Sources Subtitle") ?></h2>
+    <p><?= $this->transEsc("Data Sources Subtitle") ?></p>
   </div>
 </div>
 
-<div class="container" id="networks-page">
+<div class="container oasis-inner-page-content" id="networks-page">
   <div class="sidebar left d-print-none" id="search-sidebar">
     <div class="facet-group" id="side-panel-format">
       <button class="title" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#side-collapse-format" aria-controls="side-collapse-format">

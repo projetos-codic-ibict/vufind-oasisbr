@@ -844,6 +844,166 @@ li.language a {
   margin-bottom: 0;
 }
 
+.oasis-site .oasis-inner-page,
+.oasis-site .oasis-inner-page-content {
+  width: calc(100% - 2rem);
+  max-width: 1140px;
+  margin: 2.5rem auto 4rem;
+  padding: 0;
+}
+
+.oasis-site .oasis-page-heading,
+.oasis-site .oasis-page-title-bar {
+  border-bottom: 1px solid var(--oasis-home-border);
+  background: var(--oasis-home-muted-bg);
+}
+
+.oasis-site .oasis-page-heading {
+  margin-bottom: 2rem;
+  padding: 2rem;
+}
+
+.oasis-site .oasis-page-title-bar {
+  margin: 0;
+  padding: 2rem 0;
+  color: var(--oasis-home-foreground);
+}
+
+.oasis-site .oasis-page-title-bar .container {
+  width: calc(100% - 2rem);
+  max-width: 1140px;
+  padding: 0;
+}
+
+.oasis-site .oasis-page-kicker {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--oasis-home-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.oasis-site .oasis-page-heading h1,
+.oasis-site .oasis-page-title-bar h1 {
+  margin: 0;
+  color: var(--oasis-home-foreground);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.oasis-site .oasis-page-heading p,
+.oasis-site .oasis-page-title-bar p {
+  max-width: 48rem;
+  margin: 0.65rem 0 0;
+  color: var(--oasis-home-muted);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.oasis-site .about,
+.oasis-site .faq {
+  color: var(--oasis-home-foreground);
+  font-family: Rawline, Raleway, Lato, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.oasis-site .about .row,
+.oasis-site .faq .row {
+  margin: 0 0 1rem;
+}
+
+.oasis-site .about .card,
+.oasis-site .faq .card {
+  border: 1px solid var(--oasis-home-border);
+  border-radius: 6px;
+  padding: 0 1.5rem;
+  box-shadow: none;
+}
+
+.oasis-site .about .card > h2 {
+  margin: 0;
+  color: var(--oasis-home-foreground);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.oasis-site .about .card h2:not(:first-child),
+.oasis-site .about .card h3:not(:first-child),
+.oasis-site .faq .card h2:not(:first-child) {
+  margin: 0;
+  border-top: 1px solid var(--oasis-home-border);
+}
+
+.oasis-site .about .btn-collapse,
+.oasis-site .faq .btn-collapse {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+  color: var(--oasis-home-foreground);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.oasis-site .about .card div,
+.oasis-site .card-faq div {
+  padding: 0 0 1rem 2rem;
+}
+
+.oasis-site #networks-page {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  align-items: start;
+  gap: 2rem;
+}
+
+.oasis-site #networks-page .sidebar,
+.oasis-site #networks-page .mainbody {
+  width: auto;
+  float: none;
+}
+
+.oasis-site #networks-page .sidebar {
+  padding: 1rem;
+  border: 1px solid var(--oasis-home-border);
+  border-radius: 6px;
+  background: var(--oasis-home-muted-bg);
+}
+
+.oasis-site #networks-page .mainbody {
+  min-width: 0;
+}
+
+.oasis-site #networks-page .facet-group {
+  border-bottom: 1px solid var(--oasis-home-border);
+}
+
+.oasis-site #networks-page .facet-group .title {
+  width: 100%;
+  padding: 0.8rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--oasis-home-foreground);
+  font-weight: 700;
+  text-align: left;
+}
+
+.oasis-site .oasis-indicators-frame {
+  border: 1px solid var(--oasis-home-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.oasis-site .oasis-indicators-frame embed {
+  display: block;
+}
+
 .template-dir-search.template-name-home img,
 .template-dir-search.template-name-home input,
 .template-dir-search.template-name-home select,
@@ -2960,4 +3120,9 @@ a.link-simple {
   --bs-btn-hover-bg: #fff;
   --bs-btn-active-bg: #fff;
   --bs-btn-disabled-bg: #f5f5f5;
+}
+
+.oasis-site .about .card-about{
+  padding:0;
+  border:none;
 }
