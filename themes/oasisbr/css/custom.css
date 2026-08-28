@@ -1004,6 +1004,174 @@ li.language a {
   display: block;
 }
 
+/* Data sources use the same filter and list treatment as search results. */
+.oasis-site #networks-page .oasis-results-sidebar {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.oasis-site #networks-page .oasis-results-sidebar .facet-group {
+  margin-bottom: 1rem;
+  padding: 0 0.25rem;
+  border: 1px solid var(--oasis-home-border);
+  border-radius: 6px;
+}
+
+.oasis-site #networks-page .oasis-results-sidebar .facet-group .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--oasis-home-primary);
+}
+
+.oasis-site #networks-page .oasis-results-sidebar .facet {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px dashed var(--oasis-home-border);
+  color: var(--oasis-home-muted);
+  text-decoration: none;
+}
+
+.oasis-site #networks-page .oasis-results-sidebar .facet:hover,
+.oasis-site #networks-page .oasis-results-sidebar .facet:focus,
+.oasis-site #networks-page .oasis-results-sidebar .facet.active {
+  background: var(--oasis-home-muted-bg);
+  color: var(--oasis-home-primary);
+}
+
+.oasis-site #networks-page .oasis-results-sidebar .facet .badge {
+  background: transparent;
+  color: var(--oasis-home-muted);
+  font-weight: 600;
+}
+
+.oasis-site #networks-page .js-clear-filters {
+  margin-top: 0.25rem;
+  border-color: var(--oasis-home-border);
+  border-radius: 6px;
+}
+
+.oasis-site #networks-page .oasis-results-header {
+  margin-bottom: 1.25rem;
+}
+
+.oasis-site #networks-page .oasis-results-total {
+  margin: 0;
+}
+
+.oasis-site #networks-page .oasis-source-search-controls {
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.oasis-site #networks-page #network-search {
+  max-width: none;
+}
+
+.oasis-site #networks-page .networks-sort {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+}
+
+.oasis-site #networks-page .networks-sort label {
+  padding: 0;
+  color: var(--oasis-home-muted);
+  font-size: 0.875rem;
+  line-height: normal;
+}
+
+.oasis-site #networks-page .networks-sort .form-select {
+  min-width: 140px;
+  border-color: var(--oasis-home-border);
+  color: var(--oasis-home-foreground);
+  font-size: 0.875rem;
+}
+
+.oasis-site #networks-page .oasis-source-results .record-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.oasis-site #networks-page .oasis-source-results .network-item {
+  position: relative;
+  margin: 0;
+  padding: 1.35rem 0 1.5rem 1.5rem;
+  border-bottom: 1px solid var(--oasis-home-border);
+  counter-increment: item;
+}
+
+.oasis-site #networks-page .oasis-source-results .network-item::before {
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+  content: counter(item) ".";
+  color: var(--oasis-home-muted);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.oasis-site #networks-page .oasis-source-results .network-item h3 {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  font-size: 1.125rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.oasis-site #networks-page .oasis-source-results .network-item h3 a {
+  margin: 0;
+  color: var(--oasis-home-foreground);
+  text-decoration: none;
+}
+
+.oasis-site #networks-page .oasis-source-results .network-item h3 a:hover,
+.oasis-site #networks-page .oasis-source-results .network-item h3 a:focus {
+  color: var(--oasis-home-primary);
+  text-decoration: underline;
+}
+
+.oasis-site #networks-page .oasis-source-results .network-item p {
+  margin: 0.6rem 0 0;
+  color: var(--oasis-home-muted);
+  font-size: 0.9rem;
+}
+
+.oasis-site #networks-page .oasis-source-results .network-item b {
+  color: var(--oasis-home-foreground);
+  font-weight: 700;
+}
+
+@media (max-width: 991.98px) {
+  .oasis-site #networks-page {
+    grid-template-columns: 1fr;
+  }
+
+  .oasis-site #networks-page .oasis-results-sidebar,
+  .oasis-site #networks-page .oasis-results-mainbody {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .oasis-site #networks-page .oasis-source-search-controls,
+  .oasis-site #networks-page .networks-sort {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .oasis-site #networks-page .networks-sort .form-select {
+    width: 100%;
+  }
+}
+
 .template-dir-search.template-name-home img,
 .template-dir-search.template-name-home input,
 .template-dir-search.template-name-home select,
