@@ -62,8 +62,8 @@ $title = ($this->driver->getShortTitle() ?: $this->driver->getTitle()) . ' ' . $
   </div>
 
   <aside class="oasis-record-aside">
-    <h2 id="record-details"><?= $this->transEsc('Source data') ?></h2>
-    <section class="oasis-record-details" aria-labelledby="record-details">
+      <section class="oasis-record-details" aria-labelledby="record-details">
+        <h3 id="record-details"><?= $this->transEsc('Source details') ?></h3>
       <dl>
         <?php foreach ($details as $field) : ?>
           <div>
