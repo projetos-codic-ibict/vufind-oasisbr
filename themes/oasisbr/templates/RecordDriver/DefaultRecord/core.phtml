@@ -29,7 +29,7 @@ $title = ($this->driver->getShortTitle() ?: $this->driver->getTitle()) . ' ' . $
     <header class="oasis-record-header">
       <div class="oasis-record-meta">
         <?php $formats = $this->driver->getFormats(); ?>
-        <?php if (!empty($formats)) : ?><span class="format"><?= $this->transEsc($formats[0]) ?></span><?php endif; ?>
+        <?php if (!empty($formats)) : ?><span class="format <?= $this->record($this->driver)->getFormatClass($formats[0]) ?>"><?= $this->transEsc($formats[0]) ?></span><?php endif; ?>
         <?php $dates = $this->driver->getPublicationDates(); ?>
         <?php if (!empty($dates)) : ?><span><?= $this->escapeHtml($dates[0]) ?></span><?php endif; ?>
         <?php $languages = $this->driver->getLanguages(); ?>

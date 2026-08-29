@@ -3393,15 +3393,67 @@ a.link-simple {
   background: var(--oasis-home-primary);
   border: 1px solid var(--oasis-home-primary);
 }
-
-.result .format,
-.record .format{
-    background-color: #1c5f74;
-    padding: 8px;
-    margin: 5px 0;
-    color: #fff;
+.record .format::after{
+  content:"";
 }
 
-.record .format::after{
-  content: "";
+.oasis-site .result .format,
+.oasis-site .record .format {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.oasis-site .format.article,
+.oasis-site .format.review,
+.oasis-site .format.contributiontoperiodical {
+  background: #dcecff;
+  color: #145a9c;
+}
+
+.oasis-site .format.book,
+.oasis-site .format.bookpart,
+.oasis-site .format.referenceentry {
+  background: #f9e6c9;
+  color: #80520d;
+}
+
+.oasis-site .format.bachelorthesis,
+.oasis-site .format.masterthesis,
+.oasis-site .format.doctoralthesis {
+  background: #e5ddf7;
+  color: #5b3d91;
+}
+
+.oasis-site .format.dataset,
+.oasis-site .format.software,
+.oasis-site .format.datapaper {
+  background: #d5f1ed;
+  color: #09665b;
+}
+
+.oasis-site .format.conferenceobject,
+.oasis-site .format.lecture,
+.oasis-site .format.presentation {
+  background: #fce2d5;
+  color: #9c421b;
+}
+
+.oasis-site .format.report,
+.oasis-site .format.workingpaper,
+.oasis-site .format.preprint {
+  background: #fff1b8;
+  color: #765900;
+}
+
+.oasis-site .format.patent,
+.oasis-site .format.other,
+.oasis-site .format.default {
+  background: #e2e8e6;
+  color: #3f514c;
 }
