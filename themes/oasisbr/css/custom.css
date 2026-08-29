@@ -85,7 +85,9 @@ a.btn {
 .oasis-site .breadcrumbs .breadcrumb-item + .active::before {
   padding: 0 0.5rem;
   color: var(--oasis-home-muted);
-  content: ">";
+  content: "\f105";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
 }
 
 .oasis-site .breadcrumbs .breadcrumb-item a {
@@ -346,8 +348,8 @@ button.dropdown-toggle {
 
 .btn-primary:hover,
 .btn-primary:focus {
-    background: var(--oasis-home-primary-strong);
-    color: var(--oasis-home-primary-foreground);
+  background: var(--oasis-home-primary-strong);
+  color: var(--oasis-home-primary-foreground);
 }
 
 section {
@@ -742,7 +744,6 @@ li.language a {
   padding: 0 0 0 0;
 }
 
-
 #networks h3 {
   background-color: #f0f0f0;
   padding: 0.5rem 0.5rem 0.5rem 2.9rem;
@@ -785,15 +786,15 @@ li.language a {
   --oasis-home-background: #fafafa;
   --oasis-home-foreground: #333333;
   --oasis-home-muted: #5c5c5c;
-  --oasis-home-muted-bg: #f0f0f0;
+  --oasis-home-muted-bg: #f4f7f5;
   --oasis-home-primary: #2e7d32;
   --oasis-home-primary-strong: #1b5e20;
   --oasis-home-primary-foreground: #ffffff;
-  --oasis-home-accent: #12538b;
+  --oasis-home-accent: #2d6fb7;
   --oasis-home-blue: #071d41;
-  --oasis-home-border: #8a8a8a;
+  --oasis-home-border: #dfe7e3;
   --oasis-home-highlight: #f8c300;
-  --oasis-home-ring: #2e7d32;
+  --oasis-home-ring: rgba(47, 111, 98, 0.28);
   --oasis-home-shadow: 0 8px 24px rgba(7, 29, 65, 0.08);
   background: var(--oasis-home-background);
   color: var(--oasis-home-foreground);
@@ -1402,7 +1403,10 @@ li.language a {
   transition: transform 0.16s ease;
 }
 
-.oasis-site .language button.dropdown-toggle[aria-expanded="true"] .oasis-language-dropdown-icon {
+.oasis-site
+  .language
+  button.dropdown-toggle[aria-expanded="true"]
+  .oasis-language-dropdown-icon {
   transform: rotate(180deg);
 }
 
@@ -1568,6 +1572,8 @@ li.language a {
   box-shadow: none;
   color: var(--oasis-home-foreground);
   font-size: 1rem;
+  border-radius: 999px;
+  padding-left: 0.25rem;
 }
 
 .template-dir-search.template-name-home
@@ -1620,7 +1626,7 @@ li.language a {
 
 .oasis-home-advanced-link:hover,
 .oasis-home-text-link:hover {
-  color: var(--oasis-home-primary);
+  color: var(--oasis-home-accent);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -1783,6 +1789,7 @@ li.language a {
   font-size: 1.5rem;
   font-weight: 800;
   line-height: 1.35;
+  margin: 0;
 }
 
 .oasis-home-card-count {
@@ -1858,7 +1865,7 @@ li.language a {
   padding: 2rem;
   border: 1px solid var(--oasis-home-border);
   border-radius: 8px;
-  /* background: var(--oasis-home-muted-bg); */
+  background: var(--oasis-home-muted-bg);
 }
 
 .oasis-home-services h3 {
@@ -2383,7 +2390,7 @@ li.language a {
 
 .oasis-results-mainbody .result .title:hover,
 .oasis-results-mainbody .result .title:focus {
-  color: var(--oasis-home-primary);
+  color: var(--oasis-home-accent);
   text-decoration: underline;
 }
 
@@ -2405,25 +2412,19 @@ li.language a {
   align-items: center;
   gap: 0.4rem;
   margin-top: 0.25rem;
-  /* color: var(--oasis-home-primary); */
   font-size: 0.875rem;
   font-weight: 800;
   text-decoration: none;
 }
 
-.oasis-results-mainbody .oasis-result-formats {
-  margin: 0 0 0.75rem;
+.oasis-results-mainbody .fulltext:hover{
+  color: var(--oasis-home-accent);
+text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
-.oasis-results-mainbody .oasis-result-formats .format {
-  display: inline-block;
-  margin: 0;
-  padding: 0.3rem 0.55rem;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: 800;
-  background: var(--oasis-home-muted-bg);
-  color: var(--oasis-home-primary);
+.oasis-results-mainbody .oasis-result-formats {
+  margin: 0 0 0.75rem;
 }
 
 .oasis-result-date {
@@ -2442,6 +2443,7 @@ li.language a {
   color: var(--oasis-home-primary);
   font-size: 0.8rem;
   font-weight: 800;
+  border: 1px solid var(--oasis-home-border);
 }
 
 .oasis-result-access .fa-circle {
@@ -2782,7 +2784,6 @@ li.language a {
   border-bottom: 2px solid #265680;
 }
 
-
 .about,
 .faq {
   color: #333333;
@@ -3066,7 +3067,10 @@ a.link-simple {
 }
 
 .active-filters .filters .filter-value {
-  font-weight: 300;
+  font-weight: 400;
+  background: var(--oasis-home-highlight);
+  color: var(--oasis-home-blue);
+
 }
 
 .search-btn .btn-search-primary,
@@ -3338,7 +3342,7 @@ a.link-simple {
     padding: 0.5rem 0;
   }
 
-  .tab-content{
+  .tab-content {
     padding: 0;
   }
 }
@@ -3348,6 +3352,7 @@ a.link-simple {
   border-bottom: 1px dashed var(--oasis-home-border);
   padding-right: 0;
   padding-left: 0;
+  background: transparent;
 }
 
 .list-group-item:last-child {
@@ -3367,7 +3372,36 @@ a.link-simple {
   --bs-btn-disabled-bg: #f5f5f5;
 }
 
-.oasis-site .about .card-about{
-  padding:0;
-  border:none;
+.oasis-site .about .card-about {
+  padding: 0;
+  border: none;
+}
+
+.modal-header {
+  justify-content: space-between;
+}
+
+.bg-muted {
+  background-color: var(--oasis-home-muted-bg);
+}
+
+.slider-container .noUi-horizontal .noUi-connect {
+  background: var(--oasis-home-highlight);
+}
+
+.slider-container .noUi-horizontal .noUi-handle {
+  background: var(--oasis-home-primary);
+  border: 1px solid var(--oasis-home-primary);
+}
+
+.result .format,
+.record .format{
+    background-color: #1c5f74;
+    padding: 8px;
+    margin: 5px 0;
+    color: #fff;
+}
+
+.record .format::after{
+  content: "";
 }
