@@ -13,6 +13,7 @@
 <div class="about oasis-inner-page">
   <section class="row" aria-labelledby="sobre-heading">
     <div class="col-md-12">
+      <h2 id="sobre-heading" class="visually-hidden">Sobre o Oasisbr</h2>
       <div class="card card-about">
         <p>
           <?= $this->transEsc('about p1'); ?>
@@ -150,8 +151,11 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
-                  <?= $this->transEsc('dlm modelo'); ?> (docx)
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Baixar modelo de ofício para bibliotecas digitais (arquivo Word .docx)">
+                  Baixar modelo de ofício (Word .docx)
                 </a>
               </li>
               <li>
@@ -207,8 +211,11 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
-                  <?= $this->transEsc('dlm modelo'); ?> (docx)
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Baixar modelo de ofício para teses e dissertações (arquivo Word .docx)">
+                  Baixar modelo de ofício (Word .docx)
                 </a>
               </li>
               <li>
@@ -265,8 +272,11 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
-                  <?= $this->transEsc('dlm modelo'); ?> (docx)
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Baixar modelo de ofício para eventos científicos (arquivo Word .docx)">
+                  Baixar modelo de ofício (Word .docx)
                 </a>
               </li>
               <li>
@@ -333,8 +343,11 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
-                  <?= $this->transEsc('dlm modelo'); ?> (docx)
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Baixar modelo de ofício para portais agregadores (arquivo Word .docx)">
+                  Baixar modelo de ofício (Word .docx)
                 </a>
               </li>
               <li>
@@ -391,8 +404,11 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
-                  <?= $this->transEsc('dlm modelo'); ?> (docx)
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Baixar modelo de ofício para portais de livros (arquivo Word .docx)">
+                  Baixar modelo de ofício (Word .docx)
                 </a>
               </li>
               <li>
@@ -448,8 +464,11 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
-                  <?= $this->transEsc('dlm modelo'); ?> (docx)
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Baixar modelo de ofício para repositórios de dados de pesquisa (arquivo Word .docx)">
+                  Baixar modelo de ofício (Word .docx)
                 </a>
               </li>
               <li>
@@ -504,8 +523,11 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
-                  <?= $this->transEsc('dlm modelo'); ?> (docx)
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Baixar modelo de ofício para repositórios de literatura (arquivo Word .docx)">
+                  Baixar modelo de ofício (Word .docx)
                 </a>
               </li>
               <li>
@@ -632,8 +654,11 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
-                  <?= $this->transEsc('dlm modelo'); ?> (docx)
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Baixar modelo de ofício para servidores de pré-impressão (arquivo Word .docx)">
+                  Baixar modelo de ofício (Word .docx)
                 </a>
               </li>
               <li>
@@ -757,14 +782,12 @@
             <p>Se o documento não estiver cadastrado no Portal Oasis, pedimos que notifique a instituição depositante,
               solicitando o cadastramento do repositório junto ao nosso portal através do e-mail oasisbr@ibict.br.
             </p>
-            <p>Ao acessar o seu espaço de edição do Currículo Lattes e inserir os dados de uma tese ou dissertação, o
-              pesquisador ou acadêmico pode importar informações do Oasisbr pelo seu ID Lattes ou número do ORCID e
-              verificar quais são os documentos cadastrados no Oasisbr. Os dados importados já vem com o selo para
-              serem exibidos automaticamente no perfil público. Ao clicar no selo, o usuário poderá acessar o
-              documento no Oasisbr.</p>
-            <a href="<?= $this->basePath('/passo-a-passo-para-certificacao-lattes-oasisbr.pdf') ?>" target="_blank"
-              rel="noopener noreferrer">
-              Veja o passo a passo para certificação (pdf)
+            <p>Ao acessar o seu espaço de edição do Currículo Lattes e inserir os dados de uma tese ou dissertação, o pesquisador ou acadêmico pode importar informações do Oasisbr pelo seu ID Lattes ou número do ORCID e verificar quais são os documentos cadastrados no Oasisbr. Os dados importados já vem com o selo para serem exibidos automaticamente no perfil público. Ao clicar no selo, o usuário poderá acessar o documento no Oasisbr.</p>
+            <a href="<?= $this->basePath('/passo-a-passo-para-certificacao-lattes-oasisbr.pdf') ?>"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Baixar passo a passo para certificação do Lattes-Oasisbr (arquivo PDF)">
+              Baixar passo a passo para certificação (PDF)
             </a>
           </div>
         </div>
