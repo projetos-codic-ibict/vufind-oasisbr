@@ -3375,6 +3375,7 @@ a.link-simple {
 .oasis-site .about .card-about {
   padding: 0;
   border: none;
+  background: transparent;
 }
 
 .modal-header {

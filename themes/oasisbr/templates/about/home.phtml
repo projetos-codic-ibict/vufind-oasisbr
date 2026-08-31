@@ -1,14 +1,16 @@
 <?php $this->headTitle($this->translate('About')); ?>
 <?php $this->layout()->searchbox = false; ?>
+<?php $this->layout()->nocontainerclass = true; ?>
 <?php $this->breadcrumbs()->set($this->translate('About'), null, true); ?>
 
-<main class="about oasis-inner-page">
-  <header class="oasis-page-heading">
+<header class="page-title-bar oasis-page-title-bar">
+  <div class="container">
     <span class="oasis-page-kicker">Sobre</span>
     <h1>Oasisbr</h1>
-    <p>Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto.</p>
-  </header>
-
+    <p><?= $this->transEsc("Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto") ?></p>
+  </div>
+</header>
+<div class="about oasis-inner-page">
   <section class="row" aria-labelledby="sobre-heading">
     <div class="col-md-12">
       <div class="card card-about">
@@ -20,19 +22,21 @@
         </p>
         <p>
           <?= $this->transEsc('about p3'); ?>
-          <a target="_blank" href="https://www.rcaap.pt" rel="noopener noreferrer" aria-label="<?= $this->transEsc('about link rcaap aria label'); ?>">
+          <a target="_blank" href="https://www.rcaap.pt" rel="noopener noreferrer"
+            aria-label="<?= $this->transEsc('about link rcaap aria label'); ?>">
             <?= $this->transEsc('about link rcaap'); ?>
           </a>
         </p>
       </div>
     </div>
-</section>
+  </section>
 
   <section class="row objectives" aria-labelledby="objetivos-heading">
     <div class="col-md-12">
       <div class="card">
         <h2 id="objetivos-heading">
-          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#objetivos" aria-expanded="false" aria-controls="objetivos">
+          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#objetivos"
+            aria-expanded="false" aria-controls="objetivos">
             <?= $this->transEsc('Goals'); ?>
           </button>
         </h2>
@@ -48,9 +52,11 @@
               <?= $this->transEsc('goal 3'); ?>
             </li>
             <li>
-              <?= $this->transEsc('goal 4'); ?></li>
+              <?= $this->transEsc('goal 4'); ?>
+            </li>
             <li>
-              <?= $this->transEsc('goal 5'); ?></li>
+              <?= $this->transEsc('goal 5'); ?>
+            </li>
             <li>
               <?= $this->transEsc('goal 6'); ?>
             </li>
@@ -61,13 +67,14 @@
         </div>
       </div>
     </div>
-</section>
+  </section>
 
   <section class="row" aria-labelledby="fluxo-heading">
     <div class="col-md-12 network-flow" id="network-flow">
       <div class="card">
         <h2 id="fluxo-heading">
-          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#fluxo" aria-expanded="false" aria-controls="fluxo">
+          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#fluxo"
+            aria-expanded="false" aria-controls="fluxo">
             <?= $this->transEsc('Oasisbr information flow'); ?>
           </button>
         </h2>
@@ -86,21 +93,24 @@
         </div>
       </div>
     </div>
-</section>
+  </section>
 
   <section class="row" aria-labelledby="collecting-heading">
     <div class="col-md-12">
       <div class="card">
 
         <h2 id="collecting-heading">
-          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#collecting" aria-expanded="false" aria-controls="collecting">
+          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#collecting"
+            aria-expanded="false" aria-controls="collecting">
             <?= $this->transEsc('Criteria for collecting information sources'); ?>
           </button>
         </h2>
 
-        <div class="collapse" id="collecting" role="group" aria-label="<?= $this->transEsc('Criteria for collecting information sources'); ?>">
+        <div class="collapse" id="collecting" role="group"
+          aria-label="<?= $this->transEsc('Criteria for collecting information sources'); ?>">
           <h3>
-            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#monographs" aria-expanded="false" aria-controls="monographs">
+            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#monographs"
+              aria-expanded="false" aria-controls="monographs">
               <?= $this->transEsc('Digital libraries of monographs'); ?>
             </button>
           </h3>
@@ -140,9 +150,7 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
-                  target="_blank"
-                  rel="noopener noreferrer">
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
                   <?= $this->transEsc('dlm modelo'); ?> (docx)
                 </a>
               </li>
@@ -150,14 +158,16 @@
                 <?= $this->transEsc('dlm p12'); ?>
               </li>
               <li>
-                <a href="https://guidelines.openaire.eu/en/latest/literature/field_publicationtype.html" target="_blank" rel="noopener noreferrer">
+                <a href="https://guidelines.openaire.eu/en/latest/literature/field_publicationtype.html" target="_blank"
+                  rel="noopener noreferrer">
                   <?= $this->transEsc('dlm p13'); ?></a>;
               </li>
             </ul>
           </div>
 
           <h3>
-            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#theses" aria-expanded="false" aria-controls="theses">
+            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#theses"
+              aria-expanded="false" aria-controls="theses">
               <?= $this->transEsc('Digital libraries of electronic theses and dissertations'); ?>
             </button>
           </h3>
@@ -197,9 +207,7 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
-                  target="_blank"
-                  rel="noopener noreferrer">
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
                   <?= $this->transEsc('dlm modelo'); ?> (docx)
                 </a>
               </li>
@@ -216,7 +224,8 @@
           </div>
 
           <h3>
-            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#events" aria-expanded="false" aria-controls="events">
+            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#events"
+              aria-expanded="false" aria-controls="events">
               <?= $this->transEsc('Scientific conferences (Events)'); ?>
             </button>
           </h3>
@@ -256,9 +265,7 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
-                  target="_blank"
-                  rel="noopener noreferrer">
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
                   <?= $this->transEsc('dlm modelo'); ?> (docx)
                 </a>
               </li>
@@ -282,7 +289,8 @@
 
 
           <h3>
-            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#portals" aria-expanded="false" aria-controls="portals">
+            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#portals"
+              aria-expanded="false" aria-controls="portals">
               <?= $this->transEsc('Aggregator portals'); ?>
             </button>
           </h3>
@@ -325,9 +333,7 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
-                  target="_blank"
-                  rel="noopener noreferrer">
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
                   <?= $this->transEsc('dlm modelo'); ?> (docx)
                 </a>
               </li>
@@ -335,7 +341,8 @@
                 <?= $this->transEsc('dlm p12'); ?>
               </li>
               <li>
-                <a href="https://guidelines.openaire.eu/en/latest/literature/field_publicationtype.html" target="_blank" rel="noopener noreferrer">
+                <a href="https://guidelines.openaire.eu/en/latest/literature/field_publicationtype.html" target="_blank"
+                  rel="noopener noreferrer">
                   <?= $this->transEsc('dlm p13'); ?></a>;
               </li>
             </ul>
@@ -343,7 +350,8 @@
 
 
           <h3>
-            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#book" aria-expanded="false" aria-controls="book">
+            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#book"
+              aria-expanded="false" aria-controls="book">
               <?= $this->transEsc('Book portals'); ?>
             </button>
           </h3>
@@ -383,9 +391,7 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
-                  target="_blank"
-                  rel="noopener noreferrer">
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
                   <?= $this->transEsc('dlm modelo'); ?> (docx)
                 </a>
               </li>
@@ -393,14 +399,16 @@
                 <?= $this->transEsc('dlm p12'); ?>
               </li>
               <li>
-                <a href="https://guidelines.openaire.eu/en/latest/literature/field_publicationtype.html" target="_blank" rel="noopener noreferrer">
+                <a href="https://guidelines.openaire.eu/en/latest/literature/field_publicationtype.html" target="_blank"
+                  rel="noopener noreferrer">
                   <?= $this->transEsc('dlm p13'); ?></a>;
               </li>
             </ul>
           </div>
 
           <h3>
-            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#repositories" aria-expanded="false" aria-controls="repositories">
+            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed"
+              data-bs-target="#repositories" aria-expanded="false" aria-controls="repositories">
               <?= $this->transEsc('Research data repositories'); ?>
             </button>
           </h3>
@@ -440,9 +448,7 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
-                  target="_blank"
-                  rel="noopener noreferrer">
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
                   <?= $this->transEsc('dlm modelo'); ?> (docx)
                 </a>
               </li>
@@ -457,7 +463,8 @@
 
 
           <h3>
-            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#literature" aria-expanded="false" aria-controls="literature">
+            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#literature"
+              aria-expanded="false" aria-controls="literature">
               <?= $this->transEsc('Literature repositories'); ?>
             </button>
           </h3>
@@ -497,9 +504,7 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
-                  target="_blank"
-                  rel="noopener noreferrer">
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
                   <?= $this->transEsc('dlm modelo'); ?> (docx)
                 </a>
               </li>
@@ -507,14 +512,16 @@
                 <?= $this->transEsc('dlm p12'); ?>
               </li>
               <li>
-                <a href="https://guidelines.openaire.eu/en/latest/literature/field_publicationtype.html" target="_blank" rel="noopener noreferrer">
+                <a href="https://guidelines.openaire.eu/en/latest/literature/field_publicationtype.html" target="_blank"
+                  rel="noopener noreferrer">
                   <?= $this->transEsc('dlm p13'); ?></a>;
               </li>
             </ul>
           </div>
 
           <h3>
-            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#journals" aria-expanded="false" aria-controls="journals">
+            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#journals"
+              aria-expanded="false" aria-controls="journals">
               <?= $this->transEsc('Scientific journals'); ?>
             </button>
           </h3>
@@ -532,7 +539,8 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p4'); ?>
-                <a href="https://dublincore.org" target="_blank" rel="noopener noreferrer" aria-label="Consultar metadados no catálogo Dublin Core" >
+                <a href="https://dublincore.org" target="_blank" rel="noopener noreferrer"
+                  aria-label="Consultar metadados no catálogo Dublin Core">
                   Dublin Core
                 </a>
                 <?= $this->transEsc('dlm p5'); ?>
@@ -570,16 +578,21 @@
               </li>
               <li>
                 <?= $this->transEsc('sj p3'); ?>
-                <a href="https://www.latindex.org/latindex/inicio" target="_blank" rel="noopener noreferrer" aria-label="Consultar periódico no catálogo Latindex 2.0" >Latindex (Catalog 2.0)</a>,
-                <a href="https://www.scielo.br/" target="_blank" rel="noopener noreferrer" aria-label="Consultar periódico no catálogo SciELO Brazil" >SciELO Brazil</a>,
-                <a href="https://www.redalyc.org/" target="_blank" rel="noopener noreferrer" aria-label="Consultar periódico no catálogo Redalyc" >Redalyc</a>,
-                <a href="https://doaj.org/" target="_blank" rel="noopener noreferrer" aria-label="Consultar periódico no catálogo DOAJ" >DOAJ</a>.
+                <a href="https://www.latindex.org/latindex/inicio" target="_blank" rel="noopener noreferrer"
+                  aria-label="Consultar periódico no catálogo Latindex 2.0">Latindex (Catalog 2.0)</a>,
+                <a href="https://www.scielo.br/" target="_blank" rel="noopener noreferrer"
+                  aria-label="Consultar periódico no catálogo SciELO Brazil">SciELO Brazil</a>,
+                <a href="https://www.redalyc.org/" target="_blank" rel="noopener noreferrer"
+                  aria-label="Consultar periódico no catálogo Redalyc">Redalyc</a>,
+                <a href="https://doaj.org/" target="_blank" rel="noopener noreferrer"
+                  aria-label="Consultar periódico no catálogo DOAJ">DOAJ</a>.
               </li>
             </ul>
           </div>
 
           <h3>
-            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#preprint" aria-expanded="false" aria-controls="preprint">
+            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#preprint"
+              aria-expanded="false" aria-controls="preprint">
               <?= $this->transEsc('Preprint servers'); ?>
             </button>
           </h3>
@@ -619,9 +632,7 @@
               </li>
               <li>
                 <?= $this->transEsc('dlm p11'); ?>
-                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>"
-                  target="_blank"
-                  rel="noopener noreferrer">
+                <a href="<?= $this->basePath('/MODELO-DE-OFICIO.docx') ?>" target="_blank" rel="noopener noreferrer">
                   <?= $this->transEsc('dlm modelo'); ?> (docx)
                 </a>
               </li>
@@ -645,12 +656,18 @@
     <div class="col-md-12">
       <div class="card">
         <h2 id="dark-heading">
-          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#dark" aria-expanded="false" aria-controls="dark">
+          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#dark"
+            aria-expanded="false" aria-controls="dark">
             <?= $this->transEsc('dARK — Decentralized Archival Resource Key'); ?>
           </button>
         </h2>
         <div class="collapse" id="dark">
-          <p>O dARK é uma iniciativa aberta e gratuita, coordenada pelo Ibict e LA Referencia em colaboração com parceiros regionais, que estende o identificador ARK (Archival Resource Key) para um modelo descentralizado de atribuição e resolução de PIDs, baseado em rede blockchain permissionada. Integrado ao ecossistema do Oasisbr, o dARK busca ampliar a cobertura de identificadores persistentes no Brasil e no Sul Global, reduzir custos operacionais, reforçar a governança compartilhada e assegurar persistência, proveniência e interoperabilidade dos registros ao longo do tempo. 
+          <p>O dARK é uma iniciativa aberta e gratuita, coordenada pelo Ibict e LA Referencia em colaboração com
+            parceiros regionais, que estende o identificador ARK (Archival Resource Key) para um modelo
+            descentralizado de atribuição e resolução de PIDs, baseado em rede blockchain permissionada. Integrado ao
+            ecossistema do Oasisbr, o dARK busca ampliar a cobertura de identificadores persistentes no Brasil e no
+            Sul Global, reduzir custos operacionais, reforçar a governança compartilhada e assegurar persistência,
+            proveniência e interoperabilidade dos registros ao longo do tempo.
             <a href="https://www.dark-pid.net/pt/home" target="_blank" rel="noopener noreferrer">
               Saiba mais sobre o dARK no site oficial
             </a>
@@ -658,65 +675,94 @@
           <h3>Principais características</h3>
           <ul>
             <li>
-              Baixo custo e escalabilidade para atribuição de ARKs em larga escala, com ênfase em instituições de países do Sul Global.
+              Baixo custo e escalabilidade para atribuição de ARKs em larga escala, com ênfase em instituições de
+              países do Sul Global.
             </li>
             <li>
-              Interoperabilidade com resolutores ARK globais e convivência com outros PIDs (por exemplo, DOI), preservando vínculos e referências.
+              Interoperabilidade com resolutores ARK globais e convivência com outros PIDs (por exemplo, DOI),
+              preservando vínculos e referências.
             </li>
             <li>
               Governança distribuída em consórcio institucional, aumentando resiliência e tolerância a falhas.
             </li>
             <li>
-              Transparência e proveniência dos metadados, favorecendo auditoria, reprodutibilidade e preservação de longo prazo.
+              Transparência e proveniência dos metadados, favorecendo auditoria, reprodutibilidade e preservação de
+              longo prazo.
             </li>
           </ul>
           <h3>Finalidade no Oasisbr</h3>
           <ul>
-            <li> Ao integrar-se ao Oasisbr, o dARK potencializa a visibilidade, a confiabilidade e a longevidade dos objetos digitais agregados, alinhando-se às práticas de Ciência Aberta e fortalecendo a infraestrutura nacional de comunicação científica.
+            <li> Ao integrar-se ao Oasisbr, o dARK potencializa a visibilidade, a confiabilidade e a longevidade dos
+              objetos digitais agregados, alinhando-se às práticas de Ciência Aberta e fortalecendo a infraestrutura
+              nacional de comunicação científica.
             </li>
             <li>
-              Se sua fonte já faz parte do Oasisbr, baixe o <a href="https://docs.google.com/document/d/1ktJ5g3ZUboYdTFC9uZYeIyc-STtTKtoNrKq_-Porc9s/edit?usp=sharing" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                ofício de adesão do dARK </a> e encaminhe para o e-mail <a href="mailto:oasisbr@ibict.br" target="_blank">oasisbr@ibict.br</a>
+              Se sua fonte já faz parte do Oasisbr, baixe o <a
+                href="https://docs.google.com/document/d/1ktJ5g3ZUboYdTFC9uZYeIyc-STtTKtoNrKq_-Porc9s/edit?usp=sharing"
+                target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                ofício de adesão do dARK </a> e encaminhe para o e-mail <a href="mailto:oasisbr@ibict.br"
+                target="_blank">oasisbr@ibict.br</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
-</section>
+  </section>
 
   <section class="row" aria-labelledby="certificacao-lattes-oasisbr">
     <div class="col-md-12">
       <div class="card">
         <h2 id="certificacao-lattes-oasisbr">
-          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#certificacao-lattes" aria-expanded="false" aria-controls="certificacao-lattes">
+          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed"
+            data-bs-target="#certificacao-lattes" aria-expanded="false" aria-controls="certificacao-lattes">
             <?= $this->transEsc('Certificação Lattes-Oasisbr'); ?>
           </button>
         </h2>
         <div class="collapse" id="certificacao-lattes">
 
-          <h3> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#certificacao" aria-expanded="false" aria-controls="certificacao">
+          <h3> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed"
+              data-bs-target="#certificacao" aria-expanded="false" aria-controls="certificacao">
               <?= $this->transEsc('O que é a certificação?'); ?></button>
           </h3>
           <div class="collapse" id="certificacao">
-            <p>Os usuários do Currículo Lattes, do CNPq, contam com a possibilidade de terem suas teses e dissertações certificadas pelo Oasisbr - Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto. Mais de um milhão de teses e dissertações brasileiras do Currículo Lattes já contam automaticamente com o selo Oasisbr.
+            <p>Os usuários do Currículo Lattes, do CNPq, contam com a possibilidade de terem suas teses e dissertações
+              certificadas pelo Oasisbr - Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto. Mais
+              de um milhão de teses e dissertações brasileiras do Currículo Lattes já contam automaticamente com o
+              selo Oasisbr.
             </p>
-            <p>O selo de certificação é exibido nas informações do currículo do usuário, nas seções de informações acadêmicas/titulação e orientações concluídas. Com o selo, é possível comprovar, de maneira rápida e simples, a autoria/orientação concluída da tese ou dissertação e acessar o documento em acesso aberto no Oasisbr. O certificado poderá ser emitido de forma automática pelo Currículo Lattes ou cadastrado manualmente pelo usuário.</p>
-            <p>Com a nova funcionalidade, o CV Lattes poderá verificar se a tese ou dissertação inserida no currículo do pesquisador está disponível em alguma base ou repositório acadêmico. Este será o primeiro passo para outras certificações à caminho.
+            <p>O selo de certificação é exibido nas informações do currículo do usuário, nas seções de informações
+              acadêmicas/titulação e orientações concluídas. Com o selo, é possível comprovar, de maneira rápida e
+              simples, a autoria/orientação concluída da tese ou dissertação e acessar o documento em acesso aberto no
+              Oasisbr. O certificado poderá ser emitido de forma automática pelo Currículo Lattes ou cadastrado
+              manualmente pelo usuário.</p>
+            <p>Com a nova funcionalidade, o CV Lattes poderá verificar se a tese ou dissertação inserida no currículo
+              do pesquisador está disponível em alguma base ou repositório acadêmico. Este será o primeiro passo para
+              outras certificações à caminho.
             </p>
           </div>
-          <h3> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#passo-a-passo" aria-expanded="false" aria-controls="passo-a-passo">
+          <h3> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed"
+              data-bs-target="#passo-a-passo" aria-expanded="false" aria-controls="passo-a-passo">
               <?= $this->transEsc('Como inserir o selo do Oasisbr no Currículo Lattes?'); ?></button>
           </h3>
           <div class="collapse" id="passo-a-passo">
-            <p>A tese ou dissertação cadastrada na plataforma Lattes poderá ser certificada apenas se o documento estiver inserido no portal Oasisbr, então, primeiramente o usuário deverá se certificar entrando no site do portal. Em um primeiro momento a certificação Lattes pelo Oasisbr pode ser realizada para Teses e Dissertações defendidas e orientadas por programas de pós-graduação brasileiros, a certificação de outros documentos acontecerá de forma gradual.
+            <p>A tese ou dissertação cadastrada na plataforma Lattes poderá ser certificada apenas se o documento
+              estiver inserido no portal Oasisbr, então, primeiramente o usuário deverá se certificar entrando no site
+              do portal. Em um primeiro momento a certificação Lattes pelo Oasisbr pode ser realizada para Teses e
+              Dissertações defendidas e orientadas por programas de pós-graduação brasileiros, a certificação de
+              outros documentos acontecerá de forma gradual.
             </p>
-            <p><strong>IMPORTANTE!</strong> A importação será realizada apenas se os dados do título e ano de publicação estiverem condizentes, tanto no Oasisbr quanto no seu currículo Lattes.
+            <p><strong>IMPORTANTE!</strong> A importação será realizada apenas se os dados do título e ano de
+              publicação estiverem condizentes, tanto no Oasisbr quanto no seu currículo Lattes.
             </p>
-            <p>Se o documento não estiver cadastrado no Portal Oasis, pedimos que notifique a instituição depositante, solicitando o cadastramento do repositório junto ao nosso portal através do e-mail oasisbr@ibict.br.
+            <p>Se o documento não estiver cadastrado no Portal Oasis, pedimos que notifique a instituição depositante,
+              solicitando o cadastramento do repositório junto ao nosso portal através do e-mail oasisbr@ibict.br.
             </p>
-            <p>Ao acessar o seu espaço de edição do Currículo Lattes e inserir os dados de uma tese ou dissertação, o pesquisador ou acadêmico pode importar informações do Oasisbr pelo seu ID Lattes ou número do ORCID e verificar quais são os documentos cadastrados no Oasisbr. Os dados importados já vem com o selo para serem exibidos automaticamente no perfil público. Ao clicar no selo, o usuário poderá acessar o documento no Oasisbr.</p>
-            <a href="<?= $this->basePath('/passo-a-passo-para-certificacao-lattes-oasisbr.pdf') ?>"
-              target="_blank"
+            <p>Ao acessar o seu espaço de edição do Currículo Lattes e inserir os dados de uma tese ou dissertação, o
+              pesquisador ou acadêmico pode importar informações do Oasisbr pelo seu ID Lattes ou número do ORCID e
+              verificar quais são os documentos cadastrados no Oasisbr. Os dados importados já vem com o selo para
+              serem exibidos automaticamente no perfil público. Ao clicar no selo, o usuário poderá acessar o
+              documento no Oasisbr.</p>
+            <a href="<?= $this->basePath('/passo-a-passo-para-certificacao-lattes-oasisbr.pdf') ?>" target="_blank"
               rel="noopener noreferrer">
               Veja o passo a passo para certificação (pdf)
             </a>
@@ -725,4 +771,4 @@
       </div>
     </div>
   </section>
-</main>
+</div>
