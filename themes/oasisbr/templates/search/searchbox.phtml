@@ -73,9 +73,9 @@ $lookforValue = $this->escapeHtmlAttr($this->lookfor);
     <?= $this->context($this)->renderInContext('search/searchTabs', ['searchTabs' => $tabConfig['tabs']]); ?>
     <div class="oasis-home-search-shell">
       <?php if ($handlerCount > 1) : ?>
-        <label class="oasis-home-search-select">
+        <label class="oasis-home-search-select" for="searchForm_type">
           <span class="visually-hidden"><?= $this->transEsc("Search type") ?></span>
-          <select id="searchForm_type" class="searchForm_type form-select" name="type" data-native-menu="false" aria-label="<?= $this->transEscAttr("Search type") ?>">
+          <select id="searchForm_type" class="searchForm_type form-select" name="type" data-native-menu="false">
             <?php $currentGroup = $insideGroup = false; ?>
             <?php foreach ($handlers as $handler) : ?>
               <?php
