@@ -79,7 +79,7 @@ $this->layout()->title = $this->driver->getShortTitle();
             }
             ?>
             <li class="<?= implode(' ', $tabClasses) ?>" data-tab="<?= $tabName ?>" <?php if ($obj->supportsAjax() && in_array($tab, $this->backgroundTabs)) : ?> data-background<?php endif ?>>
-              <a class="<?= $tabName === 'details' ? 'oasis-record-details-toggle' : '' ?>" href="<?= $this->recordLinker()->getTabUrl($this->driver, $tab) ?>#tabnav" data-lightbox-ignore<?php if ($tabName === 'details') : ?> aria-controls="record-tab-panel-details" aria-expanded="false"<?php endif; ?>>
+              <a class="<?= $tabName === 'details' ? 'oasis-record-details-toggle' : '' ?>" href="<?= $this->recordLinker()->getTabUrl($this->driver, $tab) ?>#tabnav" data-lightbox-ignore<?php if ($tabName === 'details') : ?> aria-controls="record-tab-panel-<?= $this->escapeHtmlAttr($this->activeTab) ?>" aria-expanded="false"<?php endif; ?>>
                 <?= $this->transEsc($desc) ?>
                 <?php if ($tabName === 'details') : ?><i class="fa-solid fa-chevron-down oasis-record-details-icon" aria-hidden="true"></i><?php endif; ?>
               </a>
