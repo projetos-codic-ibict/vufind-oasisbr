@@ -2275,6 +2275,10 @@ li.language a {
   color: var(--oasis-home-foreground);
   padding: 6px 4px;
   font-size: 0.875rem;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .oasis-results-sidebar {
