@@ -79,17 +79,23 @@ $this->layout()->title = $this->driver->getShortTitle();
             }
             ?>
             <li class="<?= implode(' ', $tabClasses) ?>" data-tab="<?= $tabName ?>" <?php if ($obj->supportsAjax() && in_array($tab, $this->backgroundTabs)) : ?> data-background<?php endif ?>>
-              <a class="<?= $tabName === 'details' ? 'oasis-record-details-toggle' : '' ?>" href="<?= $this->recordLinker()->getTabUrl($this->driver, $tab) ?>#tabnav" data-lightbox-ignore<?php if ($tabName === 'details') : ?> aria-controls="record-tab-panel-<?= $this->escapeHtmlAttr($this->activeTab) ?>" aria-expanded="false"<?php endif; ?>>
-                <?= $this->transEsc($desc) ?>
-                <?php if ($tabName === 'details') : ?><i class="fa-solid fa-chevron-down oasis-record-details-icon" aria-hidden="true"></i><?php endif; ?>
-              </a>
+              <?php if ($tabName === 'details') : ?>
+                <button type="button" class="oasis-record-details-toggle" data-lightbox-ignore aria-controls="record-tab-panel-<?= $this->escapeHtmlAttr($this->activeTab) ?>" aria-expanded="false">
+                  <?= $this->transEsc($desc) ?>
+                  <i class="fa-solid fa-chevron-down oasis-record-details-icon" aria-hidden="true"></i>
+                </button>
+              <?php else : ?>
+                <a href="<?= $this->recordLinker()->getTabUrl($this->driver, $tab) . '#tabnav' ?>" data-lightbox-ignore>
+                  <?= $this->transEsc($desc) ?>
+                </a>
+              <?php endif; ?>
             </li>
           <?php endforeach; ?>
         </ul>
 
         <div class="tab-content">
           <?php if (!$this->loadInitialTabWithAjax || !isset($activeTabObj) || !$activeTabObj->supportsAjax()) : ?>
-            <div id="record-tab-panel-<?= $this->escapeHtmlAttr($this->activeTab) ?>" class="tab-pane <?= $this->escapeHtmlAttr($this->activeTab) ?>-tab">
+            <div id="record-tab-panel-<?= $this->escapeHtmlAttr($this->activeTab) ?>" class="tab-pane <?= $this->escapeHtmlAttr($this->activeTab) ?>-tab" tabindex="-1">
               <?= isset($activeTabObj) ? $this->record($this->driver)->getTab($activeTabObj) : '' ?>
             </div>
           <?php endif; ?>

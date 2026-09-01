@@ -16,10 +16,13 @@
     <?php $exportFormats = $this->export()->getFormatsForRecord($this->driver); ?>
     <?php if (count($exportFormats) > 0) : ?>
       <li role="none" class="dropdown">
-        <a class="export-toggle toolbar-btn btn-type-export dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" href="<?= $this->escapeHtmlAttr($this->recordLinker()->getActionUrl($this->driver, 'Export', [], '', ['excludeSearchId' => true])) ?>" rel="nofollow" aria-expanded="false" aria-controls="export-options"><?= $this->transEsc('Export Record') ?></a>
-        <ul class="dropdown-menu" id="export-options" role="menu">
+        <button type="button" id="export-toggle" class="export-toggle toolbar-btn btn-type-export dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="export-options">
+          <span><?= $this->transEsc('Export Record') ?></span>
+          <i class="fa-solid fa-chevron-down export-toggle-icon" aria-hidden="true"></i>
+        </button>
+        <ul class="dropdown-menu" id="export-options" role="menu" aria-labelledby="export-toggle">
           <?php foreach ($exportFormats as $exportFormat) : ?>
-            <li role="none"><a class="dropdown-item" <?php if ($this->export()->needsRedirect($exportFormat)) : ?>target="<?= $this->escapeHtmlAttr($this->export()->getTargetWindow($exportFormat)) ?>" <?php endif; ?>href="<?= $this->escapeHtmlAttr($this->recordLinker()->getActionUrl($this->driver, 'Export', [], '', ['excludeSearchId' => true])) ?>?style=<?= $this->escapeHtmlAttr($exportFormat) ?>" rel="nofollow" role="menuitem"><?= $this->transEsc('export_to', ['%%target%%' => $this->translate($this->export()->getLabelForFormat($exportFormat))]) ?></a></li>
+            <li role="none"><a class="dropdown-item" <?php if ($this->export()->needsRedirect($exportFormat)) : ?>target="<?= $this->escapeHtmlAttr($this->export()->getTargetWindow($exportFormat)) ?>" <?php endif; ?>href="<?= $this->escapeHtmlAttr($this->recordLinker()->getActionUrl($this->driver, 'Export', [], '', ['excludeSearchId' => true])) ?>?style=<?= $this->escapeHtmlAttr($exportFormat) ?>" rel="nofollow" role="menuitem" tabindex="0"><?= $this->transEsc('export_to', ['%%target%%' => $this->translate($this->export()->getLabelForFormat($exportFormat))]) ?></a></li>
           <?php endforeach; ?>
         </ul>
       </li>
