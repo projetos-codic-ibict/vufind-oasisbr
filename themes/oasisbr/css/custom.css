@@ -250,7 +250,6 @@ header.d-print-none {
   background-color: transparent;
   border-bottom: 2px solid #223360;
   color: #33426a;
-  
 }
 
 button.dropdown-toggle {
@@ -345,6 +344,7 @@ button.dropdown-toggle {
 
 .btn-primary {
   background-color: var(--oasis-home-primary);
+  border-color: var(--oasis-home-primary);
 }
 
 .btn-primary:hover,
@@ -1214,7 +1214,7 @@ li.language a {
 
 .oasis-site #networks-page .oasis-source-results .network-item h3 a:hover,
 .oasis-site #networks-page .oasis-source-results .network-item h3 a:focus {
-  color: var(--oasis-home-primary);
+  color: var(--oasis-home-accent);
   text-decoration: underline;
 }
 
@@ -2418,10 +2418,10 @@ li.language a {
   text-decoration: none;
 }
 
-.oasis-results-mainbody .fulltext:hover{
+.oasis-results-mainbody .fulltext:hover {
   color: var(--oasis-home-accent);
-text-decoration: underline;
-    text-underline-offset: 4px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .oasis-results-mainbody .oasis-result-formats {
@@ -3071,7 +3071,6 @@ a.link-simple {
   font-weight: 400;
   background: var(--oasis-home-highlight);
   color: var(--oasis-home-blue);
-
 }
 
 .search-btn .btn-search-primary,
@@ -3468,8 +3467,8 @@ a.link-simple {
   background: var(--oasis-home-primary);
   border: 1px solid var(--oasis-home-primary);
 }
-.record .format::after{
-  content:"";
+.record .format::after {
+  content: "";
 }
 
 .oasis-site .result .format,
@@ -3531,4 +3530,8 @@ a.link-simple {
 .oasis-site .format.default {
   background: #e2e8e6;
   color: #3f514c;
+}
+
+.btn-export-csv {
+  padding: 2px 8px;
 }
