@@ -30,16 +30,16 @@ $currentLangLabel = match ($currentLang) {
               <a class="nav-link" href="<?= $this->url('datasources-home') ?>"><?= $this->transEsc("Data Sources") ?></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= $this->url('indicators-home') ?>?type=AllFields"><?= $this->transEsc("Indicators") ?></a>
+              <a class="nav-link" href="<?= $this->url('indicators-home') ?>"><?= $this->transEsc("Indicators") ?></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= $this->url('home') ?>#sobre">Sobre o Oasisbr</a>
+              <a class="nav-link" href="<?= $this->url('home') ?>#sobre"><?= $this->transEsc("header_about") ?></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= $this->url('home') ?>#participar">Como participar</a>
+              <a class="nav-link" href="<?= $this->url('home') ?>#participar"><?= $this->transEsc("header_participate") ?></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= $this->url('home') ?>#ajuda">Ajuda</a>
+              <a class="nav-link" href="<?= $this->url('home') ?>#ajuda"><?= $this->transEsc("header_help") ?></a>
             </li>
 
             <?php if ($this->feedback()->tabEnabled()): ?>
