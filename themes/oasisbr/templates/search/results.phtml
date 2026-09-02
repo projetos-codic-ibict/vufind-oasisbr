@@ -71,11 +71,11 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
           <?= $this->render('search/controls/sort.phtml') ?>
           <!-- <?= $this->render('search/controls/view.phtml') ?> -->
           <div class="dropdown export">
-            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <button id="search-export-toggle" class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="search-export-options">
               <?= $this->transEsc('Export') ?>
               <i class="fa fa-file-export"></i>
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" id="search-export-options" aria-labelledby="search-export-toggle">
               <li> <a class="dropdown-item"
                   href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&amp;type=ris' ?>" data-lightbox>
                   <i class="fa fa-file-text-o" aria-hidden="true"></i> <?= $this->transEsc('Export RIS') ?>
