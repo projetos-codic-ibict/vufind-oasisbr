@@ -105,7 +105,7 @@ $lookforValue = $this->escapeHtmlAttr($this->lookfor);
 
       <div class="oasis-home-search-input">
         <i class="fa-solid fa-search" aria-hidden="true"></i>
-        <input data-search id="searchForm_lookfor" class="searchForm_lookfor form-control search-query<?php if ($this->searchbox()->autocompleteEnabled($this->searchClassId)) : ?> autocomplete searcher:<?= $this->escapeHtmlAttr($this->searchClassId) ?><?= $this->searchbox()->autocompleteAutoSubmit($this->searchClassId) ? ' ac-auto-submit' : '' ?><?php endif ?>" type="search" name="lookfor" value="<?= $lookforValue ?>" placeholder="<?= $placeholder ? $this->transEscAttr($placeholder) : 'Ex.: energia solar fotovoltaica no semiárido' ?>" aria-label="<?= $this->transEscAttr("search_terms") ?>" />
+        <input data-search id="searchForm_lookfor" class="searchForm_lookfor form-control search-query<?php if ($this->searchbox()->autocompleteEnabled($this->searchClassId)) : ?> autocomplete searcher:<?= $this->escapeHtmlAttr($this->searchClassId) ?><?= $this->searchbox()->autocompleteAutoSubmit($this->searchClassId) ? ' ac-auto-submit' : '' ?><?php endif ?>" type="search" name="lookfor" value="<?= $lookforValue ?>" placeholder="<?= $placeholder ? $this->transEscAttr($placeholder) : $this->transEscAttr('Search') ?>" aria-label="<?= $this->transEscAttr("search_terms") ?>" />
       </div>
 
       <button type="submit" class="btn btn-search-primary oasis-home-search-submit">

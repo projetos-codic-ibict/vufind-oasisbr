@@ -5,4 +5,4 @@ $total = $this->localizedNumber($recordTotal);
 $queryTime = $this->results->getQuerySpeed();
 $lookfor = $this->escapeHtml($lookfor ?? '');
 ?>
-<h1 class="oasis-results-total"><?= $total ?> resultados</h1>
+<h1 class="oasis-results-total"><?= $this->transEsc('result_count', ['%%count%%' => $total]) ?></h1>
