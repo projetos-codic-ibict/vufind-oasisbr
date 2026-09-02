@@ -17,9 +17,9 @@ $this->layout()->breadcrumbs = false;
   <div class="oasis-home-container">
     <h1 class="visually-hidden">Portal Oasisbr</h1>
     <div class="oasis-home-hero-copy">
-      <span class="oasis-home-hero-kicker">Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto</span>
+      <span class="oasis-home-hero-kicker"><?= $this->transEsc('home_hero_kicker') ?></span>
       <img class="oasis-home-hero-logo" src="<?= $this->imageLink('oasisbr-logo.png'); ?>" alt="" />
-      <p>Pesquise por artigos, teses, dissertações, livros e conjuntos de dados de repositórios e revistas de instituições brasileiras - e também de Portugal, por meio da RCAAP.</p>
+      <p><?= $this->transEsc('home_hero_description') ?></p>
     </div>
     <?php $this->slot('search-home-hero')->start() ?>
     <?= $this->context($this)->renderInContext("search/searchbox.phtml", ['ignoreHiddenFilterMemory' => true, 'isHome' => true]) ?>

@@ -2,27 +2,27 @@
 
 <section class="oasis-home-stats" aria-labelledby="numeros">
   <div class="oasis-home-container">
-    <h2 id="numeros" class="visually-hidden">O Oasisbr em números</h2>
+    <h2 id="numeros" class="visually-hidden"><?= $this->transEsc('home_stats_title') ?></h2>
     <dl class="oasis-home-stats-grid">
       <div class="oasis-home-stat" aria-live="polite" aria-atomic="true">
-        <dt>Registros coletados</dt>
+        <dt><?= $this->transEsc('home_stats_records') ?></dt>
         <dd id="total-docs-home">...</dd>
-        <p>de fontes brasileiras e da RCAAP</p>
+        <p><?= $this->transEsc('home_stats_records_description') ?></p>
       </div>
       <div class="oasis-home-stat" aria-live="polite" aria-atomic="true">
-        <dt>Fontes de informação</dt>
+        <dt><?= $this->transEsc('home_stats_sources') ?></dt>
         <dd id="sources-home">...</dd>
-        <p>repositórios, revistas e portais</p>
+        <p><?= $this->transEsc('home_stats_sources_description') ?></p>
       </div>
       <div class="oasis-home-stat" aria-live="polite" aria-atomic="true">
-        <dt>Instituições</dt>
+        <dt><?= $this->transEsc('home_stats_institutions') ?></dt>
         <dd id="institutions-home">...</dd>
-        <p>universidades, institutos e agências</p>
+        <p><?= $this->transEsc('home_stats_institutions_description') ?></p>
       </div>
       <div class="oasis-home-stat">
-        <dt>Acesso aberto</dt>
+        <dt><?= $this->transEsc('openAccess') ?></dt>
         <dd>100%</dd>
-        <p>texto completo sem barreiras</p>
+        <p><?= $this->transEsc('home_stats_open_access_description') ?></p>
       </div>
     </dl>
   </div>
@@ -32,11 +32,11 @@
   <div class="oasis-home-container">
     <div class="oasis-home-section-head">
       <div>
-        <h2 id="colecoes">Explore por tipo de documento</h2>
-        <p>Todo o conteúdo é coletado automaticamente via protocolo OAI-PMH e conduz ao texto completo no repositório de origem.</p>
+        <h2 id="colecoes"><?= $this->transEsc('home_collections_title') ?></h2>
+        <p><?= $this->transEsc('home_collections_description') ?></p>
       </div>
       <a class="oasis-home-text-link" href="<?= $this->url('search-results') ?>">
-        Ver todas as coleções
+        <?= $this->transEsc('home_collections_view_all') ?>
         <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
       </a>
     </div>
@@ -45,49 +45,49 @@
       <li>
         <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?type=AllFields&amp;filter%5B%5D=format%3A%22article%22">
           <span class="oasis-home-card-icon"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></span>
-          <h3 class="oasis-home-card-title">Artigos de periódicos</h3>
-          <span class="oasis-home-card-count"><span id="articles" aria-live="polite"></span> registros</span>
-          <span class="oasis-home-card-text">Artigos revisados por pares publicados em revistas brasileiras de acesso aberto.</span>
+          <h3 class="oasis-home-card-title"><?= $this->transEsc('home_collection_articles') ?></h3>
+          <span class="oasis-home-card-count"><span id="articles" aria-live="polite"></span> <?= $this->transEsc('home_records') ?></span>
+          <span class="oasis-home-card-text"><?= $this->transEsc('home_collection_articles_description') ?></span>
         </a>
       </li>
       <li>
         <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?join=AND&amp;filter%5B%5D=%7Eformat%3A%22masterThesis%22&amp;filter%5B%5D=%7Eformat%3A%22doctoralThesis%22">
           <span class="oasis-home-card-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
-          <h3 class="oasis-home-card-title">Teses e dissertações</h3>
-          <span class="oasis-home-card-count"><span id="teses" aria-live="polite"></span> registros</span>
-          <span class="oasis-home-card-text">Produção da pós-graduação nacional integrada à BDTD e aos repositórios institucionais.</span>
+          <h3 class="oasis-home-card-title"><?= $this->transEsc('home_collection_theses') ?></h3>
+          <span class="oasis-home-card-count"><span id="teses" aria-live="polite"></span> <?= $this->transEsc('home_records') ?></span>
+          <span class="oasis-home-card-text"><?= $this->transEsc('home_collection_theses_description') ?></span>
         </a>
       </li>
       <li>
         <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?type=AllFields&amp;filter%5B%5D=format%3A%22dataset%22">
           <span class="oasis-home-card-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></span>
-          <h3 class="oasis-home-card-title">Conjuntos de dados</h3>
-          <span class="oasis-home-card-count"><span id="datasets" aria-live="polite"></span> registros</span>
-          <span class="oasis-home-card-text">Dados de pesquisa depositados em repositórios de dados abertos e citáveis.</span>
+          <h3 class="oasis-home-card-title"><?= $this->transEsc('home_collection_datasets') ?></h3>
+          <span class="oasis-home-card-count"><span id="datasets" aria-live="polite"></span> <?= $this->transEsc('home_records') ?></span>
+          <span class="oasis-home-card-text"><?= $this->transEsc('home_collection_datasets_description') ?></span>
         </a>
       </li>
       <li>
         <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?join=AND&amp;filter%5B%5D=%7Eformat%3A%22book%22&amp;filter%5B%5D=%7Eformat%3A%22bookPart%22">
           <span class="oasis-home-card-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
-          <h3 class="oasis-home-card-title">Livros e capítulos</h3>
-          <span class="oasis-home-card-count"><span id="books" aria-live="polite"></span> registros</span>
-          <span class="oasis-home-card-text">Obras completas e capítulos publicados por editoras universitárias.</span>
+          <h3 class="oasis-home-card-title"><?= $this->transEsc('home_collection_books') ?></h3>
+          <span class="oasis-home-card-count"><span id="books" aria-live="polite"></span> <?= $this->transEsc('home_records') ?></span>
+          <span class="oasis-home-card-text"><?= $this->transEsc('home_collection_books_description') ?></span>
         </a>
       </li>
       <li>
         <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?type=AllFields&amp;filter%5B%5D=format%3A%22conferenceObject%22">
           <span class="oasis-home-card-icon"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i></span>
-          <h3 class="oasis-home-card-title">Trabalhos de eventos</h3>
-          <span class="oasis-home-card-count"><span id="events" aria-live="polite"></span> registros</span>
-          <span class="oasis-home-card-text">Comunicações, resumos e anais de congressos científicos brasileiros.</span>
+          <h3 class="oasis-home-card-title"><?= $this->transEsc('home_collection_events') ?></h3>
+          <span class="oasis-home-card-count"><span id="events" aria-live="polite"></span> <?= $this->transEsc('home_records') ?></span>
+          <span class="oasis-home-card-text"><?= $this->transEsc('home_collection_events_description') ?></span>
         </a>
       </li>
       <li>
         <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?type=AllFields&amp;filter%5B%5D=format%3A%22report%22">
           <span class="oasis-home-card-icon"><i class="fa-regular fa-newspaper" aria-hidden="true"></i></span>
-          <h3 class="oasis-home-card-title">Relatórios técnicos</h3>
-          <span class="oasis-home-card-count"><span id="reports" aria-live="polite"></span> registros</span>
-          <span class="oasis-home-card-text">Documentos técnicos, normas e produção institucional de agências públicas.</span>
+          <h3 class="oasis-home-card-title"><?= $this->transEsc('home_collection_reports') ?></h3>
+          <span class="oasis-home-card-count"><span id="reports" aria-live="polite"></span> <?= $this->transEsc('home_records') ?></span>
+          <span class="oasis-home-card-text"><?= $this->transEsc('home_collection_reports_description') ?></span>
         </a>
       </li>
     </ul>
@@ -97,37 +97,37 @@
 <section id="sobre" class="oasis-home-about" aria-labelledby="sobre-titulo">
   <div class="oasis-home-container oasis-home-about-grid">
     <div class="oasis-home-about-copy">
-      <span class="oasis-home-kicker">Sobre o portal</span>
-      <h2 id="sobre-titulo">Um agregador nacional mantido pelo IBICT desde 2010</h2>
-      <p>O Oasisbr é um mecanismo de busca multidisciplinar que oferece acesso livre à produção científica de autores vinculados a universidades e institutos de pesquisa brasileiros. O portal também permite consultar, de forma integrada, a produção científica portuguesa disponível no RCAAP.</p>
-      <p>Os metadados são coletados automaticamente dos provedores de dados aderentes, normalizados e disponibilizados de forma aberta, garantindo que cada registro remeta ao texto completo no repositório de origem.</p>
+      <span class="oasis-home-kicker"><?= $this->transEsc('home_about_kicker') ?></span>
+      <h2 id="sobre-titulo"><?= $this->transEsc('home_about_title') ?></h2>
+      <p><?= $this->transEsc('home_about_description') ?></p>
+      <p><?= $this->transEsc('home_about_metadata_description') ?></p>
       <ul class="oasis-home-benefits">
-        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Visibilidade nacional e internacional para a produção da sua instituição</li>
-        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Colheita automática de metadados via OAI-PMH, sem duplicar esforços</li>
-        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Indicadores de produção científica por instituição, área e ano</li>
-        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Interoperabilidade com a BDTD, a RCAAP e agregadores internacionais</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> <?= $this->transEsc('home_about_benefit_visibility') ?></li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> <?= $this->transEsc('home_about_benefit_harvesting') ?></li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> <?= $this->transEsc('home_about_benefit_indicators') ?></li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> <?= $this->transEsc('home_about_benefit_interoperability') ?></li>
       </ul>
        <a class="oasis-home-primary-button" href="<?= $this->url('about-home') ?>"><?= $this->transEsc("More...") ?></a>
     </div>
 
     <aside class="oasis-home-services" aria-labelledby="servicos-integrados">
-      <h3 id="servicos-integrados">Serviços integrados</h3>
+      <h3 id="servicos-integrados"><?= $this->transEsc('home_services_title') ?></h3>
       <dl>
         <div>
           <dt>BDTD</dt>
-          <dd>Biblioteca Digital Brasileira de Teses e Dissertações</dd>
+          <dd><?= $this->transEsc('home_service_bdtd_description') ?></dd>
         </div>
         <div>
           <dt>RCAAP</dt>
-          <dd>Repositório Científico de Acesso Aberto de Portugal</dd>
+          <dd><?= $this->transEsc('home_service_rcaap_description') ?></dd>
         </div>
         <div>
           <dt>DiadorimSHERPA</dt>
-          <dd>Políticas editoriais de revistas científicas brasileiras</dd>
+          <dd><?= $this->transEsc('home_service_diadorim_description') ?></dd>
         </div>
         <div>
           <dt>LA Referencia</dt>
-          <dd>Rede latino-americana de repositórios de acesso aberto</dd>
+          <dd><?= $this->transEsc('home_service_la_referencia_description') ?></dd>
         </div>
       </dl>
       <!-- <a class="oasis-home-outline-button" href="#ajuda">Conhecer a documentação</a> -->
@@ -139,29 +139,29 @@
   <div class="oasis-home-container">
     <div class="oasis-home-section-head">
       <div>
-        <span class="oasis-home-kicker">Como participar</span>
-        <h2 id="participar-titulo">Inclua a sua instituição no Oasisbr</h2>
+        <span class="oasis-home-kicker"><?= $this->transEsc('home_participate_kicker') ?></span>
+        <h2 id="participar-titulo"><?= $this->transEsc('home_participate_title') ?></h2>
       </div>
     </div>
     <ol class="oasis-home-steps">
       <li>
         <span>1</span>
-        <h3>Publique seu repositório</h3>
-        <p>Mantenha um repositório ou portal de revistas com interface OAI-PMH ativa e metadados padronizados em Dublin Core.</p>
+        <h3><?= $this->transEsc('home_participate_step_publish') ?></h3>
+        <p><?= $this->transEsc('home_participate_step_publish_description') ?></p>
       </li>
       <li>
         <span>2</span>
-        <h3>Solicite a adesão</h3>
-        <p>Envie o formulário de indicação com a URL do provedor de dados e os contatos técnicos da instituição.</p>
+        <h3><?= $this->transEsc('home_participate_step_request') ?></h3>
+        <p><?= $this->transEsc('home_participate_step_request_description') ?></p>
       </li>
       <li>
         <span>3</span>
-        <h3>Validação e coleta</h3>
-        <p>A equipe do IBICT valida a conformidade dos metadados e inclui a fonte no ciclo regular de colheita.</p>
+        <h3><?= $this->transEsc('home_participate_step_validate') ?></h3>
+        <p><?= $this->transEsc('home_participate_step_validate_description') ?></p>
       </li>
     </ol>
     <?php if ($this->feedback()->tabEnabled()) : ?>
-      <a class="oasis-home-primary-button" data-lightbox href="<?= $this->url('feedback-home') ?>">Solicitar adesão</a>
+      <a class="oasis-home-primary-button" data-lightbox href="<?= $this->url('feedback-home') ?>"><?= $this->transEsc('home_request_membership') ?></a>
     <?php endif; ?>
   </div>
 </section>
@@ -169,21 +169,21 @@
 <section id="ajuda" class="oasis-home-help" aria-labelledby="ajuda-titulo">
   <div class="oasis-home-container oasis-home-help-grid">
     <div>
-      <h2 id="ajuda-titulo">Dúvidas frequentes</h2>
-      <p>Não encontrou o que precisava? A equipe do Oasisbr responde a dúvidas técnicas sobre colheita de metadados, adesão de fontes e uso do portal.</p>
+      <h2 id="ajuda-titulo"><?= $this->transEsc('home_help_title') ?></h2>
+      <p><?= $this->transEsc('home_help_description') ?></p>
       <div class="oasis-home-contact-list">
         <a href="mailto:oasisbr@ibict.br">
           <i class="fa-regular fa-envelope" aria-hidden="true"></i>
           <span>
             <strong>oasisbr@ibict.br</strong>
-            <small>Suporte técnico e adesões</small>
+            <small><?= $this->transEsc('home_help_support') ?></small>
           </span>
         </a>
         <a href="<?= $this->url('faq-home') ?>">
           <i class="fa-regular fa-circle-question" aria-hidden="true"></i>
           <span>
-            <strong>Manual do usuário</strong>
-            <small>Guias de busca e exportação</small>
+            <strong><?= $this->transEsc('home_help_manual') ?></strong>
+            <small><?= $this->transEsc('home_help_manual_description') ?></small>
           </span>
         </a>
       </div>
@@ -191,20 +191,20 @@
 
     <dl class="oasis-home-faq-list">
       <div>
-        <dt>O Oasisbr armazena os textos completos?</dt>
-        <dd>Não. O portal coleta e indexa apenas os metadados. O acesso ao texto completo é feito diretamente no repositório ou na revista de origem, pelo link presente em cada registro.</dd>
+        <dt><?= $this->transEsc('home_faq_full_text_question') ?></dt>
+        <dd><?= $this->transEsc('home_faq_full_text_answer') ?></dd>
       </div>
       <div>
-        <dt>Com que frequência os registros são atualizados?</dt>
-        <dd>A colheita dos provedores de dados ocorre em ciclos regulares. Novos documentos depositados costumam aparecer no portal em até 30 dias.</dd>
+        <dt><?= $this->transEsc('home_faq_update_question') ?></dt>
+        <dd><?= $this->transEsc('home_faq_update_answer') ?></dd>
       </div>
       <div>
-        <dt>Como corrigir um metadado incorreto?</dt>
-        <dd>A correção deve ser feita no repositório de origem. Após a atualização, o registro é sincronizado na coleta seguinte.</dd>
+        <dt><?= $this->transEsc('home_faq_correction_question') ?></dt>
+        <dd><?= $this->transEsc('home_faq_correction_answer') ?></dd>
       </div>
       <div>
-        <dt>É possível reutilizar os dados do portal?</dt>
-        <dd>Sim. Os metadados estão disponíveis para colheita via OAI-PMH e podem ser reutilizados em serviços de terceiros, respeitando a atribuição da fonte.</dd>
+        <dt><?= $this->transEsc('home_faq_reuse_question') ?></dt>
+        <dd><?= $this->transEsc('home_faq_reuse_answer') ?></dd>
       </div>
     </dl>
   </div>
