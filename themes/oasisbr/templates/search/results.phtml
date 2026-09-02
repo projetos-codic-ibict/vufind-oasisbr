@@ -60,11 +60,8 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
     <div class="search-stats">
       <?php if ($recordTotal > 0): ?>
         <?= $this->context()->renderInContext('search/controls/result.phtml', ['lookfor' => $lookfor, 'recordTotal' => $recordTotal]) ?>
-        <a class="search-filter-toggle visible-xs" href="#search-sidebar" data-bs-toggle="offcanvas" ">
-            <?= $this->transEsc('Refine Results') ?>
-          </a>
       <?php else: ?>
-          <h2><?= $this->transEsc('nohit_heading') ?></h2>
+        <h2><?= $this->transEsc('nohit_heading') ?></h2>
       <?php endif; ?>
     </div>
 
@@ -80,11 +77,11 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
             </button>
             <ul class="dropdown-menu">
               <li> <a class="dropdown-item"
-                  href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=ris' ?>" data-lightbox>
+                  href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&amp;type=ris' ?>" data-lightbox>
                   <i class="fa fa-file-text-o" aria-hidden="true"></i> <?= $this->transEsc('Export RIS') ?>
                 </a></li>
               <li><a class="dropdown-item"
-                  href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=csv' ?>" data-lightbox>
+                  href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&amp;type=csv' ?>" data-lightbox>
                   <i class="fa fa-file-excel-o" aria-hidden="true"></i> <?= $this->transEsc('Export CSV') ?>
                 </a></li>
             </ul>
@@ -94,11 +91,9 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
     <?php endif; ?>
     <?php if ($recordTotal > 0): ?>
       <?= $this->context()->renderInContext('search/controls/showing.phtml', ['lookfor' => $lookfor, 'recordTotal' => $recordTotal]) ?>
-      <a class="search-filter-toggle visible-xs" href="#search-sidebar" data-bs-toggle="offcanvas" ">
+      <a class="search-filter-toggle visible-xs" href="#search-sidebar" data-toggle="vufind-offcanvas">
             <?= $this->transEsc('Refine Results') ?>
           </a>
-      <?php else: ?>
-          <h2><?= $this->transEsc('nohit_heading') ?></h2>
       <?php endif; ?>
   </div>
   <?php /* End Listing Options */ ?>
@@ -135,8 +130,8 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
         <?= $this->paginationControl($this->results->getPaginator(), 'Sliding', 'Helpers/pagination.phtml', ['results' => $this->results, 'options' => $this->paginationOptions ?? []]) ?>
         <!-- <?= $this->context($this)->renderInContext('search/controls/results-tools.phtml', ['results' => $this->results]) ?> -->
         <?php /* New link for CSV export */ ?>
-        <!-- <a href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=csv' ?>" data-lightbox><i class="fa fa-external-link" aria-hidden="true"></i> <?= $this->transEsc('Export CSV') ?></a>
-    <a href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=ris' ?>" data-lightbox><i class="fa fa-external-link" aria-hidden="true"></i> <?= $this->transEsc('Export RIS') ?></a> -->
+        <!-- <a href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&amp;type=csv' ?>" data-lightbox><i class="fa fa-external-link" aria-hidden="true"></i> <?= $this->transEsc('Export CSV') ?></a>
+      <a href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&amp;type=ris' ?>" data-lightbox><i class="fa fa-external-link" aria-hidden="true"></i> <?= $this->transEsc('Export RIS') ?></a> -->
         <?php /* End new link */ ?>
       <?php endif; ?>
   </div>
