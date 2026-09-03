@@ -5,15 +5,15 @@
 
 <header class="page-title-bar oasis-page-title-bar">
   <div class="container">
-    <span class="oasis-page-kicker">Sobre</span>
+    <span class="oasis-page-kicker"><?= $this->transEsc("About") ?></span>
     <h1>Oasisbr</h1>
-    <p><?= $this->transEsc("Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto") ?></p>
+    <p><?= $this->transEsc("home_hero_kicker") ?></p>
   </div>
 </header>
 <div class="about oasis-inner-page">
   <section class="row" aria-labelledby="sobre-heading">
     <div class="col-md-12">
-      <h2 id="sobre-heading" class="visually-hidden">Sobre o Oasisbr</h2>
+      <h2 id="sobre-heading" class="visually-hidden"><?= $this->transEsc('header_about') ?></h2>
       <div class="card card-about">
         <p>
           <?= $this->transEsc('about p1'); ?>
@@ -155,7 +155,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Baixar modelo de ofício para bibliotecas digitais (arquivo Word .docx)">
-                  Baixar modelo de ofício (Word .docx)
+                  <?= $this->transEsc('oficio modelo download link'); ?>
                 </a>
               </li>
               <li>
@@ -215,7 +215,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Baixar modelo de ofício para teses e dissertações (arquivo Word .docx)">
-                  Baixar modelo de ofício (Word .docx)
+                  <?= $this->transEsc('oficio modelo download link'); ?>
                 </a>
               </li>
               <li>
@@ -276,7 +276,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Baixar modelo de ofício para eventos científicos (arquivo Word .docx)">
-                  Baixar modelo de ofício (Word .docx)
+                  <?= $this->transEsc('oficio modelo download link'); ?>
                 </a>
               </li>
               <li>
@@ -347,7 +347,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Baixar modelo de ofício para portais agregadores (arquivo Word .docx)">
-                  Baixar modelo de ofício (Word .docx)
+                  <?= $this->transEsc('oficio modelo download link'); ?>
                 </a>
               </li>
               <li>
@@ -408,7 +408,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Baixar modelo de ofício para portais de livros (arquivo Word .docx)">
-                  Baixar modelo de ofício (Word .docx)
+                  <?= $this->transEsc('oficio modelo download link'); ?>
                 </a>
               </li>
               <li>
@@ -468,7 +468,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Baixar modelo de ofício para repositórios de dados de pesquisa (arquivo Word .docx)">
-                  Baixar modelo de ofício (Word .docx)
+                  <?= $this->transEsc('oficio modelo download link'); ?>
                 </a>
               </li>
               <li>
@@ -527,7 +527,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Baixar modelo de ofício para repositórios de literatura (arquivo Word .docx)">
-                  Baixar modelo de ofício (Word .docx)
+                  <?= $this->transEsc('oficio modelo download link'); ?>
                 </a>
               </li>
               <li>
@@ -658,7 +658,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Baixar modelo de ofício para servidores de pré-impressão (arquivo Word .docx)">
-                  Baixar modelo de ofício (Word .docx)
+                  <?= $this->transEsc('oficio modelo download link'); ?>
                 </a>
               </li>
               <li>
@@ -683,50 +683,36 @@
         <h2 id="dark-heading">
           <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed" data-bs-target="#dark"
             aria-expanded="false" aria-controls="dark">
-            <?= $this->transEsc('dARK — Decentralized Archival Resource Key'); ?>
+            <?= $this->transEsc('dark heading'); ?>
           </button>
         </h2>
         <div class="collapse" id="dark">
-          <p>O dARK é uma iniciativa aberta e gratuita, coordenada pelo Ibict e LA Referencia em colaboração com
-            parceiros regionais, que estende o identificador ARK (Archival Resource Key) para um modelo
-            descentralizado de atribuição e resolução de PIDs, baseado em rede blockchain permissionada. Integrado ao
-            ecossistema do Oasisbr, o dARK busca ampliar a cobertura de identificadores persistentes no Brasil e no
-            Sul Global, reduzir custos operacionais, reforçar a governança compartilhada e assegurar persistência,
-            proveniência e interoperabilidade dos registros ao longo do tempo.
+          <p>
+            <?= $this->transEsc('dark intro p1'); ?>
             <a href="https://www.dark-pid.net/pt/home" target="_blank" rel="noopener noreferrer">
-              Saiba mais sobre o dARK no site oficial
+              <?= $this->transEsc('dark intro link'); ?>
             </a>
           </p>
-          <h3>Principais características</h3>
+          <h3><?= $this->transEsc('dark features title'); ?></h3>
           <ul>
-            <li>
-              Baixo custo e escalabilidade para atribuição de ARKs em larga escala, com ênfase em instituições de
-              países do Sul Global.
-            </li>
-            <li>
-              Interoperabilidade com resolutores ARK globais e convivência com outros PIDs (por exemplo, DOI),
-              preservando vínculos e referências.
-            </li>
-            <li>
-              Governança distribuída em consórcio institucional, aumentando resiliência e tolerância a falhas.
-            </li>
-            <li>
-              Transparência e proveniência dos metadados, favorecendo auditoria, reprodutibilidade e preservação de
-              longo prazo.
-            </li>
+            <li><?= $this->transEsc('dark feature 1'); ?></li>
+            <li><?= $this->transEsc('dark feature 2'); ?></li>
+            <li><?= $this->transEsc('dark feature 3'); ?></li>
+            <li><?= $this->transEsc('dark feature 4'); ?></li>
           </ul>
-          <h3>Finalidade no Oasisbr</h3>
+          <h3><?= $this->transEsc('dark purpose title'); ?></h3>
           <ul>
-            <li> Ao integrar-se ao Oasisbr, o dARK potencializa a visibilidade, a confiabilidade e a longevidade dos
-              objetos digitais agregados, alinhando-se às práticas de Ciência Aberta e fortalecendo a infraestrutura
-              nacional de comunicação científica.
+            <li>
+              <?= $this->transEsc('dark purpose li1'); ?>
             </li>
             <li>
-              Se sua fonte já faz parte do Oasisbr, baixe o <a
-                href="https://docs.google.com/document/d/1ktJ5g3ZUboYdTFC9uZYeIyc-STtTKtoNrKq_-Porc9s/edit?usp=sharing"
+              <?= $this->transEsc('dark purpose li2 part1'); ?>
+              <a href="https://docs.google.com/document/d/1ktJ5g3ZUboYdTFC9uZYeIyc-STtTKtoNrKq_-Porc9s/edit?usp=sharing"
                 target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                ofício de adesão do dARK </a> e encaminhe para o e-mail <a href="mailto:oasisbr@ibict.br"
-                target="_blank">oasisbr@ibict.br</a>
+                <?= $this->transEsc('dark purpose li2 link'); ?>
+              </a>
+              <?= $this->transEsc('dark purpose li2 part2'); ?>
+              <a href="mailto:oasisbr@ibict.br" target="_blank">oasisbr@ibict.br</a>
             </li>
           </ul>
         </div>
@@ -740,54 +726,45 @@
         <h2 id="certificacao-lattes-oasisbr">
           <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed"
             data-bs-target="#certificacao-lattes" aria-expanded="false" aria-controls="certificacao-lattes">
-            <?= $this->transEsc('Certificação Lattes-Oasisbr'); ?>
+            <?= $this->transEsc('lattes heading'); ?>
           </button>
         </h2>
         <div class="collapse" id="certificacao-lattes">
 
-          <h3> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed"
+          <h3>
+            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed"
               data-bs-target="#certificacao" aria-expanded="false" aria-controls="certificacao">
-              <?= $this->transEsc('O que é a certificação?'); ?></button>
+              <?= $this->transEsc('lattes what heading'); ?>
+            </button>
           </h3>
           <div class="collapse" id="certificacao">
-            <p>Os usuários do Currículo Lattes, do CNPq, contam com a possibilidade de terem suas teses e dissertações
-              certificadas pelo Oasisbr - Portal Brasileiro de Publicações e Dados Científicos em Acesso Aberto. Mais
-              de um milhão de teses e dissertações brasileiras do Currículo Lattes já contam automaticamente com o
-              selo Oasisbr.
-            </p>
-            <p>O selo de certificação é exibido nas informações do currículo do usuário, nas seções de informações
-              acadêmicas/titulação e orientações concluídas. Com o selo, é possível comprovar, de maneira rápida e
-              simples, a autoria/orientação concluída da tese ou dissertação e acessar o documento em acesso aberto no
-              Oasisbr. O certificado poderá ser emitido de forma automática pelo Currículo Lattes ou cadastrado
-              manualmente pelo usuário.</p>
-            <p>Com a nova funcionalidade, o CV Lattes poderá verificar se a tese ou dissertação inserida no currículo
-              do pesquisador está disponível em alguma base ou repositório acadêmico. Este será o primeiro passo para
-              outras certificações à caminho.
-            </p>
+            <p><?= $this->transEsc('lattes what p1'); ?></p>
+            <p><?= $this->transEsc('lattes what p2'); ?></p>
+            <p><?= $this->transEsc('lattes what p3'); ?></p>
           </div>
-          <h3> <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed"
+
+          <h3>
+            <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed"
               data-bs-target="#passo-a-passo" aria-expanded="false" aria-controls="passo-a-passo">
-              <?= $this->transEsc('Como inserir o selo do Oasisbr no Currículo Lattes?'); ?></button>
+              <?= $this->transEsc('lattes howto heading'); ?>
+            </button>
           </h3>
           <div class="collapse" id="passo-a-passo">
-            <p>A tese ou dissertação cadastrada na plataforma Lattes poderá ser certificada apenas se o documento
-              estiver inserido no portal Oasisbr, então, primeiramente o usuário deverá se certificar entrando no site
-              do portal. Em um primeiro momento a certificação Lattes pelo Oasisbr pode ser realizada para Teses e
-              Dissertações defendidas e orientadas por programas de pós-graduação brasileiros, a certificação de
-              outros documentos acontecerá de forma gradual.
+            <p><?= $this->transEsc('lattes howto p1'); ?></p>
+            <p>
+              <strong><?= $this->transEsc('lattes howto important label'); ?></strong>
+              <?= $this->transEsc('lattes howto important text'); ?>
             </p>
-            <p><strong>IMPORTANTE!</strong> A importação será realizada apenas se os dados do título e ano de
-              publicação estiverem condizentes, tanto no Oasisbr quanto no seu currículo Lattes.
+            <p>
+              <?= $this->transEsc('lattes howto p3 part1'); ?>
+              oasisbr@ibict.br.
             </p>
-            <p>Se o documento não estiver cadastrado no Portal Oasis, pedimos que notifique a instituição depositante,
-              solicitando o cadastramento do repositório junto ao nosso portal através do e-mail oasisbr@ibict.br.
-            </p>
-            <p>Ao acessar o seu espaço de edição do Currículo Lattes e inserir os dados de uma tese ou dissertação, o pesquisador ou acadêmico pode importar informações do Oasisbr pelo seu ID Lattes ou número do ORCID e verificar quais são os documentos cadastrados no Oasisbr. Os dados importados já vem com o selo para serem exibidos automaticamente no perfil público. Ao clicar no selo, o usuário poderá acessar o documento no Oasisbr.</p>
+            <p><?= $this->transEsc('lattes howto p4'); ?></p>
             <a href="<?= $this->basePath('/passo-a-passo-para-certificacao-lattes-oasisbr.pdf') ?>"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Baixar passo a passo para certificação do Lattes-Oasisbr (arquivo PDF)">
-              Baixar passo a passo para certificação (PDF)
+              aria-label="<?= $this->transEsc('lattes howto download aria label'); ?>">
+              <?= $this->transEsc('lattes howto download link'); ?>
             </a>
           </div>
         </div>
