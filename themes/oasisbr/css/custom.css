@@ -3539,3 +3539,9 @@ a.link-simple {
 .btn-export-csv {
   padding: 2px 8px;
 }
+
+.adv-term-remove, .adv-group-close {
+  border: 1px solid transparent;
+  background: transparent;
+}
+
