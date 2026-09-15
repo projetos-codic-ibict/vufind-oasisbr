@@ -107,34 +107,37 @@ $helpTopics = $this->helpTopics ?? [
               <?php endif; ?>
               <div id="group<?= $group ?>" class="adv-group">
                 <div class="adv-group-terms">
-                  <label class="adv-group-label d-block" for="search_lookfor<?= $group ?>_0"><?= $this->transEsc('adv_search_label') ?>:</label>
-                  <?php for ($search = 0; $search < 3 || (isset($setQueries[$group]) && $search < count($setQueries[$group])); $search++): ?>
-                    <?php if ($group == 0 && $search == 0): ?>
-                      <div id="new_search_template">
-                      <?php endif; ?>
-                      <div id="search<?= $group . '_' . $search ?>" class="adv-search">
-                        <input name="lookfor<?= $group ?>[]" id="search_lookfor<?= $group . '_' . $search ?>" class="adv-term-input form-control" type="text" <?php if (isset($setQueries[$group][$search])): ?> value="<?= $this->escapeHtmlAttr($setQueries[$group][$search]->getString()) ?>" <?php endif; ?> aria-label="<?= $this->transEscAttr('search_terms') ?>">
-                        <select class="adv-term-type form-select" name="type<?= $group ?>[]" aria-label="<?= $this->transEscAttr('Search type') ?>">
-                          <?php foreach ($this->options->getAdvancedHandlers() as $searchVal => $searchDesc): ?>
-                            <option value="<?= $this->escapeHtmlAttr($searchVal) ?>" <?php if (isset($setQueries[$group][$search]) && $searchVal == $setQueries[$group][$search]->getHandler()): ?> selected<?php endif; ?>><?= $this->transEsc($searchDesc) ?></option>
-                          <?php endforeach; ?>
-                        </select>
-                        <button type="button" class="adv-term-remove hidden">
-                          <?= $this->icon('ui-remove') ?>
-                          <span class="visually-hidden"><?= $this->transEsc('remove') ?></span>
-                        </button>
-                      </div>
+                  <fieldset class="adv-group-fields w-100 float-none border-0 p-0 m-0">
+                    <legend class="visually-hidden"><?= $this->transEsc('search_terms') ?></legend>
+                    <label class="adv-group-label d-block" for="search_lookfor<?= $group ?>_0"><?= $this->transEsc('adv_search_label') ?>:</label>
+                    <?php for ($search = 0; $search < 3 || (isset($setQueries[$group]) && $search < count($setQueries[$group])); $search++): ?>
                       <?php if ($group == 0 && $search == 0): ?>
-                      </div>
-                      <div class="float-start w-100">
-                        <span class="search_place_holder hidden"></span>
-                        <button type="button" class="btn btn-success add_search_link icon-link hidden">
-                          <?= $this->icon('ui-add') ?>
-                          <span class="icon-link__label"><?= $this->transEsc('add_search') ?></span>
-                        </button>
-                      </div>
-                    <?php endif; ?>
-                  <?php endfor; ?>
+                        <div id="new_search_template">
+                        <?php endif; ?>
+                        <div id="search<?= $group . '_' . $search ?>" class="adv-search">
+                          <input name="lookfor<?= $group ?>[]" id="search_lookfor<?= $group . '_' . $search ?>" class="adv-term-input form-control" type="text" <?php if (isset($setQueries[$group][$search])): ?> value="<?= $this->escapeHtmlAttr($setQueries[$group][$search]->getString()) ?>" <?php endif; ?> aria-label="<?= $this->transEscAttr('search_terms') ?>">
+                          <select class="adv-term-type form-select" name="type<?= $group ?>[]" aria-label="<?= $this->transEscAttr('Search type') ?>">
+                            <?php foreach ($this->options->getAdvancedHandlers() as $searchVal => $searchDesc): ?>
+                              <option value="<?= $this->escapeHtmlAttr($searchVal) ?>" <?php if (isset($setQueries[$group][$search]) && $searchVal == $setQueries[$group][$search]->getHandler()): ?> selected<?php endif; ?>><?= $this->transEsc($searchDesc) ?></option>
+                            <?php endforeach; ?>
+                          </select>
+                          <button type="button" class="adv-term-remove hidden">
+                            <?= $this->icon('ui-remove') ?>
+                            <span class="visually-hidden"><?= $this->transEsc('remove') ?></span>
+                          </button>
+                        </div>
+                        <?php if ($group == 0 && $search == 0): ?>
+                        </div>
+                        <div class="float-start w-100">
+                          <span class="search_place_holder hidden"></span>
+                          <button type="button" class="btn btn-success add_search_link icon-link hidden">
+                            <?= $this->icon('ui-add') ?>
+                            <span class="icon-link__label"><?= $this->transEsc('add_search') ?></span>
+                          </button>
+                        </div>
+                      <?php endif; ?>
+                    <?php endfor; ?>
+                  </fieldset>
                 </div>
                 <div class="adv-group-match">
                   <label class="search_bool" for="search_bool<?= $group ?>"><?= $this->transEsc('search_match') ?>:&nbsp;</label>
@@ -194,8 +197,8 @@ $helpTopics = $this->helpTopics ?? [
         <?php endif; ?>
 
         <?php foreach ($searchFilters as $field => $data): ?>
-          <section class="facet-group">
-            <h3 class="title"><?= $this->transEsc($field) ?></h3>
+          <fieldset class="facet-group w-100 float-none border-0 p-0 m-0">
+            <legend class="title h3"><?= $this->transEsc($field) ?></legend>
             <?php foreach ($data as $i => $value): ?>
               <?php $operator = $value['operator'] ?? 'AND'; ?>
               <label class="facet checkbox">
@@ -208,7 +211,7 @@ $helpTopics = $this->helpTopics ?? [
                 <?= $this->escapeHtml($value['displayText']) ?>
               </label>
             <?php endforeach; ?>
-          </section>
+          </fieldset>
         <?php endforeach; ?>
       <?php endif; ?>
       <?php if ($helpTopics): ?>
