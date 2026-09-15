@@ -71,8 +71,7 @@ $helpTopics = $this->helpTopics ?? [
 ?>
 
 <?= $this->flashmessages() ?>
-<div role="search">
-  <form name="searchForm" id="advSearchForm" method="get" action="<?= $this->url($this->options->getSearchAction()) ?>">
+<form name="searchForm" id="advSearchForm" role="search" method="get" action="<?= $this->url($this->options->getSearchAction()) ?>">
     <?php foreach ($hiddenFilters as $key => $filter): ?>
       <?php foreach ($filter as $value): ?>
         <input type="hidden" name="hiddenFilters[]" value="<?= $this->escapeHtmlAttr($key) . ':' . $this->escapeHtmlAttr($value) ?>">
@@ -129,7 +128,7 @@ $helpTopics = $this->helpTopics ?? [
                       </div>
                       <div class="float-left">
                         <span class="search_place_holder hidden"></span>
-                        <button type="button" class="add_search_link icon-link hidden">
+                        <button type="button" class="btn btn-success add_search_link icon-link hidden">
                           <?= $this->icon('ui-add') ?>
                           <span class="icon-link__label"><?= $this->transEsc('add_search') ?></span>
                         </button>
@@ -171,7 +170,7 @@ $helpTopics = $this->helpTopics ?? [
       <?php endif; ?>
     </div>
 
-    <div class="<?= $this->layoutClass('sidebar') ?>">
+    <aside class="<?= $this->layoutClass('sidebar') ?>">
       <?php if ($hasDefaultsApplied): ?>
         <input type="hidden" name="dfApplied" value="1">
       <?php endif ?>
@@ -195,8 +194,8 @@ $helpTopics = $this->helpTopics ?? [
         <?php endif; ?>
 
         <?php foreach ($searchFilters as $field => $data): ?>
-          <div class="facet-group">
-            <div class="title"><?= $this->transEsc($field) ?></div>
+          <section class="facet-group">
+            <h3 class="title"><?= $this->transEsc($field) ?></h3>
             <?php foreach ($data as $i => $value): ?>
               <?php $operator = $value['operator'] ?? 'AND'; ?>
               <label class="facet checkbox">
@@ -209,7 +208,7 @@ $helpTopics = $this->helpTopics ?? [
                 <?= $this->escapeHtml($value['displayText']) ?>
               </label>
             <?php endforeach; ?>
-          </div>
+          </section>
         <?php endforeach; ?>
       <?php endif; ?>
       <?php if ($helpTopics): ?>
@@ -224,9 +223,8 @@ $helpTopics = $this->helpTopics ?? [
           <?php endforeach; ?>
         </ul>
       <?php endif; ?>
-    </div>
+    </aside>
   </form>
-</div>
 <?php
 $script = <<<JS
     $('#groupPlaceHolder').click(function(e) {
