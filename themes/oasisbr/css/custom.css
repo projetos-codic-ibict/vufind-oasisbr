@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap");
 
+html {
+  scroll-padding-top: 120px;
+}
+
 html,
 body {
   background-color: #fafafa;
@@ -245,11 +249,15 @@ header.d-print-none {
 .nav > li > a:focus,
 .nav > li > button.dropdown-toggle:hover,
 .nav > li > button.dropdown-toggle:focus {
-  outline: none;
   text-decoration: none;
   background-color: transparent;
   border-bottom: 2px solid #223360;
   color: #33426a;
+}
+.nav > li > a:focus-visible,
+.nav > li > button.dropdown-toggle:focus-visible {
+  outline: 3px solid #0B1F3F;
+  outline-offset: 2px;
 }
 
 button.dropdown-toggle {
@@ -795,7 +803,6 @@ li.language a {
   --oasis-home-blue: #071d41;
   --oasis-home-border: #dfe7e3;
   --oasis-home-highlight: #f8c300;
-  --oasis-home-ring: rgba(47, 111, 98, 0.28);
   --oasis-home-shadow: 0 8px 24px rgba(7, 29, 65, 0.08);
   background: var(--oasis-home-background);
   color: var(--oasis-home-foreground);
@@ -1263,7 +1270,7 @@ li.language a {
 .template-dir-search.template-name-home button:focus-visible,
 .template-dir-search.template-name-home input:focus-visible,
 .template-dir-search.template-name-home select:focus-visible {
-  outline: 3px solid var(--oasis-home-ring);
+  outline: 3px solid #0B1F3F;
   outline-offset: 2px;
 }
 
@@ -3544,4 +3551,3 @@ a.link-simple {
   border: 1px solid transparent;
   background: transparent;
 }
-
