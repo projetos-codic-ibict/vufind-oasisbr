@@ -1320,9 +1320,6 @@ li.language a {
 }
 
 .oasis-site header.d-print-none {
-  position: sticky;
-  top: 0;
-  z-index: 1050;
   background: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid var(--oasis-home-border);
   backdrop-filter: blur(12px);
