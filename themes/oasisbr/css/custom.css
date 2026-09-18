@@ -3551,3 +3551,8 @@ a.link-simple {
   border: 1px solid transparent;
   background: transparent;
 }
+
+/* Keep keyboard-selected autocomplete suggestions legible on the active blue background. */
+.autocomplete-results .ac-item.is-selected {
+  color: #FFFFFF;
+}
