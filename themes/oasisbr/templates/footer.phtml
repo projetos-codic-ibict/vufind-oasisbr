@@ -1,8 +1,9 @@
+<?php $newTab = $this->transEsc('opens_new_tab'); ?>
 <footer class="oasis-home-footer d-print-none">
   <div class="oasis-home-footer-partners">
     <div class="oasis-home-container">
-      <p><?= $this->transEsc('footer_partners_title') ?></p>
-      <ul>
+      <p id="footer-parceiros-titulo"><?= $this->transEsc('footer_partners_title') ?></p>
+      <ul aria-labelledby="footer-parceiros-titulo">
         <li>IBICT</li>
         <li>MCTI</li>
         <li>RCAAP</li>
@@ -20,34 +21,33 @@
         <p><?= $this->transEsc('footer_brand_description') ?></p>
       </div>
 
-      <nav aria-label="<?= $this->transEscAttr('footer_portal') ?>">
-        <h2><?= $this->transEsc('footer_portal') ?></h2>
+      <nav aria-labelledby="footer-portal-titulo">
+        <h2 id="footer-portal-titulo"><?= $this->transEsc('footer_portal') ?></h2>
         <ul>
           <li><a href="<?= $this->url('search-advanced') ?>"><?= $this->transEsc('Advanced Search') ?></a></li>
           <li><a href="<?= $this->url('search-results') ?>"><?= $this->transEsc('Collections') ?></a></li>
           <li><a href="<?= $this->url('datasources-home') ?>"><?= $this->transEsc('Data Sources') ?></a></li>
           <li><a href="<?= $this->url('indicators-home') ?>"><?= $this->transEsc('Indicators') ?></a></li>
-          
         </ul>
       </nav>
 
-      <nav aria-label="<?= $this->transEscAttr('footer_institutional') ?>">
-        <h2><?= $this->transEsc('footer_institutional') ?></h2>
+      <nav aria-labelledby="footer-institucional-titulo">
+        <h2 id="footer-institucional-titulo"><?= $this->transEsc('footer_institutional') ?></h2>
         <ul>
           <li><a href="<?= $this->url('home') ?>#sobre"><?= $this->transEsc('header_about') ?></a></li>
-          <li><a href="<?= $this->url('faq-home') ?>"><?= $this->transEsc('footer_privacy') ?></a></li>
-          <li><a href="<?= $this->url('faq-home') ?>"><?= $this->transEsc('footer_terms') ?></a></li>
-          <li><a href="<?= $this->url('faq-home') ?>"><?= $this->transEsc('footer_accessibility') ?></a></li>
+          <li><a href="https://www.gov.br/mdh/pt-br/acesso-a-informacao/politica-de-privacidade" target="_blank" rel="noopener noreferrer"><?= $this->transEsc('footer_privacy') ?> <span class="sr-only"><?= $newTab ?></span></a></li>
+          <li><a href="https://www.gov.br/pt-br/termos-de-uso" target="_blank" rel="noopener noreferrer"><?= $this->transEsc('footer_terms') ?> <span class="sr-only"><?= $newTab ?></span></a></li>
+          <li><a href="https://www.gov.br/governodigital/pt-br/acessibilidade-e-usuario/acessibilidade-digital" target="_blank" rel="noopener noreferrer"><?= $this->transEsc('footer_accessibility') ?> <span class="sr-only"><?= $newTab ?></span></a></li>
         </ul>
       </nav>
 
       <nav aria-label="<?= $this->transEscAttr('footer_services') ?> IBICT">
         <h2><?= $this->transEsc('footer_services') ?> IBICT</h2>
         <ul>
-          <li><a href="https://bdtd.ibict.br/" target="_blank" rel="noopener noreferrer">BDTD</a></li>
-          <li><a href="https://diadorim.ibict.br/" target="_blank" rel="noopener noreferrer">Diadorim</a></li>
-          <li><a href="https://revistas.ibict.br/" target="_blank" rel="noopener noreferrer">Portal de Periódicos</a></li>
-          <li><a href="https://cariniana.ibict.br/" target="_blank" rel="noopener noreferrer">Rede Cariniana</a></li>
+          <li><a href="https://bdtd.ibict.br/" target="_blank" rel="noopener noreferrer">BDTD <span class="sr-only"><?= $newTab ?></span></a></li>
+          <li><a href="https://diadorim.ibict.br/" target="_blank" rel="noopener noreferrer">Diadorim <span class="sr-only"><?= $newTab ?></span></a></li>
+          <li><a href="https://revistas.ibict.br/" target="_blank" rel="noopener noreferrer">Portal de Periódicos <span class="sr-only"><?= $newTab ?></span></a></li>
+          <li><a href="https://cariniana.ibict.br/" target="_blank" rel="noopener noreferrer">Rede Cariniana <span class="sr-only"><?= $newTab ?></span></a></li>
         </ul>
       </nav>
     </div>
@@ -55,7 +55,7 @@
 
   <div class="oasis-home-footer-bottom">
     <div class="oasis-home-container">
-      <p>IBICT - Setor de Autarquias Sul, Quadra 5, Lote 6, Bloco H, Brasília/DF</p>
+      <address>IBICT - Setor de Autarquias Sul, Quadra 5, Lote 6, Bloco H, Brasília/DF</address>
       <p><?= $this->transEsc('footer_powered_by') ?> VuFind - <?= $this->transEsc('footer_open_access_content') ?></p>
     </div>
   </div>

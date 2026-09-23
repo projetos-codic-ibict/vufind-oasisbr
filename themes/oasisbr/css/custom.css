@@ -2174,7 +2174,7 @@ li.language a {
   padding-bottom: 1.5rem;
 }
 
-.oasis-home-footer-bottom p {
+.oasis-home-footer-bottom p, address {
   margin: 0;
   color: var(--oasis-home-muted);
   font-size: 0.75rem;
@@ -3552,4 +3552,14 @@ a.link-simple {
 /* Keep keyboard-selected autocomplete suggestions legible on the active blue background. */
 .autocomplete-results .ac-item.is-selected {
   color: #FFFFFF;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
