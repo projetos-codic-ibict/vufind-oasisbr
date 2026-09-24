@@ -4,19 +4,19 @@
   <div class="oasis-home-container">
     <h2 id="numeros" class="visually-hidden"><?= $this->transEsc('home_stats_title') ?></h2>
     <dl class="oasis-home-stats-grid">
-      <div class="oasis-home-stat" aria-live="polite" aria-atomic="true">
+      <div class="oasis-home-stat">
         <dt><?= $this->transEsc('home_stats_records') ?></dt>
-        <dd id="total-docs-home">...</dd>
+        <dd id="total-docs-home" data-unavailable-label="<?= $this->transEscAttr('Failed to load') ?>"></dd>
         <p><?= $this->transEsc('home_stats_records_description') ?></p>
       </div>
-      <div class="oasis-home-stat" aria-live="polite" aria-atomic="true">
+      <div class="oasis-home-stat">
         <dt><?= $this->transEsc('home_stats_sources') ?></dt>
-        <dd id="sources-home">...</dd>
+        <dd id="sources-home" data-unavailable-label="<?= $this->transEscAttr('Failed to load') ?>"></dd>
         <p><?= $this->transEsc('home_stats_sources_description') ?></p>
       </div>
-      <div class="oasis-home-stat" aria-live="polite" aria-atomic="true">
+      <div class="oasis-home-stat">
         <dt><?= $this->transEsc('home_stats_institutions') ?></dt>
-        <dd id="institutions-home">...</dd>
+        <dd id="institutions-home" data-unavailable-label="<?= $this->transEscAttr('Failed to load') ?>"></dd>
         <p><?= $this->transEsc('home_stats_institutions_description') ?></p>
       </div>
       <div class="oasis-home-stat">
@@ -46,7 +46,7 @@
         <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?type=AllFields&amp;filter%5B%5D=format%3A%22article%22">
           <span class="oasis-home-card-icon"><i class="fa-regular fa-file-lines" aria-hidden="true"></i></span>
           <h3 class="oasis-home-card-title"><?= $this->transEsc('home_collection_articles') ?></h3>
-          <span class="oasis-home-card-count"><span id="articles" aria-live="polite"></span> <?= $this->transEsc('home_records') ?></span>
+          <span class="oasis-home-card-count" hidden><span id="articles"></span> <?= $this->transEsc('home_records') ?></span>
           <span class="oasis-home-card-text"><?= $this->transEsc('home_collection_articles_description') ?></span>
         </a>
       </li>
@@ -54,7 +54,7 @@
         <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?join=AND&amp;filter%5B%5D=%7Eformat%3A%22masterThesis%22&amp;filter%5B%5D=%7Eformat%3A%22doctoralThesis%22">
           <span class="oasis-home-card-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
           <h3 class="oasis-home-card-title"><?= $this->transEsc('home_collection_theses') ?></h3>
-          <span class="oasis-home-card-count"><span id="teses" aria-live="polite"></span> <?= $this->transEsc('home_records') ?></span>
+          <span class="oasis-home-card-count" hidden><span id="teses"></span> <?= $this->transEsc('home_records') ?></span>
           <span class="oasis-home-card-text"><?= $this->transEsc('home_collection_theses_description') ?></span>
         </a>
       </li>
@@ -62,7 +62,7 @@
         <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?type=AllFields&amp;filter%5B%5D=format%3A%22dataset%22">
           <span class="oasis-home-card-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></span>
           <h3 class="oasis-home-card-title"><?= $this->transEsc('home_collection_datasets') ?></h3>
-          <span class="oasis-home-card-count"><span id="datasets" aria-live="polite"></span> <?= $this->transEsc('home_records') ?></span>
+          <span class="oasis-home-card-count" hidden><span id="datasets"></span> <?= $this->transEsc('home_records') ?></span>
           <span class="oasis-home-card-text"><?= $this->transEsc('home_collection_datasets_description') ?></span>
         </a>
       </li>
@@ -70,7 +70,7 @@
         <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?join=AND&amp;filter%5B%5D=%7Eformat%3A%22book%22&amp;filter%5B%5D=%7Eformat%3A%22bookPart%22">
           <span class="oasis-home-card-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
           <h3 class="oasis-home-card-title"><?= $this->transEsc('home_collection_books') ?></h3>
-          <span class="oasis-home-card-count"><span id="books" aria-live="polite"></span> <?= $this->transEsc('home_records') ?></span>
+          <span class="oasis-home-card-count" hidden><span id="books"></span> <?= $this->transEsc('home_records') ?></span>
           <span class="oasis-home-card-text"><?= $this->transEsc('home_collection_books_description') ?></span>
         </a>
       </li>
@@ -78,7 +78,7 @@
         <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?type=AllFields&amp;filter%5B%5D=format%3A%22conferenceObject%22">
           <span class="oasis-home-card-icon"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i></span>
           <h3 class="oasis-home-card-title"><?= $this->transEsc('home_collection_events') ?></h3>
-          <span class="oasis-home-card-count"><span id="events" aria-live="polite"></span> <?= $this->transEsc('home_records') ?></span>
+          <span class="oasis-home-card-count" hidden><span id="events"></span> <?= $this->transEsc('home_records') ?></span>
           <span class="oasis-home-card-text"><?= $this->transEsc('home_collection_events_description') ?></span>
         </a>
       </li>
@@ -86,7 +86,7 @@
         <a class="oasis-home-collection-card" href="<?= $this->url('search-results') ?>?type=AllFields&amp;filter%5B%5D=format%3A%22report%22">
           <span class="oasis-home-card-icon"><i class="fa-regular fa-newspaper" aria-hidden="true"></i></span>
           <h3 class="oasis-home-card-title"><?= $this->transEsc('home_collection_reports') ?></h3>
-          <span class="oasis-home-card-count"><span id="reports" aria-live="polite"></span> <?= $this->transEsc('home_records') ?></span>
+          <span class="oasis-home-card-count" hidden><span id="reports"></span> <?= $this->transEsc('home_records') ?></span>
           <span class="oasis-home-card-text"><?= $this->transEsc('home_collection_reports_description') ?></span>
         </a>
       </li>
