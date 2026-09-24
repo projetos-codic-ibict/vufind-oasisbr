@@ -167,20 +167,8 @@ JS;
     $this->assetManager()->appendScriptLink('covers.js');
   }
   ?>
+  <?= $this->cookieConsent()->render() ?>
   <?= $this->assetManager()->outputHeaderAssets() ?>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8YFC4NWSB"></script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'G-V8YFC4NWSB');
-  </script>
   <meta name="google-site-verification" content="O4MlrfmxB744id4GdcKmv79sPQNLIjWzEB_VV9o1byw" />
 </head>
 
@@ -229,7 +217,7 @@ JS;
         <div class="modal-header">
           <!-- <h2 id="modal-title" class="modal-title"><?= $this->transEscAttr('Cite') ?></h2> -->
           <button type="button" class="btn btn-default" data-bs-dismiss="modal" aria-label="<?= $this->transEscAttr('Close') ?>">
-             <i class="fas fa-times" aria-hidden="true"></i>
+            <i class="fas fa-times" aria-hidden="true"></i>
           </button>
         </div>
         <div class="modal-body" aria-live="polite"><?= $this->transEsc('Loading') ?>...</div>

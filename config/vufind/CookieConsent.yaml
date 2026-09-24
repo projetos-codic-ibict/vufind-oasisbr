@@ -137,3 +137,24 @@ CookieConsent:
           Expiration: session
       AutoClearCookies:
         - Name: '/^_pk_/'
+
+    googleanalytics:
+      Title: Google Analytics
+      Description: Cookies used by Google Analytics to measure website usage.
+      DefaultEnabled: false
+      Essential: false
+      Cookies:
+        - Name: _ga
+          Domain: '{{current_host_name}}'
+          Description: Google Analytics cookie used to distinguish users.
+          Expiration: 2
+          ExpirationUnit: years
+          ThirdParty: true
+        - Name: _ga_*
+          Domain: '{{current_host_name}}'
+          Description: Google Analytics cookie used to maintain session information.
+          Expiration: 2
+          ExpirationUnit: years
+          ThirdParty: true
+      AutoClearCookies:
+        - Name: '/^_ga/'

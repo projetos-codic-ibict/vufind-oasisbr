@@ -1,0 +1,27 @@
+<?php
+$googleAnalyticsCode = $this->googleanalytics();
+if ($googleAnalyticsCode) {
+    $googleAnalyticsCode = preg_replace(
+        '/<script\b/i',
+        '<script type="text/plain" data-category="googleanalytics"',
+        $googleAnalyticsCode,
+        1
+    );
+}
+
+$piwikCode = $this->piwik();
+if ($piwikCode) {
+    $piwikCode = preg_replace(
+        '/<script\b/i',
+        '<script type="text/plain" data-category="matomo"',
+        $piwikCode,
+        1
+    );
+}
+?>
+
+<?=$this->googleTagManager()->getBodyCode()?>
+
+<?=$googleAnalyticsCode?>
+
+<?=$piwikCode?>
