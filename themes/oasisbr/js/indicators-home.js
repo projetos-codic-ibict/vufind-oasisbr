@@ -47,8 +47,17 @@ function setHomeIndicator(selector, value) {
   if (element) {
     element.textContent = value
     element.dataset.homeIndicatorLoaded = 'true'
-    element.closest('.oasis-home-card-count')?.removeAttribute('hidden')
+
+    const count = element.closest('.oasis-home-card-count')
+    count?.querySelector('.oasis-home-card-loading')?.setAttribute('hidden', '')
+    count?.querySelector('.oasis-home-card-loaded')?.removeAttribute('hidden')
   }
+}
+
+function hideTypeCardsLoading() {
+  document.querySelectorAll('.oasis-home-card-loading').forEach((el) => {
+    el.setAttribute('hidden', '')
+  })
 }
 
 function setHomeIndicatorUnavailable(selector) {
@@ -100,6 +109,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const formatFacets = sanitizeFormatFacets(homeIndicators.facets?.format)
   if (formatFacets.length > 0) {
     fillTypeCards(formatFacets)
+  } else {
+    hideTypeCardsLoading()
   }
 
   fillHomeNetworkStats()

@@ -1696,7 +1696,7 @@ li.language a {
   line-height: 1;
 }
 
-.oasis-home-stat p {
+dd.oasis-home-stat-description {
   margin: 0;
   color: var(--oasis-home-muted);
   font-size: 0.875rem;
