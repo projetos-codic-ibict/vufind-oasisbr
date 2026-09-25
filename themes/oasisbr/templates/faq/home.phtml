@@ -2,6 +2,7 @@
 <?php $this->layout()->searchbox = false; ?>
 <?php $this->layout()->nocontainerclass = true; ?>
 <?php $this->breadcrumbs()->set($this->translate('FAQs'), null, true); ?>
+<?php $this->assetManager()->appendScriptLink('faq.js'); ?>
 
 <header class="page-title-bar oasis-page-title-bar">
   <div class="container">
@@ -216,6 +217,96 @@
             <?= $this->transEsc('faq12 p1c'); ?>
           </p>
         </div>
+
+        <h2>
+          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed"
+            data-bs-target="#13" aria-expanded="false" aria-controls="13">
+            <?= $this->transEsc('faq13 heading'); ?>
+          </button>
+        </h2>
+        <div class="collapse" id="13">
+          <p><?= $this->transEsc('faq13 p1'); ?></p>
+
+          <p><?= $this->transEsc('faq13 p2'); ?></p>
+
+          <p><?= $this->transEsc('faq13 p3'); ?></p>
+
+          <p><?= $this->transEsc('faq13 p4'); ?></p>
+
+          <p><?= $this->transEsc('faq13 p5'); ?></p>
+
+          <p><?= $this->transEsc('faq13 p6'); ?></p>
+
+          <p><?= $this->transEsc('faq13 p7'); ?></p>
+
+          <p>
+            <?= $this->transEsc('faq13 p8'); ?>
+            <a href="https://www.gov.br/pt-br/termos-de-uso"
+              target="_blank" rel="noopener noreferrer" class="faq-link">
+              <?= $this->transEsc('faq13 govbr terms link'); ?>
+              <span class="visually-hidden">
+                <?= $this->transEsc('opens new tab'); ?>
+              </span>
+            </a>.
+          </p>
+        </div>
+
+        <h2>
+          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed"
+            data-bs-target="#14" aria-expanded="false" aria-controls="14">
+            <?= $this->transEsc('faq14 heading'); ?>
+          </button>
+        </h2>
+        <div class="collapse" id="14">
+          <p><?= $this->transEsc('faq14 p1'); ?></p>
+
+          <p><?= $this->transEsc('faq14 p2'); ?></p>
+
+          <p><?= $this->transEsc('faq14 p3'); ?></p>
+
+          <p><?= $this->transEsc('faq14 p4'); ?></p>
+
+          <p><?= $this->transEsc('faq14 p5'); ?></p>
+
+          <p><?= $this->transEsc('faq14 p6'); ?></p>
+
+          <p><?= $this->transEsc('faq14 p7'); ?></p>
+
+          <p>
+            <strong><?= $this->transEsc('faq learn more'); ?></strong>
+            <?= $this->transEsc('faq14 learn more text'); ?>
+            <a href="https://www.gov.br/mdh/pt-br/acesso-a-informacao/politica-de-privacidade"
+              target="_blank" rel="noopener noreferrer" class="faq-link">
+              <?= $this->transEsc('faq14 privacy policy link'); ?>
+              <span class="visually-hidden">
+                <?= $this->transEsc('opens new tab'); ?>
+              </span>
+            </a>.
+          </p>
+        </div>
+
+        <h2>
+          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed"
+            data-bs-target="#15" aria-expanded="false" aria-controls="15">
+            <?= $this->transEsc('faq15 heading'); ?>
+          </button>
+        </h2>
+        <div class="collapse" id="15">
+          <p><?= $this->transEsc('faq15 p1'); ?></p>
+
+          <p><?= $this->transEsc('faq15 p2'); ?></p>
+
+          <p><?= $this->transEsc('faq15 p3'); ?></p>
+
+          <p><?= $this->transEsc('faq15 p4'); ?></p>
+
+          <p><?= $this->transEsc('faq15 p5'); ?></p>
+
+          <p><?= $this->transEsc('faq15 p6'); ?></p>
+
+          <p> <strong><?= $this->transEsc('faq15 learn more'); ?></strong> <?= $this->transEsc('faq15 learn more text1'); ?> <a href="https://www.gov.br/governodigital/pt-br/acessibilidade-e-usuario/acessibilidade-digital" target="_blank" rel="noopener noreferrer" class="faq-link"> <?= $this->transEsc('faq15 accessibility digital link'); ?> <span class="visually-hidden"> <?= $this->transEsc('opens new tab'); ?> </span> </a> <?= $this->transEsc('faq15 learn more text2'); ?> <a href="https://emag.governoeletronico.gov.br/" target="_blank" rel="noopener noreferrer" class="faq-link"> <?= $this->transEsc('faq15 emag link'); ?> <span class="visually-hidden"> <?= $this->transEsc('opens new tab'); ?> </span> </a>. </p>
+        </div>
+
 
       </div>
     </div>
