@@ -188,8 +188,6 @@ JS;
     ?>
       <span class="visually-hidden" role="heading" aria-level="1"><?= $this->layout()->srmessage ?></span>
     <?php endif; ?>
-    <a class="visually-hidden-focusable skip-link" href="#content"><?= $this->transEsc('Skip to content') ?></a>
-    <a class="visually-hidden-focusable skip-link" href="#header-collapse"><?= $this->transEsc('Skip to navigation menu') ?></a>
     <?= $this->render('header.phtml') ?>
   </header>
   <?= $this->breadcrumbs()->render() ?>
@@ -205,7 +203,7 @@ JS;
   </div>
   </nav>
   <main class="main">
-    <div id="content" class="<?php if (!$this->layout()->nocontainerclass) : ?>container<?php endif; ?>">
+    <div id="content" tabindex="-1" class="<?php if (!$this->layout()->nocontainerclass) : ?>container<?php endif; ?>">
       <?= $this->layout()->content ?>
     </div>
   </main>

@@ -10,6 +10,7 @@ return [
         'languages.js',
         'format.js',
         'base.js',
+        'header-accessibility.js',
         'lib/axios.min.js',
     ],
     'favicon' => 'icons/favicon.ico',
