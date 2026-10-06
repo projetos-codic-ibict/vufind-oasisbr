@@ -2,21 +2,21 @@
 
 <section class="oasis-home-stats" aria-labelledby="numeros">
   <div class="oasis-home-container">
-    <h2 id="numeros" class="visually-hidden"><?= $this->transEsc('home_stats_title') ?></h2>
+    <h2 id="numeros"><?= $this->transEsc('home_stats_title') ?></h2>
     <dl class="oasis-home-stats-grid">
       <div class="oasis-home-stat">
         <dt><?= $this->transEsc('home_stats_records') ?></dt>
-        <dd id="total-docs-home" data-unavailable-label="<?= $this->transEscAttr('Failed to load') ?>"><?= $this->transEsc('Loading') ?>...</dd>
+        <dd id="total-docs-home" aria-live="polite" data-unavailable-label="<?= $this->transEscAttr('Failed to load') ?>"><?= $this->transEsc('Loading') ?>...</dd>
         <dd class="oasis-home-stat-description"><?= $this->transEsc('home_stats_records_description') ?></dd>
       </div>
       <div class="oasis-home-stat">
         <dt><?= $this->transEsc('home_stats_sources') ?></dt>
-        <dd id="sources-home" data-unavailable-label="<?= $this->transEscAttr('Failed to load') ?>"><?= $this->transEsc('Loading') ?>...</dd>
+        <dd id="sources-home" aria-live="polite" data-unavailable-label="<?= $this->transEscAttr('Failed to load') ?>"><?= $this->transEsc('Loading') ?>...</dd>
         <dd class="oasis-home-stat-description"><?= $this->transEsc('home_stats_sources_description') ?></dd>
       </div>
       <div class="oasis-home-stat">
         <dt><?= $this->transEsc('home_stats_institutions') ?></dt>
-        <dd id="institutions-home" data-unavailable-label="<?= $this->transEscAttr('Failed to load') ?>"><?= $this->transEsc('Loading') ?>...</dd>
+        <dd id="institutions-home" aria-live="polite" data-unavailable-label="<?= $this->transEscAttr('Failed to load') ?>"><?= $this->transEsc('Loading') ?>...</dd>
         <dd class="oasis-home-stat-description"><?= $this->transEsc('home_stats_institutions_description') ?></dd>
       </div>
       <div class="oasis-home-stat">
@@ -48,7 +48,7 @@
           <h3 class="oasis-home-card-title"><?= $this->transEsc('home_collection_articles') ?></h3>
           <span class="oasis-home-card-count">
             <span class="oasis-home-card-loading"><?= $this->transEsc('Loading') ?>...</span>
-            <span class="oasis-home-card-loaded" hidden></span><span id="articles"></span> <?= $this->transEsc('home_records') ?>
+            <span class="oasis-home-card-loaded" hidden><span id="articles"></span> <?= $this->transEsc('home_records') ?></span>
           </span>
           <span class="oasis-home-card-text"><?= $this->transEsc('home_collection_articles_description') ?></span>
         </a>
@@ -164,18 +164,24 @@
     <ol class="oasis-home-steps">
       <li>
         <span>1</span>
-        <h3><?= $this->transEsc('home_participate_step_publish') ?></h3>
-        <p><?= $this->transEsc('home_participate_step_publish_description') ?></p>
+        <div class="oasis-home-step-copy">
+          <h3><?= $this->transEsc('home_participate_step_publish') ?></h3>
+          <p><?= $this->transEsc('home_participate_step_publish_description') ?></p>
+        </div>
       </li>
       <li>
         <span>2</span>
-        <h3><?= $this->transEsc('home_participate_step_request') ?></h3>
-        <p><?= $this->transEsc('home_participate_step_request_description') ?></p>
+        <div class="oasis-home-step-copy">
+          <h3><?= $this->transEsc('home_participate_step_request') ?></h3>
+          <p><?= $this->transEsc('home_participate_step_request_description') ?></p>
+        </div>
       </li>
       <li>
         <span>3</span>
-        <h3><?= $this->transEsc('home_participate_step_validate') ?></h3>
-        <p><?= $this->transEsc('home_participate_step_validate_description') ?></p>
+        <div class="oasis-home-step-copy">
+          <h3><?= $this->transEsc('home_participate_step_validate') ?></h3>
+          <p><?= $this->transEsc('home_participate_step_validate_description') ?></p>
+        </div>
       </li>
     </ol>
     <?php if ($this->feedback()->tabEnabled()) : ?>
@@ -191,14 +197,12 @@
       <p><?= $this->transEsc('home_help_description') ?></p>
       <div class="oasis-home-contact-list">
         <a href="mailto:oasisbr@ibict.br">
-          <i class="fa-regular fa-envelope" aria-hidden="true"></i>
           <span>
             <strong>oasisbr@ibict.br</strong>
             <small><?= $this->transEsc('home_help_support') ?></small>
           </span>
         </a>
         <a href="<?= $this->url('faq-home') ?>">
-          <i class="fa-regular fa-circle-question" aria-hidden="true"></i>
           <span>
             <strong><?= $this->transEsc('home_help_manual') ?></strong>
             <small><?= $this->transEsc('home_help_manual_description') ?></small>
@@ -207,23 +211,35 @@
       </div>
     </div>
 
-    <dl class="oasis-home-faq-list">
-      <div>
-        <dt><?= $this->transEsc('home_faq_full_text_question') ?></dt>
-        <dd><?= $this->transEsc('home_faq_full_text_answer') ?></dd>
-      </div>
-      <div>
-        <dt><?= $this->transEsc('home_faq_update_question') ?></dt>
-        <dd><?= $this->transEsc('home_faq_update_answer') ?></dd>
-      </div>
-      <div>
-        <dt><?= $this->transEsc('home_faq_correction_question') ?></dt>
-        <dd><?= $this->transEsc('home_faq_correction_answer') ?></dd>
-      </div>
-      <div>
-        <dt><?= $this->transEsc('home_faq_reuse_question') ?></dt>
-        <dd><?= $this->transEsc('home_faq_reuse_answer') ?></dd>
-      </div>
-    </dl>
+    <div class="oasis-home-faq-list">
+      <details>
+        <summary>
+          <span><?= $this->transEsc('home_faq_full_text_question') ?></span>
+          <span class="oasis-home-faq-chevron" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+        </summary>
+        <p><?= $this->transEsc('home_faq_full_text_answer') ?></p>
+      </details>
+      <details>
+        <summary>
+          <span><?= $this->transEsc('home_faq_update_question') ?></span>
+          <span class="oasis-home-faq-chevron" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+        </summary>
+        <p><?= $this->transEsc('home_faq_update_answer') ?></p>
+      </details>
+      <details>
+        <summary>
+          <span><?= $this->transEsc('home_faq_correction_question') ?></span>
+          <span class="oasis-home-faq-chevron" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+        </summary>
+        <p><?= $this->transEsc('home_faq_correction_answer') ?></p>
+      </details>
+      <details>
+        <summary>
+          <span><?= $this->transEsc('home_faq_reuse_question') ?></span>
+          <span class="oasis-home-faq-chevron" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+        </summary>
+        <p><?= $this->transEsc('home_faq_reuse_answer') ?></p>
+      </details>
+    </div>
   </div>
 </section>
