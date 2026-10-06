@@ -1,4 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+:root {
+  --oasis-font-sans: "Atkinson Hyperlegible", Helvetica, Arial, sans-serif;
+}
 
 html {
   scroll-padding-top: 120px;
@@ -7,8 +11,9 @@ html {
 html,
 body {
   background-color: #fafafa;
-  font-family: Rawline, Raleway, sans-serif;
-  font-size: 16px !important;
+  font-family: var(--oasis-font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
   margin: 0;
   padding: 0;
 }
@@ -54,7 +59,8 @@ a.btn {
 /* Ajustes em Título */
 .page-title-bar h2 {
   font-size: 1.7em;
-  font-weight: 300;
+  font-weight: 700;
+  line-height: 1.25;
 }
 
 .oasis-site .breadcrumbs {
@@ -808,8 +814,14 @@ li.language a {
   --oasis-home-shadow: 0 8px 24px rgba(7, 29, 65, 0.08);
   background: var(--oasis-home-background);
   color: var(--oasis-home-foreground);
-  font-family: Rawline, Raleway, sans-serif;
+  font-family: var(--oasis-font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
   overflow-x: hidden;
+}
+
+.oasis-site :is(button, input, select, textarea) {
+  font-family: inherit;
 }
 
 .oasis-site .table {
@@ -898,8 +910,8 @@ li.language a {
   margin: 0;
   color: var(--oasis-home-foreground);
   font-size: 2rem;
-  font-weight: 800;
-  line-height: 1.15;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .oasis-site .oasis-page-heading p,
@@ -914,7 +926,7 @@ li.language a {
 .oasis-site .about,
 .oasis-site .faq {
   color: var(--oasis-home-foreground);
-  font-family: Rawline, Raleway, Lato, Helvetica, Arial, sans-serif;
+  font-family: var(--oasis-font-sans);
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.6;
@@ -1932,7 +1944,7 @@ li.language a {
 .oasis-home-stat dt {
   color: var(--oasis-home-muted);
   font-size: 0.78rem;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.3;
   text-transform: uppercase;
 }
@@ -1942,7 +1954,7 @@ li.language a {
   margin: 0;
   color: var(--oasis-home-primary);
   font-size: 2.45rem;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -1974,8 +1986,8 @@ dd.oasis-home-stat-description {
   margin: 0;
   color: var(--oasis-home-foreground);
   font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: 800;
-  line-height: 1.12;
+  font-weight: 700;
+  line-height: 1.25;
 }
 
 .oasis-home-section-head p,
@@ -3034,9 +3046,10 @@ address {
 .about,
 .faq {
   color: #333333;
-  font-size: 1.3rem;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-weight: 300;
+  font-size: 1rem;
+  font-family: var(--oasis-font-sans);
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 .oasisbr-icon {
