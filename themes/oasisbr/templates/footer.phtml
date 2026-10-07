@@ -3,13 +3,15 @@
   <div class="oasis-home-footer-partners">
     <div class="oasis-home-container">
       <p id="footer-parceiros-titulo"><?= $this->transEsc('footer_partners_title') ?></p>
-      <ul aria-labelledby="footer-parceiros-titulo">
-        <li>IBICT</li>
-        <li>MCTI</li>
-        <li>RCAAP</li>
-        <li>FCT Portugal</li>
-        <li>LA Referencia</li>
-        <li>OpenAIRE</li>
+      <ul class="oasis-home-partner-grid" aria-labelledby="footer-parceiros-titulo">
+        <li><img class="oasis-home-partner-logo oasis-home-partner-logo--finep" src="<?= $this->imageLink('partners/ibict.png'); ?>" alt="Instituto Brasileiro de Informação em Ciência e Tecnologia (IBICT)" /></li>
+        <li><img class="oasis-home-partner-logo oasis-home-partner-logo--finep" src="<?= $this->imageLink('partners/FINEP.png'); ?>" alt="Financiadora de Estudos e Projetos (FINEP)" /></li>
+        <li><img class="oasis-home-partner-logo oasis-home-partner-logo--coar" src="<?= $this->imageLink('partners/COAR.png'); ?>" alt="Confederation of Open Access Repositories (COAR)" /></li>
+        <li><img class="oasis-home-partner-logo oasis-home-partner-logo--cplp" src="<?= $this->imageLink('partners/CPLP.png'); ?>" alt="Comunidade dos Países de Língua Portuguesa (CPLP)" /></li>
+        <li><img class="oasis-home-partner-logo oasis-home-partner-logo--la-referencia" src="<?= $this->imageLink('partners/LA_REFERENCIA.jpg'); ?>" alt="LA Referencia" /></li>
+        <li><img class="oasis-home-partner-logo oasis-home-partner-logo--ndltd" src="<?= $this->imageLink('partners/NDLTD.jpg'); ?>" alt="Networked Digital Library of Theses and Dissertations (NDLTD)" /></li>
+        <li><img class="oasis-home-partner-logo oasis-home-partner-logo--rcaap" src="<?= $this->imageLink('partners/RCAAP.jpg'); ?>" alt="Repositórios Científicos de Acesso Aberto de Portugal (RCAAP)" /></li>
+        <li><img class="oasis-home-partner-logo oasis-home-partner-logo--scielo" src="<?= $this->imageLink('partners/SCIELO.png'); ?>" alt="Scientific Electronic Library Online (SciELO)" /></li>
       </ul>
     </div>
   </div>
@@ -17,7 +19,9 @@
   <div class="oasis-home-footer-main">
     <div class="oasis-home-container">
       <div class="oasis-home-footer-brand">
-        <img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="<?= $this->transEscAttr('Oasisbr') ?>" />
+        <div class="oasis-home-footer-brand-mark">
+          <img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="<?= $this->transEscAttr('Oasisbr') ?>" />
+        </div>
         <p><?= $this->transEsc('footer_brand_description') ?></p>
       </div>
 
@@ -36,13 +40,13 @@
         <ul>
           <li><a href="<?= $this->url('home') ?>#sobre"><?= $this->transEsc('header_about') ?></a></li>
           <li><a href="<?= $this->url('faq-home') ?>#13"><?= $this->transEsc('footer_terms') ?></a></li>
-          <li><a href="<?= $this->url('faq-home') ?>#14 "><?= $this->transEsc('footer_privacy') ?></a></li>
+          <li><a href="<?= $this->url('faq-home') ?>#14"><?= $this->transEsc('footer_privacy') ?></a></li>
           <li><a href="<?= $this->url('faq-home') ?>#15"><?= $this->transEsc('footer_accessibility') ?></a></li>
         </ul>
       </nav>
 
-      <nav aria-label="<?= $this->transEscAttr('footer_services') ?> IBICT">
-        <h2><?= $this->transEsc('footer_services') ?> IBICT</h2>
+      <nav aria-labelledby="footer-servicos-titulo">
+        <h2 id="footer-servicos-titulo"><?= $this->transEsc('footer_services') ?> IBICT</h2>
         <ul>
           <li><a href="https://bdtd.ibict.br/" target="_blank" rel="noopener noreferrer">BDTD <span class="sr-only"><?= $newTab ?></span></a></li>
           <li><a href="https://diadorim.ibict.br/" target="_blank" rel="noopener noreferrer">Diadorim <span class="sr-only"><?= $newTab ?></span></a></li>
