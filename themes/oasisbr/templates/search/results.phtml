@@ -69,7 +69,7 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
         <div class=" search-controls">
           <!-- <?= $this->render('search/controls/limit.phtml') ?> -->
           <?= $this->render('search/controls/sort.phtml') ?>
-          <!-- <?= $this->render('search/controls/view.phtml') ?> -->
+          <?= $this->render('search/controls/view.phtml') ?>
           <div class="dropdown export">
             <button id="search-export-toggle" class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="search-export-options">
               <?= $this->transEsc('Export') ?>

@@ -1,8 +1,7 @@
 <?php
-$start = $this->localizedNumber($this->results->getStartRecord());
-$end = $this->localizedNumber($this->results->getEndRecord());
 $total = $this->localizedNumber($recordTotal);
-$queryTime = $this->results->getQuerySpeed();
-$lookfor = $this->escapeHtml($lookfor ?? '');
 ?>
-<h1 class="oasis-results-total"><?= $this->transEsc('result_count', ['%%count%%' => $total]) ?></h1>
+<h1 class="oasis-results-total">
+  <?= $this->transEsc('Search Results') ?><?php if (!empty($lookfor)) : ?> <span class="oasis-results-query">“<?= $this->escapeHtml($lookfor) ?>”</span><?php endif; ?>
+</h1>
+<p class="oasis-results-count"><?= $this->transEsc('result_count', ['%%count%%' => $total]) ?></p>
