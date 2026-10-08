@@ -2513,6 +2513,27 @@ dd.oasis-home-stat-description {
   outline-offset: 2px;
 }
 
+/* Home section sequence follows the portal design: white and light-neutral bands. */
+body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast) .main,
+body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast) .oasis-home-collections,
+body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast) .oasis-home-participate,
+body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast) .oasis-home-footer-partners {
+  background: #f7f8f6;
+}
+
+body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast) .oasis-home-help {
+  background: #ffffff;
+}
+
+body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast) .oasis-home-collections,
+body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast) .oasis-home-participate {
+  border-bottom: 0;
+}
+
+body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast) .oasis-home-about {
+  border-top: 1px solid var(--oasis-home-border);
+}
+
 .oasis-home-footer {
   margin-top: 0;
   background: var(--oasis-home-background);
