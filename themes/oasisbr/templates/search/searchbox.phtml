@@ -74,7 +74,7 @@ $lookforValue = $this->escapeHtmlAttr($this->lookfor);
     <div class="oasis-home-search-shell">
       <?php if ($handlerCount > 1) : ?>
         <label class="oasis-home-search-field oasis-home-search-select" for="searchForm_type">
-          <span<?= $isHome ? '' : ' class="visually-hidden"' ?>><?= $this->transEsc("Search type") ?></span>
+          <span class="oasis-home-search-label<?= $isHome ? '' : ' visually-hidden' ?>"><?= $this->transEsc("Search type") ?></span>
             <select id="searchForm_type" class="searchForm_type form-select" name="type" data-native-menu="false">
               <?php $currentGroup = $insideGroup = false; ?>
               <?php foreach ($handlers as $handler) : ?>
@@ -104,10 +104,10 @@ $lookforValue = $this->escapeHtmlAttr($this->lookfor);
       <?php endif; ?>
 
       <label class="oasis-home-search-field oasis-home-search-input" for="searchForm_lookfor">
-        <span<?= $isHome ? '' : ' class="visually-hidden"' ?>><?= $this->transEsc("What looking") ?></span>
+        <span class="oasis-home-search-label<?= $isHome ? '' : ' visually-hidden' ?>"><?= $this->transEsc("What looking") ?></span>
           <span class="oasis-home-search-input-control">
             <i class="fa-solid fa-search" aria-hidden="true"></i>
-            <input data-search id="searchForm_lookfor" class="searchForm_lookfor form-control search-query<?php if ($this->searchbox()->autocompleteEnabled($this->searchClassId)) : ?> autocomplete searcher:<?= $this->escapeHtmlAttr($this->searchClassId) ?><?= $this->searchbox()->autocompleteAutoSubmit($this->searchClassId) ? ' ac-auto-submit' : '' ?><?php endif ?>" type="search" name="lookfor" value="<?= $lookforValue ?>" placeholder="<?= $placeholder ? $this->transEscAttr($placeholder) : $this->transEscAttr('Search') ?>"<?= ($isHome && $advSearch) ? ' aria-describedby="oasis-home-search-guidance"' : '' ?> />
+            <input data-search id="searchForm_lookfor" class="searchForm_lookfor form-control search-query<?php if ($this->searchbox()->autocompleteEnabled($this->searchClassId)) : ?> autocomplete searcher:<?= $this->escapeHtmlAttr($this->searchClassId) ?><?= $this->searchbox()->autocompleteAutoSubmit($this->searchClassId) ? ' ac-auto-submit' : '' ?><?php endif ?>" type="search" name="lookfor" value="<?= $lookforValue ?>" placeholder="<?= $isHome ? $this->transEscAttr('home_search_placeholder') : ($placeholder ? $this->transEscAttr($placeholder) : $this->transEscAttr('Search')) ?>"<?= ($isHome && $advSearch) ? ' aria-describedby="oasis-home-search-guidance"' : '' ?> />
           </span>
       </label>
       <button type="submit" class="btn btn-search-primary oasis-home-search-submit">

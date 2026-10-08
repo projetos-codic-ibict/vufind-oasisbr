@@ -72,6 +72,10 @@ async function getTotalOfDocuments() {
 }
 
 function setPlaceholderInputSearch(totalDocuments) {
+  if (document.body.classList.contains('template-dir-search') && document.body.classList.contains('template-name-home')) {
+    return;
+  }
+
   const inputSearch = document.querySelector('[data-search]');
   if (inputSearch) {
     inputSearch.placeholder = `${getTranslatedText(

@@ -1799,7 +1799,7 @@ li.language a {
 
 .oasis-home-search-select::after {
   position: absolute;
-  top: 50%;
+  top: 66%;
   right: 0.85rem;
   width: 0.55rem;
   height: 0.55rem;
@@ -1948,6 +1948,16 @@ li.language a {
 
 .template-dir-search.template-name-home .oasis-home-search-form--hero .oasis-home-search-input {
   flex: initial;
+}
+
+.template-dir-search.template-name-home .oasis-home-search-form--hero .oasis-home-search-field {
+  align-self: end;
+}
+
+.template-dir-search.template-name-home .oasis-home-search-form--hero .oasis-home-search-label {
+  display: block;
+  min-height: 1.3125rem;
+  line-height: 1.3125rem;
 }
 
 .template-dir-search.template-name-home .oasis-home-search-form--hero .oasis-home-search-input-control {
@@ -3116,6 +3126,10 @@ dd.oasis-home-stat-description {
     grid-template-columns: 1fr;
     align-items: stretch;
     padding: 0.75rem;
+  }
+
+  .template-dir-search.template-name-home .oasis-home-search-form--hero .oasis-home-search-field {
+    align-self: stretch;
   }
 
   .template-dir-search.template-name-home .oasis-home-search-form--hero .oasis-home-search-input-control {
