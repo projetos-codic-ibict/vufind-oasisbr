@@ -26,9 +26,11 @@ if ($hierarchicalFacets) {
   $this->assetManager()->appendScriptLink('vendor/jsTree/jstree.min.js');
 }
 ?>
-<button class="close-offcanvas btn btn-link" data-bs-toggle="offcanvas"><?= $this->transEsc('navigate_back') ?></button>
+<div class="oasis-search-facets">
+  <button class="close-offcanvas btn btn-link" data-bs-toggle="offcanvas"><?= $this->transEsc('navigate_back') ?></button>
 <?php if ($results->getResultTotal() > 0) : ?>
   <h2><?= $this->transEsc($this->slot('side-facet-caption')->get('Narrow Search')) ?></h2>
+  <span class="visually-hidden"><?= $this->transEsc('page_reload_on_select_hint') ?></span>
 <?php endif; ?>
 <?php $checkboxFilters = $this->recommend->getCheckboxFacetSet(); ?>
 <?php $checkboxesShown = false; ?>
@@ -55,11 +57,21 @@ if ($hierarchicalFacets) {
 
     <!-- substitui os pontos por traço, com os pontos da erro no controle do javascript  -->
     <?php $title = str_replace(".", "--", $title); ?>
-    <div class="facet-group" id="side-panel-<?= $this->escapeHtmlAttr($title) ?>">
-      <a class="title<?php if (in_array($title, $collapsedFacets)) : ?> collapsed<?php endif ?>" data-bs-toggle="collapse" href="#side-collapse-<?= $this->escapeHtmlAttr($title) ?>">
-        <?= $this->transEsc($cluster['label']) ?>
-      </a>
-      <div id="side-collapse-<?= $this->escapeHtmlAttr($title) ?>" class="collapse<?php if (!in_array($title, $collapsedFacets)) : ?> show<?php endif ?>" <?php if (in_array($title, $forceUncollapsedFacets)) : ?> data-force-uncollapsed="1" <?php endif ?>>
+    <?php $collapsed = in_array($title, $collapsedFacets); ?>
+    <div class="facet-group" id="side-panel-<?= $this->escapeHtmlAttr($title) ?>" data-title="<?= $this->escapeHtmlAttr($cluster['label']) ?>">
+      <h3 class="facet-title">
+        <button
+          type="button"
+          class="title<?php if ($collapsed) : ?> collapsed<?php endif ?>"
+          data-bs-toggle="collapse"
+          data-bs-target="#side-collapse-<?= $this->escapeHtmlAttr($title) ?>"
+          aria-expanded="<?= $collapsed ? 'false' : 'true' ?>"
+          aria-controls="side-collapse-<?= $this->escapeHtmlAttr($title) ?>"
+        >
+          <?= $this->transEsc($cluster['label']) ?>
+        </button>
+      </h3>
+      <div id="side-collapse-<?= $this->escapeHtmlAttr($title) ?>" class="collapse<?php if (!$collapsed) : ?> show<?php endif ?>" <?php if (in_array($title, $forceUncollapsedFacets)) : ?> data-force-uncollapsed="1" <?php endif ?>>
         <?= $this->context($this)->renderInContext(
           'Recommend/SideFacets/facet.phtml',
           [
@@ -73,3 +85,4 @@ if ($hierarchicalFacets) {
   <?php endforeach; ?>
 <?php endif; ?>
 <?= $this->assetManager()->outputInlineScriptString('registerSideFacetTruncation();'); ?>
+</div>

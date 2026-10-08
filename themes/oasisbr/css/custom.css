@@ -2948,61 +2948,172 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
   gap: 0.5rem;
 }
 
-.oasis-results-sidebar {
+.template-dir-search.template-name-results .oasis-results-sidebar {
   padding: 0;
   border: 0;
 }
 
-.oasis-results-sidebar h2 {
-  margin: 0 0 1rem;
+.template-dir-search.template-name-results .oasis-search-facets {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  background: #ffffff;
+  border: 1px solid var(--oasis-home-border);
+  border-radius: 0.75rem;
+}
+
+.template-dir-search.template-name-results .oasis-search-facets .close-offcanvas {
+  justify-self: start;
+  padding: 0;
+}
+
+.template-dir-search.template-name-results .oasis-search-facets h2 {
+  margin: 0 0 0.5rem;
   color: var(--oasis-home-foreground);
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 800;
 }
 
-.oasis-results-sidebar .facet-group {
-  border: 1px solid var(--oasis-home-border);
-  margin-bottom: 1rem;
-  padding: 0 4px;
-  border-radius: 6px;
+.template-dir-search.template-name-results .oasis-search-facets .facet-group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-top: 1px solid var(--oasis-home-border);
+  border-radius: 0;
 }
 
-.oasis-results-sidebar .facet-group .title {
+.template-dir-search.template-name-results .oasis-search-facets .facet-title {
+  margin: 0;
+}
+
+.template-dir-search.template-name-results .oasis-search-facets .facet-group .title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 0;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.5rem 0;
+  border: 0;
   background: transparent;
-  color: var(--oasis-home-primary);
+  color: var(--oasis-home-foreground);
+  font: inherit;
   font-weight: 700;
+  text-align: left;
+  cursor: pointer;
 }
 
-.oasis-results-sidebar .facet-group [data-bs-toggle="collapse"]::after {
+.template-dir-search.template-name-results .oasis-search-facets .facet-group [data-bs-toggle="collapse"]::after {
   color: var(--oasis-home-primary);
 }
 
-.oasis-results-sidebar .facet {
+.template-dir-search.template-name-results .oasis-search-facets .facet__list {
+  display: grid;
+  gap: 0.125rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.template-dir-search.template-name-results .oasis-search-facets .facet__list__item {
+  min-width: 0;
+}
+
+.template-dir-search.template-name-results .oasis-search-facets .facet {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 0.5rem;
-  padding: 0.35rem 0;
-  color: var(--oasis-home-muted);
+  min-height: 2.75rem;
+  padding: 0.35rem 0.25rem;
+  border: 0;
+  border-radius: 0.375rem;
+  color: var(--oasis-home-foreground);
+  font-size: 0.9375rem;
   text-decoration: none;
-  border-bottom: 1px dashed var(--oasis-home-border);
 }
 
-.oasis-results-sidebar .facet:hover,
-.oasis-results-sidebar .facet:focus,
-.oasis-results-sidebar .facet.active {
+.template-dir-search.template-name-results .oasis-search-facets .facet .text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.template-dir-search.template-name-results .oasis-search-facets .facet .badge {
+  margin-left: auto;
+  padding: 0;
+  background: transparent;
+  color: var(--oasis-home-muted);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.template-dir-search.template-name-results .oasis-search-facets .facet:hover,
+.template-dir-search.template-name-results .oasis-search-facets .facet:focus-visible {
   background: var(--oasis-home-muted-bg);
   color: var(--oasis-home-primary);
 }
 
-.oasis-results-sidebar .facet .badge {
+.template-dir-search.template-name-results .oasis-search-facets .facet.active {
+  background: #e4f6ea;
+  box-shadow: inset 3px 0 0 var(--oasis-home-primary);
+  color: var(--oasis-home-primary);
+  font-weight: 700;
+}
+
+.template-dir-search.template-name-results .oasis-search-facets .facet-applied-indicator {
+  display: inline-flex;
+  align-items: center;
+  color: var(--oasis-home-primary);
+}
+
+.template-dir-search.template-name-results .oasis-search-facets .more-less-btn-wrapper {
+  margin-top: 0.25rem;
+}
+
+.template-dir-search.template-name-results .oasis-search-facets :is(.more-btn.facet, .less-btn.facet, .more-facets, .all-facets) {
+  min-height: 2.75rem;
+  padding: 0.35rem 0.25rem;
+  border: 0;
   background: transparent;
-  color: var(--oasis-home-muted);
-  font-weight: 600;
+  color: var(--oasis-home-primary);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.template-dir-search.template-name-results .oasis-search-facets .facet-range-form {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.25rem 0 1rem;
+}
+
+.template-dir-search.template-name-results .oasis-search-facets .date-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.template-dir-search.template-name-results .oasis-search-facets :is(.date-from, .date-to) {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+  color: var(--oasis-home-foreground);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.template-dir-search.template-name-results .oasis-search-facets .facet-range-form .btn {
+  justify-self: start;
+  min-height: 2.75rem;
+  border: 2px solid var(--oasis-home-primary);
+  border-radius: 0.5rem;
+  color: var(--oasis-home-primary);
+  font-weight: 700;
+}
+
+@media (max-width: 420px) {
+  .template-dir-search.template-name-results .oasis-search-facets .date-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .oasis-results-mainbody .record-list {
@@ -4568,6 +4679,17 @@ body.oasis-site.oasis-high-contrast :is(main, .breadcrumbs, .searchHomeContent, 
 body.oasis-site.oasis-high-contrast.template-dir-search.template-name-results .oasis-home-search-shell {
   background: #000000 !important;
   border: 1px solid #ffffff !important;
+}
+
+body.oasis-site.oasis-high-contrast.template-dir-search.template-name-results .oasis-search-facets {
+  background: #000000 !important;
+  border-color: #ffffff !important;
+}
+
+body.oasis-site.oasis-high-contrast.template-dir-search.template-name-results .oasis-search-facets .facet.active {
+  background: #000000 !important;
+  box-shadow: inset 3px 0 0 #ffff00;
+  color: #ffff00 !important;
 }
 
 body.oasis-site.oasis-high-contrast.template-dir-search.template-name-results .oasis-results-header .view-buttons .icon-link {
