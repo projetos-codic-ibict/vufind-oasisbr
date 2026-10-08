@@ -18,6 +18,21 @@ body {
   padding: 0;
 }
 
+/* Keep the footer at the viewport edge when a page has little content. */
+body.oasis-site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body.oasis-site > .main {
+  flex: 1 0 auto;
+}
+
+body.oasis-site > footer {
+  flex-shrink: 0;
+}
+
 .search-img,
 .logo-img-center img {
   max-width: 550px;
@@ -610,6 +625,7 @@ li.language a {
 }
 
 .offcanvas-overlay {
+  display: none;
   border: none;
   padding: 0;
   margin: 0;
@@ -1965,6 +1981,24 @@ li.language a {
   color: #ffffff;
 }
 
+.template-dir-search.template-name-home .oasis-home-search-form--hero .oasis-home-search-guidance-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.oasis-home-search-guidance {
+  min-width: 0;
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.template-dir-search.template-name-home .oasis-home-search-form--hero .oasis-home-search-guidance-row .oasis-home-advanced-link {
+  margin: 0 0 0 auto;
+}
+
 .oasis-home-stats,
 .oasis-home-collections,
 .oasis-home-participate,
@@ -3094,6 +3128,16 @@ dd.oasis-home-stat-description {
   }
 
   .template-dir-search.template-name-home .oasis-home-search-form--hero .oasis-home-advanced-link {
+    margin-left: 0;
+  }
+
+  .template-dir-search.template-name-home .oasis-home-search-form--hero .oasis-home-search-guidance-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .template-dir-search.template-name-home .oasis-home-search-form--hero .oasis-home-search-guidance-row .oasis-home-advanced-link {
     margin-left: 0;
   }
 
@@ -4336,4 +4380,11 @@ body.oasis-site.oasis-high-contrast .oasis-header-accessibility {
   .oasis-site .oasis-header-accessibility__inner {
     justify-content: flex-start;
   }
+}
+
+
+.descriptonBuscaAvancada{
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
 }

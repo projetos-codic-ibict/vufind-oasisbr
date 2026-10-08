@@ -75,29 +75,29 @@ $lookforValue = $this->escapeHtmlAttr($this->lookfor);
       <?php if ($handlerCount > 1) : ?>
         <label class="oasis-home-search-field oasis-home-search-select" for="searchForm_type">
           <span<?= $isHome ? '' : ' class="visually-hidden"' ?>><?= $this->transEsc("Search type") ?></span>
-          <select id="searchForm_type" class="searchForm_type form-select" name="type" data-native-menu="false">
-            <?php $currentGroup = $insideGroup = false; ?>
-            <?php foreach ($handlers as $handler) : ?>
-              <?php
-              if ($currentGroup !== ($handler['group'] ?? false)) {
-                $currentGroup = $handler['group'];
-                if ($insideGroup) {
-                  echo '</optgroup>';
+            <select id="searchForm_type" class="searchForm_type form-select" name="type" data-native-menu="false">
+              <?php $currentGroup = $insideGroup = false; ?>
+              <?php foreach ($handlers as $handler) : ?>
+                <?php
+                if ($currentGroup !== ($handler['group'] ?? false)) {
+                  $currentGroup = $handler['group'];
+                  if ($insideGroup) {
+                    echo '</optgroup>';
+                  }
+                  if ($currentGroup) {
+                    echo '<optgroup label="' . $this->escapeHtmlAttr($currentGroup) . '">';
+                    $insideGroup = true;
+                  } else {
+                    $insideGroup = false;
+                  }
                 }
-                if ($currentGroup) {
-                  echo '<optgroup label="' . $this->escapeHtmlAttr($currentGroup) . '">';
-                  $insideGroup = true;
-                } else {
-                  $insideGroup = false;
-                }
-              }
-              ?>
-              <option value="<?= $this->escapeHtmlAttr($handler['value']) ?>" <?= $handler['selected'] ? ' selected="selected"' : '' ?>><?= $handler['indent'] ? '-- ' : '' ?><?= $this->transEsc($handler['label']) ?></option>
-            <?php endforeach; ?>
-            <?php if ($insideGroup) : ?>
-              </optgroup>
-            <?php endif; ?>
-          </select>
+                ?>
+                <option value="<?= $this->escapeHtmlAttr($handler['value']) ?>" <?= $handler['selected'] ? ' selected="selected"' : '' ?>><?= $handler['indent'] ? '-- ' : '' ?><?= $this->transEsc($handler['label']) ?></option>
+              <?php endforeach; ?>
+              <?php if ($insideGroup) : ?>
+                </optgroup>
+              <?php endif; ?>
+            </select>
         </label>
       <?php elseif ($handlerCount == 1) : ?>
         <input type="hidden" name="type" value="<?= $this->escapeHtmlAttr($handlers[0]['value']) ?>" />
@@ -105,12 +105,11 @@ $lookforValue = $this->escapeHtmlAttr($this->lookfor);
 
       <label class="oasis-home-search-field oasis-home-search-input" for="searchForm_lookfor">
         <span<?= $isHome ? '' : ' class="visually-hidden"' ?>><?= $this->transEsc("What looking") ?></span>
-        <span class="oasis-home-search-input-control">
-          <i class="fa-solid fa-search" aria-hidden="true"></i>
-          <input data-search id="searchForm_lookfor" class="searchForm_lookfor form-control search-query<?php if ($this->searchbox()->autocompleteEnabled($this->searchClassId)) : ?> autocomplete searcher:<?= $this->escapeHtmlAttr($this->searchClassId) ?><?= $this->searchbox()->autocompleteAutoSubmit($this->searchClassId) ? ' ac-auto-submit' : '' ?><?php endif ?>" type="search" name="lookfor" value="<?= $lookforValue ?>" placeholder="<?= $placeholder ? $this->transEscAttr($placeholder) : $this->transEscAttr('Search') ?>" />
-        </span>
+          <span class="oasis-home-search-input-control">
+            <i class="fa-solid fa-search" aria-hidden="true"></i>
+            <input data-search id="searchForm_lookfor" class="searchForm_lookfor form-control search-query<?php if ($this->searchbox()->autocompleteEnabled($this->searchClassId)) : ?> autocomplete searcher:<?= $this->escapeHtmlAttr($this->searchClassId) ?><?= $this->searchbox()->autocompleteAutoSubmit($this->searchClassId) ? ' ac-auto-submit' : '' ?><?php endif ?>" type="search" name="lookfor" value="<?= $lookforValue ?>" placeholder="<?= $placeholder ? $this->transEscAttr($placeholder) : $this->transEscAttr('Search') ?>"<?= ($isHome && $advSearch) ? ' aria-describedby="oasis-home-search-guidance"' : '' ?> />
+          </span>
       </label>
-
       <button type="submit" class="btn btn-search-primary oasis-home-search-submit">
         <?= $this->transEsc("Find") ?>
         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
@@ -118,10 +117,17 @@ $lookforValue = $this->escapeHtmlAttr($this->lookfor);
     </div>
 
     <?php if ($advSearch) : ?>
+      <?php if ($isHome) : ?>
+      <div class="oasis-home-search-guidance-row">
+        <span id="oasis-home-search-guidance" class="oasis-home-search-guidance"><?= $this->transEsc('home_search_guidance') ?></span>
+      <?php endif; ?>
       <a href="<?= $this->url($advSearch) . (($this->searchId ?? false) ? '?edit=' . $this->escapeHtmlAttr($this->searchId) : $hiddenFilterParams) ?>" class="oasis-home-advanced-link" rel="nofollow">
         <?= $this->transEsc("Advanced Search") ?>
         <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
       </a>
+      <?php if ($isHome) : ?>
+      </div>
+      <?php endif; ?>
     <?php endif; ?>
     <?php if ($geoUrl = $this->geocoords()->getSearchUrl($options)) : ?>
       <a href="<?= $geoUrl ?>" class="btn btn-link"><?= $this->transEsc('Geographic Search') ?></a>
