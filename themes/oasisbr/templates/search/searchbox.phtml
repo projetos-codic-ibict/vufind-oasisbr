@@ -40,6 +40,7 @@ $filterDetails = $this->searchbox()->getFilterDetails($filterList, $checkboxFilt
 $showFilters = $filterDetails && (isset($results) || $options->getRetainFilterSetting());
 $tabConfig = $this->searchTabs()->getTabConfig($this->searchClassId, $this->lookfor, $this->searchIndex, $this->searchType, $hiddenFilters);
 $isHome = ($this->isHome ?? false) || ($this->useHomeSearchLayout ?? false) || (($this->templateDir ?? '') === 'search' && ($this->templateName ?? '') === 'home');
+$isResultsSearch = $this->isResultsSearch ?? false;
 $placeholder = $this->searchbox()->getPlaceholderText($tabConfig['selected']['id'] ?? null);
 $lookforValue = $this->escapeHtmlAttr($this->lookfor);
 ?>
@@ -107,27 +108,28 @@ $lookforValue = $this->escapeHtmlAttr($this->lookfor);
         <span class="oasis-home-search-label<?= $isHome ? '' : ' visually-hidden' ?>"><?= $this->transEsc("What looking") ?></span>
           <span class="oasis-home-search-input-control">
             <i class="fa-solid fa-search" aria-hidden="true"></i>
-            <input data-search id="searchForm_lookfor" class="searchForm_lookfor form-control search-query<?php if ($this->searchbox()->autocompleteEnabled($this->searchClassId)) : ?> autocomplete searcher:<?= $this->escapeHtmlAttr($this->searchClassId) ?><?= $this->searchbox()->autocompleteAutoSubmit($this->searchClassId) ? ' ac-auto-submit' : '' ?><?php endif ?>" type="search" name="lookfor" value="<?= $lookforValue ?>" placeholder="<?= $isHome ? $this->transEscAttr('home_search_placeholder') : ($placeholder ? $this->transEscAttr($placeholder) : $this->transEscAttr('Search')) ?>"<?= ($isHome && $advSearch) ? ' aria-describedby="oasis-home-search-guidance"' : '' ?> />
+            <input data-search id="searchForm_lookfor" class="searchForm_lookfor form-control search-query<?php if ($this->searchbox()->autocompleteEnabled($this->searchClassId)) : ?> autocomplete searcher:<?= $this->escapeHtmlAttr($this->searchClassId) ?><?= $this->searchbox()->autocompleteAutoSubmit($this->searchClassId) ? ' ac-auto-submit' : '' ?><?php endif ?>" type="search" name="lookfor" value="<?= $lookforValue ?>" placeholder="<?= $isHome ? $this->transEscAttr('home_search_placeholder') : ($placeholder ? $this->transEscAttr($placeholder) : $this->transEscAttr('Search')) ?>"<?= ($isHome && !$isResultsSearch && $advSearch) ? ' aria-describedby="oasis-home-search-guidance"' : '' ?> />
           </span>
       </label>
       <button type="submit" class="btn btn-search-primary oasis-home-search-submit">
         <?= $this->transEsc("Find") ?>
         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
       </button>
+      <?php if ($isResultsSearch && $advSearch) : ?>
+        <a href="<?= $this->url($advSearch) . (($this->searchId ?? false) ? '?edit=' . $this->escapeHtmlAttr($this->searchId) : $hiddenFilterParams) ?>" class="oasis-results-inline-advanced-link" rel="nofollow">
+          <?= $this->transEsc("Advanced Search") ?>
+        </a>
+      <?php endif; ?>
     </div>
 
-    <?php if ($advSearch) : ?>
-      <?php if ($isHome) : ?>
+    <?php if ($advSearch && $isHome && !$isResultsSearch) : ?>
       <div class="oasis-home-search-guidance-row">
         <span id="oasis-home-search-guidance" class="oasis-home-search-guidance"><?= $this->transEsc('home_search_guidance') ?></span>
-      <?php endif; ?>
       <a href="<?= $this->url($advSearch) . (($this->searchId ?? false) ? '?edit=' . $this->escapeHtmlAttr($this->searchId) : $hiddenFilterParams) ?>" class="oasis-home-advanced-link" rel="nofollow">
         <?= $this->transEsc("Advanced Search") ?>
         <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
       </a>
-      <?php if ($isHome) : ?>
       </div>
-      <?php endif; ?>
     <?php endif; ?>
     <?php if ($geoUrl = $this->geocoords()->getSearchUrl($options)) : ?>
       <a href="<?= $geoUrl ?>" class="btn btn-link"><?= $this->transEsc('Geographic Search') ?></a>
@@ -171,17 +173,19 @@ $lookforValue = $this->escapeHtmlAttr($this->lookfor);
       echo '<input type="hidden" name="sort" value="' . $this->escapeHtmlAttr($lastSort) . '" />';
     }
     ?>
-    <?= $this->context($this)->renderInContext(
-      'search/filters.phtml',
-      [
-        'params' => $params ?? null,
-        'urlQuery' => isset($results) ? $results->getUrlQuery() : null,
-        'filterList' => $showFilters ? $filterList : [],
-        'checkboxFilters' => $showFilters ? $checkboxFilters : [],
-        'searchClassId' => $this->searchClassId,
-        'searchType' => $this->searchType,
-      ]
-    ); ?>
+    <?php if ($isHome && !$isResultsSearch) : ?>
+      <?= $this->context($this)->renderInContext(
+        'search/filters.phtml',
+        [
+          'params' => $params ?? null,
+          'urlQuery' => isset($results) ? $results->getUrlQuery() : null,
+          'filterList' => $showFilters ? $filterList : [],
+          'checkboxFilters' => $showFilters ? $checkboxFilters : [],
+          'searchClassId' => $this->searchClassId,
+          'searchType' => $this->searchType,
+        ]
+      ); ?>
+    <?php endif; ?>
   </form>
 <?php else : ?>
   <form id="searchForm" class="searchForm navbar-form navbar-left flip oasis-results-search-form" method="get" action="<?= $this->url($basicSearch) ?>" name="searchForm" autocomplete="off">

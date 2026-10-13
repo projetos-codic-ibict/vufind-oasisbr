@@ -11,6 +11,8 @@ $transParams = [
   '%%lookfor%%' => $lookfor,
 ];
 ?>
-<span class="js-search-stats" data-key="showing_results_of_for_html">
-  <?= $this->translate('showing_results_of_for_html', $transParams) ?><?php if ($queryTime !== null) : ?>, <?= $this->transEsc('query time') ?>: <?= $this->localizedNumber($queryTime, 2) . $this->transEsc('seconds_abbrev') ?><?php endif; ?>
-</span>
+<p class="visually-hidden oasis-results-meta" role="status" aria-live="polite">
+  <span class="js-search-stats" data-key="showing_results_of_for_html">
+    <?= $this->translate('showing_results_of_for_html', $transParams) ?>
+  </span><?php if ($queryTime !== null) : ?><span class="search-query-time">, <?= $this->transEsc('query time') ?>: <?= $this->localizedNumber($queryTime, 2) . $this->transEsc('seconds_abbrev') ?></span><?php endif; ?>
+</p>

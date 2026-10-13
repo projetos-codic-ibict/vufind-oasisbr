@@ -23,6 +23,7 @@ $this->layout()->searchbox = $this->context($this)->renderInContext(
     'selectedShards' => $this->params->getSelectedShards(),
     'ignoreHiddenFiltersInRequest' => $this->ignoreHiddenFiltersInRequest ?? false,
     'ignoreHiddenFilterMemory' => $this->ignoreHiddenFilterMemory ?? false,
+    'isResultsSearch' => true,
     'useHomeSearchLayout' => true,
   ]
 );
@@ -47,69 +48,81 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
 }
 ?>
 
-<div class="<?= $this->layoutClass('mainbody') ?> oasis-results-mainbody">
-  <?php if (($recordTotal = $this->results->getResultTotal()) > 0):  // only display these at very top if we have results 
-      ?>
-    <?php foreach ($this->results->getRecommendations('top') as $index => $current): ?>
-      <?= $this->recommend($current, 'top', $index) ?>
-    <?php endforeach; ?>
-  <?php endif; ?>
-  <?= $this->flashmessages() ?>
-  <div class="search-header hidden-print oasis-results-header">
-    <div class="d-flex align-items-center justify-content-between">
-    <div class="search-stats">
+<?php $recordTotal = $this->results->getResultTotal(); ?>
+<div class="oasis-results-page">
+  <div class="oasis-results-summary">
+    <div class="search-header hidden-print oasis-results-header">
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="search-stats" data-record-total="<?= $this->escapeHtmlAttr($recordTotal) ?>">
+          <?php if ($recordTotal > 0): ?>
+            <?= $this->context()->renderInContext('search/controls/result.phtml', ['lookfor' => $lookfor, 'recordTotal' => $recordTotal]) ?>
+          <?php else: ?>
+            <h2><?= $this->transEsc('nohit_heading') ?></h2>
+          <?php endif; ?>
+        </div>
+
+        <?php if ($recordTotal > 0): ?>
+          <div class="search-controls">
+            <?= $this->render('search/controls/sort.phtml') ?>
+            <?= $this->render('search/controls/limit.phtml') ?>
+            <?= $this->render('search/controls/view.phtml') ?>
+            <div class="dropdown export">
+              <button id="search-export-toggle" class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="search-export-options">
+                <?= $this->transEsc('Export') ?>
+                <i class="fa fa-file-export"></i>
+              </button>
+              <ul class="dropdown-menu" id="search-export-options" aria-labelledby="search-export-toggle">
+                <li><a class="dropdown-item" href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&amp;type=ris' ?>" data-lightbox><i class="fa fa-file-text-o" aria-hidden="true"></i> <?= $this->transEsc('Export RIS') ?></a></li>
+                <li><a class="dropdown-item" href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&amp;type=csv' ?>" data-lightbox><i class="fa fa-file-excel-o" aria-hidden="true"></i> <?= $this->transEsc('Export CSV') ?></a></li>
+              </ul>
+            </div>
+          </div>
+        <?php endif; ?>
+      </div>
+
       <?php if ($recordTotal > 0): ?>
-        <?= $this->context()->renderInContext('search/controls/result.phtml', ['lookfor' => $lookfor, 'recordTotal' => $recordTotal]) ?>
-      <?php else: ?>
-        <h2><?= $this->transEsc('nohit_heading') ?></h2>
+        <?= $this->context()->renderInContext('search/controls/showing.phtml', ['lookfor' => $lookfor, 'recordTotal' => $recordTotal]) ?>
+        <a class="search-filter-toggle visible-xs" href="#search-sidebar" data-toggle="vufind-offcanvas">
+          <?= $this->transEsc('Refine Results') ?>
+        </a>
       <?php endif; ?>
     </div>
 
     <?php if ($recordTotal > 0): ?>
-        <div class=" search-controls">
-          <!-- <?= $this->render('search/controls/limit.phtml') ?> -->
-          <?= $this->render('search/controls/sort.phtml') ?>
-          <?= $this->render('search/controls/view.phtml') ?>
-          <div class="dropdown export">
-            <button id="search-export-toggle" class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="search-export-options">
-              <?= $this->transEsc('Export') ?>
-              <i class="fa fa-file-export"></i>
-            </button>
-            <ul class="dropdown-menu" id="search-export-options" aria-labelledby="search-export-toggle">
-              <li> <a class="dropdown-item"
-                  href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&amp;type=ris' ?>" data-lightbox>
-                  <i class="fa fa-file-text-o" aria-hidden="true"></i> <?= $this->transEsc('Export RIS') ?>
-                </a></li>
-              <li><a class="dropdown-item"
-                  href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&amp;type=csv' ?>" data-lightbox>
-                  <i class="fa fa-file-excel-o" aria-hidden="true"></i> <?= $this->transEsc('Export CSV') ?>
-                </a></li>
-            </ul>
-          </div>
-      </div>
-      </div>
+      <?= $this->context($this)->renderInContext(
+        'search/filters.phtml',
+        [
+          'params' => $this->params,
+          'urlQuery' => $this->results->getUrlQuery(),
+          'filterList' => $this->params->getFilterList(true),
+          'checkboxFilters' => $this->params->getCheckboxFacets(),
+          'searchClassId' => $this->params->getSearchClassId(),
+          'searchType' => $this->params->getSearchType(),
+        ]
+      ) ?>
     <?php endif; ?>
-    <?php if ($recordTotal > 0): ?>
-      <?= $this->context()->renderInContext('search/controls/showing.phtml', ['lookfor' => $lookfor, 'recordTotal' => $recordTotal]) ?>
-      <a class="search-filter-toggle visible-xs" href="#search-sidebar" data-toggle="vufind-offcanvas">
-            <?= $this->transEsc('Refine Results') ?>
-          </a>
-      <?php endif; ?>
   </div>
-  <?php /* End Listing Options */ ?>
-  
 
-  <?php if ($recordTotal < 1): ?>
-      <p>
-        <?php
-        $emptyMessage = $this->slot('empty-message')->get(
-          $this->translate('nohit_lookfor_html', ['%%lookfor%%' => $this->escapeHtml($lookfor)])
-        );
-        $this->layout()->srmessage = $emptyMessage;
-        echo $emptyMessage;
-        ?>
-      </p>
-      <?php if (isset($this->parseError)): ?>
+  <div class="oasis-results-columns">
+    <div class="<?= $this->layoutClass('mainbody') ?> oasis-results-mainbody">
+      <?php if ($recordTotal > 0):  // only display these at very top if we have results
+      ?>
+        <?php foreach ($this->results->getRecommendations('top') as $index => $current): ?>
+          <?= $this->recommend($current, 'top', $index) ?>
+        <?php endforeach; ?>
+      <?php endif; ?>
+      <?= $this->flashmessages() ?>
+      <?php if ($recordTotal < 1): ?>
+        <p>
+          <?php
+          $emptyMessage = $this->slot('empty-message')->get(
+            $this->translate('nohit_lookfor_html', ['%%lookfor%%' => $this->escapeHtml($lookfor)])
+          );
+          $this->layout()->srmessage = $emptyMessage;
+          echo $emptyMessage;
+          ?>
+        </p>
+        <?php if (isset($this->parseError)): ?>
           <p class=" alert alert-danger"><?= $this->transEsc('nohit_parse_error') ?></p>
         <?php endif; ?>
         <?php foreach (($top = $this->results->getRecommendations('top')) as $index => $current): ?>
@@ -134,13 +147,16 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
       <a href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&amp;type=ris' ?>" data-lightbox><i class="fa fa-external-link" aria-hidden="true"></i> <?= $this->transEsc('Export RIS') ?></a> -->
         <?php /* End new link */ ?>
       <?php endif; ?>
+    </div>
+    <?php /* End Main Listing */ ?>
+    <?php /* Narrow Search Options */ ?>
+    <div class="<?= $this->layoutClass('sidebar') ?> oasis-results-sidebar" id="search-sidebar">
+      <?php foreach ($this->results->getRecommendations('side') as $index => $current): ?>
+        <?= $this->recommend($current, 'side', $index) ?>
+      <?php endforeach; ?>
+    </div>
+    <?php /* End Narrow Search Options */ ?>
   </div>
-  <?php /* End Main Listing */ ?>
 
-  <?php /* Narrow Search Options */ ?>
-  <div class="<?= $this->layoutClass('sidebar') ?> oasis-results-sidebar" id="search-sidebar">
-    <?php foreach ($this->results->getRecommendations('side') as $index => $current): ?>
-      <?= $this->recommend($current, 'side', $index) ?>
-    <?php endforeach; ?>
-  </div>
-  <?php /* End Narrow Search Options */ ?>
+</div>
+</div>

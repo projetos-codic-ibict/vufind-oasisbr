@@ -1,7 +1,12 @@
 <?php
 $total = $this->localizedNumber($recordTotal);
+$resultsFor = strtolower($this->translate('Results for'));
 ?>
 <h1 class="oasis-results-total">
-  <?= $this->transEsc('Search Results') ?><?php if (!empty($lookfor)) : ?> <span class="oasis-results-query">“<?= $this->escapeHtml($lookfor) ?>”</span><?php endif; ?>
+  <strong class="oasis-results-number"><?= $total ?></strong>
+  <?php if (!empty($lookfor)) : ?>
+    <?= $this->escapeHtml($resultsFor) ?> “<em><?= $this->escapeHtml($lookfor) ?></em>”
+  <?php else : ?>
+    <?= $this->transEsc('results') ?>
+  <?php endif; ?>
 </h1>
-<p class="oasis-results-count"><?= $this->transEsc('result_count', ['%%count%%' => $total]) ?></p>
