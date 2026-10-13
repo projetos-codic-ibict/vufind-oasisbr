@@ -3088,8 +3088,9 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
 
 .template-dir-search.template-name-results .oasis-search-facets .date-fields {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
   gap: 0.5rem;
+  align-items: end;
 }
 
 .template-dir-search.template-name-results .oasis-search-facets :is(.date-from, .date-to) {
@@ -3101,8 +3102,14 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
   font-weight: 700;
 }
 
+.template-dir-search.template-name-results .oasis-search-facets .date-fields .form-control {
+  min-height: 2.75rem;
+  border-color: #888888;
+  border-radius: 0.5rem;
+}
+
 .template-dir-search.template-name-results .oasis-search-facets .facet-range-form .btn {
-  justify-self: start;
+  min-width: max-content;
   min-height: 2.75rem;
   border: 2px solid var(--oasis-home-primary);
   border-radius: 0.5rem;
@@ -3113,6 +3120,10 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
 @media (max-width: 420px) {
   .template-dir-search.template-name-results .oasis-search-facets .date-fields {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .template-dir-search.template-name-results .oasis-search-facets .facet-range-form .btn {
+    justify-self: start;
   }
 }
 

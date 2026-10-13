@@ -1,0 +1,61 @@
+<?php
+  // Keep the range form contract used by SideFacets, but use the two native
+  // number fields as the only year-range control in the Oasisbr theme.
+  $sanitize = match($this->facet['type']) {
+    'date' => fn ($val) => preg_replace('/^.*?(-?\d+).*/', '$1', $val),
+    'fulldate' => fn ($val) => substr($val, 0, 10),
+    'numeric' => fn ($val) => preg_replace('/^.*?(-?[\d.]+).*/', '$1', $val),
+    default => fn ($val) => $val,
+  };
+  // The Oasisbr index exposes publication years in publishDate. Its legacy
+  // publishDateRange DateRangeField has no indexed values, even though it is
+  // configured as the sidebar facet. Keep the sidebar label, but submit and
+  // restore the range through the populated field.
+  $rangeField = $this->title === 'publishDateRange' ? 'publishDate' : $this->title;
+  $cleanValues = array_map($sanitize, $this->facet['values'] ?? []);
+  foreach ($results->getParams()->getRawFilters()[$rangeField] ?? [] as $filterValue) {
+    if (preg_match('/^\[(-?\d+) TO (-?\d+)\]$/', $filterValue, $matches)) {
+      $cleanValues = [$matches[1], $matches[2]];
+      break;
+    }
+  }
+  $safeBaseId = $this->escapeHtmlAttr($rangeField);
+  $isDateRange = $this->facet['type'] === 'date';
+  $inputType = $isDateRange ? 'number' : 'text';
+  // Do not submit the previous values for this range in addition to the fields
+  // below; retain all unrelated filters and range controls from the current URL.
+  $rangeName = $this->facet['type'] . 'range';
+  $replacedRangeFields = array_unique([$this->title, $rangeField]);
+  $rangeFilter = implode('|', array_map(fn ($field) => preg_quote($field, '/'), $replacedRangeFields));
+  $hiddenFieldFilters = [
+    'page' => '/./',
+    'filter' => '/^(?:' . $rangeFilter . '):.*/',
+    $rangeName => '/^(?:' . $rangeFilter . ')$/',
+  ];
+  foreach ($replacedRangeFields as $field) {
+    $hiddenFieldFilters[$field . 'from'] = '/.*/';
+    $hiddenFieldFilters[$field . 'to'] = '/.*/';
+  }
+?>
+<div class="facet">
+  <form class="facet-range-form" name="<?=$safeBaseId?>Filter" id="<?=$safeBaseId?>Filter" data-name="<?=$safeBaseId?>" data-filter-field="<?=$this->escapeHtmlAttr($this->facet['type'])?>range[]">
+    <?=$results->getUrlQuery()->asHiddenFields($hiddenFieldFilters)?>
+    <input type="hidden" name="<?=$this->escapeHtmlAttr($this->facet['type'])?>range[]" value="<?=$safeBaseId?>">
+    <div class="date-fields">
+      <?php $extraInputAttribs = $isDateRange ? 'min="-9999" max="9999" ' : ''; ?>
+      <div class="date-from">
+        <label id="<?=$safeBaseId?>from-label" for="<?=$safeBaseId?>from">
+          <?=$this->transEsc('date_from')?>:
+        </label>
+        <input type="<?=$inputType?>" class="form-control" name="<?=$safeBaseId?>from" id="<?=$safeBaseId?>from" value="<?=$this->escapeHtmlAttr($cleanValues[0] ?? '')?>" <?=$extraInputAttribs?>>
+      </div>
+      <div class="date-to">
+        <label id="<?=$safeBaseId?>to-label" for="<?=$safeBaseId?>to">
+          <?=$this->transEsc('date_to')?>:
+        </label>
+        <input type="<?=$inputType?>" class="form-control" name="<?=$safeBaseId?>to" id="<?=$safeBaseId?>to" value="<?=$this->escapeHtmlAttr($cleanValues[1] ?? '')?>" <?=$extraInputAttribs?>>
+      </div>
+      <input class="btn btn-default" type="submit" value="<?=$this->transEscAttr('Set')?>">
+    </div>
+  </form>
+</div>
