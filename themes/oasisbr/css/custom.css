@@ -1186,7 +1186,7 @@ li.language a {
 
 .oasis-site #networks-page #network-search {
   max-width: none;
-  border-radius: 999px;
+  border-radius: 0.375rem;
   border: 1px solid var(--oasis-home-border);
 }
 
@@ -3286,6 +3286,8 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
 .oasis-results-mainbody .record-list {
   margin: 0;
   padding: 0;
+  width: 100%;
+  min-width: 0;
   list-style: none;
 }
 
@@ -3403,6 +3405,183 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
 
 .oasis-results-mainbody .result-links {
   display: none;
+}
+
+/* Cards de resultados do redesign Oasisbr. */
+.template-dir-search.template-name-results .oasis-results-mainbody .result {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 0;
+}
+
+.template-dir-search.template-name-results .oasis-results-mainbody .result > .record-number {
+  display: none;
+}
+
+.oasis-result-card {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid var(--oasis-home-border);
+  border-radius: 0.75rem;
+  background: #fff;
+}
+
+.oasis-result-card__header {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.oasis-result-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.oasis-result-card__format,
+.oasis-result-card__access {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.875rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.oasis-result-card__format {
+  background: #e5f4e9;
+  color: var(--oasis-home-primary);
+}
+
+.oasis-result-card__access {
+  background: #f4f9d2;
+  color: #5c6a00;
+}
+
+.oasis-result-card__year {
+  color: var(--oasis-home-muted);
+  font-size: 0.8125rem;
+}
+
+.oasis-result-card__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.template-dir-search.template-name-results .oasis-result-card__title a {
+  color: var(--oasis-home-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.14em;
+}
+
+.template-dir-search.template-name-results .oasis-result-card__title a:hover,
+.template-dir-search.template-name-results .oasis-result-card__title a:focus {
+  color: var(--oasis-home-primary-strong);
+}
+
+.oasis-result-card__authors,
+.oasis-result-card__source,
+.oasis-result-card__summary {
+  margin: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.55;
+}
+
+.oasis-result-card__authors {
+  color: var(--oasis-home-foreground);
+  font-size: 0.9rem;
+}
+
+.oasis-result-card__authors a {
+  color: var(--oasis-home-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.oasis-result-card__source,
+.oasis-result-card__summary {
+  color: var(--oasis-home-muted);
+  font-size: 0.9375rem;
+}
+
+.oasis-result-card__actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.oasis-result-card__fulltext,
+.oasis-result-card__cite {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.oasis-result-card__fulltext {
+  gap: 0.5rem;
+  border: 1px solid var(--oasis-home-primary);
+  background: var(--oasis-home-primary);
+  color: var(--oasis-home-primary-foreground);
+}
+
+.oasis-result-card__fulltext:hover,
+.oasis-result-card__fulltext:focus {
+  background: var(--oasis-home-primary-strong);
+  color: var(--oasis-home-primary-foreground);
+}
+
+.oasis-result-card__cite {
+  border: 2px solid var(--oasis-home-border);
+  background: #fff;
+  color: var(--oasis-home-foreground);
+}
+
+.oasis-result-card__cite:hover,
+.oasis-result-card__cite:focus {
+  background: var(--oasis-home-muted-bg);
+}
+
+.oasis-result-card :is(a, button):focus-visible {
+  outline: 3px solid #d8d808;
+  outline-offset: 2px;
+}
+
+@media (max-width: 575.98px) {
+  .oasis-result-card {
+    padding: 1rem;
+  }
+
+  .oasis-result-card__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .oasis-result-card__fulltext,
+  .oasis-result-card__cite {
+    width: 100%;
+  }
 }
 
 @media (max-width: 991.98px) {
