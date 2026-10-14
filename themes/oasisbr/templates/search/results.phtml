@@ -90,7 +90,7 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
 
     <?php if ($recordTotal > 0): ?>
       <?= $this->context($this)->renderInContext(
-        'search/filters.phtml',
+        'search/active-filters.phtml',
         [
           'params' => $this->params,
           'urlQuery' => $this->results->getUrlQuery(),

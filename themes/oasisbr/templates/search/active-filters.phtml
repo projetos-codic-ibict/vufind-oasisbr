@@ -1,0 +1,62 @@
+<?php
+/**
+ * Active refinement filters for the Oasisbr search results page.
+ *
+ * This is deliberately separate from the stock search/filters.phtml template:
+ * the latter renders both desktop and mobile variants of the same filters.
+ */
+$activeFilters = [];
+
+foreach ($checkboxFilters as $filter) {
+    if (!$filter['selected']) {
+        continue;
+    }
+    $removeLink = $urlQuery->removeFilter($filter['filter']);
+    if ($removeLink) {
+        $activeFilters[] = [
+            'label' => $this->translate('remove_filter_with_value', [
+                '%%value%%' => $filter['desc'],
+            ]),
+            'text' => $filter['desc'],
+            'url' => $removeLink,
+        ];
+    }
+}
+
+foreach ($filterList as $field => $values) {
+    foreach ($values as $value) {
+        $displayText = $value['displayText'];
+        $activeFilters[] = [
+            'label' => $this->translate('remove_filter_with_context', [
+                '%%field%%' => $this->translate($field),
+                '%%value%%' => $displayText,
+            ]),
+            'text' => $displayText,
+            'url' => $urlQuery->removeFacet(
+                $value['field'],
+                $value['value'],
+                $value['operator']
+            ),
+        ];
+    }
+}
+
+if (!$activeFilters) {
+    return;
+}
+
+// Keep the query and search type intact while removing refinement filters.
+$clearAllLink = $urlQuery->removeAllFilters()->resetDefaultFilters();
+?>
+<section class="oasis-active-filters active-filters active-filters--uncollapsible" aria-label="<?= $this->transEscAttr('active_filters_label') ?>">
+  <span class="oasis-active-filters__label"><?= $this->transEsc('active_filters_label') ?></span>
+  <div class="filters oasis-active-filters__list" role="list">
+    <?php foreach ($activeFilters as $filter): ?>
+      <a class="filter-value oasis-active-filters__chip" role="listitem" href="<?= $filter['url'] ?>" aria-label="<?= $this->escapeHtmlAttr($filter['label']) ?>">
+        <span class="oasis-active-filters__chip-text" aria-hidden="true"><?= $this->escapeHtml($filter['text']) ?></span>
+        <span class="oasis-active-filters__remove" aria-hidden="true">&times;</span>
+      </a>
+    <?php endforeach; ?>
+  </div>
+  <a class="oasis-active-filters__clear" href="<?= $clearAllLink ?>"><?= $this->transEsc('clear_all_filters') ?></a>
+</section>

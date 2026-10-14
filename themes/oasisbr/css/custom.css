@@ -3012,25 +3012,68 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
   min-width: 4rem;
 }
 
-.oasis-results-summary .active-filters {
+.oasis-results-summary .oasis-active-filters {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem 0.75rem;
   margin: 0;
+  color: var(--oasis-home-foreground);
 }
 
-.oasis-results-summary .active-filters .filters {
+.oasis-active-filters__label {
+  flex: 0 0 auto;
+  color: var(--oasis-home-foreground);
+  font-weight: 700;
+}
+
+.oasis-results-summary .oasis-active-filters .filters {
   display: flex;
   flex: 0 1 auto;
   flex-wrap: wrap;
+  min-width: 0;
   gap: 0.5rem;
   padding: 0;
 }
 
-.oasis-results-summary .active-filters .reset-filters-btn {
-  order: 2;
+.template-dir-search.template-name-results .oasis-results-summary .oasis-active-filters .oasis-active-filters__chip {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+  gap: 0.5rem;
+  padding: 0.375rem 0.625rem 0.375rem 0.75rem;
+  border: 1px solid var(--oasis-home-primary);
+  border-radius: 999px;
+  background: #e5f4e9;
+  color: var(--oasis-home-primary);
   font-weight: 700;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.oasis-active-filters__chip-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.oasis-active-filters__remove {
+  flex: 0 0 auto;
+  font-size: 1.25em;
+  line-height: 1;
+}
+
+.oasis-active-filters__clear {
+  flex: 0 0 auto;
+  color: var(--oasis-home-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.oasis-active-filters :is(.oasis-active-filters__chip, .oasis-active-filters__clear):focus-visible {
+  outline: 3px solid #d8d808;
+  outline-offset: 2px;
 }
 
 .oasis-results-mainbody .export button {
