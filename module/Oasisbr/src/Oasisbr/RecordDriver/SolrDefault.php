@@ -150,6 +150,16 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
   }
 
   /**
+   * Return all dARK identifiers stored for the record.
+   *
+   * @return array
+   */
+  public function getDarkIDs()
+  {
+    return $this->getFieldsValues(['dc.identifier.dark.fl_str_mv']);
+  }
+
+  /**
    * Referee
    */
   public function getRefereeAuthors()
@@ -368,6 +378,16 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
   {
     return $this->getFieldValue("eu_rights_str_mv");
   }
+
+  /**
+   * Return all rights statements supplied by the source record.
+   *
+   * @return array
+   */
+  public function getRightsStatements()
+  {
+    return $this->getFieldsValues(['eu_rights_str_mv']);
+  }
   public function getAuthorLattes()
   {
     return $this->getFieldValue("dc.contributor.authorLattes.none.fl_str_mv");
@@ -423,5 +443,15 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
   public function getDOI()
   {
     return $this->getFieldValue("dc.identifier.doi.none.fl_str_mv");
+  }
+
+  /**
+   * Return all DOI values supplied by the source record.
+   *
+   * @return array
+   */
+  public function getDOIs()
+  {
+    return $this->getFieldsValues(['dc.identifier.doi.none.fl_str_mv']);
   }
 }

@@ -4,9 +4,20 @@ $formatter = $this->recordDataFormatter();
 $coreFields = $formatter->getData($this->driver, $formatter->getDefaults('core'));
 $authors = null;
 $details = [];
+$sourceDetails = [];
 foreach ($coreFields as $field) {
   if ($field['label'] === 'Authors') {
     $authors = $field['value'];
+  } elseif (in_array($field['label'], ['Source', 'Institution'])) {
+    $sourceDetails[$field['label']] = $field['value'];
+  } elseif (in_array($field['label'], ['DOI', 'dARK ID'])) {
+    // Identifiers are rendered below from the driver's raw, multi-value
+    // methods. The formatter values may contain presentation markup intended
+    // for the older details table.
+    continue;
+  } elseif ($field['label'] === 'Download full') {
+    // Full-text links are rendered with the primary actions below the title.
+    continue;
   } elseif (!in_array($field['label'], [
     'Publication Date',
     'Format',
@@ -21,22 +32,131 @@ foreach ($coreFields as $field) {
 }
 $summary = $this->driver->getSummary()[0] ?? null;
 $subjects = $this->driver->getAllSubjectHeadings();
+$rights = trim((string)$this->driver->tryMethod('getRights'));
+$identifierValues = [];
+$identifierKeys = [];
+$addIdentifierUrl = static function (string $value) use (&$identifierValues, &$identifierKeys): void {
+  $value = trim($value);
+  if (!filter_var($value, FILTER_VALIDATE_URL)
+    || !in_array(strtolower((string)parse_url($value, PHP_URL_SCHEME)), ['http', 'https'], true)
+    || isset($identifierKeys[$value])) {
+    return;
+  }
+  $identifierKeys[$value] = true;
+  $identifierValues[] = ['value' => $value, 'href' => $value];
+};
+
+// This field intentionally exposes only navigable, source-supplied URLs.
+// OAI, DOI/dARK codes, and other non-URL identifiers remain in the record
+// data for indexing and export but are not rendered here.
+foreach ($this->driver->getURLs() as $urlData) {
+  $url = is_array($urlData) ? ($urlData['url'] ?? null) : null;
+  if (is_string($url)) {
+    $addIdentifierUrl($url);
+  }
+}
+
+$licenses = [];
+foreach ((array)$this->driver->tryMethod('getRightsStatements') as $rightsStatement) {
+  if (!is_string($rightsStatement)) {
+    continue;
+  }
+  $rightsStatement = trim($rightsStatement);
+  if ($rightsStatement === '' || !preg_match('/(?:creativecommons\.org\/licenses|creative\s+commons|\bcc\s*by|\bgnu\b|\bmit\s+license|\bapache\s+license|licen[cs]a)/iu', $rightsStatement)) {
+    continue;
+  }
+  preg_match('/https?:\/\/[^\s<>]+/i', $rightsStatement, $licenseMatch);
+  $licenseUrl = $licenseMatch[0] ?? null;
+  $licenseDescription = trim((string)preg_replace('/https?:\/\/[^\s<>]+/i', '', $rightsStatement));
+  $licenses[$rightsStatement] = [
+    'value' => $licenseDescription !== '' ? $licenseDescription : $rightsStatement,
+    'href' => $licenseUrl,
+  ];
+}
+$licenses = array_values($licenses);
+$isOpenAccess = $rights !== '' && preg_match('/(?:open[\s-]?access|acesso[\s-]?aberto|info:eu-repo\/semantics\/openaccess)/iu', $rights);
+$openUrl = $this->openUrl($this->driver, 'record');
+$recordLinks = $this->record($this->driver)->getLinkDetails($openUrl->isActive());
+$fullTextLinks = array_values(array_filter((array)$recordLinks, static function ($link): bool {
+  return !empty($link['url'])
+    && filter_var($link['url'], FILTER_VALIDATE_URL)
+    && in_array(strtolower((string)parse_url($link['url'], PHP_URL_SCHEME)), ['http', 'https'], true);
+}));
+$sourceDetailRows = [];
+if (!empty($sourceDetails['Source'])) {
+  $sourceDetailRows[] = ['label' => 'Source', 'value' => $sourceDetails['Source']];
+}
+if (!empty($sourceDetails['Institution'])) {
+  $sourceDetailRows[] = ['label' => 'Institution', 'value' => $sourceDetails['Institution']];
+}
+if (!empty($subjects)) {
+  $sourceDetailRows[] = ['label' => 'Subjects', 'value' => 'subjects'];
+}
+if (!empty($identifierValues)) {
+  $sourceDetailRows[] = ['label' => 'Identifier', 'value' => 'identifiers'];
+}
+if (!empty($licenses)) {
+  $sourceDetailRows[] = ['label' => 'License', 'value' => 'license'];
+}
 $relatedRecords = $this->layout()->oasisRelatedRecords ?? [];
 $title = ($this->driver->getShortTitle() ?: $this->driver->getTitle()) . ' ' . $this->driver->getSubtitle() . ' ' . $this->driver->getTitleSection();
+
+// Keep citation generation in VuFind's citation helper so formats and
+// bibliographic rules remain centralized in the record driver.
+$citationHelper = $this->citation($this->driver);
+$citationFormats = $this->driver->getCitationFormats();
+$citations = [];
+foreach ($citationFormats as $format) {
+  $citation = $citationHelper->getCitation($format);
+  if ($citation !== '') {
+    $citations[$format] = $citation;
+  }
+}
+$preferredCitationFormat = array_key_exists('ABNT', $citations)
+  ? 'ABNT' : array_key_first($citations);
+
+// The configured related-record providers own the search. Filter their results
+// here only to prevent the current record or duplicate records from appearing.
+$similarRecords = [];
+$seenRelated = [];
+$currentRelatedKey = $this->driver->getSourceIdentifier() . ':' . $this->driver->getUniqueId();
+foreach ($relatedRecords as $relatedProvider) {
+  // VuFind\Related\Similar returns a RecordCollectionInterface. It is an
+  // Iterator whose values are RecordDriver objects; casting it to array exposes
+  // its internal properties instead of iterating its records.
+  foreach ($relatedProvider->getResults() as $relatedRecord) {
+    $relatedKey = $relatedRecord->getSourceIdentifier() . ':' . $relatedRecord->getUniqueId();
+    if ($relatedKey === $currentRelatedKey || isset($seenRelated[$relatedKey])) {
+      continue;
+    }
+    $seenRelated[$relatedKey] = true;
+    $similarRecords[] = $relatedRecord;
+  }
+}
 ?>
 <article class="oasis-record" vocab="http://schema.org/" resource="#record" typeof="<?= $this->driver->getSchemaOrgFormats() ?> Product">
   <div class="oasis-record-content">
     <header class="oasis-record-header">
       <div class="oasis-record-meta">
         <?php $formats = $this->driver->getFormats(); ?>
-        <?php if (!empty($formats)) : ?><span class="format <?= $this->record($this->driver)->getFormatClass($formats[0]) ?>"><?= $this->transEsc($formats[0]) ?></span><?php endif; ?>
+        <?php if (!empty($formats)) : ?><span class="oasis-record-meta-badge oasis-record-meta-badge--format"><?= $this->transEsc($formats[0]) ?></span><?php endif; ?>
+        <?php if ($isOpenAccess) : ?><span class="oasis-record-meta-badge oasis-record-meta-badge--access"><?= $this->transEsc('openAccess') ?></span><?php endif; ?>
         <?php $dates = $this->driver->getPublicationDates(); ?>
-        <?php if (!empty($dates)) : ?><span><?= $this->escapeHtml($dates[0]) ?></span><?php endif; ?>
         <?php $languages = $this->driver->getLanguages(); ?>
-        <?php if (!empty($languages)) : ?><span><?= $this->transEsc($languages[0], [], 'ISO639-3') ?></span><?php endif; ?>
+        <?php if (!empty($dates) || !empty($languages)) : ?><span class="oasis-record-meta-text"><?= !empty($dates) ? $this->transEsc('Published') . ' ' . $this->escapeHtml($dates[0]) : '' ?><?= !empty($dates) && !empty($languages) ? ' · ' : '' ?><?= !empty($languages) ? $this->transEsc($languages[0], [], 'ISO639-3') : '' ?></span><?php endif; ?>
       </div>
       <h1 property="name"><?= $this->escapeHtml($title) ?></h1>
-      <?php if ($authors) : ?><div class="oasis-record-authors"><?= $authors ?></div><?php endif; ?>
+      <?php if ($authors) : ?><div class="oasis-record-authors"><span><?= $this->transEsc('Authorship') ?></span> <?= $authors ?></div><?php endif; ?>
+      <div class="oasis-record-primary-actions">
+        <?php foreach ($fullTextLinks as $link) : ?>
+          <a class="oasis-record-fulltext-link" href="<?= $this->escapeHtmlAttr($this->proxyUrl($link['url'])) ?>" target="_blank" rel="noopener noreferrer">
+            <?= $this->transEsc('Access full text in repository') ?>
+            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            <span class="visually-hidden"><?= $this->transEsc('opens new tab') ?></span>
+          </a>
+        <?php endforeach; ?>
+        <?= $this->record($this->driver)->getToolbar() ?>
+      </div>
     </header>
 
     <?php if ($summary) : ?>
@@ -46,38 +166,102 @@ $title = ($this->driver->getShortTitle() ?: $this->driver->getTitle()) . ' ' . $
       </section>
     <?php endif; ?>
 
-    <?php if (!empty($subjects)) : ?>
-      <section class="oasis-record-section" aria-labelledby="record-subjects">
-        <h2 id="record-subjects"><?= $this->transEsc('Subjects') ?></h2>
-        <div class="oasis-record-subjects">
-          <?php foreach ($subjects as $subject) : ?>
-            <?php $label = implode(' -- ', $subject); ?>
-            <a href="<?= $this->record($this->driver)->getLink('subject', $label) ?>" rel="nofollow"><?= $this->escapeHtml($label) ?></a>
+    <?php if (!empty($sourceDetailRows) || !empty($details)) : ?>
+      <section class="oasis-record-details oasis-record-details--main" aria-labelledby="record-details">
+        <h2 id="record-details"><?= $this->transEsc('Source details') ?></h2>
+        <dl>
+          <?php foreach ($sourceDetailRows as $detail) : ?>
+            <div>
+              <dt><?= $this->transEsc($detail['label']) ?></dt>
+              <dd>
+                <?php if ($detail['value'] === 'subjects') : ?>
+                  <div class="oasis-record-subjects">
+                    <?php foreach ($subjects as $subject) : ?>
+                      <?php $label = implode(' -- ', $subject); ?>
+                      <a href="<?= $this->record($this->driver)->getLink('subject', $label) ?>" rel="nofollow"><?= $this->escapeHtml($label) ?></a>
+                    <?php endforeach; ?>
+                  </div>
+                <?php elseif ($detail['value'] === 'identifiers') : ?>
+                  <ul class="oasis-record-identifiers">
+                    <?php foreach ($identifierValues as $identifier) : ?>
+                      <li>
+                        <?php if ($identifier['href'] !== null) : ?>
+                          <a href="<?= $this->escapeHtmlAttr($identifier['href']) ?>" target="_blank" rel="noopener noreferrer"><?= $this->escapeHtml($identifier['value']) ?></a>
+                        <?php else : ?>
+                          <?= $this->escapeHtml($identifier['value']) ?>
+                        <?php endif; ?>
+                      </li>
+                    <?php endforeach; ?>
+                  </ul>
+                <?php elseif ($detail['value'] === 'license') : ?>
+                  <ul class="oasis-record-licenses">
+                    <?php foreach ($licenses as $license) : ?>
+                      <li>
+                        <?php if ($license['href'] !== null) : ?>
+                          <a href="<?= $this->escapeHtmlAttr($license['href']) ?>" target="_blank" rel="noopener noreferrer"><?= $this->escapeHtml($license['value']) ?></a>
+                        <?php else : ?>
+                          <?= $this->escapeHtml($license['value']) ?>
+                        <?php endif; ?>
+                      </li>
+                    <?php endforeach; ?>
+                  </ul>
+                <?php else : ?>
+                  <?= $detail['value'] ?>
+                <?php endif; ?>
+              </dd>
+            </div>
           <?php endforeach; ?>
-        </div>
+          <?php foreach ($details as $field) : ?>
+            <div>
+              <dt><?= $this->transEsc($field['label']) ?></dt>
+              <dd><?= $field['value'] ?></dd>
+            </div>
+          <?php endforeach; ?>
+        </dl>
       </section>
     <?php endif; ?>
 
     <?= $this->layout()->oasisRecordTabs ?? '' ?>
+
   </div>
 
   <aside class="oasis-record-aside">
-      <section class="oasis-record-details" aria-labelledby="record-details">
-        <h3 id="record-details"><?= $this->transEsc('Source details') ?></h3>
-      <dl>
-        <?php foreach ($details as $field) : ?>
-          <div>
-            <dt><?= $field['label'] === 'Download full' ? '' : $this->transEsc($field['label']) ?></dt>
-            <dd><?= $field['value'] ?></dd>
-          </div>
+    <?php if (!empty($citations) && $preferredCitationFormat !== null) : ?>
+      <section class="oasis-record-citation-card" aria-labelledby="record-citation-title">
+        <h2 id="record-citation-title"><?= $this->transEsc('How to cite') ?></h2>
+        <label for="oasis-citation-format"><?= $this->transEsc('Format') ?></label>
+        <select id="oasis-citation-format" class="form-select">
+          <?php foreach ($citations as $format => $citation) : ?>
+            <option value="<?= $this->escapeHtmlAttr($format) ?>"<?= $format === $preferredCitationFormat ? ' selected' : '' ?>><?= $this->escapeHtml($format) ?></option>
+          <?php endforeach; ?>
+        </select>
+        <?php foreach ($citations as $format => $citation) : ?>
+          <div class="oasis-record-citation" data-citation-format="<?= $this->escapeHtmlAttr($format) ?>"<?= $format === $preferredCitationFormat ? '' : ' hidden' ?>><?= $this->cleanHtml($citation) ?></div>
         <?php endforeach; ?>
-      </dl>
-    </section>
-    <?php if (!empty($relatedRecords)) : ?>
-      <section class="oasis-record-related" aria-label="<?= $this->transEscAttr('Similar Items') ?>">
-        <?php foreach ($relatedRecords as $current) : ?>
-          <?= $this->related()->render($current) ?>
-        <?php endforeach; ?>
+        <button type="button" class="oasis-copy-citation" aria-describedby="oasis-citation-status" data-success="<?= $this->transEscAttr('Text copied') ?>" data-failure="<?= $this->transEscAttr('Could not copy citation') ?>"><?= $this->transEsc('Copy citation') ?></button>
+        <p id="oasis-citation-status" class="oasis-citation-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      </section>
+    <?php endif; ?>
+
+    <?php if (!empty($similarRecords)) : ?>
+      <section class="oasis-record-related" aria-labelledby="similar-records-title">
+        <h2 id="similar-records-title"><?= $this->transEsc('Similar records') ?></h2>
+        <ul>
+          <?php foreach ($similarRecords as $relatedRecord) : ?>
+            <?php
+              $relatedFormats = $relatedRecord->getFormats();
+              $relatedFormat = $relatedFormats[0] ?? null;
+              $relatedDates = $relatedRecord->getPublicationDates();
+              $relatedDate = $relatedDates[0] ?? null;
+            ?>
+            <li>
+              <a href="<?= $this->escapeHtmlAttr($this->recordLinker()->getUrl($relatedRecord)) ?>"><?= $this->escapeOrCleanHtml($relatedRecord->getTitle(), dataContext: 'title', renderingContext: 'link') ?></a>
+              <?php if ($relatedFormat || $relatedDate) : ?>
+                <span><?= $relatedFormat ? $this->transEsc($relatedFormat) : '' ?><?= $relatedFormat && $relatedDate ? ' · ' : '' ?><?= $relatedDate ? $this->escapeHtml($relatedDate) : '' ?></span>
+              <?php endif; ?>
+            </li>
+          <?php endforeach; ?>
+        </ul>
       </section>
     <?php endif; ?>
   </aside>

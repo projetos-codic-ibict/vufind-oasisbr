@@ -6,6 +6,7 @@ $this->layout()->searchbox = false;
 $this->assetManager()->appendScriptLink("record.js");
 $this->assetManager()->appendScriptLink("check_save_statuses.js");
 $this->assetManager()->appendScriptLink("record-details-toggle.js");
+$this->assetManager()->appendScriptLink("record-sidebar.js");
 // Activate Syndetics Plus if necessary:
 // if ($this->syndeticsPlus()->isActive()) {
 //   $this->headScript()->appendFile($this->syndeticsPlus()->getScript());
@@ -43,8 +44,6 @@ $this->layout()->title = $this->driver->getShortTitle();
 <?php if (isset($this->scrollData) && ($this->scrollData['previousRecord'] || $this->scrollData['nextRecord'])) : ?>
   <?= $this->render('record/prev-next.phtml'); ?>
 <?php endif; ?>
-
-<?= $this->record($this->driver)->getToolbar() ?>
 
 <div class="record source<?= $this->escapeHtmlAttr($this->driver->getSourceIdentifier()) ?>">
   <?php $sidebarList = $this->related()->getList($this->driver); ?>
