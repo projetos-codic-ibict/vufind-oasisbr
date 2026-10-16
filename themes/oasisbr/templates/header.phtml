@@ -15,25 +15,35 @@ $isIndicators = $templateDir === 'indicators';
 $searchHomeUrl = $this->url('search-home');
 ?>
 
-<nav class="oasis-header-accessibility" aria-label="<?= $this->transEscAttr('footer_accessibility') ?>">
+<nav class="oasis-header-accessibility" aria-label="Atalhos de acessibilidade">
   <div class="oasis-header-container oasis-header-accessibility__inner">
-    <div class="oasis-header-accessibility__shortcuts" aria-label="<?= $this->transEscAttr('Skip to content') ?>">
-      <a class="oasis-header-accessibility__link" href="#content" data-oasis-shortcut="content"><?= $this->transEsc('Skip to content') ?> <kbd>Alt + 1</kbd></a>
-      <a class="oasis-header-accessibility__link" href="#header-collapse" data-oasis-shortcut="menu"><?= $this->transEsc('Skip to navigation menu') ?> <kbd>Alt + 2</kbd></a>
-      <a class="oasis-header-accessibility__link" href="<?= $searchHomeUrl ?>#searchForm_lookfor" data-oasis-shortcut="search" data-oasis-search-url="<?= $searchHomeUrl ?>"><?= $this->transEsc('Skip to search') ?> <kbd>Alt + 3</kbd></a>
-    </div>
+    <ul class="oasis-header-accessibility__shortcuts">
+      <li><a class="oasis-header-accessibility__link" href="#content" data-oasis-shortcut="content" accesskey="1"><?= $this->transEsc('Skip to content') ?> <kbd>1</kbd></a></li>
+      <li><a class="oasis-header-accessibility__link" href="#header-collapse" data-oasis-shortcut="menu" accesskey="2"><?= $this->transEsc('Skip to navigation menu') ?> <kbd>2</kbd></a></li>
+      <li><a class="oasis-header-accessibility__link" href="<?= $searchHomeUrl ?>#searchForm_lookfor" data-oasis-shortcut="search" data-oasis-search-url="<?= $searchHomeUrl ?>" accesskey="3"><?= $this->transEsc('Skip to search') ?> <kbd>3</kbd></a></li>
+      <li><a class="oasis-header-accessibility__link" href="#rodape" accesskey="4"><?= str_starts_with($currentLang, 'pt') ? 'Ir para o rodapé' : $this->transEsc('Skip to footer') ?> <kbd>4</kbd></a></li>
+    </ul>
     <div class="oasis-header-accessibility__controls">
-      <button type="button" class="oasis-header-accessibility__button" data-oasis-contrast aria-pressed="false">
-        <span class="oasis-header-accessibility__contrast-icon" aria-hidden="true"></span>Alto contraste
-      </button>
+      <?php if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1) : ?>
+        <div class="dropdown oasis-header-accessibility__language">
+          <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="visually-hidden"><?= $this->transEsc('Language') ?>: </span><span><?= $this->escapeHtml($currentLangLabel) ?></span>
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <?php foreach ($this->layout()->allLangs as $langCode => $langName) : ?>
+              <li<?= $this->layout()->userLang == $langCode ? ' class="active"' : '' ?>><a href="<?= $this->escapeHtmlAttr($this->url()->addQueryParameters(['lng' => $langCode])) ?>" rel="nofollow"><?= $this->displayLanguageOption($langName) ?></a></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+      <?php endif; ?>
       <div class="oasis-header-accessibility__text-size" role="group" aria-label="Tamanho do texto">
-        <button type="button" data-oasis-font-size="decrease" aria-label="Diminuir texto">A−</button>
-        <button type="button" data-oasis-font-size="reset" aria-label="Restaurar tamanho do texto">A</button>
-        <button type="button" data-oasis-font-size="increase" aria-label="Aumentar texto">A+</button>
+        <button type="button" data-oasis-font-size="decrease" aria-label="Diminuir texto" title="Diminuir texto"><i class="fa-solid fa-minus" aria-hidden="true"></i></button>
+        <button type="button" data-oasis-font-size="increase" aria-label="Aumentar texto" title="Aumentar texto"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
       </div>
-      <button type="button" class="oasis-header-accessibility__button" data-oasis-vlibras disabled>
-        <span class="oasis-header-accessibility__vlibras-icon" aria-hidden="true">VL</span>VLibras
-      </button>
+      <button type="button" class="oasis-header-accessibility__button" data-oasis-cookie-preferences aria-label="Preferências de cookies" title="Preferências de cookies" disabled><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i></button>
+      <button type="button" class="oasis-header-accessibility__button" data-oasis-contrast aria-pressed="false" aria-label="Alto contraste" title="Alto contraste"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i></button>
+      <button type="button" class="oasis-header-accessibility__button" data-oasis-vlibras aria-label="Ativar VLibras" title="Ativar VLibras" disabled><i class="fa-solid fa-sign-language" aria-hidden="true"></i></button>
     </div>
   </div>
 </nav>
@@ -100,19 +110,6 @@ $searchHomeUrl = $this->url('search-home');
               </li>
             <?php endif; ?>
 
-            <?php if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1) : ?>
-              <li class="nav-item language dropdown">
-                <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="fa-solid fa-globe" aria-hidden="true"></i><span class="visually-hidden"><?= $this->transEsc('Language') ?>: </span><span><?= $this->escapeHtml($currentLangLabel) ?></span>
-                  <i class="fa-solid fa-chevron-down oasis-language-dropdown-icon" aria-hidden="true"></i>
-                </button>
-                <ul class="dropdown-menu">
-                  <?php foreach ($this->layout()->allLangs as $langCode => $langName) : ?>
-                    <li<?= $this->layout()->userLang == $langCode ? ' class="active"' : '' ?>><a href="<?= $this->escapeHtmlAttr($this->url()->addQueryParameters(['lng' => $langCode])) ?>" rel="nofollow"><?= $this->displayLanguageOption($langName) ?></a></li>
-                  <?php endforeach; ?>
-                </ul>
-              </li>
-            <?php endif; ?>
           </ul>
         </nav>
       </div>
