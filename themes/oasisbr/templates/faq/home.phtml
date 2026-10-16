@@ -312,3 +312,27 @@
     </div>
   </div>
 </div>
+
+<script nonce="<?= $this->csp()->getNonce() ?>">
+window.addEventListener('DOMContentLoaded', function () {
+  var hash = window.location.hash;
+  var section = hash && document.querySelector(hash);
+  var control = hash && document.querySelector('[data-bs-target="' + hash + '"]');
+  if (!section || !control || !section.classList.contains('collapse')) return;
+
+  var reveal = function () {
+    control.focus({ preventScroll: true });
+    section.scrollIntoView({ block: 'start' });
+  };
+
+  section.addEventListener('shown.bs.collapse', reveal, { once: true });
+  if (window.bootstrap && window.bootstrap.Collapse) {
+    window.bootstrap.Collapse.getOrCreateInstance(section, { toggle: false }).show();
+  } else {
+    section.classList.add('show');
+    control.classList.remove('collapsed');
+    control.setAttribute('aria-expanded', 'true');
+    reveal();
+  }
+});
+</script>

@@ -1,0 +1,61 @@
+<?php
+$this->assetManager()->appendScriptLink('vendor/cookieconsent.umd.js');
+
+// The initial notice records a necessary-only choice. Optional categories remain
+// disabled until the visitor explicitly enables them in the preferences dialog.
+$translations = &$consentDialogConfig['language']['translations'];
+$faqUrl = $this->url('faq-home');
+foreach ($translations as &$translation) {
+    unset($translation['consentModal']['acceptAllBtn']);
+    $translation['consentModal']['description'] = $this->translate(
+        'cookie notice summary html',
+        ['%%faqUrlAttr%%' => $this->escapeHtmlAttr($faqUrl)]
+    );
+    $translation['consentModal']['acceptNecessaryBtn'] = $this->translate(
+        'CookieConsent::Proceed'
+    );
+    $translation['consentModal']['showPreferencesBtn'] = $this->translate(
+        'cookie notice read full text'
+    );
+}
+unset($translation);
+
+$configJson = json_encode(
+    [
+        'consentDialog' => $consentDialogConfig,
+        'controlledVuFindServices' => $controlledVuFindServices,
+    ]
+);
+$faqUrlJson = json_encode($faqUrl);
+$this->assetManager()->appendScriptString(<<<JS
+window.addEventListener('load', function() {
+  VuFind.cookie.setupConsent($configJson);
+
+  var openedFromCookieButton = false;
+  window.OasisbrCookieNotice = {
+    show: function() {
+      openedFromCookieButton = window.CookieConsent.validConsent();
+      window.CookieConsent.show(true);
+    }
+  };
+
+  document.addEventListener('click', function(event) {
+    var readFullText = event.target.closest('#cc-main [data-role="show"]');
+    if (readFullText) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      window.location.assign($faqUrlJson);
+      return;
+    }
+
+    var button = event.target.closest('#cc-main [data-role="necessary"]');
+    if (!button || !openedFromCookieButton) {
+      return;
+    }
+    openedFromCookieButton = false;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    window.CookieConsent.hide();
+  }, true);
+});
+JS);

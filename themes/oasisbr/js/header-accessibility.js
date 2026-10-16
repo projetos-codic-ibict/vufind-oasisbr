@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggler = document.querySelector('.oasis-header-toggler');
   const contrastButton = document.querySelector('[data-oasis-contrast]');
   const vlibrasButton = document.querySelector('[data-oasis-vlibras]');
-  const cookiePreferencesButton = document.querySelector('[data-oasis-cookie-preferences]');
+  const cookieNoticeButton = document.querySelector('[data-oasis-cookie-notice]');
 
   const getStorage = (key) => {
     try { return window.localStorage.getItem(key); } catch (error) { return null; }
@@ -67,10 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (performShortcut(action, searchLink?.dataset.oasisSearchUrl)) event.preventDefault();
   });
   contrastButton?.addEventListener('click', () => applyContrast(!document.body.classList.contains('oasis-high-contrast')));
-  if (typeof window.CookieConsent?.showPreferences === 'function') {
-    cookiePreferencesButton?.removeAttribute('disabled');
-    cookiePreferencesButton?.addEventListener('click', () => window.CookieConsent.showPreferences());
-  }
+  const configureCookieNotice = () => {
+    if (typeof window.OasisbrCookieNotice?.show !== 'function' || cookieNoticeButton?.dataset.oasisCookieNoticeReady) return;
+    cookieNoticeButton?.removeAttribute('disabled');
+    cookieNoticeButton?.addEventListener('click', () => window.OasisbrCookieNotice.show());
+    if (cookieNoticeButton) cookieNoticeButton.dataset.oasisCookieNoticeReady = 'true';
+  };
+  configureCookieNotice();
+  window.addEventListener('load', configureCookieNotice, { once: true });
   document.querySelectorAll('[data-oasis-font-size]').forEach((button) => {
     button.addEventListener('click', () => {
       const current = Number.parseInt(getStorage(storageKeys.fontSize) || defaultFontSize, 10);
