@@ -14,6 +14,20 @@ async function getANetworkByName(networkId) {
   }
 }
 
+function showDatasourceError() {
+  const table = document.querySelector('#dataSource');
+  if (!table || document.querySelector('#data-source-error')) {
+    return;
+  }
+
+  table.insertAdjacentHTML(
+    'afterend',
+    `<div id="data-source-error" class="alert alert-danger" role="alert">
+      ${getTranslatedText('Failed to load data sources, please try again later')}
+    </div>`
+  );
+}
+
 function fillDatasource(network) {
   const table = document.querySelector('#dataSource');
   table.innerHTML = `
@@ -120,15 +134,17 @@ function setCustomColor(sourceType) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const queryStrings = window.location.search.split('=');
-  const queryString = `${queryStrings[0]}=${encodeURIComponent(
-    queryStrings[1]
-  )}`;
-  const urlParams = new URLSearchParams(queryString);
-  const networkName = decodeURIComponent(urlParams.get('name'));
+  const urlParams = new URLSearchParams(window.location.search);
+  const networkName = urlParams.get('name');
+  if (!networkName) {
+    showDatasourceError();
+    return;
+  }
+
   const network = await getANetworkByName(networkName);
 
   if (!network) {
+    showDatasourceError();
     console.error('Fonte não encontrada ou erro na requisição:', networkName);
     return;
   }

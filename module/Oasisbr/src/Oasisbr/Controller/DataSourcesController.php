@@ -11,7 +11,7 @@ class DataSourcesController extends \VuFind\Controller\AbstractBase
 
   public function datasourceAction()
   {
-    $id = $this->params()->fromQuery('id');
+    $id = $this->params()->fromQuery('name');
     return $this->createViewModel([
       'id' => $id,
     ]);

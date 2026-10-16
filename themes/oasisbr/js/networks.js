@@ -37,16 +37,9 @@ function obterRegiaoPorUF(uf) {
 }
 
 async function getAllNetworks() {
-  try {
-
-    const response = await axios.get(`${REMOTE_API_URL}/networks`);
-    //const response = await axios.get(`/api-proxy/networks`);
-    const networks = response.data;
-    return networks;
-  } catch (errors) {
-    showMessageError('#networks-page');
-    console.error(errors);
-  }
+  const response = await axios.get(`${REMOTE_API_URL}/networks`);
+  //const response = await axios.get(`/api-proxy/networks`);
+  return response.data;
 }
 
 function fillDatanetworks(networks) {
@@ -56,7 +49,7 @@ function fillDatanetworks(networks) {
   // sentido para este item
   networks = JSON.parse(JSON.stringify(networks));
   networks.forEach((item) => {
-    item.link = `datasource?name=${item.name}`;
+    item.link = `${VuFind.path}/DataSources/Datasource?name=${encodeURIComponent(item.name)}`;
   });
   const options = {
     valueNames: [
@@ -421,6 +414,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       hideLoader();
     }, 1);
   } catch (error) {
+    showMessageError('#networks');
     console.error(error);
     hideLoader();
   }
