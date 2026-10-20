@@ -5274,18 +5274,41 @@ body.oasis-site.oasis-high-contrast {
   --oasis-home-foreground: #ffffff;
   --oasis-home-muted: #ffffff;
   --oasis-home-muted-bg: #000000;
-  --oasis-home-primary: #ffff00;
-  --oasis-home-primary-strong: #ffff00;
+  --oasis-home-primary: #ffd400;
+  --oasis-home-primary-strong: #ffd400;
   --oasis-home-primary-foreground: #000000;
   --oasis-home-border: #ffffff;
   background: #000000;
   color: #ffffff;
 }
 
-body.oasis-site.oasis-high-contrast :is(main, .breadcrumbs, .searchHomeContent, .oasis-header-institutional, .oasis-header-navigation, .dropdown-menu) {
+/* High-contrast palette follows the Oasisbr redesign: black surfaces, white
+   content and borders, yellow links, and yellow controls with black labels. */
+body.oasis-site.oasis-high-contrast :is(
+  .oasis-header-accessibility,
+  .oasis-header-institutional,
+  .oasis-header-navigation,
+  .breadcrumbs,
+  .searchHomeContent,
+  main,
+  footer,
+  .dropdown-menu
+),
+body.oasis-site.oasis-high-contrast :is(
+  .oasis-header-accessibility,
+  .oasis-header-institutional,
+  .oasis-header-navigation,
+  .breadcrumbs,
+  .searchHomeContent,
+  main,
+  footer,
+  .dropdown-menu
+) * {
   background: #000000 !important;
+  background-image: none !important;
   color: #ffffff !important;
   border-color: #ffffff !important;
+  box-shadow: none !important;
 }
 
 body.oasis-site.oasis-high-contrast #header-collapse {
@@ -5293,16 +5316,46 @@ body.oasis-site.oasis-high-contrast #header-collapse {
   border-color: #ffffff !important;
 }
 
-body.oasis-site.oasis-high-contrast :is(main, .breadcrumbs, .searchHomeContent, .oasis-header-navigation) :is(a, button, input, select, textarea) {
-  border-color: #ffffff !important;
+body.oasis-site.oasis-high-contrast :is(
+  .oasis-header-accessibility,
+  .oasis-header-institutional,
+  .oasis-header-navigation,
+  .breadcrumbs,
+  .searchHomeContent,
+  main,
+  footer,
+  .dropdown-menu
+) :is(a, summary) {
+  color: #ffd400 !important;
 }
 
-body.oasis-site.oasis-high-contrast :is(main, .breadcrumbs, .searchHomeContent, .oasis-header-navigation) a {
-  color: #ffff00 !important;
+body.oasis-site.oasis-high-contrast :is(
+  .oasis-header-accessibility,
+  .oasis-header-institutional,
+  .oasis-header-navigation,
+  .breadcrumbs,
+  .searchHomeContent,
+  main,
+  footer,
+  .dropdown-menu
+) :is(button, [role="button"], a.btn, input[type="submit"], input[type="button"], input[type="reset"]) {
+  background: #ffd400 !important;
+  border: 2px solid #ffffff !important;
+  color: #000000 !important;
 }
 
-body.oasis-site.oasis-high-contrast :is(main, .breadcrumbs, .searchHomeContent, .oasis-header-navigation) :is(button, input, select, textarea) {
+body.oasis-site.oasis-high-contrast :is(
+  .oasis-header-accessibility,
+  .oasis-header-institutional,
+  .oasis-header-navigation,
+  .breadcrumbs,
+  .searchHomeContent,
+  main,
+  footer,
+  .dropdown-menu
+) :is(input, select, textarea) {
   background: #000000 !important;
+  border: 2px solid #ffffff !important;
   color: #ffffff !important;
 }
 
@@ -5318,28 +5371,20 @@ body.oasis-site.oasis-high-contrast.template-dir-search.template-name-results .o
 
 body.oasis-site.oasis-high-contrast.template-dir-search.template-name-results .oasis-search-facets .facet.active {
   background: #000000 !important;
-  box-shadow: inset 3px 0 0 #ffff00;
-  color: #ffff00 !important;
+  box-shadow: inset 3px 0 0 #ffd400 !important;
+  color: #ffd400 !important;
 }
 
 body.oasis-site.oasis-high-contrast.template-dir-search.template-name-results .oasis-results-header .view-buttons .icon-link {
   background: #000000 !important;
   border-color: #ffffff !important;
-  color: #ffff00 !important;
+  color: #ffd400 !important;
 }
 
-body.oasis-site.oasis-high-contrast .oasis-header-accessibility {
-  background: #000000;
-  border-bottom: 1px solid #ffffff;
-}
-
-body.oasis-site.oasis-high-contrast .oasis-header-accessibility :is(a, button, kbd) {
-  color: #ffff00;
-  border-color: #ffffff;
-}
-
-body.oasis-site.oasis-high-contrast .oasis-header-accessibility :is(a, button):hover {
-  background: #222222;
+body.oasis-site.oasis-high-contrast :is(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid #ffd400 !important;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px #000000 !important;
 }
 
 /* Cookie notice: full-width bottom bar based on the BrCris layout. */
