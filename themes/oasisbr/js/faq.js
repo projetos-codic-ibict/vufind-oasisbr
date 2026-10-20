@@ -1,31 +1,49 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const hash = window.location.hash;
-
-  if (!hash) {
-    return;
-  }
-
-  const targetId = hash.substring(1);
-  const collapseElement = document.getElementById(targetId);
-
-  if (!collapseElement || !collapseElement.classList.contains('collapse')) {
-    return;
-  }
-
-  const button = document.querySelector(
-    `[data-bs-target="#${targetId}"]`
-  );
-
-  if (!button) {
-    return;
-  }
-
-  button.click();
-
-  setTimeout(function () {
-    collapseElement.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+  function revealHashTarget() {
+    const targetId = window.location.hash.slice(1);
+    const collapseElement = targetId && document.getElementById(targetId);
+    const button = Array.from(
+      document.querySelectorAll('[data-bs-toggle="collapse"]')
+    ).find(function (control) {
+      return control.getAttribute('data-bs-target') === `#${targetId}`
+        && control.getAttribute('aria-controls') === targetId;
     });
-  }, 300);
+
+    if (!collapseElement || !button || !collapseElement.classList.contains('collapse')) {
+      return;
+    }
+
+    const reveal = function () {
+      button.closest('h2').scrollIntoView({ block: 'start' });
+      button.focus({ preventScroll: true });
+    };
+
+    const synchronizeControl = function () {
+      button.classList.remove('collapsed');
+      button.setAttribute('aria-expanded', 'true');
+    };
+
+    if (collapseElement.classList.contains('show')) {
+      synchronizeControl();
+      reveal();
+      return;
+    }
+
+    collapseElement.addEventListener('shown.bs.collapse', function () {
+      synchronizeControl();
+      reveal();
+    }, { once: true });
+
+    if (window.bootstrap && window.bootstrap.Collapse) {
+      window.bootstrap.Collapse.getOrCreateInstance(collapseElement, { toggle: false }).show();
+    } else {
+      collapseElement.classList.add('show');
+      synchronizeControl();
+      reveal();
+    }
+  }
+
+  revealHashTarget();
+  window.addEventListener('hashchange', revealHashTarget);
+  window.addEventListener('oasisbr:reveal-faq-hash', revealHashTarget);
 });

@@ -26,7 +26,7 @@ $configJson = json_encode(
         'controlledVuFindServices' => $controlledVuFindServices,
     ]
 );
-$faqUrlJson = json_encode($faqUrl);
+$cookieFaqUrlJson = json_encode($faqUrl . '#16');
 $this->assetManager()->appendScriptString(<<<JS
 window.addEventListener('load', function() {
   VuFind.cookie.setupConsent($configJson);
@@ -44,7 +44,15 @@ window.addEventListener('load', function() {
     if (readFullText) {
       event.preventDefault();
       event.stopImmediatePropagation();
-      window.location.assign($faqUrlJson);
+      var cookieFaqUrl = new URL($cookieFaqUrlJson, window.location.origin);
+      if (
+        window.location.pathname === cookieFaqUrl.pathname
+        && window.location.hash === cookieFaqUrl.hash
+      ) {
+        window.dispatchEvent(new CustomEvent('oasisbr:reveal-faq-hash'));
+      } else {
+        window.location.assign(cookieFaqUrl.href);
+      }
       return;
     }
 

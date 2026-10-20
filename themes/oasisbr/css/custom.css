@@ -970,6 +970,10 @@ li.language a {
   border-top: 1px solid var(--oasis-home-border);
 }
 
+.oasis-site .faq .card h2 {
+  scroll-margin-top: 7.5rem;
+}
+
 .oasis-site .about .btn-collapse,
 .oasis-site .faq .btn-collapse {
   display: flex;

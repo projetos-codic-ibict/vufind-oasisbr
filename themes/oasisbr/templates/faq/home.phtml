@@ -307,32 +307,30 @@
           <p> <strong><?= $this->transEsc('faq15 learn more'); ?></strong> <?= $this->transEsc('faq15 learn more text1'); ?> <a href="https://www.gov.br/governodigital/pt-br/acessibilidade-e-usuario/acessibilidade-digital" target="_blank" rel="noopener noreferrer" class="faq-link"> <?= $this->transEsc('faq15 accessibility digital link'); ?> <span class="visually-hidden"> <?= $this->transEsc('opens new tab'); ?> </span> </a> <?= $this->transEsc('faq15 learn more text2'); ?> <a href="https://emag.governoeletronico.gov.br/" target="_blank" rel="noopener noreferrer" class="faq-link"> <?= $this->transEsc('faq15 emag link'); ?> <span class="visually-hidden"> <?= $this->transEsc('opens new tab'); ?> </span> </a>. </p>
         </div>
 
+        <h2>
+          <button type="button" data-bs-toggle="collapse" class="btn-collapse collapsed"
+            data-bs-target="#16" aria-expanded="false" aria-controls="16">
+            <?= $this->transEsc('faq16 heading'); ?>
+          </button>
+        </h2>
+        <div class="collapse" id="16">
+          <p><?= $this->transEsc('faq16 p1'); ?></p>
+
+          <p><?= $this->transEsc('faq16 p2'); ?></p>
+
+          <p><?= $this->transEsc('faq16 categories intro'); ?></p>
+          <ul>
+            <li><strong><?= $this->transEsc('faq16 necessary label'); ?></strong> <?= $this->transEsc('faq16 necessary description'); ?></li>
+            <li><strong><?= $this->transEsc('faq16 preference label'); ?></strong> <?= $this->transEsc('faq16 preference description'); ?></li>
+            <li><strong><?= $this->transEsc('faq16 analytics label'); ?></strong> <?= $this->transEsc('faq16 analytics description'); ?></li>
+          </ul>
+
+          <p><?= $this->transEsc('faq16 preferences'); ?></p>
+
+          <p><?= $this->transEsc('faq16 legal'); ?></p>
+        </div>
 
       </div>
     </div>
   </div>
 </div>
-
-<script nonce="<?= $this->csp()->getNonce() ?>">
-window.addEventListener('DOMContentLoaded', function () {
-  var hash = window.location.hash;
-  var section = hash && document.querySelector(hash);
-  var control = hash && document.querySelector('[data-bs-target="' + hash + '"]');
-  if (!section || !control || !section.classList.contains('collapse')) return;
-
-  var reveal = function () {
-    control.focus({ preventScroll: true });
-    section.scrollIntoView({ block: 'start' });
-  };
-
-  section.addEventListener('shown.bs.collapse', reveal, { once: true });
-  if (window.bootstrap && window.bootstrap.Collapse) {
-    window.bootstrap.Collapse.getOrCreateInstance(section, { toggle: false }).show();
-  } else {
-    section.classList.add('show');
-    control.classList.remove('collapsed');
-    control.setAttribute('aria-expanded', 'true');
-    reveal();
-  }
-});
-</script>
