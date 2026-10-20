@@ -7,7 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggler = document.querySelector('.oasis-header-toggler');
   const contrastButton = document.querySelector('[data-oasis-contrast]');
   const vlibrasButton = document.querySelector('[data-oasis-vlibras]');
+  const vlibrasStatus = document.querySelector('[data-oasis-vlibras-status]');
   const cookieNoticeButton = document.querySelector('[data-oasis-cookie-notice]');
+  const vlibrasScriptUrl = 'https://vlibras.gov.br/app/vlibras-plugin.js';
+  let vlibrasLoader;
 
   const getStorage = (key) => {
     try { return window.localStorage.getItem(key); } catch (error) { return null; }
@@ -83,22 +86,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const initializeVLibras = () => {
-    const widget = document.getElementById('oasis-vlibras-widget');
-    if (!widget || !window.VLibras) return false;
-    if (!widget.dataset.initialized) {
-      new window.VLibras.Widget('https://vlibras.gov.br/app');
-      widget.dataset.initialized = 'true';
-    }
-    vlibrasButton?.removeAttribute('disabled');
-    return true;
+  const setVLibrasStatus = (message) => {
+    if (vlibrasStatus) vlibrasStatus.textContent = message;
   };
-  vlibrasButton?.addEventListener('click', () => {
-    if (initializeVLibras()) document.querySelector('#oasis-vlibras-widget [vw-access-button]')?.click();
+  const setVLibrasLoading = (loading) => {
+    if (!vlibrasButton) return;
+    vlibrasButton.disabled = loading;
+    vlibrasButton.setAttribute('aria-busy', String(loading));
+  };
+  const hideVLibrasTrigger = () => {
+    document.getElementById('vlibras-access-wrapper')?.style.setProperty('display', 'none');
+  };
+  const waitForVLibras = () => new Promise((resolve, reject) => {
+    const deadline = Date.now() + 5000;
+    const check = () => {
+      if (typeof window.VLibrasWidget?.open === 'function') {
+        resolve(window.VLibrasWidget);
+      } else if (Date.now() >= deadline) {
+        reject(new Error('VLibras API unavailable'));
+      } else {
+        window.setTimeout(check, 50);
+      }
+    };
+    check();
+  });
+  const loadVLibras = () => {
+    if (typeof window.VLibrasWidget?.open === 'function') {
+      return Promise.resolve(window.VLibrasWidget);
+    }
+    if (vlibrasLoader) return vlibrasLoader;
+
+    vlibrasLoader = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = vlibrasScriptUrl;
+      script.async = true;
+      script.onload = () => waitForVLibras().then(resolve, reject);
+      script.onerror = () => reject(new Error('VLibras script failed to load'));
+      document.body.appendChild(script);
+    });
+    return vlibrasLoader;
+  };
+  vlibrasButton?.removeAttribute('disabled');
+  vlibrasButton?.addEventListener('click', async () => {
+    setVLibrasLoading(true);
+    setVLibrasStatus(vlibrasButton.dataset.oasisVlibrasLoading);
+    try {
+      const vlibras = await loadVLibras();
+      hideVLibrasTrigger();
+      vlibras.open();
+      hideVLibrasTrigger();
+      setVLibrasStatus('');
+    } catch (error) {
+      vlibrasLoader = undefined;
+      setVLibrasStatus(vlibrasButton.dataset.oasisVlibrasError);
+    } finally {
+      setVLibrasLoading(false);
+    }
   });
 
   applyContrast(getStorage(storageKeys.contrast) === 'true');
   const savedFontSize = Number.parseInt(getStorage(storageKeys.fontSize) || defaultFontSize, 10);
   applyFontSize(Number.isNaN(savedFontSize) ? defaultFontSize : savedFontSize);
-  initializeVLibras();
 });

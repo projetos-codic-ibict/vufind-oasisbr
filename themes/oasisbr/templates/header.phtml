@@ -43,15 +43,11 @@ $searchHomeUrl = $this->url('search-home');
       </div>
       <button type="button" class="oasis-header-accessibility__button" data-oasis-cookie-notice aria-label="Informações sobre cookies" title="Informações sobre cookies" disabled><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i></button>
       <button type="button" class="oasis-header-accessibility__button" data-oasis-contrast aria-pressed="false" aria-label="Alto contraste" title="Alto contraste"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i></button>
-      <button type="button" class="oasis-header-accessibility__button" data-oasis-vlibras aria-label="Ativar VLibras" title="Ativar VLibras" disabled><i class="fa-solid fa-sign-language" aria-hidden="true"></i></button>
+      <button type="button" class="oasis-header-accessibility__button" data-oasis-vlibras aria-label="Ativar VLibras" title="Ativar VLibras" data-oasis-vlibras-loading="<?= $this->transEscAttr('vlibras loading') ?>" data-oasis-vlibras-error="<?= $this->transEscAttr('vlibras error') ?>" disabled><i class="fa-solid fa-sign-language" aria-hidden="true"></i></button>
+      <span class="visually-hidden" data-oasis-vlibras-status role="status" aria-live="polite"></span>
     </div>
   </div>
 </nav>
-
-<div id="oasis-vlibras-widget" vw class="enabled">
-  <div vw-access-button class="active"></div>
-  <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
-</div>
 
 <div class="oasis-header-institutional">
   <div class="oasis-header-container">
