@@ -1,4 +1,20 @@
-<?php if (!empty($this->facetList) || !empty($this->checkboxFacets)): ?>
+<?php
+$this->assetManager()->appendScriptLink('advanced-language-facets.js');
+
+// ISO 639-2 bibliographic/terminology pairs are synonyms. Case variants of
+// eng/por and the malformed values below are legacy index values and can safely
+// share an option with their canonical language.
+$languageAliasGroups = [
+  ['alb', 'sqi'], ['arm', 'hye'], ['baq', 'eus'], ['bur', 'mya'],
+  ['ara', 'árabe'], ['chi', 'zho'], ['cze', 'ces'], ['dut', 'nld'], ['fre', 'fra'],
+  ['geo', 'kat'], ['ger', 'deu'], ['gre', 'ell'], ['ice', 'isl'],
+  ['mac', 'mkd'], ['mao', 'mri'], ['may', 'msa'], ['per', 'fas', 'pes'],
+  ['rum', 'ron'], ['slo', 'slk'], ['tib', 'bod'], ['wel', 'cym'],
+  ['eng', 'Eng', 'enG', 'en', 'en;', 'En;'],
+  ['por', 'Por', 'POR', 'pOR', 'pt;', 'Pt;', 'português'],
+];
+
+if (!empty($this->facetList) || !empty($this->checkboxFacets)): ?>
   <fieldset class="solr-facets">
     <legend><?=$this->transEsc('Limit To')?></legend>
     <?php if (!empty($this->checkboxFacets)): ?>
@@ -15,6 +31,77 @@
                 <option value="<?=$this->escapeHtmlAttr($this->operatorToFieldPrefix($value['operator']) . $field . ':"' . $value['value'] . '"')?>"<?=(isset($value['selected']) && $value['selected']) ? ' selected="selected"' : ''?>><?=$display?></option>
               <?php endforeach; ?>
             <?php else: ?>
+              <?php
+              if ($field === 'language') {
+                $available = [];
+                foreach ($list['list'] as $value) {
+                  if (!empty($value['value']) && !empty($value['displayText'])) {
+                    $available[$value['value']] = $value;
+                  }
+                }
+
+                $aliasesByValue = [];
+                foreach ($languageAliasGroups as $group) {
+                  foreach ($group as $alias) {
+                    $aliasesByValue[$alias] = $group;
+                  }
+                }
+
+                $languageItems = [];
+                $processed = [];
+                foreach ($available as $rawValue => $value) {
+                  if (isset($processed[$rawValue])) {
+                    continue;
+                  }
+                  $group = $aliasesByValue[$rawValue] ?? [$rawValue];
+                  $group = array_values(array_filter(
+                    $group,
+                    static fn ($alias) => isset($available[$alias])
+                  ));
+                  foreach ($group as $alias) {
+                    $processed[$alias] = true;
+                  }
+
+                  $label = ucfirst($this->translate($value['displayText']));
+                  if ($label === $rawValue) {
+                    $label = $this->translate(
+                      'language_code_untranslated',
+                      ['%%code%%' => strtoupper($rawValue)]
+                    );
+                  }
+
+                  $filters = array_map(
+                    static fn ($alias) => '~language:"' . $alias . '"',
+                    $group
+                  );
+                  $fallbackFilter = count($filters) > 1
+                    ? '(' . implode(' OR ', array_map(
+                      static fn ($filter) => substr($filter, 1),
+                      $filters
+                    )) . ')'
+                    : $filters[0];
+                  $languageItems[] = [
+                    'filters' => $filters,
+                    'label' => $label,
+                    'selected' => (bool) array_filter(
+                      $group,
+                      static fn ($alias) => !empty($available[$alias]['selected'])
+                    ),
+                    'value' => $fallbackFilter,
+                  ];
+                }
+
+                $collator = new \Collator('pt_BR');
+                $collator->setStrength(\Collator::PRIMARY);
+                usort($languageItems, static function ($a, $b) use ($collator) {
+                  $comparison = $collator->compare($a['label'], $b['label']);
+                  return $comparison ?: strcmp($a['label'], $b['label']);
+                });
+                ?>
+                <?php foreach ($languageItems as $item): ?>
+                  <option value="<?=$this->escapeHtmlAttr($item['value'])?>"<?php if (count($item['filters']) > 1): ?> data-language-filters="<?=$this->escapeHtmlAttr(json_encode($item['filters']))?>"<?php endif; ?><?=$item['selected'] ? ' selected="selected"' : ''?>><?=$this->escapeHtml($item['label'])?></option>
+                <?php endforeach; ?>
+              <?php } else { ?>
               <?php
               // Sort the current facet list alphabetically and filter items to
               // the top if they appear in the config; we'll use this data
@@ -51,6 +138,7 @@
                 <?php $value = $list['list'][$i]; ?>
                 <option value="<?=$this->escapeHtmlAttr(($value['operator'] == 'OR' ? '~' : '') . $field . ':"' . $value['value'] . '"')?>"<?=(isset($value['selected']) && $value['selected']) ? ' selected="selected"' : ''?>><?=$this->escapeHtml($display)?></option>
               <?php endforeach; ?>
+              <?php } ?>
             <?php endif; ?>
           </select>
         </div>
