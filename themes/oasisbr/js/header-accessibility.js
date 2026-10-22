@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   const applyContrast = (enabled) => {
     document.body.classList.toggle('oasis-high-contrast', enabled);
+    document.querySelector('barra-govbr')?.setAttribute('contrastactive', String(enabled));
     contrastButton?.setAttribute('aria-pressed', String(enabled));
     setStorage(storageKeys.contrast, enabled ? 'true' : 'false');
   };

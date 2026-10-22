@@ -33,7 +33,7 @@ $searchHomeUrl = $this->url('search-home');
           <ul class="dropdown-menu">
             <?php foreach ($this->layout()->allLangs as $langCode => $langName) : ?>
               <li<?= $this->layout()->userLang == $langCode ? ' class="active"' : '' ?>><a href="<?= $this->escapeHtmlAttr($this->url()->addQueryParameters(['lng' => $langCode])) ?>" rel="nofollow"><?= $this->displayLanguageOption($langName) ?></a></li>
-            <?php endforeach; ?>
+              <?php endforeach; ?>
           </ul>
         </div>
       <?php endif; ?>
@@ -47,18 +47,21 @@ $searchHomeUrl = $this->url('search-home');
       <span class="visually-hidden" data-oasis-vlibras-status role="status" aria-live="polite"></span>
     </div>
   </div>
-</nav>
 
-<div class="oasis-header-institutional">
-  <div class="oasis-header-container">
-    <p>Serviço do Instituto Brasileiro de Informação em Ciência e Tecnologia – IBICT</p>
-  </div>
-</div>
+  <barra-govbr
+    id="barraGovBr"
+    class="width100 shadow-none no-login"
+    ambiente="producao"
+    titulo="Ministério da Ciência, Tecnologia e Inovação"
+    contrastactive="false"
+    linksdosistema="[{&quot;title&quot;:&quot;Órgãos do Governo&quot;,&quot;href&quot;:&quot;https://www.gov.br/pt-br/orgaos-do-governo&quot;},{&quot;title&quot;:&quot;Acesso à Informação&quot;,&quot;href&quot;:&quot;https://www.gov.br/acessoainformacao/pt-br&quot;},{&quot;title&quot;:&quot;Legislação&quot;,&quot;href&quot;:&quot;http://www4.planalto.gov.br/legislacao&quot;},{&quot;title&quot;:&quot;Acessibilidade&quot;,&quot;href&quot;:&quot;https://www.gov.br/governodigital/pt-br/acessibilidade-digital&quot;}]">
+  </barra-govbr>
+</nav>
 
 <div class="banner navbar navbar-expand-lg oasis-home-header oasis-header-navigation">
   <div class="container-fluid oasis-header-container">
     <div class="header-logos">
-      <a class="navbar-brand" href="<?= $this->url('home') ?>" aria-label="<?= $this->transEscAttr('Oasisbr') ?>"<?= $isHome ? ' aria-current="page"' : '' ?>>
+      <a class="navbar-brand" href="<?= $this->url('home') ?>" aria-label="<?= $this->transEscAttr('Oasisbr') ?>" <?= $isHome ? ' aria-current="page"' : '' ?>>
         <img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="<?= $this->transEscAttr('Oasisbr') ?>" />
       </a>
     </div>
@@ -69,8 +72,8 @@ $searchHomeUrl = $this->url('search-home');
       <div class="collapse navbar-collapse" id="header-collapse" tabindex="-1">
         <nav class="nav-main" aria-label="<?= $this->transEscAttr('Main navigation') ?>">
           <ul class="nav navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="<?= $this->url('datasources-home') ?>"<?= $isDataSources ? ' aria-current="page"' : '' ?>><?= $this->transEsc('Data Sources') ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= $this->url('indicators-home') ?>"<?= $isIndicators ? ' aria-current="page"' : '' ?>><?= $this->transEsc('Indicators') ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= $this->url('datasources-home') ?>" <?= $isDataSources ? ' aria-current="page"' : '' ?>><?= $this->transEsc('Data Sources') ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= $this->url('indicators-home') ?>" <?= $isIndicators ? ' aria-current="page"' : '' ?>><?= $this->transEsc('Indicators') ?></a></li>
             <li class="nav-item"><a class="nav-link" href="<?= $this->url('home') ?>#sobre"><?= $this->transEsc('header_about') ?></a></li>
             <li class="nav-item"><a class="nav-link" href="<?= $this->url('home') ?>#participar"><?= $this->transEsc('header_participate') ?></a></li>
             <li class="nav-item"><a class="nav-link" href="<?= $this->url('home') ?>#ajuda"><?= $this->transEsc('header_help') ?></a></li>
@@ -81,7 +84,8 @@ $searchHomeUrl = $this->url('search-home');
               </li>
             <?php endif; ?>
 
-            <?php $cart = $this->cart(); if ($cart->isActive()) : ?>
+            <?php $cart = $this->cart();
+            if ($cart->isActive()) : ?>
               <li id="cartSummary" class="nav-item oasis-header-optional-link">
                 <a class="nav-link" id="cartItems" data-lightbox title="<?= $this->transEscAttr('View Book Bag') ?>" href="<?= $this->url('cart-home') ?>">
                   <i class="fa-solid fa-suitcase" aria-hidden="true"></i> <strong><?= count($cart->getItems()) ?></strong> <?= $this->transEsc('items') ?>

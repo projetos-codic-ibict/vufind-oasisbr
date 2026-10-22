@@ -1479,6 +1479,20 @@ li.language a {
   color: #1351b4;
 }
 
+/* Align the official component with Oasisbr's shared header container. */
+.oasis-site barra-govbr#barraGovBr {
+  display: block;
+  width: calc(100% - 48px);
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+@media (max-width: 575.98px) {
+  .oasis-site barra-govbr#barraGovBr {
+    width: calc(100% - 32px);
+  }
+}
+
 .oasis-site .oasis-header-accessibility__inner {
   display: flex;
   flex-wrap: wrap;
