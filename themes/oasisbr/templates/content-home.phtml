@@ -1,5 +1,5 @@
 <?php $this->assetManager()->appendScriptLink('indicators-home.js'); ?>
-
+<?php $newTab = $this->transEsc('opens_new_tab'); ?>
 <section class="oasis-home-stats" aria-labelledby="numeros">
   <div class="oasis-home-container">
     <h2 id="numeros"><?= $this->transEsc('home_stats_title') ?></h2>
@@ -240,6 +240,22 @@
         </summary>
         <p><?= $this->transEsc('home_faq_reuse_answer') ?></p>
       </details>
+    </div>
+  </div>
+
+  <div class="oasis-home-footer-partners">
+    <div class="oasis-home-container">
+      <p id="footer-parceiros-titulo"><?= $this->transEsc('footer_partners_title') ?></p>
+      <ul class="oasis-home-partner-grid" aria-labelledby="footer-parceiros-titulo">
+        <li><a href="https://www.gov.br/ibict/" target="_blank" rel="noopener noreferrer"><img class="oasis-home-partner-logo oasis-home-partner-logo--finep" src="<?= $this->imageLink('partners/ibict.png'); ?>" alt="Instituto Brasileiro de Informação em Ciência e Tecnologia (IBICT)" /><span class="visually-hidden"> <?= $newTab ?></span></a></li>
+        <li><a href="https://www.finep.gov.br/" target="_blank" rel="noopener noreferrer"><img class="oasis-home-partner-logo oasis-home-partner-logo--finep" src="<?= $this->imageLink('partners/FINEP.png'); ?>" alt="Financiadora de Estudos e Projetos (FINEP)" /><span class="visually-hidden"> <?= $newTab ?></span></a></li>
+        <li><a href="https://coar-repositories.org/" target="_blank" rel="noopener noreferrer"><img class="oasis-home-partner-logo oasis-home-partner-logo--coar" src="<?= $this->imageLink('partners/COAR.png'); ?>" alt="Confederation of Open Access Repositories (COAR)" /><span class="visually-hidden"> <?= $newTab ?></span></a></li>
+        <li><a href="https://www.cplp.org/" target="_blank" rel="noopener noreferrer"><img class="oasis-home-partner-logo oasis-home-partner-logo--cplp" src="<?= $this->imageLink('partners/CPLP.png'); ?>" alt="Comunidade dos Países de Língua Portuguesa (CPLP)" /><span class="visually-hidden"> <?= $newTab ?></span></a></li>
+        <li><a href="https://new.lareferencia.info/" target="_blank" rel="noopener noreferrer"><img class="oasis-home-partner-logo oasis-home-partner-logo--la-referencia" src="<?= $this->imageLink('partners/LA_REFERENCIA.jpg'); ?>" alt="LA Referencia" /><span class="visually-hidden"> <?= $newTab ?></span></a></li>
+        <li><a href="https://ndltd.org/" target="_blank" rel="noopener noreferrer"><img class="oasis-home-partner-logo oasis-home-partner-logo--ndltd" src="<?= $this->imageLink('partners/NDLTD.jpg'); ?>" alt="Networked Digital Library of Theses and Dissertations (NDLTD)" /><span class="visually-hidden"> <?= $newTab ?></span></a></li>
+        <li><a href="https://www.rcaap.pt/" target="_blank" rel="noopener noreferrer"><img class="oasis-home-partner-logo oasis-home-partner-logo--rcaap" src="<?= $this->imageLink('partners/RCAAP.jpg'); ?>" alt="Repositórios Científicos de Acesso Aberto de Portugal (RCAAP)" /><span class="visually-hidden"> <?= $newTab ?></span></a></li>
+        <li><a href="https://www.scielo.org/" target="_blank" rel="noopener noreferrer"><img class="oasis-home-partner-logo oasis-home-partner-logo--scielo" src="<?= $this->imageLink('partners/SCIELO.png'); ?>" alt="Scientific Electronic Library Online (SciELO)" /><span class="visually-hidden"> <?= $newTab ?></span></a></li>
+      </ul>
     </div>
   </div>
 </section>
