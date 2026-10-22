@@ -133,6 +133,12 @@ if (!empty($this->facetList) || !empty($this->checkboxFacets)): ?>
               // appear in order at the top and all other items appear afterwards
               // sorted by natcasesort.
               $sorted = $filtered + $sorted;
+              if ($field === 'format') {
+                foreach ($sorted as $i => $display) {
+                  $sorted[$i] = $this->translate($display);
+                }
+                $this->sorter()->natsort($sorted);
+              }
               ?>
               <?php foreach ($sorted as $i => $display): ?>
                 <?php $value = $list['list'][$i]; ?>
