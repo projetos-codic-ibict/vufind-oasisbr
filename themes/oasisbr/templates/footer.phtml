@@ -20,16 +20,16 @@
     <div class="oasis-home-container">
       <div class="oasis-home-footer-brand">
         <div class="oasis-home-footer-brand-mark">
-          <img src="<?= $this->imageLink('oasisbr.png'); ?>" alt="<?= $this->transEscAttr('Oasisbr') ?>" />
+          <img src="<?= $this->imageLink('govSemF.png'); ?>" alt="<?= $this->transEscAttr('Oasisbr') ?>" />
         </div>
-        <p><?= $this->transEsc('footer_brand_description') ?></p>
+        <!-- <p><?= $this->transEsc('footer_brand_description') ?></p> -->
       </div>
 
       <nav aria-labelledby="footer-portal-titulo">
-        <h2 id="footer-portal-titulo"><?= $this->transEsc('footer_portal') ?></h2>
+        <h2 id="footer-portal-titulo"><?= $this->transEsc('Oasisbr') ?></h2>
         <ul>
           <li><a href="<?= $this->url('search-advanced') ?>"><?= $this->transEsc('Advanced Search') ?></a></li>
-          <li><a href="<?= $this->url('search-results') ?>"><?= $this->transEsc('Collections') ?></a></li>
+          <!-- <li><a href="<?= $this->url('search-results') ?>"><?= $this->transEsc('Collections') ?></a></li> -->
           <li><a href="<?= $this->url('datasources-home') ?>"><?= $this->transEsc('Data Sources') ?></a></li>
           <li><a href="<?= $this->url('indicators-home') ?>"><?= $this->transEsc('Indicators') ?></a></li>
         </ul>
@@ -38,13 +38,49 @@
       <nav aria-labelledby="footer-institucional-titulo">
         <h2 id="footer-institucional-titulo"><?= $this->transEsc('footer_institutional') ?></h2>
         <ul>
-          <li><a href="<?= $this->url('home') ?>#sobre"><?= $this->transEsc('header_about') ?></a></li>
-          <li><a href="<?= $this->url('faq-home') ?>#13"><?= $this->transEsc('footer_terms') ?></a></li>
-          <li><a href="<?= $this->url('faq-home') ?>#14"><?= $this->transEsc('footer_privacy') ?></a></li>
-          <li><a href="<?= $this->url('faq-home') ?>#15"><?= $this->transEsc('footer_accessibility') ?></a></li>
+          <li><a href="<?= $this->url('about-home') ?>"><?= $this->transEsc('footer_about') ?></a></li>
+          <li><a href="<?= $this->url('home') ?>#participar"><?= $this->transEsc('footer_participate') ?></a></li>
+          <!-- <li><a href="<?= $this->url('home') ?>#equipe"><?= $this->transEsc('footer_team') ?></a></li> -->
+          <li><a id="footerFeedbackLink" data-lightbox href="<?= $this->url('feedback-home') ?>"><?= $this->transEsc('footer_contact') ?></a></li>
         </ul>
       </nav>
 
+      <nav aria-labelledby="footer-ajuda-titulo">
+        <h2 id="footer-ajuda-titulo"><?= $this->transEsc('footer_help') ?></h2>
+        <ul>
+          <!-- <li><a href="<?= $this->url('faq-home') ?>"><?= $this->transEsc('footer_user_manual') ?></a></li> -->
+          <li><a href="<?= $this->url('faq-home') ?>"><?= $this->transEsc('footer_faq') ?></a></li>
+        </ul>
+      </nav>
+
+       <nav aria-labelledby="footer-politica-titulo">
+        <h2 id="footer-politica-titulo"><?= $this->transEsc('footer_privacy') ?></h2>
+        <ul>
+          <li><a href="<?= $this->url('faq-home') ?>#13"><?= $this->transEsc('footer_terms') ?></a></li>
+          <li><a href="<?= $this->url('faq-home') ?>#14"><?= $this->transEsc('footer_privacy') ?></a></li>
+          <!-- <li><a href="<?= $this->url('faq-home') ?>#15"><?= $this->transEsc('footer_accessibility') ?></a></li> -->
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+
+  <div class="oasis-home-footer-social">
+    <div class="oasis-home-container">
+      <section aria-labelledby="footer-redes-sociais-titulo">
+        <h2 id="footer-redes-sociais-titulo">Redes sociais</h2>
+        <ul>
+          <li><a href="https://www.youtube.com/user/IBICTbr/" target="_blank" rel="noopener noreferrer" aria-label="Canal do IBICT no YouTube"><img src="<?= $this->imageLink('youtube.png'); ?>" alt="" /><span class="visually-hidden"><?= $newTab ?></span></a></li>
+          <li><a href="https://www.facebook.com/IBICTbr/" target="_blank" rel="noopener noreferrer" aria-label="Página do IBICT no Facebook"><img src="<?= $this->imageLink('facebook.png'); ?>" alt="" /><span class="visually-hidden"><?= $newTab ?></span></a></li>
+          <li><a href="https://twitter.com/ibictbr" target="_blank" rel="noopener noreferrer" aria-label="Perfil do IBICT no X"><img src="<?= $this->imageLink('twitter.png'); ?>" alt="" /><span class="visually-hidden"><?= $newTab ?></span></a></li>
+          <li><a href="https://www.linkedin.com/company/ibict---instituto-brasileiro-de-informa-o-em-ci-ncia-e-tecnologia/mycompany/" target="_blank" rel="noopener noreferrer" aria-label="Página do IBICT no LinkedIn"><img src="<?= $this->imageLink('linkedin.svg'); ?>" alt="" /><span class="visually-hidden"><?= $newTab ?></span></a></li>
+        </ul>
+      </section>
+
+      <div class="oasis-home-footer-signatures" aria-label="Instituições responsáveis">
+        <a href="https://www.gov.br/ibict" target="_blank" rel="noopener noreferrer"><img src="<?= $this->imageLink('image.png'); ?>" alt="Instituto Brasileiro de Informação em Ciência e Tecnologia" /><span class="visually-hidden"><?= $newTab ?></span></a>
+        <img src="<?= $this->imageLink('mcti.png'); ?>" alt="Ministério da Ciência, Tecnologia e Inovação" />
+      </div>
     </div>
   </div>
 

@@ -2541,7 +2541,9 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
 
 .oasis-home-footer {
   margin-top: 0;
-  background: var(--oasis-home-background);
+  background: #071d41;
+  color: #ffffff;
+  font-family: Rawline, Raleway, "Atkinson Hyperlegible", sans-serif;
 }
 
 .oasis-home-footer .oasis-home-container {
@@ -2556,9 +2558,10 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
 
 .oasis-home-footer-partners p {
   margin: 0;
-  color: var(--oasis-home-muted);
+  color: #ffffff;
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
@@ -2639,22 +2642,28 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
 }
 
 .oasis-home-footer-main {
-  background: var(--oasis-home-blue);
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  background: #071d41;
   color: #ffffff;
 }
 
 .oasis-home-footer-main .oasis-home-container {
   display: grid;
-  grid-template-columns: minmax(240px, 1.4fr) repeat(3, minmax(160px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  gap: 1.5rem;
   padding-top: 3rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 3rem;
+}
+
+.oasis-home-footer-brand {
+  grid-column: 1 / -1;
 }
 
 .oasis-home-footer-brand-mark {
   display: inline-flex;
   align-items: center;
   padding: 0.625rem 0.875rem;
+  /* padding: 8px 14px; */
   border-radius: 0.5rem;
   background: #ffffff;
 }
@@ -2662,30 +2671,24 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
 .oasis-home-footer-brand img {
   display: block;
   width: auto;
-  height: 40px;
+  height: 36px;
   max-width: 100%;
 }
 
-.oasis-home-footer-brand p,
 .oasis-home-footer-main a,
 .oasis-home-footer-main h2 {
   color: #ffffff;
 }
 
-.oasis-home-footer-brand p {
-  max-width: 40ch;
-  margin: 1rem 0 0;
-  color: #dcdcdc;
-  font-size: 0.9375rem;
-  line-height: 1.5;
-}
 
 .oasis-home-footer-main h2 {
-  margin: 0 0 0.75rem;
-  color: #dcdcdc;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  margin: 0;
+  padding: 1.25rem 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
@@ -2697,30 +2700,123 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
 }
 
 .oasis-home-footer-main a {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  min-height: 44px;
-  color: #ffffff;
-  font-size: 1rem;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  min-height: 56px;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  color: #c5d4eb;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  text-decoration: none;
+  transition: background-color 0.16s ease, color 0.16s ease;
 }
 
 .oasis-home-footer-main a:hover,
 .oasis-home-footer-main a:focus {
-  color: var(--oasis-home-highlight);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
 }
 
 .oasis-home-footer-main a:focus-visible {
-  outline: 3px solid var(--oasis-home-highlight);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 3px #4d4d4d;
+  outline: 3px solid #ffffff;
+  outline-offset: -3px;
+  box-shadow: inset 0 0 0 3px #ffcd07;
+}
+
+.oasis-home-footer-social {
+  background: #071d41;
+}
+
+.oasis-home-footer-social .oasis-home-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.oasis-home-footer-social h2 {
+  margin: 0 0 1rem;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.oasis-home-footer-social ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.oasis-home-footer-social a {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  transition: background-color 0.16s ease;
+}
+
+.oasis-home-footer-social a:hover,
+.oasis-home-footer-social a:focus {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.oasis-home-footer-social a:focus-visible {
+  outline: 3px solid #ffcd07;
+  outline-offset: 3px;
+}
+
+.oasis-home-footer-social a img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.oasis-home-footer-signatures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.oasis-home-footer-signatures a {
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+}
+
+.oasis-home-footer-signatures img {
+  display: block;
+  width: auto;
+  height: 48px;
+  max-width: min(100%, 180px);
+  object-fit: contain;
+  background: #ffffff;
+  /* padding: 8px 16px; */
+  max-width: 100%;
+}
+
+/* A assinatura do IBICT usa um arquivo horizontal próprio. */
+.oasis-home-footer-signatures > a > img[src$="image.png"] {
+  height: 56px;
 }
 
 .oasis-home-footer-bottom {
-  background: var(--oasis-home-blue);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  background: #071d41;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 .oasis-home-footer-bottom .oasis-home-container {
@@ -2734,8 +2830,8 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
 .oasis-home-footer-bottom p,
 .oasis-home-footer-bottom address {
   margin: 0;
-  color: #dcdcdc;
-  font-size: 0.875rem;
+  color: #ffffff;
+  font-size: 0.75rem;
 }
 
 @media (max-width: 991.98px) {
@@ -2745,6 +2841,17 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
 
   .oasis-home-footer-brand {
     grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .oasis-home-footer-social .oasis-home-container {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .oasis-home-footer-signatures {
+    justify-content: flex-start;
   }
 }
 
@@ -3263,9 +3370,9 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
   font-optical-sizing: inherit;
   font-size-adjust: inherit;
   font-kerning: inherit;
-  font-feature-settings: inherit; 
-  font-variation-settings: inherit; 
-  font-language-override: inherit; 
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-language-override: inherit;
   width: 100%;
 }
 
@@ -3424,7 +3531,7 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
   border: 0;
 }
 
-.template-dir-search.template-name-results .oasis-results-mainbody .result > .record-number {
+.template-dir-search.template-name-results .oasis-results-mainbody .result>.record-number {
   display: none;
 }
 
@@ -4430,7 +4537,7 @@ a.link-simple {
   transform: rotate(180deg);
 }
 
-.record > .mainbody.oasis-record-mainbody.solo {
+.record>.mainbody.oasis-record-mainbody.solo {
   float: none;
   width: 100%;
   max-width: none;
@@ -4511,7 +4618,7 @@ a.link-simple {
   color: var(--oasis-home-muted);
 }
 
-.oasis-record-authors > span {
+.oasis-record-authors>span {
   color: var(--oasis-home-foreground);
   font-weight: 700;
 }
@@ -4732,7 +4839,7 @@ a.link-simple {
   border-top: 1px solid var(--oasis-home-border);
 }
 
-.oasis-record-details--main dl > div {
+.oasis-record-details--main dl>div {
   display: grid;
   grid-template-columns: minmax(9rem, 30%) minmax(0, 1fr);
   gap: 1rem;
@@ -4740,7 +4847,7 @@ a.link-simple {
   border-bottom: 1px solid var(--oasis-home-border);
 }
 
-.oasis-record-details.oasis-record-details--main dl > div + div {
+.oasis-record-details.oasis-record-details--main dl>div+div {
   margin-top: 0;
 }
 
@@ -4888,7 +4995,7 @@ a.link-simple {
     font-size: 1.625rem;
   }
 
-  .oasis-record-details--main dl > div {
+  .oasis-record-details--main dl>div {
     grid-template-columns: 1fr;
     gap: 0.25rem;
   }
@@ -5284,26 +5391,22 @@ body.oasis-site.oasis-high-contrast {
 
 /* High-contrast palette follows the Oasisbr redesign: black surfaces, white
    content and borders, yellow links, and yellow controls with black labels. */
-body.oasis-site.oasis-high-contrast :is(
-  .oasis-header-accessibility,
+body.oasis-site.oasis-high-contrast :is(.oasis-header-accessibility,
   .oasis-header-institutional,
   .oasis-header-navigation,
   .breadcrumbs,
   .searchHomeContent,
   main,
   footer,
-  .dropdown-menu
-),
-body.oasis-site.oasis-high-contrast :is(
-  .oasis-header-accessibility,
+  .dropdown-menu),
+body.oasis-site.oasis-high-contrast :is(.oasis-header-accessibility,
   .oasis-header-institutional,
   .oasis-header-navigation,
   .breadcrumbs,
   .searchHomeContent,
   main,
   footer,
-  .dropdown-menu
-) * {
+  .dropdown-menu) * {
   background: #000000 !important;
   background-image: none !important;
   color: #ffffff !important;
@@ -5316,44 +5419,38 @@ body.oasis-site.oasis-high-contrast #header-collapse {
   border-color: #ffffff !important;
 }
 
-body.oasis-site.oasis-high-contrast :is(
-  .oasis-header-accessibility,
+body.oasis-site.oasis-high-contrast :is(.oasis-header-accessibility,
   .oasis-header-institutional,
   .oasis-header-navigation,
   .breadcrumbs,
   .searchHomeContent,
   main,
   footer,
-  .dropdown-menu
-) :is(a, summary) {
+  .dropdown-menu) :is(a, summary) {
   color: #ffd400 !important;
 }
 
-body.oasis-site.oasis-high-contrast :is(
-  .oasis-header-accessibility,
+body.oasis-site.oasis-high-contrast :is(.oasis-header-accessibility,
   .oasis-header-institutional,
   .oasis-header-navigation,
   .breadcrumbs,
   .searchHomeContent,
   main,
   footer,
-  .dropdown-menu
-) :is(button, [role="button"], a.btn, input[type="submit"], input[type="button"], input[type="reset"]) {
+  .dropdown-menu) :is(button, [role="button"], a.btn, input[type="submit"], input[type="button"], input[type="reset"]) {
   background: #ffd400 !important;
   border: 2px solid #ffffff !important;
   color: #000000 !important;
 }
 
-body.oasis-site.oasis-high-contrast :is(
-  .oasis-header-accessibility,
+body.oasis-site.oasis-high-contrast :is(.oasis-header-accessibility,
   .oasis-header-institutional,
   .oasis-header-navigation,
   .breadcrumbs,
   .searchHomeContent,
   main,
   footer,
-  .dropdown-menu
-) :is(input, select, textarea) {
+  .dropdown-menu) :is(input, select, textarea) {
   background: #000000 !important;
   border: 2px solid #ffffff !important;
   color: #ffffff !important;
