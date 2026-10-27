@@ -6,16 +6,16 @@ $this->assetManager()->appendScriptLink('vendor/cookieconsent.umd.js');
 $translations = &$consentDialogConfig['language']['translations'];
 $faqUrl = $this->url('faq-home');
 foreach ($translations as &$translation) {
-    unset($translation['consentModal']['acceptAllBtn']);
+    unset(
+        $translation['consentModal']['acceptAllBtn'],
+        $translation['consentModal']['showPreferencesBtn']
+    );
     $translation['consentModal']['description'] = $this->translate(
         'cookie notice summary html',
         ['%%faqUrlAttr%%' => $this->escapeHtmlAttr($faqUrl)]
     );
     $translation['consentModal']['acceptNecessaryBtn'] = $this->translate(
         'CookieConsent::Proceed'
-    );
-    $translation['consentModal']['showPreferencesBtn'] = $this->translate(
-        'cookie notice read full text'
     );
 }
 unset($translation);
@@ -26,7 +26,6 @@ $configJson = json_encode(
         'controlledVuFindServices' => $controlledVuFindServices,
     ]
 );
-$cookieFaqUrlJson = json_encode($faqUrl . '#16');
 $this->assetManager()->appendScriptString(<<<JS
 window.addEventListener('load', function() {
   VuFind.cookie.setupConsent($configJson);
@@ -40,22 +39,6 @@ window.addEventListener('load', function() {
   };
 
   document.addEventListener('click', function(event) {
-    var readFullText = event.target.closest('#cc-main [data-role="show"]');
-    if (readFullText) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      var cookieFaqUrl = new URL($cookieFaqUrlJson, window.location.origin);
-      if (
-        window.location.pathname === cookieFaqUrl.pathname
-        && window.location.hash === cookieFaqUrl.hash
-      ) {
-        window.dispatchEvent(new CustomEvent('oasisbr:reveal-faq-hash'));
-      } else {
-        window.location.assign(cookieFaqUrl.href);
-      }
-      return;
-    }
-
     var button = event.target.closest('#cc-main [data-role="necessary"]');
     if (!button || !openedFromCookieButton) {
       return;
