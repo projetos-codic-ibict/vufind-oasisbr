@@ -5,10 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const maxFontSize = 20;
   const menu = document.getElementById('header-collapse');
   const toggler = document.querySelector('.oasis-header-toggler');
-  const contrastButton = document.querySelector('[data-oasis-contrast]');
+  const contrastButtons = document.querySelectorAll('[data-oasis-contrast]');
   const vlibrasButton = document.querySelector('[data-oasis-vlibras]');
   const vlibrasStatus = document.querySelector('[data-oasis-vlibras-status]');
   const cookieNoticeButton = document.querySelector('[data-oasis-cookie-notice]');
+  const accessibilityToggle = document.querySelector('[data-oasis-accessibility-toggle]');
+  const accessibilityPanel = document.getElementById('oasis-accessibility-panel');
+  const accessibilityClose = document.querySelector('[data-oasis-accessibility-close]');
   const vlibrasScriptUrl = 'https://vlibras.gov.br/app/vlibras-plugin.js';
   let vlibrasLoader;
 
@@ -47,13 +50,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const applyContrast = (enabled) => {
     document.body.classList.toggle('oasis-high-contrast', enabled);
     document.querySelector('barra-govbr')?.setAttribute('contrastactive', String(enabled));
-    contrastButton?.setAttribute('aria-pressed', String(enabled));
+    contrastButtons.forEach((button) => {
+      const active = button.dataset.oasisContrast === (enabled ? 'high' : 'default');
+      button.setAttribute('aria-pressed', String(active));
+    });
     setStorage(storageKeys.contrast, enabled ? 'true' : 'false');
   };
   const applyFontSize = (size) => {
     const safeSize = Math.min(maxFontSize, Math.max(minFontSize, size));
     document.documentElement.style.fontSize = safeSize + 'px';
     setStorage(storageKeys.fontSize, String(safeSize));
+    document.querySelectorAll('[data-oasis-font-size-value]').forEach((output) => {
+      output.value = Math.round((safeSize / defaultFontSize) * 100) + '%';
+      output.textContent = output.value;
+    });
+  };
+  const setAccessibilityPanel = (open, returnFocus = false) => {
+    if (!accessibilityPanel || !accessibilityToggle) return;
+    accessibilityPanel.hidden = !open;
+    accessibilityToggle.setAttribute('aria-expanded', String(open));
+    accessibilityToggle.setAttribute('aria-label', open ? 'Fechar recursos de acessibilidade' : 'Abrir recursos de acessibilidade');
+    if (returnFocus) accessibilityToggle.focus();
   };
 
   document.querySelectorAll('[data-oasis-shortcut]').forEach((link) => {
@@ -70,7 +87,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchLink = document.querySelector('[data-oasis-shortcut="search"]');
     if (performShortcut(action, searchLink?.dataset.oasisSearchUrl)) event.preventDefault();
   });
-  contrastButton?.addEventListener('click', () => applyContrast(!document.body.classList.contains('oasis-high-contrast')));
+  contrastButtons.forEach((button) => button.addEventListener('click', () => applyContrast(button.dataset.oasisContrast === 'high')));
+  accessibilityToggle?.addEventListener('click', () => setAccessibilityPanel(accessibilityPanel?.hidden));
+  accessibilityClose?.addEventListener('click', () => setAccessibilityPanel(false, true));
+  accessibilityPanel?.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      setAccessibilityPanel(false, true);
+    }
+  });
   const configureCookieNotice = () => {
     if (typeof window.OasisbrCookieNotice?.show !== 'function' || cookieNoticeButton?.dataset.oasisCookieNoticeReady) return;
     cookieNoticeButton?.removeAttribute('disabled');

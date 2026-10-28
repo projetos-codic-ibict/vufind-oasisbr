@@ -37,20 +37,59 @@ $searchHomeUrl = $this->url('search-home');
           </ul>
         </div>
       <?php endif; ?>
-      <div class="oasis-header-accessibility__text-size" role="group" aria-label="Tamanho do texto">
-        <button type="button" data-oasis-font-size="decrease" aria-label="Diminuir texto" title="Diminuir texto"><i class="fa-solid fa-minus" aria-hidden="true"></i></button>
-        <button type="button" data-oasis-font-size="increase" aria-label="Aumentar texto" title="Aumentar texto"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
-      </div>
       <button type="button" class="oasis-header-accessibility__button" data-oasis-cookie-notice aria-label="Informações sobre cookies" title="Informações sobre cookies" disabled><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i></button>
-      <button type="button" class="oasis-header-accessibility__button" data-oasis-contrast aria-pressed="false" aria-label="Alto contraste" title="Alto contraste"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i></button>
-      <button type="button" class="oasis-header-accessibility__button" data-oasis-vlibras aria-label="Ativar VLibras" title="Ativar VLibras" data-oasis-vlibras-loading="<?= $this->transEscAttr('vlibras loading') ?>" data-oasis-vlibras-error="<?= $this->transEscAttr('vlibras error') ?>" disabled><i class="fa-solid fa-sign-language" aria-hidden="true"></i></button>
+      <button type="button" class="oasis-header-accessibility__access-button" data-oasis-accessibility-toggle aria-controls="oasis-accessibility-panel" aria-expanded="false" aria-label="Abrir recursos de acessibilidade" title="Acessibilidade"><i class="fa-solid fa-universal-access" aria-hidden="true"></i><span>Acessibilidade</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
       <span class="visually-hidden" data-oasis-vlibras-status role="status" aria-live="polite"></span>
     </div>
   </div>
 
+  <section id="oasis-accessibility-panel" class="oasis-accessibility-panel" aria-labelledby="oasis-accessibility-title" hidden>
+    <div class="oasis-header-container oasis-accessibility-panel__inner">
+      <div class="oasis-accessibility-panel__heading">
+        <h2 id="oasis-accessibility-title"><i class="fa-solid fa-universal-access" aria-hidden="true"></i> Recursos de acessibilidade</h2>
+        <div class="oasis-accessibility-panel__links">
+          <a href="<?= $this->url('faq-home') ?>#15">Página de acessibilidade <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <a href="<?= $this->url('faq-home') ?>#15">Declaração de acessibilidade</a>
+          <button type="button" class="oasis-accessibility-panel__close" data-oasis-accessibility-close aria-label="Fechar recursos de acessibilidade" title="Fechar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="oasis-accessibility-panel__cards">
+        <section class="oasis-accessibility-card" aria-labelledby="oasis-font-size-title">
+          <div class="oasis-accessibility-card__title"><h3 id="oasis-font-size-title">Tamanho do texto</h3><output data-oasis-font-size-value>100%</output></div>
+          <div class="oasis-accessibility-card__button-group" role="group" aria-label="Tamanho do texto">
+            <button type="button" data-oasis-font-size="decrease" aria-label="Diminuir texto">A−</button>
+            <button type="button" data-oasis-font-size="reset" aria-label="Restaurar tamanho padrão">A</button>
+            <button type="button" data-oasis-font-size="increase" aria-label="Aumentar texto">A+</button>
+          </div>
+        </section>
+        <section class="oasis-accessibility-card" aria-labelledby="oasis-contrast-title">
+          <h3 id="oasis-contrast-title">Contraste</h3>
+          <div class="oasis-accessibility-card__button-group" role="group" aria-label="Contraste">
+            <button type="button" data-oasis-contrast="default" aria-pressed="true">Padrão</button>
+            <button type="button" data-oasis-contrast="high" aria-pressed="false"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> Alto contraste</button>
+          </div>
+        </section>
+        <section class="oasis-accessibility-card" aria-labelledby="oasis-vlibras-title">
+          <h3 id="oasis-vlibras-title">Libras</h3>
+          <button type="button" class="oasis-accessibility-card__wide-button" data-oasis-vlibras aria-label="Ativar VLibras" data-oasis-vlibras-loading="<?= $this->transEscAttr('vlibras loading') ?>" data-oasis-vlibras-error="<?= $this->transEscAttr('vlibras error') ?>" disabled><i class="fa-solid fa-sign-language" aria-hidden="true"></i> VLibras</button>
+          <p>Tradução do conteúdo para Libras por avatar.</p>
+        </section>
+        <section class="oasis-accessibility-card" aria-labelledby="oasis-shortcuts-title">
+          <h3 id="oasis-shortcuts-title">Atalhos de teclado</h3>
+          <ul class="oasis-accessibility-panel__shortcuts">
+            <li><a href="#content" data-oasis-shortcut="content" accesskey="1"><kbd>Alt + 1</kbd> Conteúdo</a></li>
+            <li><a href="#header-collapse" data-oasis-shortcut="menu" accesskey="2"><kbd>Alt + 2</kbd> Menu</a></li>
+            <li><a href="<?= $searchHomeUrl ?>#searchForm_lookfor" data-oasis-shortcut="search" data-oasis-search-url="<?= $searchHomeUrl ?>" accesskey="3"><kbd>Alt + 3</kbd> Busca</a></li>
+            <li><a href="#rodape" accesskey="4"><kbd>Alt + 4</kbd> Rodapé</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </section>
+
   <barra-govbr
     id="barraGovBr"
-    class="width100 shadow-none no-login"
+    class="width100 shadow-none no-login no-cookie"
     ambiente="producao"
     titulo="Ministério da Ciência, Tecnologia e Inovação"
     contrastactive="false"
