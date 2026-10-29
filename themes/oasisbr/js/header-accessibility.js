@@ -56,6 +56,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     setStorage(storageKeys.contrast, enabled ? 'true' : 'false');
   };
+  const removeGovBrShortcuts = () => {
+    const govBrBar = document.querySelector('barra-govbr');
+    const shortcutsButton = govBrBar?.shadowRoot?.querySelector('.slideBarAnonima, .gridSistemas');
+    shortcutsButton?.closest('.wrapper')?.remove();
+  };
+  const configureGovBrBar = () => {
+    const govBrBar = document.querySelector('barra-govbr');
+    if (!govBrBar || !window.customElements) return;
+    window.customElements.whenDefined('barra-govbr').then(() => {
+      const shadowRoot = govBrBar.shadowRoot;
+      if (!shadowRoot) return;
+      removeGovBrShortcuts();
+      const observer = new MutationObserver(removeGovBrShortcuts);
+      observer.observe(shadowRoot, { childList: true, subtree: true });
+    });
+  };
   const applyFontSize = (size) => {
     const safeSize = Math.min(maxFontSize, Math.max(minFontSize, size));
     document.documentElement.style.fontSize = safeSize + 'px';
@@ -171,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   applyContrast(getStorage(storageKeys.contrast) === 'true');
+  configureGovBrBar();
   const savedFontSize = Number.parseInt(getStorage(storageKeys.fontSize) || defaultFontSize, 10);
   applyFontSize(Number.isNaN(savedFontSize) ? defaultFontSize : savedFontSize);
 });
