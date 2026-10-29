@@ -32,7 +32,8 @@ $searchHomeUrl = $this->url('search-home');
           </button>
           <ul class="dropdown-menu">
             <?php foreach ($this->layout()->allLangs as $langCode => $langName) : ?>
-              <li<?= $this->layout()->userLang == $langCode ? ' class="active"' : '' ?>><a href="<?= $this->escapeHtmlAttr($this->url()->addQueryParameters(['lng' => $langCode])) ?>" rel="nofollow"><?= $this->displayLanguageOption($langName) ?></a></li>
+              <?php $languageAttribute = strtolower(str_replace('_', '-', $langCode)) === 'es' ? ' lang="es"' : ''; ?>
+              <li<?= $this->layout()->userLang == $langCode ? ' class="active"' : '' ?>><a href="<?= $this->escapeHtmlAttr($this->url()->addQueryParameters(['lng' => $langCode])) ?>" rel="nofollow"<?= $languageAttribute ?>><?= $this->displayLanguageOption($langName) ?></a></li>
               <?php endforeach; ?>
           </ul>
         </div>
