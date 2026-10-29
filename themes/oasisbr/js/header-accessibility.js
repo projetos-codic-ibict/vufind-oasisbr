@@ -12,8 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const accessibilityToggle = document.querySelector('[data-oasis-accessibility-toggle]');
   const accessibilityPanel = document.getElementById('oasis-accessibility-panel');
   const accessibilityClose = document.querySelector('[data-oasis-accessibility-close]');
+  const aboutDropdownToggle = document.getElementById('oasis-about-menu');
+  const aboutDropdownMenu = document.getElementById('oasis-about-submenu');
   const vlibrasScriptUrl = 'https://vlibras.gov.br/app/vlibras-plugin.js';
   let vlibrasLoader;
+  let restoreAboutDropdownFocus = false;
 
   const getStorage = (key) => {
     try { return window.localStorage.getItem(key); } catch (error) { return null; }
@@ -106,6 +109,15 @@ document.addEventListener('DOMContentLoaded', () => {
   contrastButtons.forEach((button) => button.addEventListener('click', () => applyContrast(button.dataset.oasisContrast === 'high')));
   accessibilityToggle?.addEventListener('click', () => setAccessibilityPanel(accessibilityPanel?.hidden));
   accessibilityClose?.addEventListener('click', () => setAccessibilityPanel(false, true));
+  aboutDropdownMenu?.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !aboutDropdownMenu?.classList.contains('show')) return;
+    restoreAboutDropdownFocus = true;
+  });
+  aboutDropdownToggle?.addEventListener('hidden.bs.dropdown', () => {
+    if (!restoreAboutDropdownFocus) return;
+    restoreAboutDropdownFocus = false;
+    aboutDropdownToggle.focus();
+  });
   accessibilityPanel?.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       event.preventDefault();

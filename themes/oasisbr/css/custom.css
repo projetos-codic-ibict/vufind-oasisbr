@@ -1414,6 +1414,22 @@ li.language a {
     border-color 0.16s ease;
 }
 
+/* Use the theme icon for the About menu only; the Bootstrap caret is hidden
+ * here to avoid rendering two indicators if its default styling is available. */
+.oasis-site .nav-main .oasis-header-about-dropdown > .dropdown-toggle::after {
+  display: none;
+}
+
+.oasis-site .nav-main .oasis-header-about-dropdown__icon {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  transition: transform 0.16s ease;
+}
+
+.oasis-site .nav-main .oasis-header-about-dropdown > .dropdown-toggle[aria-expanded="true"] .oasis-header-about-dropdown__icon {
+  transform: rotate(180deg);
+}
+
 .oasis-site .nav-main a:hover,
 .oasis-site .nav-main a:focus,
 .oasis-site .nav-main button.dropdown-toggle:hover,
@@ -1588,6 +1604,21 @@ li.language a {
   gap: 0.15rem;
 }
 
+@media (min-width: 992px) {
+  .oasis-site .oasis-header-navigation #header-collapse {
+    flex-grow: 0;
+  }
+
+  .oasis-site .oasis-header-navigation .nav-main,
+  .oasis-site .oasis-header-navigation .nav-main .navbar-nav {
+    width: auto;
+  }
+
+  .oasis-site .oasis-header-navigation .nav-main {
+    justify-content: flex-start;
+  }
+}
+
 .oasis-site .oasis-header-navigation .nav-main a,
 .oasis-site .oasis-header-navigation .nav-main button.dropdown-toggle {
   min-height: 44px;
@@ -1693,6 +1724,22 @@ li.language a {
   .oasis-site .oasis-header-navigation .nav-main button.dropdown-toggle {
     width: 100%;
     justify-content: flex-start;
+  }
+
+  .oasis-site .oasis-header-navigation .oasis-header-about-dropdown .dropdown-menu {
+    position: static;
+    width: 100%;
+    margin: 0;
+    padding: 0.25rem 0 0.25rem 1rem;
+    border: 0;
+    border-radius: 0;
+    border-left: 2px solid #dcdcdc;
+    box-shadow: none;
+    transform: none !important;
+  }
+
+  .oasis-site .oasis-header-navigation .oasis-header-about-dropdown .dropdown-item {
+    padding-left: 0.75rem;
   }
 
   .oasis-site .oasis-header-navigation .language {

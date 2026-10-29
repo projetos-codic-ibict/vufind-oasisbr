@@ -113,8 +113,16 @@ $searchHomeUrl = $this->url('search-home');
             <li class="nav-item"><a class="nav-link" href="<?= $this->url('home') ?>" <?= $isHome ? ' aria-current="page"' : '' ?>><?= $this->transEsc('Home') ?></a></li>
             <li class="nav-item"><a class="nav-link" href="<?= $this->url('datasources-home') ?>" <?= $isDataSources ? ' aria-current="page"' : '' ?>><?= $this->transEsc('Data Sources') ?></a></li>
             <li class="nav-item"><a class="nav-link" href="<?= $this->url('indicators-home') ?>" <?= $isIndicators ? ' aria-current="page"' : '' ?>><?= $this->transEsc('Indicators') ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= $this->url('about-home') ?>"><?= $this->transEsc('header_about') ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="<?= $this->url('home') ?>#participar"><?= $this->transEsc('header_participate') ?></a></li>
+            <li class="nav-item dropdown oasis-header-about-dropdown">
+              <button id="oasis-about-menu" type="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="oasis-about-submenu">
+                <?= $this->transEsc('header_about') ?>
+                <i class="fa-solid fa-chevron-down oasis-header-about-dropdown__icon" aria-hidden="true"></i>
+              </button>
+              <ul id="oasis-about-submenu" class="dropdown-menu" aria-labelledby="oasis-about-menu">
+                <li><a class="dropdown-item" href="<?= $this->url('about-home') ?>"><?= $this->transEsc('header_about') ?></a></li>
+                <li><a class="dropdown-item" href="<?= $this->url('home') ?>#participar"><?= $this->transEsc('header_participate') ?></a></li>
+              </ul>
+            </li>
             <li class="nav-item"><a class="nav-link" href="<?= $this->url('faq-home') ?>"><?= $this->transEsc('header_help') ?></a></li>
 
             <?php if ($this->feedback()->tabEnabled()): ?>
