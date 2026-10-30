@@ -1,5 +1,6 @@
 <?php $this->headTitle($this->translate('Indicators')); ?>
 <?php $this->assetManager()->appendStyleLink('loader.css'); ?>
+<?php $this->assetManager()->appendScriptLink('indicators-frame.js'); ?>
 <?php $this->layout()->searchbox = false; ?>
 <?php $this->layout()->nocontainerclass = true; ?>
 <?php $this->breadcrumbs()->set($this->translate('Indicators'), null, true); ?>
@@ -13,5 +14,22 @@
 </div>
 
 <div class="container oasis-inner-page-content oasis-indicators-frame">
-  <embed type="text/html" src="https://indicadores-oasisbr.ibict.br/Indicadores-oasisbr" style="width:100%;height:4150px;">
+  <div id="indicators-frame-status" class="alert alert-info" role="status" aria-live="polite">
+    <?= $this->transEsc('Indicators Loading') ?>
+  </div>
+  <div id="indicators-frame-error" class="alert alert-warning d-none" role="alert">
+    <?= $this->transEsc('Indicators Unavailable') ?>
+  </div>
+  <div id="indicators-frame-load-error" class="alert alert-danger d-none" role="alert">
+    <?= $this->transEsc('Indicators Load Error') ?>
+  </div>
+  <iframe
+    id="indicators-frame"
+    title="<?= $this->transEscAttr('Indicators External Application') ?>"
+    src="https://indicadores-oasisbr.ibict.br/Indicadores-oasisbr"
+    style="width:100%;height:4150px;"
+  ></iframe>
+  <noscript>
+    <p class="alert alert-warning" role="alert"><?= $this->transEsc('Indicators JavaScript Required') ?></p>
+  </noscript>
 </div>
