@@ -2,38 +2,38 @@ let allNetworks = null;
 let networksList = null;
 let filters = new Map();
 
+function getSourceTypeTranslationKey(sourceType) {
+  const sourceTypes = {
+    'Revista Científica': 'Scientific Journal',
+    'Repositório de Publicações': 'Publication Repository',
+    'Repositório de Dados de Pesquisa': 'Research Data Repository',
+    'Biblioteca Digital de Teses e Dissertações': 'Digital Library of Theses and Dissertations',
+    'Biblioteca Digital de Monografias': 'Digital Library of Monographs',
+    'Biblioteca Digital de Monografia': 'Digital Library of Monographs',
+    'Servidor de Preprints': 'Preprint Server',
+    'Portal Agregador': 'Aggregator Portal',
+    'Portal de Livros': 'Book Portal',
+  };
+  return sourceTypes[sourceType] || sourceType;
+}
+
+function getIndicatorLabel(value, indicatorType) {
+  return VuFind.translate(
+    indicatorType === 'sourceType' ? getSourceTypeTranslationKey(value) : value
+  );
+}
+
 function obterRegiaoPorUF(uf) {
   const regioesPorUF = {
-    AC: 'Norte',
-    AL: 'Nordeste',
-    AP: 'Norte',
-    AM: 'Norte',
-    BA: 'Nordeste',
-    CE: 'Nordeste',
-    DF: 'Centro-Oeste',
-    ES: 'Sudeste',
-    GO: 'Centro-Oeste',
-    MA: 'Nordeste',
-    MT: 'Centro-Oeste',
-    MS: 'Centro-Oeste',
-    MG: 'Sudeste',
-    PA: 'Norte',
-    PB: 'Nordeste',
-    PR: 'Sul',
-    PE: 'Nordeste',
-    PI: 'Nordeste',
-    RJ: 'Sudeste',
-    RN: 'Nordeste',
-    RS: 'Sul',
-    RO: 'Norte',
-    RR: 'Norte',
-    SC: 'Sul',
-    SP: 'Sudeste',
-    SE: 'Nordeste',
-    TO: 'Norte',
+    AC: 'North', AL: 'Northeast', AP: 'North', AM: 'North', BA: 'Northeast',
+    CE: 'Northeast', DF: 'Central-West', ES: 'Southeast', GO: 'Central-West',
+    MA: 'Northeast', MT: 'Central-West', MS: 'Central-West', MG: 'Southeast',
+    PA: 'North', PB: 'Northeast', PR: 'South', PE: 'Northeast', PI: 'Northeast',
+    RJ: 'Southeast', RN: 'Northeast', RS: 'South', RO: 'North', RR: 'North',
+    SC: 'South', SP: 'Southeast', SE: 'Northeast', TO: 'North',
   };
 
-  return regioesPorUF[uf] || 'Região não encontrada';
+  return regioesPorUF[uf] || 'Region not found';
 }
 
 async function getAllNetworks() {
@@ -63,12 +63,8 @@ function fillDatanetworks(networks) {
     // Since there are no elements in the list, this will be used as template.
     item: `<li class="network-item">
       <h3><a href="" class="link name"></a></h3>
-      <p><b>${getTranslatedText(
-      'Instituição responsável'
-    )}</b>: <span class="institution"></span></p>
-      <p><b>${getTranslatedText(
-      'Número de documentos coletados'
-    )}</b>: <span class="validSize"></span></p>
+      <p><b>${VuFind.translate('Responsible institution')}</b>: <span class="institution"></span></p>
+      <p><b>${VuFind.translate('Documents collected')}</b>: <span class="validSize"></span></p>
       </li>`,
     page: 10,
     pagination: [
@@ -96,6 +92,7 @@ function watchingUpdateOnList() {
   const list = document.querySelector('.list');
   networksList.on('updated', (element) => {
     list.style.counterReset = `item ${element.i - 1}`;
+    showTotalFind(element.matchingItems.length);
   });
 }
 
@@ -145,7 +142,7 @@ function getIndicators(networks) {
     const sourceTypesIndicadors = [];
     for (item in sourceTypesCounts) {
       sourceTypesIndicadors.push({
-        name: item || getTranslatedText('Indefinido'),
+        name: item || VuFind.translate('Undefined'),
         value: sourceTypesCounts[item],
       });
     }
@@ -161,7 +158,7 @@ function getIndicators(networks) {
     const institutionsIndicadors = [];
     for (item in institutionsCounts) {
       institutionsIndicadors.push({
-        name: item || getTranslatedText('Indefinido'),
+        name: item || VuFind.translate('Undefined'),
         value: institutionsCounts[item],
       });
     }
@@ -177,7 +174,7 @@ function getIndicators(networks) {
     const ufsIndicators = [];
     for (item in ufsCounts) {
       ufsIndicators.push({
-        name: item || getTranslatedText('Indefinido'),
+        name: item || VuFind.translate('Undefined'),
         value: ufsCounts[item],
       });
     }
@@ -193,7 +190,7 @@ function getIndicators(networks) {
     const regionsIndicators = [];
     for (item in regionsCounts) {
       regionsIndicators.push({
-        name: item || getTranslatedText('Indefinido'),
+        name: item || VuFind.translate('Undefined'),
         value: regionsCounts[item],
       });
     }
@@ -210,11 +207,11 @@ function fillIndicators(indicators, querySelector, indicatorType) {
   indicators.sort((a, b) => b.value - a.value);
   indicators.forEach((indicator) => {
     const item = `<a onclick="filterNetworks('${indicator.name
-      }', '${indicatorType}')" title="${getTranslatedText(
+      }', '${indicatorType}')" data-filter-value="${indicator.name}" title="${VuFind.translate(
         'Select filter'
       )}"  class="facet js-facet-item facetAND">
     <span class="text">
-      <span class="facet-value">${getTranslatedText(indicator.name)}</span>
+      <span class="facet-value">${getIndicatorLabel(indicator.name, indicatorType)}</span>
     </span>
     <span class="badge"> ${formatNumber(indicator.value)} </span>
   </a>`;
@@ -284,9 +281,10 @@ function exportsCSV(networks) {
 
 function showTotalFind(total) {
   const totalLabel = document.querySelector('.networks-label');
-  totalLabel.innerHTML = `${getTranslatedText('Retornaram')} ${formatNumber(
-    total
-  )} ${getTranslatedText('fontes')}`;
+  totalLabel.textContent = VuFind.translate('data_sources_result_count', {
+    '%%count%%': formatNumber(total),
+  });
+  document.querySelector('.js-no-results').classList.toggle('d-none', total !== 0);
 }
 
 function showTotal(total) {
@@ -299,7 +297,15 @@ function showTotal(total) {
 
 function ConvertToCSV(objArray) {
   const array = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
-  let csv = 'Nome,Instituição,Tipo de fonte,URL,Email,ISSN,Quantidade de itens';
+  let csv = [
+    VuFind.translate('data_sources_csv_name'),
+    VuFind.translate('data_sources_csv_institution'),
+    VuFind.translate('data_sources_csv_type'),
+    VuFind.translate('data_sources_csv_url'),
+    VuFind.translate('data_sources_csv_email'),
+    VuFind.translate('data_sources_csv_issn'),
+    VuFind.translate('data_sources_csv_documents'),
+  ].join(',');
   csv += '\r\n';
   array.forEach((item) => {
     let line =
@@ -360,11 +366,11 @@ function activeSelectedItem() {
     item.removeAttribute('title');  
     if (
       Array.from(filters.values()).includes(
-        item.firstElementChild.firstElementChild.textContent
+        item.dataset.filterValue
       )
     ) {
       item.classList.add('active');
-      item.title = getTranslatedText('Remove filter');
+      item.title = VuFind.translate('Remove filter');
     }
   });
 }

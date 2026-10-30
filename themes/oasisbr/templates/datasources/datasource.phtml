@@ -9,6 +9,7 @@ $titleName = $source;
 <?php $this->breadcrumbs()->add($this->translate('Source'), null, true); ?>
 <?php $this->assetManager()->appendStyleLink('loader.css'); ?>
 <?php $this->assetManager()->appendScriptLink("load-network.js"); ?>
+<?php $this->render('datasources/translations.phtml'); ?>
 
 <div class="page-title-bar oasis-page-title-bar oasis-source-title-bar">
   <div class="container">

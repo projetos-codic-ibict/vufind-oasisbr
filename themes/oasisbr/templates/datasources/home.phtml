@@ -5,6 +5,7 @@
 <?php $this->assetManager()->appendStyleLink('loader.css'); ?>
 <?php $this->assetManager()->appendScriptLink('lib/list.min.js'); ?>
 <?php $this->assetManager()->appendScriptLink('networks.js'); ?>
+<?php $this->render('datasources/translations.phtml'); ?>
 
 
 <div class="page-title-bar oasis-page-title-bar">
@@ -16,7 +17,7 @@
 </div>
 
 <div class="container oasis-inner-page-content" id="networks-page">
-  <div class="sidebar left d-print-none oasis-results-sidebar" id="search-sidebar">
+  <div class="sidebar left d-print-none oasis-results-sidebar" id="search-sidebar" aria-label="<?= $this->transEscAttr('Data Sources Filters') ?>">
     <div class="facet-group" id="side-panel-format">
       <button class="title" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#side-collapse-format" aria-controls="side-collapse-format">
         <?= $this->transEsc("Source type") ?> </button>
@@ -81,12 +82,12 @@
         </div>
         <div class="search-controls">
           <div class="networks-sort">
-            <select id="sort-select" class="form-select">
+            <select id="sort-select" class="form-select" aria-label="<?= $this->transEscAttr('Data Sources Sort') ?>">
               <option value="asc"><?= $this->transEsc("Ascending") ?></option>
               <option value="desc"><?= $this->transEsc("Descending") ?></option>
             </select>
           </div>
-          <button class="btn btn-primary btn-export-csv">
+          <button class="btn btn-primary btn-export-csv" aria-label="<?= $this->transEscAttr('Data Sources Export') ?>">
             <?= $this->transEsc("Export to") ?> CSV
           </button>
         </div>
@@ -94,13 +95,14 @@
 
       <div id="networks" class="oasis-source-results">
         <div class="search-controls oasis-source-search-controls">
-        <input id="network-search" class="search form-control" type="search" placeholder="<?= $this->transEsc("Search") ?>" aria-label="<?= $this->transEsc("Search") ?>">
+        <input id="network-search" class="search form-control" type="search" placeholder="<?= $this->transEscAttr('Data Sources Search') ?>" aria-label="<?= $this->transEscAttr('Data Sources Search') ?>">
       </div>
-      <div class="loader"></div>
+      <div class="loader" role="status" aria-label="<?= $this->transEscAttr('Data Sources Loading') ?>"></div>
 
         <ol class="list record-list" style="counter-reset: item 0"></ol>
 
-        <ul class="pagination"></ul>
+        <p class="d-none js-no-results" role="status" aria-live="polite"><?= $this->transEsc('Data Sources No Results') ?></p>
+        <ul class="pagination" aria-label="<?= $this->transEscAttr('Data Sources Pagination') ?>"></ul>
       </div>
     </div>
   </div>

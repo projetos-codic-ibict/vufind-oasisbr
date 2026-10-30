@@ -2,7 +2,7 @@ async function getANetworkByName(networkId) {
   try {
     showLoader();
     const response = await axios.get(`${REMOTE_API_URL}/networks/${networkId}`);
-    // const response = await axios.get(`/api-proxy/networks/${encodeURIComponent(networkId)}`);
+    //const response = await axios.get(`/api-proxy/networks/${encodeURIComponent(networkId)}`);
     hideLoader();
     const network = response.data;
     return network;
@@ -23,7 +23,7 @@ function showDatasourceError() {
   table.insertAdjacentHTML(
     'afterend',
     `<div id="data-source-error" class="alert alert-danger" role="alert">
-      ${getTranslatedText('Failed to load data sources, please try again later')}
+      ${VuFind.translate('data_sources_load_error')}
     </div>`
   );
 }
@@ -31,18 +31,18 @@ function showDatasourceError() {
 function fillDatasource(network) {
   const table = document.querySelector('#dataSource');
   table.innerHTML = `
-    <caption class="visually-hidden">${getTranslatedText('Detalhes da fonte de dados')}</caption>
+    <caption class="visually-hidden">${VuFind.translate('data_sources_details_caption')}</caption>
     <tbody>
     <tr>
-      <th scope="row">${getTranslatedText('Tipo de fonte')}:</th>
+      <th scope="row">${VuFind.translate('Source type')}:</th>
       <td>${network.sourceType}</td>
     </tr>
     <tr>
-      <th scope="row">${getTranslatedText('Fonte')}:</th>
+      <th scope="row">${VuFind.translate('Source')}:</th>
       <td>${network.name}</td>
     </tr>
     <tr>
-      <th scope="row">${getTranslatedText('Instituição responsável')}:</th>
+      <th scope="row">${VuFind.translate('Responsible institution')}:</th>
       <td>${network.institution}</td>
     </tr>
     <tr>
@@ -58,11 +58,11 @@ function fillDatasource(network) {
       }</td>
     </tr>
     <tr>
-      <th scope="row">${getTranslatedText('Source email')}:</th>
+      <th scope="row">${VuFind.translate('Source email')}:</th>
       <td>${network.email != null ? network.email : '-'}</td>
     </tr>
     <tr>
-      <th scope="row">${getTranslatedText('Documents collected')}:</th>
+      <th scope="row">${VuFind.translate('Documents collected')}:</th>
       <td>
         <a href="../Search/Results?type=AllFields&filter%5B%5D=network_name_str%3A%22+${
           network.name
@@ -84,7 +84,7 @@ function fillDatasource(network) {
       <td>${
         network.issn != 'null'
           ? network.issn
-          : getTranslatedText('Not registered')
+          : VuFind.translate('Not registered')
       }</td>
     </tr>
     </tbody>

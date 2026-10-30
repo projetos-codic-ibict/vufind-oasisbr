@@ -26,7 +26,7 @@ function showMessageError(element) {
   const networksElement = document.querySelector(element);
   if (networksElement) {
     networksElement.innerHTML = `<div class="alert alert-danger" role="alert">
-    ${getTranslatedText('Failed to load data sources, please try again later')}
+    ${VuFind.translate('data_sources_load_error')}
     </div>`;
   }
 }
