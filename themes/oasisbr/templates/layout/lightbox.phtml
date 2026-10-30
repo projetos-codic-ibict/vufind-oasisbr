@@ -1,3 +1,13 @@
-<?=$this->layout()->content?>
+<?php
+$content = $this->layout()->content;
+if (str_contains($content, 'Send us your feedback!')) {
+  $content = str_replace(
+    'Send us your feedback!',
+    $this->escapeHtml($this->translate('feedback_title')),
+    $content
+  );
+}
+echo $content;
+?>
 <?=$this->piwik(['lightbox' => true])?>
 <?=$this->googleanalytics($this->serverUrl(true))?>
