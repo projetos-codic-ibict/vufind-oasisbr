@@ -16,7 +16,20 @@ $htmlLang = match (strtolower($userLang)) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <?= $this->headMeta() ?>
-  <?= $this->headTitle() ?>
+  <?php
+  // Compose page titles with the Oasisbr wrapper so that each tab identifies
+  // both the current page and the portal, independently of the generic
+  // Site.title fallback configured by VuFind.
+  $this->headTitle()->setAutoEscape(false);
+  $fullTitle = $this->translate(
+    'oasisbr title wrapper',
+    [
+      '%%pageTitle%%' => $this->headTitle()->renderTitle(),
+    ]
+  );
+  $this->headTitle()->setAutoEscape(true);
+  echo $this->headTitle($fullTitle, \Laminas\View\Helper\Placeholder\Container\AbstractContainer::SET);
+  ?>
   <?php
   // Set up OpenSearch link:
   $this->headLink(
