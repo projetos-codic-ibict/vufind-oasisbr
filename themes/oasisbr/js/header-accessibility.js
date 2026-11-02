@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   };
   const performShortcut = (action, fallbackUrl) => {
-    if (action === 'content') return focusTarget(document.getElementById('content'));
     if (action === 'menu') return goToMenu();
     if (action === 'search') return goToSearch(fallbackUrl);
     if (action === 'footer') return focusTarget(document.getElementById('rodape'));
@@ -104,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const target = event.target;
     const typing = target instanceof Element && target.closest('input, textarea, select, [contenteditable="true"]');
     if (typing || !event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
-    const action = { 1: 'content', 2: 'menu', 3: 'search', 4: 'footer' }[event.key];
+    const action = { 2: 'menu', 3: 'search', 4: 'footer' }[event.key];
     if (!action) return;
     const searchLink = document.querySelector('[data-oasis-shortcut="search"]');
     if (performShortcut(action, searchLink?.dataset.oasisSearchUrl)) event.preventDefault();
