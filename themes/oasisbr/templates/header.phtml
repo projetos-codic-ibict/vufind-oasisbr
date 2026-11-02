@@ -15,13 +15,13 @@ $isIndicators = $templateDir === 'indicators';
 $searchHomeUrl = $this->url('search-home');
 ?>
 
-<nav class="oasis-header-accessibility" aria-label="Atalhos de acessibilidade">
+<nav class="oasis-header-accessibility" aria-label="<?= $this->transEscAttr('accessibility shortcuts navigation') ?>">
   <div class="oasis-header-container oasis-header-accessibility__inner">
     <ul class="oasis-header-accessibility__shortcuts">
-      <li><a class="oasis-header-accessibility__link" href="#content" data-oasis-shortcut="content" accesskey="1"><?= $this->transEsc('Skip to content') ?> <kbd>1</kbd></a></li>
-      <li><a class="oasis-header-accessibility__link" href="#header-collapse" data-oasis-shortcut="menu" accesskey="2"><?= $this->transEsc('Skip to navigation menu') ?> <kbd>2</kbd></a></li>
-      <li><a class="oasis-header-accessibility__link" href="<?= $searchHomeUrl ?>#searchForm_lookfor" data-oasis-shortcut="search" data-oasis-search-url="<?= $searchHomeUrl ?>" accesskey="3"><?= $this->transEsc('Skip to search') ?> <kbd>3</kbd></a></li>
-      <li><a class="oasis-header-accessibility__link" href="#rodape" accesskey="4"><?= str_starts_with($currentLang, 'pt') ? 'Ir para o rodapé' : $this->transEsc('Skip to footer') ?> <kbd>4</kbd></a></li>
+      <li><a class="oasis-header-accessibility__link" href="#content" data-oasis-shortcut="content" accesskey="1"><?= $this->transEsc('accessibility skip to content') ?> <kbd>1</kbd></a></li>
+      <li><a class="oasis-header-accessibility__link" href="#header-collapse" data-oasis-shortcut="menu" accesskey="2"><?= $this->transEsc('accessibility skip to menu') ?> <kbd>2</kbd></a></li>
+      <li><a class="oasis-header-accessibility__link" href="<?= $searchHomeUrl ?>#searchForm_lookfor" data-oasis-shortcut="search" data-oasis-search-url="<?= $searchHomeUrl ?>" accesskey="3"><?= $this->transEsc('accessibility skip to search') ?> <kbd>3</kbd></a></li>
+      <li><a class="oasis-header-accessibility__link" href="#rodape" accesskey="4"><?= $this->transEsc('accessibility skip to footer') ?> <kbd>4</kbd></a></li>
     </ul>
     <div class="oasis-header-accessibility__controls">
       <?php if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1) : ?>
@@ -39,7 +39,7 @@ $searchHomeUrl = $this->url('search-home');
         </div>
       <?php endif; ?>
       <button type="button" class="oasis-header-accessibility__button" data-oasis-cookie-notice aria-label="Informações sobre cookies" title="Informações sobre cookies" disabled><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i></button>
-      <button type="button" class="oasis-header-accessibility__access-button" data-oasis-accessibility-toggle aria-controls="oasis-accessibility-panel" aria-expanded="false" aria-label="Abrir recursos de acessibilidade" title="Acessibilidade"><i class="fa-solid fa-universal-access" aria-hidden="true"></i><span>Acessibilidade</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+      <button type="button" class="oasis-header-accessibility__access-button" data-oasis-accessibility-toggle data-oasis-accessibility-open-label="<?= $this->transEscAttr('accessibility open resources') ?>" data-oasis-accessibility-close-label="<?= $this->transEscAttr('accessibility close resources') ?>" aria-controls="oasis-accessibility-panel" aria-expanded="false" aria-label="<?= $this->transEscAttr('accessibility open resources') ?>" title="<?= $this->transEscAttr('accessibility') ?>"><i class="fa-solid fa-universal-access" aria-hidden="true"></i><span><?= $this->transEsc('accessibility') ?></span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
       <span class="visually-hidden" data-oasis-vlibras-status role="status" aria-live="polite"></span>
     </div>
   </div>
@@ -47,41 +47,41 @@ $searchHomeUrl = $this->url('search-home');
   <section id="oasis-accessibility-panel" class="oasis-accessibility-panel" aria-labelledby="oasis-accessibility-title" hidden>
     <div class="oasis-header-container oasis-accessibility-panel__inner">
       <div class="oasis-accessibility-panel__heading">
-        <h2 id="oasis-accessibility-title"><i class="fa-solid fa-universal-access" aria-hidden="true"></i> Recursos de acessibilidade</h2>
+        <h2 id="oasis-accessibility-title"><i class="fa-solid fa-universal-access" aria-hidden="true"></i> <?= $this->transEsc('accessibility resources') ?></h2>
         <div class="oasis-accessibility-panel__links">
-          <a href="<?= $this->url('faq-home') ?>#15">Página de acessibilidade <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-          <a href="<?= $this->url('faq-home') ?>#15">Declaração de acessibilidade</a>
-          <button type="button" class="oasis-accessibility-panel__close" data-oasis-accessibility-close aria-label="Fechar recursos de acessibilidade" title="Fechar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+          <a href="<?= $this->url('faq-home') ?>#15"><?= $this->transEsc('accessibility page') ?> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <a href="<?= $this->url('faq-home') ?>#15"><?= $this->transEsc('accessibility statement') ?></a>
+          <button type="button" class="oasis-accessibility-panel__close" data-oasis-accessibility-close aria-label="<?= $this->transEscAttr('accessibility close resources') ?>" title="<?= $this->transEscAttr('Close') ?>"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
         </div>
       </div>
       <div class="oasis-accessibility-panel__cards">
         <section class="oasis-accessibility-card" aria-labelledby="oasis-font-size-title">
-          <div class="oasis-accessibility-card__title"><h3 id="oasis-font-size-title">Tamanho do texto</h3><output data-oasis-font-size-value>100%</output></div>
-          <div class="oasis-accessibility-card__button-group" role="group" aria-label="Tamanho do texto">
-            <button type="button" data-oasis-font-size="decrease" aria-label="Diminuir texto">A−</button>
-            <button type="button" data-oasis-font-size="reset" aria-label="Restaurar tamanho padrão">A</button>
-            <button type="button" data-oasis-font-size="increase" aria-label="Aumentar texto">A+</button>
+          <div class="oasis-accessibility-card__title"><h3 id="oasis-font-size-title"><?= $this->transEsc('accessibility text size') ?></h3><output data-oasis-font-size-value>100%</output></div>
+          <div class="oasis-accessibility-card__button-group" role="group" aria-label="<?= $this->transEscAttr('accessibility text size') ?>">
+            <button type="button" data-oasis-font-size="decrease" aria-label="<?= $this->transEscAttr('accessibility decrease text') ?>">A−</button>
+            <button type="button" data-oasis-font-size="reset" aria-label="<?= $this->transEscAttr('accessibility reset text size') ?>">A</button>
+            <button type="button" data-oasis-font-size="increase" aria-label="<?= $this->transEscAttr('accessibility increase text') ?>">A+</button>
           </div>
         </section>
         <section class="oasis-accessibility-card" aria-labelledby="oasis-contrast-title">
-          <h3 id="oasis-contrast-title">Contraste</h3>
-          <div class="oasis-accessibility-card__button-group" role="group" aria-label="Contraste">
-            <button type="button" data-oasis-contrast="default" aria-pressed="true">Padrão</button>
-            <button type="button" data-oasis-contrast="high" aria-pressed="false"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> Alto contraste</button>
+          <h3 id="oasis-contrast-title"><?= $this->transEsc('accessibility contrast') ?></h3>
+          <div class="oasis-accessibility-card__button-group" role="group" aria-label="<?= $this->transEscAttr('accessibility contrast') ?>">
+            <button type="button" data-oasis-contrast="default" aria-pressed="true"><?= $this->transEsc('accessibility default contrast') ?></button>
+            <button type="button" data-oasis-contrast="high" aria-pressed="false"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> <?= $this->transEsc('accessibility high contrast') ?></button>
           </div>
         </section>
         <section class="oasis-accessibility-card" aria-labelledby="oasis-vlibras-title">
-          <h3 id="oasis-vlibras-title">Libras</h3>
-          <button type="button" class="oasis-accessibility-card__wide-button" data-oasis-vlibras aria-label="Ativar VLibras" data-oasis-vlibras-loading="<?= $this->transEscAttr('vlibras loading') ?>" data-oasis-vlibras-error="<?= $this->transEscAttr('vlibras error') ?>" disabled><i class="fa-solid fa-sign-language" aria-hidden="true"></i> VLibras</button>
-          <p>Tradução do conteúdo para Libras por avatar.</p>
+          <h3 id="oasis-vlibras-title"><?= $this->transEsc('accessibility libras') ?></h3>
+          <button type="button" class="oasis-accessibility-card__wide-button" data-oasis-vlibras aria-label="<?= $this->transEscAttr('accessibility activate vlibras') ?>" data-oasis-vlibras-loading="<?= $this->transEscAttr('vlibras loading') ?>" data-oasis-vlibras-error="<?= $this->transEscAttr('vlibras error') ?>" disabled><i class="fa-solid fa-sign-language" aria-hidden="true"></i> VLibras</button>
+          <p><?= $this->transEsc('accessibility vlibras description') ?></p>
         </section>
         <section class="oasis-accessibility-card" aria-labelledby="oasis-shortcuts-title">
-          <h3 id="oasis-shortcuts-title">Atalhos de teclado</h3>
+          <h3 id="oasis-shortcuts-title"><?= $this->transEsc('accessibility keyboard shortcuts') ?></h3>
           <ul class="oasis-accessibility-panel__shortcuts">
-            <li><a href="#content" data-oasis-shortcut="content" accesskey="1"><kbd>Alt + 1</kbd> Conteúdo</a></li>
-            <li><a href="#header-collapse" data-oasis-shortcut="menu" accesskey="2"><kbd>Alt + 2</kbd> Menu</a></li>
-            <li><a href="<?= $searchHomeUrl ?>#searchForm_lookfor" data-oasis-shortcut="search" data-oasis-search-url="<?= $searchHomeUrl ?>" accesskey="3"><kbd>Alt + 3</kbd> Busca</a></li>
-            <li><a href="#rodape" accesskey="4"><kbd>Alt + 4</kbd> Rodapé</a></li>
+            <li><a href="#content" data-oasis-shortcut="content" accesskey="1"><kbd>Alt + 1</kbd> <?= $this->transEsc('accessibility shortcut content') ?></a></li>
+            <li><a href="#header-collapse" data-oasis-shortcut="menu" accesskey="2"><kbd>Alt + 2</kbd> <?= $this->transEsc('accessibility shortcut menu') ?></a></li>
+            <li><a href="<?= $searchHomeUrl ?>#searchForm_lookfor" data-oasis-shortcut="search" data-oasis-search-url="<?= $searchHomeUrl ?>" accesskey="3"><kbd>Alt + 3</kbd> <?= $this->transEsc('accessibility shortcut search') ?></a></li>
+            <li><a href="#rodape" accesskey="4"><kbd>Alt + 4</kbd> <?= $this->transEsc('accessibility shortcut footer') ?></a></li>
           </ul>
         </section>
       </div>

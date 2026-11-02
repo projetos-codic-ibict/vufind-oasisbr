@@ -88,7 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!accessibilityPanel || !accessibilityToggle) return;
     accessibilityPanel.hidden = !open;
     accessibilityToggle.setAttribute('aria-expanded', String(open));
-    accessibilityToggle.setAttribute('aria-label', open ? 'Fechar recursos de acessibilidade' : 'Abrir recursos de acessibilidade');
+    accessibilityToggle.setAttribute('aria-label', open
+      ? accessibilityToggle.dataset.oasisAccessibilityCloseLabel
+      : accessibilityToggle.dataset.oasisAccessibilityOpenLabel);
     if (returnFocus) accessibilityToggle.focus();
   };
 
