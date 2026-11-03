@@ -1,0 +1,65 @@
+<?php $this->headTitle($this->translate('Acessibilidade')); ?>
+<?php $this->layout()->searchbox = false; ?>
+<?php $this->layout()->nocontainerclass = true; ?>
+<?php $this->breadcrumbs()->set($this->translate('Acessibilidade'), null, true); ?>
+
+<header class="page-title-bar oasis-page-title-bar oasis-accessibility-page__title">
+  <div class="container">
+    <span class="oasis-page-kicker"><?= $this->transEsc('accessibility') ?></span>
+    <h1><?= $this->transEsc('faq15 heading') ?></h1>
+    <p><?= $this->transEsc('faq15 p1') ?></p>
+  </div>
+</header>
+
+<main class="oasis-inner-page oasis-accessibility-page">
+  <nav class="oasis-accessibility-page__navigation" aria-label="<?= $this->transEscAttr('accessibility page navigation') ?>">
+    <a href="#atalhos"><?= $this->transEsc('accessibility keyboard shortcuts') ?></a>
+    <a href="#recursos"><?= $this->transEsc('accessibility resources') ?></a>
+    <a href="#contato"><?= $this->transEsc('accessibility report barrier') ?></a>
+  </nav>
+
+  <article class="oasis-accessibility-page__content">
+    <section class="oasis-accessibility-page__intro" aria-labelledby="acessibilidade-introducao">
+      <h2 id="acessibilidade-introducao"><?= $this->transEsc('accessibility about heading') ?></h2>
+      <p><?= $this->transEsc('faq15 p2') ?></p>
+      <p><?= $this->transEsc('faq15 p3') ?></p>
+    </section>
+
+    <section id="atalhos" aria-labelledby="atalhos-titulo">
+      <h2 id="atalhos-titulo"><?= $this->transEsc('accessibility keyboard shortcuts') ?></h2>
+      <p><?= $this->transEsc('accessibility shortcuts description') ?></p>
+      <div class="oasis-accessibility-page__table-wrap">
+        <table>
+          <caption class="visually-hidden"><?= $this->transEsc('accessibility keyboard shortcuts') ?></caption>
+          <thead><tr><th scope="col"><?= $this->transEsc('accessibility shortcut key') ?></th><th scope="col"><?= $this->transEsc('accessibility shortcut destination') ?></th></tr></thead>
+          <tbody>
+            <tr><td><kbd>Alt + 2</kbd></td><td><?= $this->transEsc('accessibility shortcut menu') ?></td></tr>
+            <tr><td><kbd>Alt + 3</kbd></td><td><?= $this->transEsc('accessibility shortcut search') ?></td></tr>
+            <tr><td><kbd>Alt + 4</kbd></td><td><?= $this->transEsc('accessibility shortcut footer') ?></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="recursos" aria-labelledby="recursos-titulo">
+      <h2 id="recursos-titulo"><?= $this->transEsc('accessibility resources') ?></h2>
+      <p><?= $this->transEsc('accessibility resources description') ?></p>
+      <div class="oasis-accessibility-page__features">
+        <section><h3><?= $this->transEsc('accessibility text size') ?></h3><p><?= $this->transEsc('accessibility text size description') ?></p></section>
+        <section><h3><?= $this->transEsc('accessibility contrast') ?></h3><p><?= $this->transEsc('accessibility contrast description') ?></p></section>
+        <section><h3><?= $this->transEsc('accessibility libras') ?></h3><p><?= $this->transEsc('accessibility vlibras description') ?></p></section>
+      </div>
+    </section>
+
+    <section id="contato" class="oasis-accessibility-page__contact" aria-labelledby="contato-titulo">
+      <h2 id="contato-titulo"><?= $this->transEsc('accessibility report barrier') ?></h2>
+      <p><?= $this->transEsc('faq15 p5') ?></p>
+      <a class="oasis-accessibility-page__link" href="<?= $this->url('faq-home') ?>"><?= $this->transEsc('faq15 p6') ?></a>
+    </section>
+
+    <section class="oasis-accessibility-page__learn-more" aria-labelledby="saiba-mais-titulo">
+      <h2 id="saiba-mais-titulo"><?= $this->transEsc('accessibility learn more heading') ?></h2>
+      <p><?= $this->transEsc('faq15 learn more text1') ?> <a href="https://www.gov.br/governodigital/pt-br/acessibilidade-e-usuario/acessibilidade-digital" target="_blank" rel="noopener noreferrer"><?= $this->transEsc('faq15 accessibility digital link') ?> <span class="visually-hidden"><?= $this->transEsc('opens new tab') ?></span></a> <?= $this->transEsc('faq15 learn more text2') ?> <a href="https://emag.governoeletronico.gov.br/" target="_blank" rel="noopener noreferrer"><?= $this->transEsc('faq15 emag link') ?> <span class="visually-hidden"><?= $this->transEsc('opens new tab') ?></span></a>.</p>
+    </section>
+  </article>
+</main>
