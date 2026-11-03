@@ -1,0 +1,18 @@
+<?php $this->headTitle($this->translate('header_team')); ?>
+<?php $this->layout()->searchbox = false; ?>
+<?php $this->layout()->nocontainerclass = true; ?>
+<?php $this->breadcrumbs()->set($this->translate('header_team'), null, true); ?>
+
+<header class="page-title-bar oasis-page-title-bar">
+  <div class="container">
+    <span class="oasis-page-kicker"><?= $this->transEsc('header_about') ?></span>
+    <h1><?= $this->transEsc('header_team') ?></h1>
+  </div>
+</header>
+
+<main class="oasis-inner-page oasis-team-page">
+  <article class="oasis-team-page__content" aria-labelledby="team-heading">
+    <h2 id="team-heading" class="visually-hidden"><?= $this->transEsc('header_team') ?></h2>
+    <p><?= $this->transEsc('team content pending') ?></p>
+  </article>
+</main>

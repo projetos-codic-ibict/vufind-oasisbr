@@ -11,6 +11,7 @@ return array(
       'Oasisbr\\Controller\\IndicatorsController' => 'VuFind\\Controller\\AbstractBaseFactory',
       'Oasisbr\\Controller\\BulkExportController' => 'VuFind\\Controller\\AbstractBaseFactory',
       'Oasisbr\\Controller\\AcessibilidadeController' => 'VuFind\\Controller\\AbstractBaseFactory',
+      'Oasisbr\\Controller\\TeamController' => 'VuFind\\Controller\\AbstractBaseFactory',
     ),
     'aliases' =>
     array(
@@ -26,12 +27,27 @@ return array(
       'bulkexport' => 'Oasisbr\\Controller\\BulkExportController',
       'Acessibilidade' => 'Oasisbr\\Controller\\AcessibilidadeController',
       'acessibilidade' => 'Oasisbr\\Controller\\AcessibilidadeController',
+      'Team' => 'Oasisbr\\Controller\\TeamController',
+      'team' => 'Oasisbr\\Controller\\TeamController',
     ),
   ),
   'router' =>
   array(
     'routes' =>
     array(
+      'team-home' =>
+      array(
+        'type' => 'Laminas\\Router\\Http\\Literal',
+        'options' =>
+        array(
+          'route' => '/team',
+          'defaults' =>
+          array(
+            'controller' => 'Team',
+            'action' => 'Home',
+          ),
+        ),
+      ),
       'acessibilidade-home' =>
       array(
         'type' => 'Laminas\\Router\\Http\\Literal',
