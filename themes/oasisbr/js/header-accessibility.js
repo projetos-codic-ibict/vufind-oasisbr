@@ -64,6 +64,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const shortcutsButton = govBrBar?.shadowRoot?.querySelector('.slideBarAnonima, .gridSistemas');
     shortcutsButton?.closest('.wrapper')?.remove();
   };
+  const configureGovBrPortalLink = () => {
+    const govBrBar = document.querySelector('barra-govbr');
+    const shadowRoot = govBrBar?.shadowRoot;
+    const portalLabel = govBrBar?.dataset.oasisGovbrPortalLabel;
+    const logoLink = shadowRoot?.querySelector('.header-logo > a.link-bi');
+    if (!logoLink || !portalLabel) return;
+    logoLink.href = 'https://www.gov.br/pt-br';
+    logoLink.setAttribute('aria-label', portalLabel);
+    const logoImage = logoLink.querySelector('img');
+    if (logoImage) logoImage.alt = '';
+  };
   const configureGovBrBar = () => {
     const govBrBar = document.querySelector('barra-govbr');
     if (!govBrBar || !window.customElements) return;
@@ -71,7 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const shadowRoot = govBrBar.shadowRoot;
       if (!shadowRoot) return;
       removeGovBrShortcuts();
-      const observer = new MutationObserver(removeGovBrShortcuts);
+      configureGovBrPortalLink();
+      const observer = new MutationObserver(() => {
+        removeGovBrShortcuts();
+        configureGovBrPortalLink();
+      });
       observer.observe(shadowRoot, { childList: true, subtree: true });
     });
   };
