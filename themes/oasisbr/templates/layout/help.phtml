@@ -174,7 +174,7 @@ JS;
     $this->layout()->searchbox = $this->render('search/searchbox.phtml');
   }
   ?>
-  <header class="hidden-print">
+  <header class="hidden-print" aria-label="<?= $this->transEscAttr('site header') ?>">
     <?php if (isset($this->layout()->srmessage)) : // message for benefit of screen-reader users 
     ?>
       <span class="sr-only" role="heading" aria-level="1"><?= $this->layout()->srmessage ?></span>
@@ -184,9 +184,9 @@ JS;
   <?php if ($this->layout()->searchbox !== false) : ?>
     <div class="searchHomeContent">
       <div class="search container navbar">
-        <nav class="nav searchbox hidden-print">
+        <div class="nav searchbox hidden-print">
           <?= $this->layout()->searchbox ?>
-        </nav>
+        </div>
       </div>
     </div>
   <?php endif; ?>
@@ -217,11 +217,11 @@ JS;
       <?php endif; ?>
     </div>
   </nav>
-  <div role="main" class="main">
+  <main class="main" aria-label="<?= $this->transEscAttr('main content') ?>">
     <div id="content" tabindex="-1" class="<?php if (!$this->layout()->nocontainerclass) : ?>container<?php endif; ?>">
       <?= $this->layout()->content ?>
     </div>
-  </div>
+  </main>
   <?= $this->render('footer.phtml') ?>
   <!-- MODAL IN CASE WE NEED ONE -->
   <div id="modal" class="modal fade hidden-print" tabindex="-1" role="dialog" aria-hidden="true">

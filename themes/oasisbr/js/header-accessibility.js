@@ -75,6 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoImage = logoLink.querySelector('img');
     if (logoImage) logoImage.alt = '';
   };
+  const configureGovBrLandmark = () => {
+    const govBrHeader = document.querySelector('barra-govbr')?.shadowRoot?.querySelector('header.br-header');
+    if (govBrHeader) govBrHeader.setAttribute('role', 'group');
+  };
   const configureGovBrBar = () => {
     const govBrBar = document.querySelector('barra-govbr');
     if (!govBrBar || !window.customElements) return;
@@ -83,9 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!shadowRoot) return;
       removeGovBrShortcuts();
       configureGovBrPortalLink();
+      configureGovBrLandmark();
       const observer = new MutationObserver(() => {
         removeGovBrShortcuts();
         configureGovBrPortalLink();
+        configureGovBrLandmark();
       });
       observer.observe(shadowRoot, { childList: true, subtree: true });
     });

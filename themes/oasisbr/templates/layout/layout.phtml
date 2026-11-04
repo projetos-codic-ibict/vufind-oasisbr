@@ -198,7 +198,7 @@ JS;
     $this->layout()->searchbox = $this->render('search/searchbox.phtml');
   }
   ?>
-  <header class="d-print-none">
+  <header class="d-print-none" aria-label="<?= $this->transEscAttr('site header') ?>">
     <?php if (isset($this->layout()->srmessage)) : // message for benefit of screen-reader users 
     ?>
       <span class="visually-hidden" role="heading" aria-level="1"><?= $this->layout()->srmessage ?></span>
@@ -209,15 +209,15 @@ JS;
   <?php if ($this->layout()->searchbox !== false) : ?>
     <div class="searchHomeContent">
       <div class="search container navbar">
-        <nav class="nav searchbox d-print-none">
+        <div class="nav searchbox d-print-none">
           <?= $this->layout()->searchbox ?>
-        </nav>
+        </div>
       </div>
     </div>
   <?php endif; ?>
   </div>
   </nav>
-  <main class="main">
+  <main class="main" aria-label="<?= $this->transEscAttr('main content') ?>">
     <div id="content" tabindex="-1" class="<?php if (!$this->layout()->nocontainerclass) : ?>container<?php endif; ?>">
       <?= $this->layout()->content ?>
     </div>
