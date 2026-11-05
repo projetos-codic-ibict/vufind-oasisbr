@@ -17,7 +17,8 @@ $this->layout()->breadcrumbs = false;
   <div class="oasis-home-container">
     <div class="oasis-home-hero-copy">
       <!-- <span class="oasis-home-hero-kicker"><?= $this->transEsc('home_hero_kicker') ?></span> -->
-      <h1><?= $this->transEsc('home_hero_description') ?></h1>
+      <h1 class="visually-hidden"><?= $this->transEsc('Oasisbr') ?></h1>
+      <p class="oasis-home-hero-description"><?= $this->transEsc('home_hero_description') ?></p>
     </div>
     <?php $this->slot('search-home-hero')->start() ?>
     <?= $this->context($this)->renderInContext("search/searchbox.phtml", ['ignoreHiddenFilterMemory' => true, 'isHome' => true]) ?>

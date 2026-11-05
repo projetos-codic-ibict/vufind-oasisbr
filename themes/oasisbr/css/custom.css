@@ -1816,7 +1816,7 @@ li.language a {
   line-height: 1.45;
 }
 
-.oasis-home-hero-copy h1 {
+.oasis-home-hero-copy .oasis-home-hero-description {
   margin: 0;
   color: #ffffff;
   font-size: clamp(1.5rem, 2.5vw, 2rem);
@@ -2618,11 +2618,11 @@ body.oasis-site.template-dir-search.template-name-home:not(.oasis-high-contrast)
   padding-bottom: 3rem;
 }
 
-.oasis-home-footer-partners p {
+.oasis-home-footer-partners__title h2{
   margin: 0;
   /* color: #ffffff; */
-  font-size: 0.75rem;
-  font-weight: 600;
+  /* font-size: 0.75rem; */
+  /* font-weight: 600; */
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
