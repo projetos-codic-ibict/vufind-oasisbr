@@ -13,6 +13,12 @@ $isHome = $templateDir === 'search' && $templateName === 'home';
 $isDataSources = $templateDir === 'datasources';
 $isIndicators = $templateDir === 'indicators';
 $searchHomeUrl = $this->url('search-home');
+$feedbackUrl = $this->feedback()->tabEnabled() ? $this->url('feedback-home') : '';
+$govBrMenuLinks = $feedbackUrl === '' ? [] : [[
+  'id' => 'contato',
+  'title' => $this->translate('Contact'),
+  'href' => $feedbackUrl,
+]];
 ?>
 
 <nav class="oasis-header-accessibility" aria-label="<?= $this->transEscAttr('accessibility shortcuts navigation') ?>">
@@ -91,6 +97,8 @@ $searchHomeUrl = $this->url('search-home');
     ambiente="producao"
     titulo="Ministério da Ciência, Tecnologia e Inovação"
     linklogo="https://www.gov.br/pt-br"
+    menulinks="<?= $this->escapeHtmlAttr(json_encode($govBrMenuLinks)) ?>"
+    data-oasis-govbr-contact-url="<?= $this->escapeHtmlAttr($feedbackUrl) ?>"
     data-oasis-govbr-portal-label="<?= $this->transEscAttr('govbr portal link') ?>"
     contrastactive="false">
   </barra-govbr>
@@ -125,12 +133,6 @@ $searchHomeUrl = $this->url('search-home');
               </ul>
             </li>
             <li class="nav-item"><a class="nav-link" href="<?= $this->url('faq-home') ?>"><?= $this->transEsc('header_help') ?></a></li>
-
-            <?php if ($this->feedback()->tabEnabled()): ?>
-              <li class="nav-item oasis-header-optional-link">
-                <a class="nav-link icon-link" id="feedbackLink" data-lightbox href="<?= $this->url('feedback-home') ?>"><span class="icon-link__label"><?= $this->transEsc('Contact') ?></span></a>
-              </li>
-            <?php endif; ?>
 
             <?php $cart = $this->cart();
             if ($cart->isActive()) : ?>

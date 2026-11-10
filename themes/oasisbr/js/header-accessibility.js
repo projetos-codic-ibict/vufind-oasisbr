@@ -64,6 +64,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const shortcutsButton = govBrBar?.shadowRoot?.querySelector('.slideBarAnonima, .gridSistemas');
     shortcutsButton?.closest('.wrapper')?.remove();
   };
+  const removeGovBrAccessibilityLink = () => {
+    const govBrBar = document.querySelector('barra-govbr');
+    const accessibilityLink = govBrBar?.shadowRoot?.querySelector(
+      'a[href="https://www.gov.br/governodigital/pt-br/acessibilidade-digital"]'
+    );
+    accessibilityLink?.closest('li')?.remove();
+  };
+  const configureGovBrContactLink = () => {
+    const govBrBar = document.querySelector('barra-govbr');
+    const contactUrl = govBrBar?.dataset.oasisGovbrContactUrl;
+    if (!govBrBar?.shadowRoot || !contactUrl) return;
+    const resolvedContactUrl = new URL(contactUrl, window.location.href).href;
+    const contactLink = Array.from(govBrBar.shadowRoot.querySelectorAll('a')).find(
+      (link) => link.href === resolvedContactUrl
+    );
+    if (!contactLink || contactLink.dataset.oasisGovbrContactBound) return;
+    contactLink.dataset.oasisGovbrContactBound = 'true';
+    contactLink.removeAttribute('target');
+    contactLink.removeAttribute('rel');
+    contactLink.addEventListener('click', (event) => {
+      if (!window.VuFind?.lightbox?.ajax || typeof window.VuFind.modal !== 'function') return;
+      event.preventDefault();
+      window.VuFind.modal('show');
+      window.VuFind.lightbox.ajax({ url: contactLink.href });
+    });
+  };
   const configureGovBrPortalLink = () => {
     const govBrBar = document.querySelector('barra-govbr');
     const shadowRoot = govBrBar?.shadowRoot;
@@ -86,10 +112,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const shadowRoot = govBrBar.shadowRoot;
       if (!shadowRoot) return;
       removeGovBrShortcuts();
+      removeGovBrAccessibilityLink();
+      configureGovBrContactLink();
       configureGovBrPortalLink();
       configureGovBrLandmark();
       const observer = new MutationObserver(() => {
         removeGovBrShortcuts();
+        removeGovBrAccessibilityLink();
+        configureGovBrContactLink();
         configureGovBrPortalLink();
         configureGovBrLandmark();
       });
