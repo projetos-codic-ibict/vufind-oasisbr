@@ -5451,21 +5451,84 @@ a.link-simple {
 }
 
 /* Team page */
-.oasis-site .oasis-team-page__content {
-  max-width: 72ch;
-  padding: clamp(1.25rem, 4vw, 2.5rem);
-  border: 1px solid var(--oasis-home-border);
-  border-radius: .75rem;
-  background: #fff;
-}
-
-.oasis-site .oasis-team-page__content p {
-  margin: 0;
-}
+.oasis-site .oasis-team-page { display: flex; flex-direction: column; gap: clamp(2.5rem, 6vw, 4.5rem); max-width: 1200px; margin: 0 auto; padding: clamp(1.5rem, 4vw, 3rem) 24px clamp(3rem, 6vw, 5rem); }
+.oasis-site .oasis-team-page__intro { display: grid; gap: 1.5rem; max-width: 72ch; }
+.oasis-site .oasis-team-page__intro > p { margin: 0; color: #4d4d4d; font-size: 1.125rem; line-height: 1.6; }
+.oasis-site .oasis-team-page__section-links { display: flex; flex-wrap: wrap; gap: .75rem; }
+.oasis-site .oasis-team-page__section-links a { display: inline-flex; align-items: center; gap: .625rem; min-height: 48px; padding: .5rem 1.25rem; border: 1px solid #c9d9ec; border-radius: 999px; color: #1351b4; font-weight: 700; text-decoration: none; }
+.oasis-site .oasis-team-page__section-links a:hover { background: #e7f1ff; }
+.oasis-site .oasis-team-page__section-links a:focus-visible, .oasis-site .oasis-team-card__lattes:focus-visible { outline: 3px solid #1351b4; outline-offset: 3px; }
+.oasis-site .oasis-team-page__section-links span, .oasis-site .oasis-team-section__count { display: inline-grid; min-width: 1.75rem; min-height: 1.75rem; place-items: center; padding: 0 .5rem; border-radius: 999px; background: #e9ecef; color: #4d4d4d; font-size: .875rem; font-weight: 400; }
+.oasis-site .oasis-team-section { scroll-margin-top: 1.5rem; }
+.oasis-site .oasis-team-section__heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: .875rem; border-bottom: 3px solid #2e7d32; }
+.oasis-site .oasis-team-section__heading h2 { margin: 0; color: #071d41; font-size: clamp(1.5rem, 3vw, 1.875rem); }
+.oasis-site .oasis-team-section__heading p { max-width: 65ch; margin: .5rem 0 0; color: #4d4d4d; }
+.oasis-site .oasis-team-section__count { flex: 0 0 auto; background: #e4f3e7; color: #1d5a24; font-weight: 700; }
+.oasis-site .oasis-team-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
+.oasis-site .oasis-team-card { display: flex; flex-direction: column; gap: 1.25rem; min-width: 0; padding: 1.25rem; border: 1px solid #d8dee8; border-radius: .75rem; background: #fff; box-shadow: 0 2px 8px rgb(7 29 65 / 8%); }
+.oasis-site .oasis-team-card__identity { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: .875rem; }
+.oasis-site .oasis-team-card__avatar, .oasis-site .oasis-team-card__photo { display: grid; width: 3rem; height: 3rem; place-items: center; border-radius: 50%; }
+.oasis-site .oasis-team-card__avatar { background: #dceafb; color: #1351b4; font-weight: 700; }
+.oasis-site .oasis-team-card__photo { object-fit: cover; }
+.oasis-site .oasis-team-card h3 { margin: 0; color: #071d41; font-size: 1.125rem; line-height: 1.35; overflow-wrap: anywhere; }
+.oasis-site .oasis-team-card__details { display: grid; gap: .875rem; margin: 0; padding: 1rem 0; border-top: 1px solid #e4e7ec; border-bottom: 1px solid #e4e7ec; }
+.oasis-site .oasis-team-card__details div { display: grid; gap: .25rem; }
+.oasis-site .oasis-team-card__details dt { color: #4d4d4d; font-size: .875rem; font-weight: 700; }
+.oasis-site .oasis-team-card__details dd { margin: 0; color: #1b1b1b; line-height: 1.5; overflow-wrap: anywhere; }
+.oasis-site .oasis-team-card__lattes { display: inline-flex; width: 100%; align-items: center; justify-content: center; gap: .5rem; min-height: 36px; margin-top: auto; padding: .375rem .75rem; border: 1px solid #00843d; border-radius: .35rem; background: #fff; color: #00843d; font: inherit; font-size: .75rem; font-weight: 700; text-decoration: none; }
+.oasis-site .oasis-team-card__lattes:hover { background: #e4f3e7; }
+.oasis-site .oasis-team-card__lattes:disabled { cursor: not-allowed; opacity: .55; }
+.oasis-site .oasis-team-title-bar h1 { font-size: 2rem; }
+.oasis-site .oasis-team-page__intro > p { font-size: 1rem; }
+.oasis-site .oasis-team-page__updated { font-size: .875rem; }
+.oasis-site .oasis-team-tabs button { font-size: 1rem; }
+.oasis-site .oasis-team-filters a { font-size: .875rem; }
+.oasis-site .oasis-team-section__heading h2 { font-size: 1.375rem; }
+.oasis-site .oasis-team-section > p { font-size: .9375rem; }
+.oasis-site .oasis-team-card h3 { font-size: 1.125rem; }
+.oasis-site .oasis-team-card__role { font-size: .875rem; }
+.oasis-site .oasis-team-card dl { font-size: .875rem; }
+.oasis-site .oasis-team-card__lattes { min-height: 38px; border-color: #00843d; color: #00843d; font-size: .9375rem; }
+.oasis-site .oasis-team-card__lattes:hover:not(:disabled) { background: #00843d; color: #fff; }
+.oasis-site .oasis-team-card__lattes:focus-visible { outline: 3px solid #1351b4; outline-offset: 3px; }
+.oasis-site .oasis-team-card__lattes:disabled { border-color: #00843d; background: #fff; color: #00843d; opacity: .5; }
+.oasis-site .oasis-team-tabs { display:flex; gap:2rem; border-bottom:1px solid #ccc; }
+.oasis-site .oasis-team-tabs button { min-height:48px; padding:0 4px; border:0; border-bottom:4px solid transparent; background:transparent; color:#071d41; font:inherit; font-weight:700; }
+.oasis-site .oasis-team-tabs button[aria-selected="true"] { border-color:#2e7d32; color:#1d5a24; }
+.oasis-site .oasis-team-tabs span, .oasis-site .oasis-team-filters span { margin-left:.35rem; padding:2px 8px; border-radius:12px; background:#ececea; color:#4d4d4d; font-size:.875rem; font-weight:400; }
+.oasis-site .oasis-team-filters { display:flex; flex-wrap:wrap; gap:.75rem; margin:1.5rem 0; }
+.oasis-site .oasis-team-filters a { min-height:40px; padding:.5rem .75rem; border:1px solid #dcdcdc; border-radius:24px; color:#1d5a24; font-size:.875rem; font-weight:700; text-decoration:none; }
+.oasis-site .oasis-team-section { margin-top:2.5rem; }
+.oasis-site .oasis-team-section__heading { align-items:center; margin-bottom:.75rem; }
+.oasis-site .oasis-team-section__heading h2 { font-size:1.125rem; }
+.oasis-site .oasis-team-section__heading h2 i { color:#2e7d32; }
+.oasis-site .oasis-team-section__heading > span { color:#4d4d4d; font-size:.875rem; }
+.oasis-site .oasis-team-section > p { margin:0 0 1rem; color:#4d4d4d; font-size:.875rem; }
+.oasis-site .oasis-team-card { gap:.5rem; padding: .75rem; box-shadow:none; }
+.oasis-site .oasis-team-card__role { margin:0; color:#4d4d4d; font-size:.75rem; }
+.oasis-site .oasis-team-card dl { display:grid; gap:.4rem; margin:.25rem 0; padding:.75rem 0; border-top:1px solid #e4e7ec; border-bottom:1px solid #e4e7ec; font-size:.75rem; }
+.oasis-site .oasis-team-card dl div { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; }
+.oasis-site .oasis-team-card dt { color:#4d4d4d; font-weight:400; }
+.oasis-site .oasis-team-card dd { margin:0; font-weight:700; }
+.oasis-site .oasis-team-page__updated { margin:0; color:#4d4d4d; font-size:.75rem; }.oasis-site .oasis-team-page__updated span { border:1px dashed #a08a00; background:#fff6c2; }
 
 @media (max-width: 767px) {
   .oasis-site .oasis-accessibility-page__features {
     grid-template-columns: 1fr;
+  }
+
+  .oasis-site .oasis-team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .oasis-site .oasis-team-section__heading {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .oasis-site .oasis-team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

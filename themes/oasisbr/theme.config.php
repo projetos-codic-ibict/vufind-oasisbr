@@ -11,6 +11,7 @@ return [
         'format.js',
         'base.js',
         'header-accessibility.js',
+        'team-page.js',
         'lib/axios.min.js',
     ],
     'favicon' => 'icons/favicon.ico',

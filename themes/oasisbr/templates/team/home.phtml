@@ -1,18 +1,49 @@
-<?php $this->headTitle($this->translate('header_team')); ?>
-<?php $this->layout()->searchbox = false; ?>
-<?php $this->layout()->nocontainerclass = true; ?>
-<?php $this->breadcrumbs()->set($this->translate('header_team'), null, true); ?>
-
-<header class="page-title-bar oasis-page-title-bar">
-  <div class="container">
-    <span class="oasis-page-kicker"><?= $this->transEsc('header_about') ?></span>
-    <h1><?= $this->transEsc('header_team') ?></h1>
-  </div>
-</header>
-
-<div class="oasis-inner-page oasis-team-page">
-  <article class="oasis-team-page__content" aria-labelledby="team-heading">
-    <h2 id="team-heading" class="visually-hidden"><?= $this->transEsc('header_team') ?></h2>
-    <p><?= $this->transEsc('team content pending') ?></p>
-  </article>
-</div>
+<?php
+$this->headTitle($this->translate('header_team')); $this->layout()->searchbox = false; $this->layout()->nocontainerclass = true; $this->breadcrumbs()->set($this->translate('header_team'), null, true);
+$teamUpdatedAt = '10/11/2026';
+$categories = [
+  'coordination' => ['Coordenação', 'fa-sitemap', 'Define as diretrizes do portal, as parcerias institucionais e o planejamento das entregas.'],
+  'technology' => ['Tecnologia e infraestrutura', 'fa-server', 'Mantém a plataforma, a coleta automática via OAI-PMH e a disponibilidade dos serviços.'],
+  'metadata' => ['Metadados e curadoria', 'fa-tags', 'Garante a qualidade, a normalização e a consistência dos registros coletados.'],
+  'design' => ['Design e acessibilidade', 'fa-palette', 'Contribui para a experiência, a comunicação visual e a acessibilidade do portal.'],
+  'communication' => ['Comunicação e atendimento', 'fa-comments', 'Apoia a comunicação institucional e o atendimento às pessoas usuárias.'],
+];
+$people = [
+  ['washington', 'Washington Luís Ribeiro de Carvalho Segundo', 'current', 'coordination', 'Coordenação da CODIC e da CGIC', 'Reformulação tecnológica do OasisBR; posteriormente, coordenação da CODIC e da CGIC, unidades responsáveis pela gestão e evolução do portal.', '2013', null],
+  ['lautaro', 'Lautaro Julián Matas', 'current', 'technology', 'Cooperação técnica internacional', 'Cooperação técnica internacional, desenvolvimento e adaptação de soluções de coleta e agregação de metadados, vinculadas à LA Referencia.', '2014', null],
+  ['marcel', 'Marcel Garcia de Souza', 'current', 'coordination', 'Coordenação da CODIC', 'Coordenação da CODIC e responsabilidade pela gestão e evolução do portal.', '2025', null],
+  ['renan', 'Renan Rangel de Oliveira', 'current', 'technology', 'Bolsista em Tecnologia da Informação (TI)', 'Bolsista em Tecnologia da Informação (TI).', '2023', null],
+  ['jesiel', 'Jesiel Viana da Silva', 'current', 'technology', 'Bolsista em Tecnologia da Informação (TI)', 'Bolsista em Tecnologia da Informação (TI).', '2021', null],
+  ['fhillipe', 'Fhillipe de Freitas Campos', 'current', 'metadata', 'Bolsista em Ciência da Informação (CI) / terceirizado', 'Bolsista em Ciência da Informação (CI) / terceirizado.', '2023', null],
+  ['gabriel-marques', 'Gabriel Silveira Marques', 'current', 'metadata', 'Bolsista em Ciência da Informação (CI)', 'Bolsista em Ciência da Informação (CI).', '2021', null],
+  ['helio', 'Hélio Kuramoto', 'former', 'coordination', null, 'Concepção e implantação do OasisBR, no contexto da política brasileira de acesso aberto e da cooperação com Portugal.', '2006', '2010'],
+  ['bianca', 'Bianca Amaro de Melo', 'former', 'coordination', null, 'Coordenação da implantação, articulação institucional, promoção do acesso aberto e acompanhamento do desenvolvimento e manutenção do portal.', '2006', '2025'],
+  ['gabriel-gomes', 'Gabriel Gomes', 'former', 'technology', null, 'Colaboração técnica na modernização do portal na adoção das tecnologias utilizadas pela rede LA Referencia.', '2014', '2017'],
+  ['alberto', 'Alberto Cabezas', 'former', 'technology', null, 'Colaboração técnica na modernização do portal na adoção das tecnologias utilizadas pela rede LA Referencia.', '2014', '2017'],
+  ['juliana', 'Juliana Araujo Gomes de Sousa', 'former', 'metadata', 'Bolsista em Ciência da Informação (CI)', 'Bolsista em Ciência da Informação (CI).', '2017', '2023'],
+  ['rafael', 'Rafael Faria Vilas Boas', 'former', 'metadata', 'Bolsista em Ciência da Informação (CI)', 'Bolsista em Ciência da Informação (CI).', '2023', '2024'],
+  ['lucca', 'Lucca de Farias Ramalho', 'former', 'technology', 'Bolsista em Tecnologia da Informação (TI)', 'Bolsista em Tecnologia da Informação (TI).', '2022', '2023'],
+  ['marcos', 'Marcos Antônio Vieira Faria', 'former', 'design', 'Bolsista em Design', 'Bolsista em Design.', '2022', '2023'],
+  ['marcio', 'Márcio Gurgel do Amaral', 'former', 'technology', 'Bolsista em Tecnologia da Informação (TI)', 'Bolsista em Tecnologia da Informação (TI).', '2024', '2025'],
+  ['thiago', 'Thiago Nóbrega', 'former', 'technology', 'Bolsista em Tecnologia da Informação (TI)', 'Bolsista em Tecnologia da Informação (TI).', '2024', '2025'],
+];
+$people = array_map(static fn(array $person): array => [...$person, 'lattesUrl' => null], $people);
+$groups = ['current' => [], 'former' => []]; foreach ($people as $person) { $groups[$person[2]][$person[3]][] = $person; }
+foreach ($groups as &$statusGroups) { foreach ($categories as $key => $_) { $statusGroups[$key] ??= []; for ($i = count($statusGroups[$key]) - 1; $i > 0; --$i) { $j = random_int(0, $i); [$statusGroups[$key][$i], $statusGroups[$key][$j]] = [$statusGroups[$key][$j], $statusGroups[$key][$i]]; } } } unset($statusGroups);
+$years = static fn(string $start, ?string $end): string => (int) ($end ?? date('Y')) - (int) $start . ' ano' . (((int) ($end ?? date('Y')) - (int) $start) === 1 ? '' : 's');
+?>
+<header class="page-title-bar oasis-page-title-bar oasis-team-title-bar"><div class="container"><span class="oasis-page-kicker"><?= $this->transEsc('header_about') ?></span><h1><?= $this->transEsc('header_team') ?></h1></div></header>
+<main class="oasis-inner-page oasis-team-page" data-oasis-team>
+  <div class="oasis-team-page__intro"><p>Conheça as pessoas que constroem e mantêm o OasisBR no IBICT e quem já fez parte dessa história. Cada perfil traz o link para o Currículo Lattes e o tempo de atuação no projeto.</p><p class="oasis-team-page__updated">Informações atualizadas em <span><?= $teamUpdatedAt ?></span></p></div>
+  <div class="oasis-team-tabs" role="tablist" aria-label="Equipe"><button type="button" role="tab" id="team-current-tab" aria-selected="true" aria-controls="team-current" data-oasis-team-tab="current">Equipe atual <span><?= count(array_filter($people, static fn($p) => $p[2] === 'current')) ?></span></button><button type="button" role="tab" id="team-former-tab" aria-selected="false" aria-controls="team-former" data-oasis-team-tab="former">Já fizeram parte <span><?= count(array_filter($people, static fn($p) => $p[2] === 'former')) ?></span></button></div>
+  <?php foreach (['current' => 'Equipe atual', 'former' => 'Já fizeram parte'] as $status => $statusTitle) : ?>
+    <section id="team-<?= $status ?>" role="tabpanel" aria-labelledby="team-<?= $status ?>-tab"<?= $status === 'former' ? ' hidden' : '' ?> data-oasis-team-panel="<?= $status ?>">
+      <nav class="oasis-team-filters" aria-label="Categorias de <?= $statusTitle ?>"><?php foreach ($categories as $key => [$label]) : ?><a href="#<?= $status ?>-<?= $key ?>"><?= $label ?> <span><?= count($groups[$status][$key]) ?></span></a><?php endforeach; ?></nav>
+      <?php foreach ($categories as $key => [$label, $icon, $description]) : $members = $groups[$status][$key]; ?>
+        <section id="<?= $status ?>-<?= $key ?>" class="oasis-team-section" aria-labelledby="<?= $status ?>-<?= $key ?>-title"><div class="oasis-team-section__heading"><h2 id="<?= $status ?>-<?= $key ?>-title"><i class="fa-solid <?= $icon ?>" aria-hidden="true"></i> <?= $label ?></h2><span><?= count($members) ?> pessoa<?= count($members) === 1 ? '' : 's' ?></span></div><p><?= $description ?></p>
+          <?php if ($members) : ?><ul class="oasis-team-grid" role="list"><?php foreach ($members as $member) : [$id, $name, , , $role, $activity, $start, $end] = $member; $lattesUrl = $member['lattesUrl']; ?><li class="oasis-team-card"><h3><?= $this->escapeHtml($name) ?></h3><?php if ($role) : ?><p class="oasis-team-card__role"><?= $this->escapeHtml($role) ?></p><?php endif; ?><dl><div><dt>No projeto há</dt><dd><?= $years($start, $end) ?></dd></div><div><dt>Desde</dt><dd><?= $start ?></dd></div></dl><p class="visually-hidden"><?= $this->escapeHtml($activity) ?></p><?php if ($lattesUrl) : ?><a class="oasis-team-card__lattes" href="<?= $this->escapeHtmlAttr($lattesUrl) ?>" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Currículo Lattes <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span class="visually-hidden"> de <?= $this->escapeHtml($name) ?>, abre em nova aba</span></a><?php else : ?><button class="oasis-team-card__lattes" type="button" disabled aria-label="Currículo Lattes de <?= $this->escapeHtmlAttr($name) ?> indisponível"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Currículo Lattes <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></button><?php endif; ?></li><?php endforeach; ?></ul><?php endif; ?>
+        </section>
+      <?php endforeach; ?>
+    </section>
+  <?php endforeach; ?>
+</main>
