@@ -5353,101 +5353,393 @@ a.link-simple {
   text-decoration: none;
 }
 
-/* Accessibility page */
+/* Accessibility statement page (segue a tela "Declaração" do Oasisbr Redesign AC V3) */
 .oasis-site .oasis-accessibility-page {
-  margin-top: 2rem;
-  margin-bottom: 3rem;
+  width: auto;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 24px 24px 64px;
+  color: #4d4d4d;
 }
 
-.oasis-site .oasis-accessibility-page__navigation {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .75rem;
-  margin-bottom: 1.5rem;
+.oasis-site .oasis-accessibility-page a {
+  color: #0f7a3e;
 }
 
-.oasis-site .oasis-accessibility-page__navigation a,
-.oasis-site .oasis-accessibility-page__link {
-  min-height: 2.75rem;
-  display: inline-flex;
-  align-items: center;
-  padding: .5rem 1rem;
-  border: 1px solid var(--oasis-home-border);
-  border-radius: 1.5rem;
-  color: var(--oasis-home-foreground);
-  font-weight: 700;
-  text-decoration: none;
+.oasis-site .oasis-accessibility-page :is(a, button, input, select, textarea, [tabindex="-1"]):focus-visible {
+  outline: 3px solid #d8d808;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px #4d4d4d;
 }
 
-.oasis-site .oasis-accessibility-page__content {
+.oasis-site .oasis-accessibility-statement {
   display: flex;
   flex-direction: column;
-  gap: 2.25rem;
-  padding: clamp(1.25rem, 4vw, 2.5rem);
-  border: 1px solid var(--oasis-home-border);
-  border-radius: .75rem;
+  gap: 36px;
+  padding: 48px;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
   background: #fff;
 }
 
-.oasis-site .oasis-accessibility-page__content section {
-  max-width: 72ch;
+.oasis-site .oasis-accessibility-statement__header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #dcdcdc;
 }
 
-.oasis-site .oasis-accessibility-page__content h2 {
-  margin: 0 0 .75rem;
+.oasis-site .oasis-accessibility-statement h1 {
+  margin: 0;
+  color: #4d4d4d;
+  font-weight: 700;
+  font-size: 2em;
+  line-height: 1.2;
 }
 
-.oasis-site .oasis-accessibility-page__content h3 {
-  margin: 0 0 .5rem;
-  font-size: 1.125rem;
+.oasis-site .oasis-accessibility-statement__updated {
+  margin: 0;
+  color: #4d4d4d;
+  font-size: 0.9375em;
 }
 
-.oasis-site .oasis-accessibility-page__content p {
-  margin: 0 0 1rem;
+.oasis-site .oasis-accessibility-statement__intro {
+  max-width: 70ch;
+  margin: 8px 0 0;
+  font-size: 1.0625em;
+  text-wrap: pretty;
 }
 
-.oasis-site .oasis-accessibility-page__table-wrap {
-  overflow-x: auto;
+.oasis-site .oasis-accessibility-statement section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.oasis-site .oasis-accessibility-page table {
-  width: 100%;
-  min-width: 28rem;
-  border-collapse: collapse;
+.oasis-site .oasis-accessibility-statement h2 {
+  margin: 0;
+  color: #4d4d4d;
+  font-weight: 700;
+  font-size: 1.375em;
+  line-height: 1.3;
 }
 
-.oasis-site .oasis-accessibility-page th,
-.oasis-site .oasis-accessibility-page td {
-  padding: .875rem 1rem;
-  border-bottom: 1px solid var(--oasis-home-border);
-  text-align: left;
+.oasis-site .oasis-accessibility-statement h3 {
+  margin: 0;
+  color: #4d4d4d;
+  font-weight: 700;
+  font-size: 1.1875em;
 }
 
-.oasis-site .oasis-accessibility-page th {
-  color: var(--oasis-home-foreground);
+.oasis-site .oasis-accessibility-statement p {
+  max-width: 70ch;
+  margin: 0;
+  text-wrap: pretty;
 }
 
-.oasis-site .oasis-accessibility-page__features {
+.oasis-site .oasis-accessibility-statement__note {
+  padding: 16px 20px;
+  border: 1px dashed #a08a00;
+  border-radius: 8px;
+  background: #fffbe0;
+  color: #4d4d4d;
+}
+
+.oasis-site .oasis-accessibility-statement__limitations {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 12px;
+  max-width: 70ch;
+  margin: 0;
+  padding-left: 20px;
 }
 
-.oasis-site .oasis-accessibility-page__features section,
-.oasis-site .oasis-accessibility-page__contact {
-  padding: 1.25rem;
-  border: 1px solid var(--oasis-home-border);
-  border-radius: .5rem;
-  background: var(--oasis-home-muted-bg);
+.oasis-site .oasis-accessibility-statement__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
 }
 
-.oasis-site .oasis-accessibility-page__contact {
-  max-width: none !important;
+.oasis-site .oasis-accessibility-statement__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 8px;
+  background: #0f7a3e;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.oasis-site .oasis-accessibility-page a:focus-visible {
-  outline: 3px solid #1351b4;
-  outline-offset: 3px;
+.oasis-site .oasis-accessibility-statement__button:hover {
+  background: #0a5a2d;
+  color: #fff;
+}
+
+.oasis-site .oasis-accessibility-statement__button--secondary {
+  padding: 0 20px;
+  border: 2px solid #dcdcdc;
+  background: #fff;
+  color: #1b1b1b;
+}
+
+.oasis-site .oasis-accessibility-statement__button--secondary:hover {
+  background: #f0f0f0;
+  color: #1b1b1b;
+}
+
+.oasis-site .oasis-accessibility-statement__formbox {
+  padding: 28px;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  background: #f7f8f6;
+}
+
+.oasis-site .oasis-accessibility-statement__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.oasis-site .oasis-accessibility-statement__form-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.oasis-site .oasis-accessibility-statement__form-heading p,
+.oasis-site .oasis-accessibility-statement__hint {
+  color: #5f5f5f;
+  font-size: 0.875em;
+  font-weight: 400;
+}
+
+.oasis-site .oasis-accessibility-statement__required {
+  color: #b00020;
+}
+
+.oasis-site .oasis-accessibility-statement__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.oasis-site .oasis-accessibility-statement__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #1b1b1b;
+  font-size: 0.9375em;
+  font-weight: 700;
+}
+
+.oasis-site .oasis-accessibility-statement__field--narrow {
+  max-width: 520px;
+}
+
+.oasis-site .oasis-accessibility-statement__field :is(input, select, textarea) {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 2px solid #888;
+  border-radius: 8px;
+  background: #fff;
+  color: #1b1b1b;
+  font: inherit;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.oasis-site .oasis-accessibility-statement__field textarea {
+  min-height: 140px;
+  padding: 12px 14px;
+  resize: vertical;
+}
+
+/* O tema bootstrap5 destaca :invalid em vermelho já no carregamento; a referência não. */
+.oasis-site .oasis-accessibility-statement__form :is(input, textarea, select):invalid {
+  box-shadow: none;
+}
+
+.oasis-site .oasis-accessibility-statement__field [aria-invalid="true"] {
+  border-color: #b00020;
+}
+
+.oasis-site .oasis-accessibility-statement__error {
+  margin: 0;
+  color: #b00020;
+  font-size: 0.875em;
+  font-weight: 700;
+}
+
+.oasis-site .oasis-accessibility-statement__alert {
+  margin: 0;
+  padding: 12px 16px;
+  border: 2px solid #b00020;
+  border-radius: 8px;
+  background: #fff;
+  color: #b00020;
+  font-weight: 700;
+}
+
+.oasis-site .oasis-accessibility-statement__form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.oasis-site .oasis-accessibility-statement__form-actions .oasis-accessibility-statement__button {
+  padding: 0 28px;
+}
+
+.oasis-site .oasis-accessibility-statement__form-actions .oasis-accessibility-statement__button--secondary {
+  padding: 0 20px;
+}
+
+.oasis-site .oasis-accessibility-statement__sent {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  outline-offset: 8px;
+}
+
+.oasis-site .oasis-accessibility-statement__sent-icon {
+  display: grid;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 50%;
+  background: #0f7a3e;
+  color: #fff;
+  font-size: 1.125em;
+}
+
+.oasis-site .oasis-accessibility-statement__sent-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.oasis-site .oasis-accessibility-statement__sent-body p {
+  max-width: 60ch;
+}
+
+.oasis-site .oasis-accessibility-statement__link-button {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #0f7a3e;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.oasis-site .oasis-accessibility-statement__footer {
+  /* Anula a regra global "footer" (100vw + margem negativa) para o rodapé interno do cartão. */
+  position: static;
+  left: auto;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px 24px;
+  padding: 24px 0 0;
+  border-top: 1px solid #dcdcdc;
+}
+
+.oasis-site .oasis-accessibility-statement__footer :is(a, button) {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #0f7a3e;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+body.oasis-site.oasis-high-contrast .oasis-accessibility-page,
+body.oasis-site.oasis-high-contrast .oasis-accessibility-page :is(article, section, header, footer, div, p, h1, h2, h3, ul, li, label, span, time) {
+  background: #000;
+  color: #fff;
+  border-color: #fff;
+  box-shadow: none;
+}
+
+body.oasis-site.oasis-high-contrast .oasis-accessibility-page a,
+body.oasis-site.oasis-high-contrast .oasis-accessibility-page .oasis-accessibility-statement__link-button,
+body.oasis-site.oasis-high-contrast .oasis-accessibility-page .oasis-accessibility-statement__required,
+body.oasis-site.oasis-high-contrast .oasis-accessibility-page .oasis-accessibility-statement__error {
+  background: #000;
+  color: #ffd400;
+}
+
+body.oasis-site.oasis-high-contrast .oasis-accessibility-page .oasis-accessibility-statement__button {
+  border: 2px solid #fff;
+  background: #ffd400;
+  color: #000;
+}
+
+body.oasis-site.oasis-high-contrast .oasis-accessibility-page :is(input, select, textarea) {
+  border: 2px solid #fff;
+  background: #000;
+  color: #fff;
+}
+
+body.oasis-site.oasis-high-contrast .oasis-accessibility-page .oasis-accessibility-statement__sent-icon {
+  background: #ffd400;
+  color: #000;
+}
+
+@media (max-width: 639px) {
+  .oasis-site .oasis-accessibility-page {
+    padding: 16px 16px 48px;
+  }
+
+  .oasis-site .oasis-accessibility-statement {
+    gap: 28px;
+    padding: 24px;
+  }
+
+  .oasis-site .oasis-accessibility-statement__formbox {
+    padding: 20px;
+  }
+}
+
+@media print {
+  .oasis-site .oasis-accessibility-statement__actions,
+  .oasis-site .oasis-accessibility-statement__formbox,
+  .oasis-site .oasis-accessibility-statement__footer {
+    display: none;
+  }
+
+  .oasis-site .oasis-accessibility-statement {
+    padding: 0;
+    border: 0;
+  }
 }
 
 /* Team page */
@@ -5513,10 +5805,6 @@ a.link-simple {
 .oasis-site .oasis-team-page__updated { margin:0; color:#4d4d4d; font-size:.75rem; }.oasis-site .oasis-team-page__updated span { border:1px dashed #a08a00; background:#fff6c2; }
 
 @media (max-width: 767px) {
-  .oasis-site .oasis-accessibility-page__features {
-    grid-template-columns: 1fr;
-  }
-
   .oasis-site .oasis-team-grid {
     grid-template-columns: 1fr;
   }

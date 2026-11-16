@@ -12,6 +12,7 @@ return [
         'base.js',
         'header-accessibility.js',
         'team-page.js',
+        'accessibility-page.js',
         'lib/axios.min.js',
     ],
     'favicon' => 'icons/favicon.ico',

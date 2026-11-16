@@ -1,65 +1,172 @@
-<?php $this->headTitle($this->translate('Acessibilidade')); ?>
-<?php $this->layout()->searchbox = false; ?>
-<?php $this->layout()->nocontainerclass = true; ?>
-<?php $this->breadcrumbs()->set($this->translate('Acessibilidade'), null, true); ?>
+<?php
+// Declaração de acessibilidade do Oasisbr (layout: tela "Declaração" do Oasisbr Redesign AC V3).
+// Dados editáveis: atualize os valores abaixo quando a avaliação for concluída ou a declaração for revisada.
+$statementUpdatedAt = '2026-11-16'; // Data da última atualização (AAAA-MM-DD).
+$evaluation = [
+  'date' => 'novembro/2026',
+  'validators' => ['Wave', 'Ases', 'Lighthouse'],
+  'screenReader' => 'nome',   // Preencher com o leitor de telas utilizado (ex.: 'NVDA').
+  'browsers' => ['Chrome'],
+  'wcagVersion' => '2.2',
+];
+$knownLimitations = [];    // Ex.: [['description' => 'Descrição da limitação.', 'forecast' => 'dezembro de 2026']]
 
-<header class="page-title-bar oasis-page-title-bar oasis-accessibility-page__title">
-  <div class="container">
-    <span class="oasis-page-kicker"><?= $this->transEsc('accessibility') ?></span>
-    <h1><?= $this->transEsc('faq15 heading') ?></h1>
-    <p><?= $this->transEsc('faq15 p1') ?></p>
-  </div>
-</header>
+$this->headTitle($this->translate('accessibility statement'));
+$this->layout()->searchbox = false;
+$this->layout()->nocontainerclass = true;
+$this->breadcrumbs()->set($this->translate('accessibility statement'), null, true);
 
-<div class="oasis-inner-page oasis-accessibility-page">
-  <nav class="oasis-accessibility-page__navigation" aria-label="<?= $this->transEscAttr('accessibility page navigation') ?>">
-    <a href="#atalhos"><?= $this->transEsc('accessibility keyboard shortcuts') ?></a>
-    <a href="#recursos"><?= $this->transEsc('accessibility resources') ?></a>
-    <a href="#contato"><?= $this->transEsc('accessibility report barrier') ?></a>
-  </nav>
+$evaluationDone = $evaluation['date'] && $evaluation['validators'] && $evaluation['screenReader'] && $evaluation['browsers'];
+$joinList = fn(array $items): string => implode(', ', array_map(fn($item) => $this->escapeHtml($item), $items));
+$updatedAtDisplay = date('d/m/Y', strtotime($statementUpdatedAt));
+$updatedAtHtml = '<time datetime="' . $this->escapeHtmlAttr($statementUpdatedAt) . '">' . $updatedAtDisplay . '</time>';
+$newTab = ' <span class="visually-hidden">(' . $this->transEsc('opens new tab') . ')</span>';
+$wcagLink = '<a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">' . $this->transEsc('accessibility wcag link') . $newTab . '</a>';
+$pageUrl = $this->url('acessibilidade-home');
 
-  <article class="oasis-accessibility-page__content">
-    <section class="oasis-accessibility-page__intro" aria-labelledby="acessibilidade-introducao">
-      <h2 id="acessibilidade-introducao"><?= $this->transEsc('accessibility about heading') ?></h2>
-      <p><?= $this->transEsc('faq15 p2') ?></p>
-      <p><?= $this->transEsc('faq15 p3') ?></p>
+$form = $this->form;
+$formEnabled = $this->formEnabled && $form;
+// Erros por campo só existem após um envio inválido. Não usar $form->getMessages(): sem
+// validação ele devolve os modelos de mensagem do VuFind, não erros reais.
+$errors = [];
+if ($formEnabled) {
+  foreach ($form->getInputFilter()->getInvalidInput() as $invalidName => $input) {
+    $errors[$invalidName] = array_values($input->getMessages());
+  }
+}
+$requiredMark = '<span class="oasis-accessibility-statement__required" aria-hidden="true"> *</span><span class="visually-hidden"> (' . $this->transEsc('accessibility barrier required') . ')</span>';
+$renderField = function (string $name, array $attributes = []) use ($form, $errors): string {
+  $element = $form->get($name);
+  $element->removeAttribute('aria-label'); // O rótulo visível (<label>) já nomeia o campo.
+  $hintId = $element->getAttribute('id') . '-hint';
+  $describedBy = [$hintId];
+  $hasError = array_key_exists($name, $errors);
+  if ($hasError) {
+    $element->setAttribute('aria-invalid', 'true');
+    $describedBy[] = $element->getAttribute('id') . '-error';
+  }
+  $element->setAttribute('aria-describedby', implode(' ', $describedBy));
+  foreach ($attributes as $attribute => $value) {
+    $element->setAttribute($attribute, $value);
+  }
+  $html = $this->formElement($element);
+  if ($hasError) {
+    // Campo obrigatório vazio chega sem texto de erro: usa a mensagem padrão do VuFind.
+    $message = $errors[$name] ? implode(' ', $errors[$name]) : $this->translate('This field is required');
+    $html .= '<p class="oasis-accessibility-statement__error" id="' . $this->escapeHtmlAttr($element->getAttribute('id')) . '-error">' . $this->escapeHtml($message) . '</p>';
+  }
+  return $html;
+};
+$hintId = fn(string $name): string => $this->escapeHtmlAttr($form->get($name)->getAttribute('id') . '-hint');
+?>
+<div class="oasis-inner-page oasis-accessibility-page" data-oasis-accessibility-page>
+  <article class="oasis-accessibility-statement">
+    <header class="oasis-accessibility-statement__header">
+      <h1><?= $this->transEsc('accessibility statement heading') ?></h1>
+      <p class="oasis-accessibility-statement__updated"><?= $this->transEsc('accessibility statement updated') ?>: <?= $updatedAtHtml ?></p>
+      <p class="oasis-accessibility-statement__intro"><?= $this->transEsc('accessibility statement commitment') ?></p>
+    </header>
+
+    <section aria-labelledby="dc-abr">
+      <h2 id="dc-abr"><?= $this->transEsc('accessibility scope heading') ?></h2>
+      <p><?= $this->transEsc('accessibility scope text') ?></p>
     </section>
 
-    <section id="atalhos" aria-labelledby="atalhos-titulo">
-      <h2 id="atalhos-titulo"><?= $this->transEsc('accessibility keyboard shortcuts') ?></h2>
-      <p><?= $this->transEsc('accessibility shortcuts description') ?></p>
-      <div class="oasis-accessibility-page__table-wrap">
-        <table>
-          <caption class="visually-hidden"><?= $this->transEsc('accessibility keyboard shortcuts') ?></caption>
-          <thead><tr><th scope="col"><?= $this->transEsc('accessibility shortcut key') ?></th><th scope="col"><?= $this->transEsc('accessibility shortcut destination') ?></th></tr></thead>
-          <tbody>
-            <tr><td><kbd>Alt + 2</kbd></td><td><?= $this->transEsc('accessibility shortcut menu') ?></td></tr>
-            <tr><td><kbd>Alt + 3</kbd></td><td><?= $this->transEsc('accessibility shortcut search') ?></td></tr>
-            <tr><td><kbd>Alt + 4</kbd></td><td><?= $this->transEsc('accessibility shortcut footer') ?></td></tr>
-          </tbody>
-        </table>
-      </div>
+    <section aria-labelledby="dc-aval">
+      <h2 id="dc-aval"><?= $this->transEsc('accessibility evaluation heading') ?></h2>
+      <?php if ($evaluationDone): ?>
+        <p><?= $this->translate('accessibility evaluation text', [
+          '%%date%%' => $this->escapeHtml($evaluation['date']),
+          '%%validators%%' => $joinList($evaluation['validators']),
+          '%%screenReader%%' => $this->escapeHtml($evaluation['screenReader']),
+          '%%browsers%%' => $joinList($evaluation['browsers']),
+          '%%wcag%%' => $wcagLink,
+          '%%version%%' => $this->escapeHtml($evaluation['wcagVersion']),
+        ]) ?></p>
+      <?php else: ?>
+        <p><?= $this->translate('accessibility evaluation pending', ['%%wcag%%' => $wcagLink]) ?></p>
+      <?php endif; ?>
     </section>
 
-    <section id="recursos" aria-labelledby="recursos-titulo">
-      <h2 id="recursos-titulo"><?= $this->transEsc('accessibility resources') ?></h2>
-      <p><?= $this->transEsc('accessibility resources description') ?></p>
-      <div class="oasis-accessibility-page__features">
-        <section><h3><?= $this->transEsc('accessibility text size') ?></h3><p><?= $this->transEsc('accessibility text size description') ?></p></section>
-        <section><h3><?= $this->transEsc('accessibility contrast') ?></h3><p><?= $this->transEsc('accessibility contrast description') ?></p></section>
-        <section><h3><?= $this->transEsc('accessibility libras') ?></h3><p><?= $this->transEsc('accessibility vlibras description') ?></p></section>
-      </div>
+    <section aria-labelledby="dc-lim">
+      <h2 id="dc-lim"><?= $this->transEsc('accessibility limitations heading') ?></h2>
+      <?php if ($knownLimitations): ?>
+        <p><?= $this->transEsc('accessibility limitations intro') ?></p>
+        <ul class="oasis-accessibility-statement__limitations">
+          <?php foreach ($knownLimitations as $limitation): ?>
+            <li>
+              <p><?= $this->escapeHtml($limitation['description']) ?></p>
+              <?php if (!empty($limitation['forecast'])): ?><p><strong><?= $this->transEsc('accessibility limitation forecast') ?>:</strong> <?= $this->escapeHtml($limitation['forecast']) ?></p><?php endif; ?>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      <?php else: ?>
+        <p class="oasis-accessibility-statement__note"><?= $this->transEsc('accessibility limitations none') ?></p>
+      <?php endif; ?>
     </section>
 
-    <section id="contato" class="oasis-accessibility-page__contact" aria-labelledby="contato-titulo">
-      <h2 id="contato-titulo"><?= $this->transEsc('accessibility report barrier') ?></h2>
-      <p><?= $this->transEsc('faq15 p5') ?></p>
-      <a class="oasis-accessibility-page__link" href="<?= $this->url('faq-home') ?>"><?= $this->transEsc('faq15 p6') ?></a>
+    <section aria-labelledby="dc-bar">
+      <h2 id="dc-bar"><?= $this->transEsc('accessibility report barrier heading') ?></h2>
+      <?php if ($formEnabled): ?>
+        <p><?= $this->transEsc('accessibility report barrier text1') ?></p>
+        <p><?= $this->transEsc('accessibility report barrier text2') ?></p>
+        <div class="oasis-accessibility-statement__actions">
+          <button type="button" class="oasis-accessibility-statement__button" data-oasis-barrier-toggle aria-expanded="<?= ($this->barrierOpen || $this->barrierSent) ? 'true' : 'false' ?>" aria-controls="form-barreira"><i class="fa-solid fa-envelope" aria-hidden="true"></i><?= $this->transEsc('accessibility report barrier button') ?></button>
+        </div>
+        <div id="form-barreira" class="oasis-accessibility-statement__formbox">
+          <?php if ($this->barrierSent): ?>
+            <div role="status" tabindex="-1" id="fb-ok" class="oasis-accessibility-statement__sent">
+              <span class="oasis-accessibility-statement__sent-icon" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+              <div class="oasis-accessibility-statement__sent-body">
+                <h3><?= $this->transEsc('accessibility barrier sent heading') ?></h3>
+                <p><?= $this->transEsc('accessibility barrier form response') ?></p>
+                <a class="oasis-accessibility-statement__link-button" href="<?= $pageUrl ?>?barreira=aberta#form-barreira"><?= $this->transEsc('accessibility barrier send another') ?></a>
+              </div>
+            </div>
+          <?php else: ?>
+            <form class="oasis-accessibility-statement__form" action="<?= $pageUrl ?>#form-barreira" method="post" aria-labelledby="fb-titulo">
+              <div class="oasis-accessibility-statement__form-heading">
+                <h3 id="fb-titulo"><?= $this->transEsc('accessibility barrier form title') ?></h3>
+                <p><?= $this->translate('accessibility barrier required note', ['%%mark%%' => '<span class="oasis-accessibility-statement__required" aria-hidden="true">*</span><span class="visually-hidden">' . $this->transEsc('accessibility barrier required') . '</span>']) ?></p>
+              </div>
+              <?= $this->flashmessages() ?>
+              <?php if ($errors): ?>
+                <p class="oasis-accessibility-statement__alert" role="alert" tabindex="-1"><?= $this->transEsc('accessibility barrier form errors') ?></p>
+              <?php endif; ?>
+              <div class="oasis-accessibility-statement__grid">
+                <label class="oasis-accessibility-statement__field"><?= $this->transEsc('accessibility barrier name') ?><span class="oasis-accessibility-statement__hint" id="<?= $hintId('name') ?>"><?= $this->transEsc('accessibility barrier optional') ?></span><?= $renderField('name', ['autocomplete' => 'name']) ?></label>
+                <label class="oasis-accessibility-statement__field"><span><?= $this->transEsc('accessibility barrier email') ?><?= $requiredMark ?></span><span class="oasis-accessibility-statement__hint" id="<?= $hintId('email') ?>"><?= $this->transEsc('accessibility barrier email help') ?></span><?= $renderField('email', ['autocomplete' => 'email']) ?></label>
+              </div>
+              <div class="oasis-accessibility-statement__grid">
+                <label class="oasis-accessibility-statement__field"><span><?= $this->transEsc('accessibility barrier page') ?><?= $requiredMark ?></span><span class="oasis-accessibility-statement__hint" id="<?= $hintId('page') ?>"><?= $this->transEsc('accessibility barrier page help') ?></span><?= $renderField('page', ['placeholder' => $this->translate('accessibility barrier page placeholder')]) ?></label>
+                <label class="oasis-accessibility-statement__field"><?= $this->transEsc('accessibility barrier feature') ?><span class="oasis-accessibility-statement__hint" id="<?= $hintId('feature') ?>"><?= $this->transEsc('accessibility barrier feature help') ?></span><?= $renderField('feature') ?></label>
+              </div>
+              <label class="oasis-accessibility-statement__field oasis-accessibility-statement__field--narrow"><?= $this->transEsc('accessibility barrier resource') ?><span class="oasis-accessibility-statement__hint" id="<?= $hintId('resource') ?>"><?= $this->transEsc('accessibility barrier resource help') ?></span><?= $renderField('resource') ?></label>
+              <label class="oasis-accessibility-statement__field"><span><?= $this->transEsc('accessibility barrier description') ?><?= $requiredMark ?></span><span class="oasis-accessibility-statement__hint" id="<?= $hintId('description') ?>"><?= $this->transEsc('accessibility barrier description help') ?></span><?= $renderField('description', ['rows' => 5]) ?></label>
+              <?php foreach (['referrer', 'useragent'] as $hidden): ?>
+                <?php if ($form->has($hidden)): ?><?= $this->formElement($form->get($hidden)) ?><?php endif; ?>
+              <?php endforeach; ?>
+              <?= $this->captcha()->html($this->useCaptcha) ?>
+              <div class="oasis-accessibility-statement__form-actions">
+                <button type="submit" name="submitButton" value="1" class="oasis-accessibility-statement__button"><?= $this->transEsc('accessibility barrier send') ?></button>
+                <button type="button" class="oasis-accessibility-statement__button oasis-accessibility-statement__button--secondary" data-oasis-barrier-cancel><?= $this->transEsc('accessibility barrier cancel') ?></button>
+              </div>
+            </form>
+          <?php endif; ?>
+        </div>
+      <?php else: ?>
+        <p><?= $this->transEsc('faq15 p5') ?></p>
+      <?php endif; ?>
     </section>
 
-    <section class="oasis-accessibility-page__learn-more" aria-labelledby="saiba-mais-titulo">
-      <h2 id="saiba-mais-titulo"><?= $this->transEsc('accessibility learn more heading') ?></h2>
-      <p><?= $this->transEsc('faq15 learn more text1') ?> <a href="https://www.gov.br/governodigital/pt-br/acessibilidade-e-usuario/acessibilidade-digital" target="_blank" rel="noopener noreferrer"><?= $this->transEsc('faq15 accessibility digital link') ?> <span class="visually-hidden"><?= $this->transEsc('opens new tab') ?></span></a> <?= $this->transEsc('faq15 learn more text2') ?> <a href="https://emag.governoeletronico.gov.br/" target="_blank" rel="noopener noreferrer"><?= $this->transEsc('faq15 emag link') ?> <span class="visually-hidden"><?= $this->transEsc('opens new tab') ?></span></a>.</p>
+    <section aria-labelledby="dc-atu">
+      <h2 id="dc-atu"><?= $this->transEsc('accessibility update heading') ?></h2>
+      <p><?= $this->transEsc('accessibility update text') ?></p>
+      <p><strong><?= $this->transEsc('accessibility statement updated') ?>: <?= $updatedAtHtml ?></strong></p>
     </section>
+
+    <footer class="oasis-accessibility-statement__footer">
+      <a href="<?= $this->url('home') ?>"><span aria-hidden="true">←</span> <?= $this->transEsc('accessibility back home') ?></a>
+    </footer>
   </article>
 </div>
