@@ -28,7 +28,19 @@ class AcessibilidadeController extends FeedbackController
         if ($userAgentHeader = $this->getRequest()->getHeader('User-Agent')) {
             $params['userAgent'] = $userAgentHeader->getFieldValue();
         }
-        $form->setFormId(self::BARRIER_FORM_ID, $params);
+        try {
+            $form->setFormId(self::BARRIER_FORM_ID, $params);
+        } catch (\VuFind\Exception\RecordMissing) {
+            // Sem FeedbackForms.yaml no ambiente (arquivo local, fora do Git), a página ainda carrega.
+            return $this->createViewModel([
+                'form' => $form,
+                'formId' => self::BARRIER_FORM_ID,
+                'formEnabled' => false,
+                'barrierSent' => false,
+                'barrierOpen' => false,
+                'useCaptcha' => false,
+            ]);
+        }
         $formEnabled = $form->isEnabled() && ($user || !$form->showOnlyForLoggedUsers());
         $state = $this->params()->fromQuery('barreira');
         $submitted = (bool)$this->params()->fromPost('submitButton', false);
