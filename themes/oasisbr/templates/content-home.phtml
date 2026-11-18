@@ -1,6 +1,6 @@
 <?php $this->assetManager()->appendScriptLink('indicators-home.js'); ?>
 <?php $newTab = $this->transEsc('opens_new_tab'); ?>
-<section class="oasis-home-stats" aria-labelledby="numeros">
+<section class="oasis-home-stats" id="oasis-home-stats" tabindex="-1" aria-labelledby="numeros">
   <div class="oasis-home-container">
     <h2 id="numeros"><?= $this->transEsc('home_stats_title') ?></h2>
     <dl class="oasis-home-stats-grid">
