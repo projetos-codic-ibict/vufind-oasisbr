@@ -5484,7 +5484,8 @@ a.link-simple {
 
 .oasis-site .oasis-accessibility-statement__button--secondary {
   padding: 0 20px;
-  border: 2px solid #dcdcdc;
+  /* #767676 tem 4,5:1 sobre branco (WCAG 1.4.11); #dcdcdc tinha 1,4:1. */
+  border: 2px solid #767676;
   background: #fff;
   color: #1b1b1b;
 }
@@ -5526,7 +5527,8 @@ a.link-simple {
 
 .oasis-site .oasis-accessibility-statement__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  /* min(260px, 100%) evita estouro horizontal em telas estreitas (WCAG 1.4.10 Reflow). */
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   gap: 16px;
 }
 
