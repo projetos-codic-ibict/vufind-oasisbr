@@ -24,7 +24,7 @@
         <p>
           <?= $this->transEsc('about p3'); ?>
           <a target="_blank" href="https://www.rcaap.pt" rel="noopener noreferrer"
-            aria-label="<?= $this->transEsc('about link rcaap aria label'); ?>">
+            aria-label="<?= $this->transEscAttr('about link rcaap') ?>, <?= $this->transEsc('opens_new_tab') ?>">
             <?= $this->transEsc('about link rcaap'); ?>
           </a>
         </p>
