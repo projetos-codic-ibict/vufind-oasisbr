@@ -20,6 +20,9 @@ foreach ($translations as &$translation) {
 }
 unset($translation);
 
+// Enquanto o aviso estiver aberto, a página fica bloqueada e o foco fica preso dentro dele.
+$consentDialogConfig['disablePageInteraction'] = true;
+
 $configJson = json_encode(
     [
         'consentDialog' => $consentDialogConfig,
@@ -28,6 +31,18 @@ $configJson = json_encode(
 );
 $this->assetManager()->appendScriptString(<<<JS
 window.addEventListener('load', function() {
+  // Ao abrir o aviso (ao carregar ou pelo botão de cookies), move o foco para dentro dele.
+  var focusNotice = function() {
+    var notice = document.getElementById('cc-main');
+    var target = notice && notice.querySelector('[tabindex="-1"]');
+    if (target) target.focus();
+  };
+  new MutationObserver(function() {
+    if (document.documentElement.classList.contains('show--consent')) {
+      setTimeout(focusNotice, 150);
+    }
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
   VuFind.cookie.setupConsent($configJson);
 
   var openedFromCookieButton = false;

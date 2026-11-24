@@ -6278,6 +6278,11 @@ body.oasis-site.oasis-high-contrast :is(a, button, input, select, textarea, summ
 }
 
 /* Cookie notice: full-width bottom bar based on the BrCris layout. */
+/* Sem escurecer a página atrás do aviso (o bloqueio de interação continua ativo). */
+:root {
+  --cc-overlay-bg: transparent;
+}
+
 #cc-main,
 #cc-main .cm-wrapper,
 #cc-main .cm--bar,
@@ -6302,7 +6307,7 @@ body.oasis-site.oasis-high-contrast :is(a, button, input, select, textarea, summ
   background: #ffffff;
   color: #333333;
   box-shadow: 0 0.5rem 1.5rem rgba(7, 29, 65, 0.14);
-  font-family: Rawline, Raleway, sans-serif;
+  font-family: var(--oasis-font-sans);
 }
 
 #cc-main .cm--bar .cm__body {
@@ -6325,7 +6330,8 @@ body.oasis-site.oasis-high-contrast :is(a, button, input, select, textarea, summ
 }
 
 #cc-main .cm__title {
-  color: #1351b4;
+  color: #4d4d4d;
+  font-family: var(--oasis-font-sans);
   font-size: 1.125rem;
   font-weight: 700;
 }
@@ -6334,7 +6340,8 @@ body.oasis-site.oasis-high-contrast :is(a, button, input, select, textarea, summ
   width: 100%;
   max-width: none;
   max-height: 42vh;
-  color: #333333;
+  color: #1b1b1b;
+  font-family: var(--oasis-font-sans);
   font-size: 0.9375rem;
   line-height: 1.55;
 }
@@ -6349,7 +6356,7 @@ body.oasis-site.oasis-high-contrast :is(a, button, input, select, textarea, summ
 }
 
 #cc-main .cm__desc a {
-  color: #1351b4;
+  color: #1d5a24;
   font-weight: 700;
   text-decoration: underline;
 }
@@ -6370,9 +6377,9 @@ body.oasis-site.oasis-high-contrast :is(a, button, input, select, textarea, summ
 #cc-main .cm__btn {
   min-width: 8rem;
   min-height: 3rem;
-  border: 1px solid #1351b4;
+  border: 1px solid #2e7d32;
   border-radius: 0.375rem;
-  background: #1351b4;
+  background: #2e7d32;
   color: #ffffff;
   font-family: inherit;
   font-size: 0.9375rem;
@@ -6381,21 +6388,21 @@ body.oasis-site.oasis-high-contrast :is(a, button, input, select, textarea, summ
 
 #cc-main .cm__btn:hover,
 #cc-main .cm__btn:focus {
-  border-color: #0c326f;
-  background: #0c326f;
+  border-color: #1b5e20;
+  background: #1b5e20;
   color: #ffffff;
 }
 
 #cc-main .cm__btn--secondary {
-  border-color: #1351b4;
+  border-color: #2e7d32;
   background: #ffffff;
-  color: #1351b4;
+  color: #2e7d32;
 }
 
 #cc-main .cm__btn--secondary:hover,
 #cc-main .cm__btn--secondary:focus {
-  background: #e7f0ff;
-  color: #0c326f;
+  background: #e4f3e7;
+  color: #1b5e20;
 }
 
 #cc-main .cm__btn:focus-visible,
