@@ -1,0 +1,29 @@
+<?php
+/** @var array $person Dados da pessoa (ver team/home.phtml) */
+$name = $person['name'];
+$start = $person['start'];
+$end = $person['end'];
+$isCurrent = $person['status'] === 'current';
+$years = (int) ($end ?? date('Y')) - $start;
+?>
+<li class="oasis-team-card">
+  <h3><?= $this->escapeHtml($name) ?></h3>
+  <?php if ($person['role']) : ?><p class="oasis-team-card__role"><?= $this->escapeHtml($person['role']) ?></p><?php endif; ?>
+  <dl>
+    <?php if ($isCurrent) : ?>
+      <div><dt>No projeto há</dt><dd><?= $years ?> ano<?= $years === 1 ? '' : 's' ?></dd></div>
+      <div><dt>Desde</dt><dd><?= $start ?></dd></div>
+    <?php else : ?>
+      <div><dt>Período</dt><dd><?= $start ?> – <?= $end ?></dd></div>
+      <div><dt>Setor</dt><dd><?= $this->escapeHtml($person['sectorLabel']) ?></dd></div>
+    <?php endif; ?>
+  </dl>
+  <p class="visually-hidden"><?= $this->escapeHtml($person['activity']) ?></p>
+  <?php if ($person['lattes']) : ?>
+    <a class="oasis-team-card__lattes" href="<?= $this->escapeHtmlAttr($person['lattes']) ?>" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Currículo Lattes <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span class="visually-hidden"> de <?= $this->escapeHtml($name) ?>, abre em nova aba</span></a>
+  <?php elseif ($person['brcris']) : ?>
+    <a class="oasis-team-card__lattes" href="<?= $this->escapeHtmlAttr($person['brcris']) ?>" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-id-card" aria-hidden="true"></i> Perfil no BRCRIS <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span class="visually-hidden"> de <?= $this->escapeHtml($name) ?>, abre em nova aba</span></a>
+  <?php else : ?>
+    <button class="oasis-team-card__lattes" type="button" disabled><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Currículo indisponível</button>
+  <?php endif; ?>
+</li>
