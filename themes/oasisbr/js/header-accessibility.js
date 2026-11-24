@@ -39,8 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   };
   const goToSearch = (fallbackUrl) => {
-    if (focusTarget(document.getElementById('searchForm_lookfor'))) return true;
-    if (!fallbackUrl) return false;
+    // Na página de resultados, apenas foca o campo de busca; nas demais, abre a página de resultados.
+    const onResults = window.location.pathname.endsWith('/Search/Results');
+    if (onResults && focusTarget(document.getElementById('searchForm_lookfor'))) return true;
+    if (!fallbackUrl) return focusTarget(document.getElementById('searchForm_lookfor'));
     window.location.assign(fallbackUrl + '#searchForm_lookfor');
     return true;
   };

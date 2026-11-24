@@ -13,6 +13,7 @@ $isHome = $templateDir === 'search' && $templateName === 'home';
 $isDataSources = $templateDir === 'datasources';
 $isIndicators = $templateDir === 'indicators';
 $searchHomeUrl = $this->url('search-home');
+$searchResultsUrl = $this->url('search-results') . '?type=AllFields&lookfor=';
 $feedbackUrl = $this->feedback()->tabEnabled() ? $this->url('feedback-home') : '';
 $govBrMenuLinks = $feedbackUrl === '' ? [] : [[
   'id' => 'contato',
@@ -26,7 +27,7 @@ $govBrMenuLinks = $feedbackUrl === '' ? [] : [[
     <ul class="oasis-header-accessibility__shortcuts">
       <li><a class="oasis-header-accessibility__link" href="#content" data-oasis-shortcut="content" accesskey="1"><?= $this->transEsc('accessibility skip to content') ?> <kbd>1</kbd></a></li>
       <li><a class="oasis-header-accessibility__link" href="#header-collapse" data-oasis-shortcut="menu" accesskey="2"><?= $this->transEsc('accessibility skip to menu') ?> <kbd>2</kbd></a></li>
-      <li><a class="oasis-header-accessibility__link" href="<?= $searchHomeUrl ?>#searchForm_lookfor" data-oasis-shortcut="search" data-oasis-search-url="<?= $searchHomeUrl ?>" accesskey="3"><?= $this->transEsc('accessibility skip to search') ?> <kbd>3</kbd></a></li>
+      <li><a class="oasis-header-accessibility__link" href="<?= $searchResultsUrl ?>#searchForm_lookfor" data-oasis-shortcut="search" data-oasis-search-url="<?= $searchResultsUrl ?>" accesskey="3"><?= $this->transEsc('accessibility skip to search') ?> <kbd>3</kbd></a></li>
       <li><a class="oasis-header-accessibility__link" href="#rodape" data-oasis-shortcut="footer" accesskey="4"><?= $this->transEsc('accessibility skip to footer') ?> <kbd>4</kbd></a></li>
     </ul>
     <div class="oasis-header-accessibility__controls">
@@ -85,7 +86,7 @@ $govBrMenuLinks = $feedbackUrl === '' ? [] : [[
           <ul class="oasis-accessibility-panel__shortcuts">
             <li><a href="#content" data-oasis-shortcut="content" accesskey="1"><kbd>Alt + 1</kbd> <?= $this->transEsc('accessibility shortcut content') ?></a></li>
             <li><a href="#header-collapse" data-oasis-shortcut="menu" accesskey="2"><kbd>Alt + 2</kbd> <?= $this->transEsc('accessibility shortcut menu') ?></a></li>
-            <li><a href="<?= $searchHomeUrl ?>#searchForm_lookfor" data-oasis-shortcut="search" data-oasis-search-url="<?= $searchHomeUrl ?>" accesskey="3"><kbd>Alt + 3</kbd> <?= $this->transEsc('accessibility shortcut search') ?></a></li>
+            <li><a href="<?= $searchResultsUrl ?>#searchForm_lookfor" data-oasis-shortcut="search" data-oasis-search-url="<?= $searchResultsUrl ?>" accesskey="3"><kbd>Alt + 3</kbd> <?= $this->transEsc('accessibility shortcut search') ?></a></li>
             <li><a href="#rodape" data-oasis-shortcut="footer" accesskey="4"><kbd>Alt + 4</kbd> <?= $this->transEsc('accessibility shortcut footer') ?></a></li>
           </ul>
         </section>
