@@ -6,7 +6,7 @@ $categories = [
   'technology' => ['Tecnologia e infraestrutura', 'fa-server', 'Mantém a plataforma, a coleta automática via OAI-PMH e a disponibilidade dos serviços.'],
   'metadata' => ['Metadados e curadoria', 'fa-tags', 'Garante a qualidade, a normalização e a consistência dos registros coletados.'],
   'design' => ['Design e acessibilidade', 'fa-palette', 'Contribui para a experiência, a comunicação visual e a acessibilidade do portal.'],
-  'communication' => ['Comunicação e atendimento', 'fa-comments', 'Apoia a comunicação institucional e o atendimento às pessoas usuárias.'],
+  // 'communication' => ['Comunicação e atendimento', 'fa-comments', 'Apoia a comunicação institucional e o atendimento às pessoas usuárias.'], // Oculta até haver integrantes nesta categoria.
 ];
 // Dados do histórico da equipe (PDF "Histórico equipe Oasisbr"). O setor foi inferido do cargo informado: revisar com a coordenação.
 // Cada perfil usa o Currículo Lattes quando informado (campo 'lattes'); caso contrário, o perfil no BRCRIS.
@@ -49,6 +49,13 @@ $currentBySector = [];
 foreach ($current as $person) {
   $currentBySector[$person['sector']][] = $person;
 }
+// A ordem dos cards dentro de cada setor é sorteada a cada carregamento da página.
+foreach ($currentBySector as &$sectorMembers) {
+  shuffle($sectorMembers);
+}
+unset($sectorMembers);
+// A aba "Já fizeram parte" também é sorteada a cada carregamento.
+shuffle($former);
 ?>
 <header class="page-title-bar oasis-page-title-bar oasis-team-title-bar"><div class="container"><span class="oasis-page-kicker"><?= $this->transEsc('header_about') ?></span><h1><?= $this->transEsc('header_team') ?></h1></div></header>
 <main class="oasis-inner-page oasis-team-page" data-oasis-team>
